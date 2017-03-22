@@ -16,6 +16,17 @@ namespace Dungeon_Crawler_2D
         Rectangle hitBox;
         Game1 game;
 
+        protected Vector2 origin;
+        protected float rotation, frameTime, scale;
+        protected Point startingFrame, frame, frameSize;
+        protected Rectangle srcRec
+        {
+            get { return new Rectangle(frame.X * frameSize.X,
+            frame.Y * frameSize.Y, frameSize.X, frameSize.Y); }
+        }
+        protected Color color;
+        protected SpriteEffects sEffect;
+
         int health;
         int mana;
         int xp;
@@ -57,7 +68,7 @@ namespace Dungeon_Crawler_2D
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(tex, pos, hitBox, Color.White);
+            spriteBatch.Draw(tex, pos, srcRec, color, rotation, origin, scale, sEffect, 1);
         }
     }
 }
