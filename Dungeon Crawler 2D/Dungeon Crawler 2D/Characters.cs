@@ -9,11 +9,11 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Dungeon_Crawler_2D
 {
-    class Characters
+    public class Characters
     {
-        Texture2D tex;
-        Vector2 pos;
-        Rectangle hitBox;
+        protected Texture2D tex;
+        protected Vector2 pos;
+        protected Rectangle hitBox;
         Game1 game;
 
         protected Vector2 origin;
@@ -41,7 +41,7 @@ namespace Dungeon_Crawler_2D
             this.xp = xp;
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             
         }
@@ -66,9 +66,9 @@ namespace Dungeon_Crawler_2D
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(tex, pos, srcRec, color, rotation, origin, scale, sEffect, 1);
+            spriteBatch.Draw(tex, pos, hitBox, color, rotation, origin, scale, sEffect, 1);
         }
     }
 }
