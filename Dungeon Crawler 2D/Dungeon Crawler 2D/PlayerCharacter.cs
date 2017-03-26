@@ -11,7 +11,6 @@ namespace Dungeon_Crawler_2D
 {
     class PlayerCharacter:Characters
     {
-        
 
         int health;
         int mana;
@@ -22,9 +21,9 @@ namespace Dungeon_Crawler_2D
         public PlayerCharacter(Texture2D tex, Vector2 pos, Rectangle hitBox, int health, int mana, int xp):
             base(tex, pos, hitBox, health, mana, xp)
         {
-            this.tex = tex;
-            this.pos = pos;
-            this.hitBox = hitBox;
+            this.playerTex = tex;
+            this.playerPos = pos;
+            this.playerHitBox = hitBox;
             this.health = 5;
             this.mana = 0;
             this.xp = xp;
@@ -34,36 +33,35 @@ namespace Dungeon_Crawler_2D
         {
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
-                pos.Y -= 3;
+                playerPos.Y -= 3;
 
                 //Animation for Up
             }
             if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
-                pos.Y += 3;
+                playerPos.Y += 3;
 
                 //Animation for Down
             }
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                pos.X -= 3;
+                playerPos.X -= 3;
 
                 //Animation for Left
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                pos.X += 3;
+                playerPos.X += 3;
 
                 //Animation for Right
             }
-            hitBox = new Rectangle((int)pos.X, (int)pos.Y, tex.Width, tex.Height);
-            base.Update(gameTime);
+            playerHitBox = new Rectangle((int)playerPos.X, (int)playerPos.Y, playerTex.Width, playerTex.Height);
+            
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(tex, pos, hitBox, Color.White, rotation, origin, scale, sEffect, 1);
-            base.Draw(spriteBatch);
+            
         }
 
     }
