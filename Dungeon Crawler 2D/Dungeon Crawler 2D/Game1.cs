@@ -10,11 +10,8 @@ namespace Dungeon_Crawler_2D
         SpriteBatch spriteBatch;
         
         Texture2D playerTex;
-        Vector2 pos;
-        Rectangle hitBox;
-        int health;
-        int mana;
-        int xp;
+        Rectangle playerHitBox;
+        Vector2 playerPos;
 
         PlayerCharacter playerCharacter;
 
@@ -27,27 +24,20 @@ namespace Dungeon_Crawler_2D
         protected override void Initialize()
         {
             base.Initialize();
+            graphics.PreferredBackBufferHeight = 800;
+            graphics.PreferredBackBufferWidth = 1200;
+            graphics.ApplyChanges();
+
+            playerHitBox = new Rectangle((int)playerPos.X, (int)playerPos.Y, playerTex.Width, playerTex.Height);
+            playerPos = new Vector2(50, 50);
+            playerCharacter = new PlayerCharacter(playerTex, playerPos, playerHitBox, 5, 0, 0);
         }
         
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            playerTex = Content.Load<Texture2D>("character");
-
-            pos = new Vector2(50, 50);
-            hitBox = new Rectangle((int)pos.X, (int)pos.Y, playerTex.Width, playerTex.Height);
+            playerTex = Content.Load<Texture2D>("Player");
             //characters = new Characters(tex, pos, hitBox, health, mana, xp);
-            playerCharacter = new PlayerCharacter(playerTex, pos, hitBox, health, mana, xp);
-
-            
-
-
-
-
-
-
-
-
         }
         protected override void Update(GameTime gameTime)
         {
@@ -61,11 +51,7 @@ namespace Dungeon_Crawler_2D
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-
-            
-
             playerCharacter.Draw(spriteBatch);
-
             spriteBatch.End();
 
             base.Draw(gameTime);

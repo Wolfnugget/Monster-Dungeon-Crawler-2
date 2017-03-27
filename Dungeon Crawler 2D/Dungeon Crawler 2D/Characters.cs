@@ -11,10 +11,10 @@ namespace Dungeon_Crawler_2D
 {
     public class Characters
     {
-        protected Texture2D tex;
-        protected Vector2 pos;
+        public Texture2D tex;
+        public Vector2 pos;
         protected Rectangle hitBox;
-        Game1 game;
+        
 
         protected Vector2 origin;
         protected float rotation, frameTime, scale;
@@ -45,26 +45,7 @@ namespace Dungeon_Crawler_2D
         {
             
         }
-
-        public void PlayerMove()
-        {
-            if (Keyboard.GetState().IsKeyDown(Keys.W))
-            {
-                //Animation for Up
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.S))
-            {
-                //Animation for Down
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
-            {
-                //Animation for Left
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
-            {
-                //Animation for Right
-            }
-        }
+        
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
