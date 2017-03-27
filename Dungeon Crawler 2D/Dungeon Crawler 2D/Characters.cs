@@ -11,13 +11,16 @@ namespace Dungeon_Crawler_2D
 {
     public class Characters
     {
-        public Texture2D tex;
-        public Vector2 pos;
+        protected Texture2D tex;
+        protected Vector2 pos;
         protected Rectangle hitBox;
-        
+
+        protected int health;
+        protected int mana;
+        protected int xp;
 
         protected Vector2 origin;
-        protected float rotation, frameTime, scale;
+        protected float rotation, frameTime, scale, layer;
         protected Point startingFrame, frame, frameSize;
         protected Rectangle srcRec
         {
@@ -26,19 +29,21 @@ namespace Dungeon_Crawler_2D
         }
         protected Color color;
         protected SpriteEffects sEffect;
-
-        int health;
-        int mana;
-        int xp;
-
+        
         public Characters(Texture2D tex, Vector2 pos, Rectangle hitBox, int health, int mana, int xp)
         {
             this.tex = tex;
             this.pos = pos;
             this.hitBox = hitBox;
+
             this.health = health;
             this.mana = mana;
             this.xp = xp;
+
+            //Behövs ge värden, default är 0. är scale 0 blir texturen osynlig... (Ta bort detta meddelande)
+            rotation = 0;
+            scale = 1;
+            layer = 1;
         }
 
         public virtual void Update(GameTime gameTime)
@@ -49,7 +54,7 @@ namespace Dungeon_Crawler_2D
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(tex, pos, hitBox, color, rotation, origin, scale, sEffect, 1);
+            
         }
     }
 }
