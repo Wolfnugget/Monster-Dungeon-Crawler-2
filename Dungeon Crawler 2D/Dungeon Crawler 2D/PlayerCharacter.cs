@@ -38,17 +38,17 @@ namespace Dungeon_Crawler_2D
                 playerPos.Y -= 3;
                 //Animation for Up
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            else if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 playerPos.Y += 3;
                 //Animation for Down
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            else if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 playerPos.X -= 3;
                 //Animation for Left
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            else if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 playerPos.X += 3;
                 //Animation for Right
