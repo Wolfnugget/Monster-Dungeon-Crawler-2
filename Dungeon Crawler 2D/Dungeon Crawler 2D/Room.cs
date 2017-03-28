@@ -13,14 +13,20 @@ namespace Dungeon_Crawler_2D
 {
     class Room
     {
-        Tile[,] tiles;
-        List<String> tileList;
+        public Tile[,] tiles;
+        public List<String> tileList;
 
-        public Room(Texture2D tileTex, int roomNr)
+        public Room(Texture2D tileTex, Texture2D charTex, PlayerCharacter character, int roomNr)
         {
-            tileList = new List<String>();
 
-            StreamReader sr = new StreamReader(@"Map1.txt");
+            tileList = new List<String>();
+            StreamReader sr;
+            if (roomNr == 0)
+                sr = new StreamReader(@"Map1.txt");
+            else if (roomNr == 1)
+                sr = new StreamReader(@"Map2.txt");
+            else
+                sr = new StreamReader(@"Map3.txt");
             while (!sr.EndOfStream)
             {
                 tileList.Add(sr.ReadLine());
@@ -43,20 +49,12 @@ namespace Dungeon_Crawler_2D
             {
                 for (int j = 0; j < tileList[i].Length; j++)
                 {
-                    if (tileList[i][j] == '0')
+                    if (tileList[i][j] == 'C')
                     {
-                        Vector2 pos = new Vector2(17 * j, 17 * i);
-                        tiles[j, i] = new Tile(tileTex, pos, Color.Black);
+                        character = new PlayerCharacter(charTex, new Vector2(charTex.Width * i, charTex.Height * j), 5, 0, 0, tiles[x,y]);
                     }
-                    else if (tileList[i][j] == 'c')
-                    {
-                        //makes a chest
-                    }
-                    else if (tileList[i][j] == 'x')
-                    {
-                        //the former room
-                        //where you begin when entering the room
-                    }
+                    else if (tileList[i][j] == 'X')
+                        tiles[i, j] = new Tile(tileTex, new Vector2(17 * j, 17 * i), Color.Black);
                     else if (tileList[i][j] == 'r')
                     {
                         //something randomly generated 
@@ -70,13 +68,11 @@ namespace Dungeon_Crawler_2D
                     {
                         //next room
                     }
-
-
-
-                    if (tileList[i][j] != '0' || tileList[i][j] != '1')
+                    
+                    if (tileList[i][j] != 'X')
                     {
-                        Vector2 pos = new Vector2(17 * j, 17 * i);
-                        tiles[j, i] = new Tile(tileTex, pos, Color.Beige);
+                        Vector2 pos = new Vector2(tileTex.Width * j, tileTex.Height * i);
+                        tiles[i, j] = new Tile(tileTex, pos, Color.Beige);
                     }
                 }
             }
@@ -85,11 +81,10 @@ namespace Dungeon_Crawler_2D
 
         public void Draw(SpriteBatch sp)
         {
-            foreach (Tile t in tiles)
-            {
-                t.Draw(sp);
-            }
+            for (int i = 0; i < tileList.Count; i++)
+                for (int j = 0; j < tileList[i].Length; j++)
+                    if (tiles[i,j] != null)
+                        tiles[i, j].Draw(sp);
         }
-
     }
 }

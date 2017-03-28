@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace Dungeon_Crawler_2D
 {
@@ -12,6 +13,9 @@ namespace Dungeon_Crawler_2D
         Texture2D playerTex;
         Vector2 playerPos;
         Rectangle playerHitBox;
+        Texture2D exTex;
+        Room room;
+        Random rand;
 
         PlayerCharacter playerCharacter;
 
@@ -28,16 +32,25 @@ namespace Dungeon_Crawler_2D
             graphics.PreferredBackBufferWidth = 1200;
             graphics.ApplyChanges();
 
-            playerPos = new Vector2(50, 50);
-            playerHitBox = new Rectangle((int)playerPos.X, (int)playerPos.Y, playerTex.Width, playerTex.Height);
+            //playerPos = new Vector2(50, 50);
+            //playerHitBox = new Rectangle((int)playerPos.X, (int)playerPos.Y, playerTex.Width, playerTex.Height);
 
-            playerCharacter = new PlayerCharacter(playerTex, playerPos, playerHitBox, 5, 0, 0);
+            //playerCharacter = new PlayerCharacter(playerTex, playerPos, playerHitBox, 5, 0, 0);
+            
+
         }
         
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             playerTex = Content.Load<Texture2D>("Player");
+            exTex = Content.Load<Texture2D>("Example");
+            rand = new Random();
+            int r = rand.Next(0, 3);
+            room = new Room(exTex, r);
+
+
+
         }
         protected override void Update(GameTime gameTime)
         {
@@ -52,7 +65,9 @@ namespace Dungeon_Crawler_2D
 
             spriteBatch.Begin();
 
+            room.Draw(spriteBatch);
             playerCharacter.Draw(spriteBatch);
+            
 
             spriteBatch.End();
 

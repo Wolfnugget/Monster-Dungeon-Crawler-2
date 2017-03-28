@@ -14,17 +14,19 @@ namespace Dungeon_Crawler_2D
         Texture2D playerTex;
         Vector2 playerPos;
         Rectangle playerHitBox;
+        Room room;
 
         int health;
         int mana;
         int xp;
 
-        public PlayerCharacter(Texture2D tex, Vector2 pos, Rectangle hitBox, int health, int mana, int xp):
-            base(tex, pos, hitBox, health, mana, xp)
+        public PlayerCharacter(Texture2D tex, Vector2 pos, Rectangle hitBox, int health, int mana, int xp, Room room):
+            base(tex, pos, health, mana, xp)
         {
             this.playerTex = tex;
             this.playerPos = pos;
             this.playerHitBox = hitBox;
+            this.room = room;
 
             this.health = health;
             this.mana = mana;
@@ -38,17 +40,17 @@ namespace Dungeon_Crawler_2D
                 playerPos.Y -= 3;
                 //Animation for Up
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            else if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 playerPos.Y += 3;
                 //Animation for Down
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            else if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 playerPos.X -= 3;
                 //Animation for Left
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            else if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 playerPos.X += 3;
                 //Animation for Right

@@ -30,11 +30,10 @@ namespace Dungeon_Crawler_2D
         protected Color color;
         protected SpriteEffects sEffect;
         
-        public Characters(Texture2D tex, Vector2 pos, Rectangle hitBox, int health, int mana, int xp)
+        public Characters(Texture2D tex, Vector2 pos, int health, int mana, int xp)
         {
             this.tex = tex;
             this.pos = pos;
-            this.hitBox = hitBox;
 
             this.health = health;
             this.mana = mana;
