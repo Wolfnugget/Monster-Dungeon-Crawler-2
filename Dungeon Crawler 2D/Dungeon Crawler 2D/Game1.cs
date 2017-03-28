@@ -13,7 +13,9 @@ namespace Dungeon_Crawler_2D
         Vector2 playerPos;
         Rectangle playerHitBox;
 
-        PlayerCharacter playerCharacter;
+        //PlayerCharacter playerCharacter;
+
+        Object.Player player;
 
         public Game1()
         {
@@ -31,7 +33,11 @@ namespace Dungeon_Crawler_2D
             playerPos = new Vector2(50, 50);
             playerHitBox = new Rectangle((int)playerPos.X, (int)playerPos.Y, playerTex.Width, playerTex.Height);
 
-            playerCharacter = new PlayerCharacter(playerTex, playerPos, playerHitBox, 5, 0, 0);
+            //playerCharacter = new PlayerCharacter(playerTex, playerPos, playerHitBox, 5, 0, 0);
+
+            player = new Object.Player(playerTex, playerPos, 2, new Point(0, 0), new Point(16, 16), new Point(0, 0));
+
+
         }
         
         protected override void LoadContent()
@@ -41,7 +47,9 @@ namespace Dungeon_Crawler_2D
         }
         protected override void Update(GameTime gameTime)
         {
-            playerCharacter.Update(gameTime);
+            //playerCharacter.Update(gameTime);
+
+            player.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -52,11 +60,20 @@ namespace Dungeon_Crawler_2D
 
             spriteBatch.Begin();
 
-            playerCharacter.Draw(spriteBatch);
+            player.Draw(spriteBatch);
+            //playerCharacter.Draw(spriteBatch);
 
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
+
+        public bool CheckTile(Vector2 direction, out Vector2 destination)
+        {
+
+            destination = new Vector2(0, 0);
+            return false;
+        }
+
     }
 }
