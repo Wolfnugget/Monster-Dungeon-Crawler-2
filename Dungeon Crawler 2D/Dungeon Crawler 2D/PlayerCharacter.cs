@@ -9,22 +9,24 @@ using System.Threading.Tasks;
 
 namespace Dungeon_Crawler_2D
 {
-    class PlayerCharacter : Characters
+    public class PlayerCharacter : Characters
     {
         Texture2D playerTex;
         Vector2 playerPos;
         Rectangle playerHitBox;
+        Room room;
 
         int health;
         int mana;
         int xp;
 
-        public PlayerCharacter(Texture2D tex, Vector2 pos, Rectangle hitBox, int health, int mana, int xp):
-            base(tex, pos, hitBox, health, mana, xp)
+        public PlayerCharacter(Texture2D tex, Vector2 pos, int health, int mana, int xp, Room room):
+            base(tex, pos, health, mana, xp)
         {
             this.playerTex = tex;
             this.playerPos = pos;
             this.playerHitBox = hitBox;
+            this.room = room;
 
             this.health = health;
             this.mana = mana;
