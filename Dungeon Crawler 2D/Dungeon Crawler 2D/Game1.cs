@@ -9,14 +9,16 @@ namespace Dungeon_Crawler_2D
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
+
+        Texture2D exTex;
         Texture2D playerTex;
         Vector2 playerPos;
         Rectangle playerHitBox;
-        Texture2D exTex;
-        Room room;
         Random rand;
+
+        Room room;
         PlayerCharacter player;
+        Camera2D cam;
 
         //PlayerCharacter playerCharacter;
 
@@ -35,17 +37,18 @@ namespace Dungeon_Crawler_2D
             graphics.PreferredBackBufferWidth = 1200;
             graphics.ApplyChanges();
 
+            cam = new Camera2D(5.0f, 0.0f, Vector2.Zero);
             //playerPos = new Vector2(50, 50);
             //playerHitBox = new Rectangle((int)playerPos.X, (int)playerPos.Y, playerTex.Width, playerTex.Height);
 
             //playerCharacter = new PlayerCharacter(playerTex, playerPos, playerHitBox, 5, 0, 0);
-            
+
 
             //playerCharacter = new PlayerCharacter(playerTex, playerPos, playerHitBox, 5, 0, 0);
 
             //player = new Object.Player(playerTex, playerPos, 2, new Point(0, 0), new Point(16, 16), new Point(0, 0));
 
-            
+
         }
         
         protected override void LoadContent()
@@ -58,8 +61,7 @@ namespace Dungeon_Crawler_2D
             int r = rand.Next(0, 3);
             
             room = new Room(exTex, playerTex, player, r);
-
-player = new PlayerCharacter(playerTex, Vector2.Zero, 0, 0, 0, room);
+            player = new PlayerCharacter(playerTex, Vector2.Zero, 0, 0, 0, room);
 
         }
         protected override void Update(GameTime gameTime)
@@ -68,15 +70,23 @@ player = new PlayerCharacter(playerTex, Vector2.Zero, 0, 0, 0, room);
 
             player.Update(gameTime);
 
+
+            cam.position = new Vector2(MathHelper.Lerp(cam.position.X, playerPos.X, 0),
+            MathHelper.Lerp(cam.position.Y, playerPos.Y, 0));
+
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend,
+                null, null, null, null, cam.GetTransformation(GraphicsDevice));
+
+            spriteBatch.End();
+
 
             spriteBatch.Begin();
-            
             room.Draw(spriteBatch);
             //playerCharacter.Draw(spriteBatch);
             
