@@ -11,7 +11,7 @@ using System.IO;
 
 namespace Dungeon_Crawler_2D
 {
-    class Room
+    public class Room
     {
         public Tile[,] tiles;
         public List<String> tileList;
@@ -51,10 +51,10 @@ namespace Dungeon_Crawler_2D
                 {
                     if (tileList[i][j] == 'C')
                     {
-                        character = new PlayerCharacter(charTex, new Vector2(charTex.Width * i, charTex.Height * j), 5, 0, 0, tiles[x,y]);
+                        character = new PlayerCharacter(charTex, new Vector2(charTex.Width * i, charTex.Height * j), 5, 0, 0, this);
                     }
                     else if (tileList[i][j] == 'X')
-                        tiles[i, j] = new Tile(tileTex, new Vector2(17 * j, 17 * i), Color.Black);
+                        tiles[i, j] = new Tile(tileTex, new Vector2(tileTex.Width* j, tileTex.Height* i), Color.Black);
                     else if (tileList[i][j] == 'r')
                     {
                         //something randomly generated 

@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Dungeon_Crawler_2D
 {
-    class Tile
+    public class Tile
     {
         Texture2D tex;
         Vector2 pos;

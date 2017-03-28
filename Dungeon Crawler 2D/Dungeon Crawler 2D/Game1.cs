@@ -16,10 +16,11 @@ namespace Dungeon_Crawler_2D
         Texture2D exTex;
         Room room;
         Random rand;
+        PlayerCharacter player;
 
         //PlayerCharacter playerCharacter;
 
-        Object.Player player;
+        //Object.Player player;
 
         public Game1()
         {
@@ -40,26 +41,25 @@ namespace Dungeon_Crawler_2D
             //playerCharacter = new PlayerCharacter(playerTex, playerPos, playerHitBox, 5, 0, 0);
             
 
-<<<<<<< HEAD
-=======
             //playerCharacter = new PlayerCharacter(playerTex, playerPos, playerHitBox, 5, 0, 0);
 
-            player = new Object.Player(playerTex, playerPos, 2, new Point(0, 0), new Point(16, 16), new Point(0, 0));
+            //player = new Object.Player(playerTex, playerPos, 2, new Point(0, 0), new Point(16, 16), new Point(0, 0));
 
-
->>>>>>> origin/master
+            
         }
         
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            
             playerTex = Content.Load<Texture2D>("Player");
             exTex = Content.Load<Texture2D>("Example");
             rand = new Random();
             int r = rand.Next(0, 3);
-            room = new Room(exTex, r);
+            
+            room = new Room(exTex, playerTex, player, r);
 
-
+player = new PlayerCharacter(playerTex, Vector2.Zero, 0, 0, 0, room);
 
         }
         protected override void Update(GameTime gameTime)
@@ -76,15 +76,12 @@ namespace Dungeon_Crawler_2D
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
-
-<<<<<<< HEAD
-            room.Draw(spriteBatch);
-            playerCharacter.Draw(spriteBatch);
             
-=======
+            room.Draw(spriteBatch);
+            //playerCharacter.Draw(spriteBatch);
+            
             player.Draw(spriteBatch);
             //playerCharacter.Draw(spriteBatch);
->>>>>>> origin/master
 
             spriteBatch.End();
 

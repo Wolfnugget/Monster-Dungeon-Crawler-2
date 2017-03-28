@@ -4,11 +4,7 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-<<<<<<< HEAD
     <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Player.png</File>
     <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Example.png</File>
-=======
-    <File>E:/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Player.png</File>
->>>>>>> origin/master
   </SourceFiles>
 </SourceFileCollection>
