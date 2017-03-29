@@ -19,6 +19,10 @@ namespace Dungeon_Crawler_2D
 
         public Room(Texture2D tileTex, Texture2D charTex, PlayerCharacter playerChar, int roomNr)
         {
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
             
             tileList = new List<String>();
             StreamReader sr;
@@ -26,8 +30,10 @@ namespace Dungeon_Crawler_2D
                 sr = new StreamReader(@"Map1.txt");
             else if (roomNr == 1)
                 sr = new StreamReader(@"Map2.txt");
-            else
+            else if (roomNr == 2)
                 sr = new StreamReader(@"Map3.txt");
+            else
+                sr = new StreamReader(@"MapEx.txt");
             while (!sr.EndOfStream)
             {
                 tileList.Add(sr.ReadLine());

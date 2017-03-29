@@ -50,16 +50,30 @@ namespace Dungeon_Crawler_2D
             rand = new Random();
             int r = rand.Next(0, 3);
             room = new Room(exTex, playerTex, player, r);
+<<<<<<< HEAD
+=======
+
+            
+>>>>>>> origin/master
 
             Viewport view = GraphicsDevice.Viewport;
             cam = new Camera2D(view, room.tileList);
         }
         protected override void Update(GameTime gameTime)
         {
+<<<<<<< HEAD
             //playerCharacter.Update(gameTime);
 
             cam.SetPosition(room.playerChar.playerPos);
             room.Update(gameTime);
+=======
+
+            room.Update(gameTime);
+            
+            cam.position = new Vector2(MathHelper.Lerp(cam.position.X, playerPos.X, 0),
+            MathHelper.Lerp(cam.position.Y, playerPos.Y, 0));
+
+>>>>>>> origin/master
             base.Update(gameTime);
         }
 
@@ -68,6 +82,14 @@ namespace Dungeon_Crawler_2D
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, cam.GetTransform());
 
+<<<<<<< HEAD
+=======
+            spriteBatch.End();
+
+
+            spriteBatch.Begin();
+
+>>>>>>> origin/master
             room.Draw(spriteBatch);
             spriteBatch.End();
 
