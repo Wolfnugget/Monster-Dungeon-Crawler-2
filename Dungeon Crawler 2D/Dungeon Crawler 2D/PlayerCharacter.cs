@@ -56,6 +56,7 @@ namespace Dungeon_Crawler_2D
                 //Animation for Right
             }
 
+            playerHitBox = new Rectangle((int)playerPos.X, (int)playerPos.Y, playerTex.Width, playerTex.Height);
             base.Update(gameTime);
         }
 
