@@ -12,7 +12,7 @@ namespace Dungeon_Crawler_2D
     public class PlayerCharacter : Characters
     {
         Texture2D playerTex;
-        Vector2 playerPos;
+        public Vector2 playerPos;
         Rectangle playerHitBox;
         Room room;
 

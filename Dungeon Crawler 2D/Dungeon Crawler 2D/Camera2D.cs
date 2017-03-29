@@ -1,34 +1,50 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Dungeon_Crawler_2D
 {
     class Camera2D
     {
-        public float zoom;
         public Matrix transform;
-        public Vector2 position;
-        protected float rotation;
+        public Vector2 cameraPos;
+        private Viewport view;
+        private List<string> levelList;
 
-        public Camera2D(float zoom, float rotation, Vector2 position)
+        public Camera2D(Viewport view, List<string> levelList)
         {
-            this.zoom = zoom;
-            this.rotation = rotation;
-            this.position = position;
+            this.view = view;
+            this.levelList = levelList;
         }
 
-        public Matrix GetTransformation(GraphicsDevice graphicsDevice)
+        public void SetPosition(Vector2 pos)
         {
-            transform = Matrix.CreateTranslation(new Vector3(-position.X, -position.Y, 0))
-                * Matrix.CreateRotationZ(rotation)
-                * Matrix.CreateScale(new Vector3(zoom, zoom, 1))
-                * Matrix.CreateTranslation(new Vector3(graphicsDevice.Viewport.Width / 2, graphicsDevice.Viewport.Height / 2, 0));
+            this.cameraPos = pos;
 
+            for (int i = 0; i < levelList.Count; i++)
+            {
+                if (pos.X < 512)
+                {
+                    transform = Matrix.CreateTranslation(0, 0, 0);
+                }
+                else if (pos.X > levelList[i].Length * 64 - 576)
+                {
+                    transform = Matrix.CreateTranslation(-levelList[i].Length * 64 + 1088, 0, 0);
+                }
+                else
+                {
+                    transform = Matrix.CreateTranslation(-pos.X + view.Width / 2 - 32, 0, 0);
+                }
+            }
+        }
+
+        public Vector2 GetPosition()
+        {
+            return cameraPos;
+        }
+
+        public Matrix GetTransform()
+        {
             return transform;
         }
     }

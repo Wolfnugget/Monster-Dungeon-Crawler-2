@@ -12,8 +12,6 @@ namespace Dungeon_Crawler_2D
 
         Texture2D exTex;
         Texture2D playerTex;
-        Vector2 playerPos;
-        Rectangle playerHitBox;
         Random rand;
 
         Room room;
@@ -21,7 +19,6 @@ namespace Dungeon_Crawler_2D
         Camera2D cam;
 
         //PlayerCharacter playerCharacter;
-
         //Object.Player player;
 
         public Game1()
@@ -37,18 +34,11 @@ namespace Dungeon_Crawler_2D
             graphics.PreferredBackBufferWidth = 1200;
             graphics.ApplyChanges();
 
-            cam = new Camera2D(5.0f, 0.0f, Vector2.Zero);
             //playerPos = new Vector2(50, 50);
             //playerHitBox = new Rectangle((int)playerPos.X, (int)playerPos.Y, playerTex.Width, playerTex.Height);
-
             //playerCharacter = new PlayerCharacter(playerTex, playerPos, playerHitBox, 5, 0, 0);
-
-
             //playerCharacter = new PlayerCharacter(playerTex, playerPos, playerHitBox, 5, 0, 0);
-
             //player = new Object.Player(playerTex, playerPos, 2, new Point(0, 0), new Point(16, 16), new Point(0, 0));
-
-
         }
         
         protected override void LoadContent()
@@ -59,45 +49,26 @@ namespace Dungeon_Crawler_2D
             exTex = Content.Load<Texture2D>("Example");
             rand = new Random();
             int r = rand.Next(0, 3);
-            player = new PlayerCharacter(playerTex, Vector2.Zero, 0, 0, 0, room);
             room = new Room(exTex, playerTex, player, r);
-<<<<<<< HEAD
-            player = new PlayerCharacter(playerTex, Vector2.Zero, 0, 0, 0, room);
-=======
 
-            
->>>>>>> origin/master
-
+            Viewport view = GraphicsDevice.Viewport;
+            cam = new Camera2D(view, room.tileList);
         }
         protected override void Update(GameTime gameTime)
         {
             //playerCharacter.Update(gameTime);
-<<<<<<< HEAD
 
-            player.Update(gameTime);
-
-
-            cam.position = new Vector2(MathHelper.Lerp(cam.position.X, playerPos.X, 0),
-            MathHelper.Lerp(cam.position.Y, playerPos.Y, 0));
-
-=======
+            cam.SetPosition(room.playerChar.playerPos);
             room.Update(gameTime);
->>>>>>> origin/master
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend,
-                null, null, null, null, cam.GetTransformation(GraphicsDevice));
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, cam.GetTransform());
 
-            spriteBatch.End();
-
-
-            spriteBatch.Begin();
             room.Draw(spriteBatch);
-            
             spriteBatch.End();
 
             base.Draw(gameTime);

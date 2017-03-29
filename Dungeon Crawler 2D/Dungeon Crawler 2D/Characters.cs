@@ -34,7 +34,6 @@ namespace Dungeon_Crawler_2D
         {
             this.tex = tex;
             this.pos = pos;
-            this.hitBox = hitBox;
 
             this.health = health;
             this.mana = mana;
