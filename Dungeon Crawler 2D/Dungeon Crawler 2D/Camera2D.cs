@@ -10,9 +10,11 @@ namespace Dungeon_Crawler_2D
         public Vector2 cameraPos;
         private Viewport view;
         private List<string> levelList;
+        public float zoom;
 
-        public Camera2D(Viewport view, List<string> levelList)
+        public Camera2D(Viewport view, List<string> levelList, float zoom)
         {
+            this.zoom = zoom;
             this.view = view;
             this.levelList = levelList;
         }
@@ -36,6 +38,16 @@ namespace Dungeon_Crawler_2D
                     transform = Matrix.CreateTranslation(-pos.X + view.Width / 2 - 32, 0, 0);
                 }
             }
+        }
+
+        public Matrix GetTransformation(GraphicsDevice graphicsDevice)
+        {
+            transform = Matrix.CreateTranslation(new Vector3(-cameraPos.X, -cameraPos.Y, 0))
+                * Matrix.CreateRotationZ(0)
+                * Matrix.CreateScale(new Vector3(zoom, zoom, 1))
+                * Matrix.CreateTranslation(new Vector3(graphicsDevice.Viewport.Width / 2, graphicsDevice.Viewport.Height / 2, 0));
+
+            return transform;
         }
 
         public Vector2 GetPosition()

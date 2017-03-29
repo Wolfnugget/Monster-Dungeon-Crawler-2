@@ -40,18 +40,18 @@ namespace Dungeon_Crawler_2D
             //playerCharacter = new PlayerCharacter(playerTex, playerPos, playerHitBox, 5, 0, 0);
             //player = new Object.Player(playerTex, playerPos, 2, new Point(0, 0), new Point(16, 16), new Point(0, 0));
         }
-        
+
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+
             playerTex = Content.Load<Texture2D>("Player");
             exTex = Content.Load<Texture2D>("Example");
             rand = new Random();
             int r = rand.Next(0, 3);
             room = new Room(exTex, playerTex, player, r);
             Viewport view = GraphicsDevice.Viewport;
-            cam = new Camera2D(view, room.tileList);
+            cam = new Camera2D(view, room.tileList, 2.5f);
         }
         protected override void Update(GameTime gameTime)
         {
@@ -65,7 +65,7 @@ namespace Dungeon_Crawler_2D
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, cam.GetTransform());
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, cam.GetTransformation(GraphicsDevice));
             room.Draw(spriteBatch);
             spriteBatch.End();
 
