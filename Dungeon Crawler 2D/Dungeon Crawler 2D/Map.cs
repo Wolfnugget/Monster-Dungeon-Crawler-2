@@ -10,10 +10,10 @@ namespace Dungeon_Crawler_2D
     {
         List<Room> rooms;
 
-        public Map()
+        public Map(Room room, int maxRooms)
         {
-
-
+            rooms = new List<Room>(maxRooms);
+            
 
         }
 

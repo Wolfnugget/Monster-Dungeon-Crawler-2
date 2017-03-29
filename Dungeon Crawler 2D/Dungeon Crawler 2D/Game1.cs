@@ -59,30 +59,19 @@ namespace Dungeon_Crawler_2D
             exTex = Content.Load<Texture2D>("Example");
             rand = new Random();
             int r = rand.Next(0, 3);
-            player = new PlayerCharacter(playerTex, Vector2.Zero, 0, 0, 0, room);
             room = new Room(exTex, playerTex, player, r);
-<<<<<<< HEAD
-            player = new PlayerCharacter(playerTex, Vector2.Zero, 0, 0, 0, room);
-=======
 
             
->>>>>>> origin/master
 
         }
         protected override void Update(GameTime gameTime)
         {
-            //playerCharacter.Update(gameTime);
-<<<<<<< HEAD
 
-            player.Update(gameTime);
-
-
+            room.Update(gameTime);
+            
             cam.position = new Vector2(MathHelper.Lerp(cam.position.X, playerPos.X, 0),
             MathHelper.Lerp(cam.position.Y, playerPos.Y, 0));
 
-=======
-            room.Update(gameTime);
->>>>>>> origin/master
             base.Update(gameTime);
         }
 
@@ -96,6 +85,7 @@ namespace Dungeon_Crawler_2D
 
 
             spriteBatch.Begin();
+
             room.Draw(spriteBatch);
             
             spriteBatch.End();

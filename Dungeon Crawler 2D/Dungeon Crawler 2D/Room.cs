@@ -20,15 +20,17 @@ namespace Dungeon_Crawler_2D
         public Room(Texture2D tileTex, Texture2D charTex, PlayerCharacter playerChar, int roomNr)
         {
 
-            this.playerChar = playerChar;
+            
             tileList = new List<String>();
             StreamReader sr;
             if (roomNr == 0)
                 sr = new StreamReader(@"Map1.txt");
             else if (roomNr == 1)
                 sr = new StreamReader(@"Map2.txt");
-            else
+            else if (roomNr == 2)
                 sr = new StreamReader(@"Map3.txt");
+            else
+                sr = new StreamReader(@"MapEx.txt");
             while (!sr.EndOfStream)
             {
                 tileList.Add(sr.ReadLine());
@@ -53,7 +55,7 @@ namespace Dungeon_Crawler_2D
                 {
                     if (tileList[i][j] == 'C')
                     {
-                        playerChar = new PlayerCharacter(charTex, new Vector2(charTex.Width * i, charTex.Height * j), 5, 0, 0, this);
+                        this.playerChar = new PlayerCharacter(charTex, new Vector2(charTex.Width * j, charTex.Height * i), 5, 0, 0, this);
                     }
                     else if (tileList[i][j] == 'X')
                         tiles[i, j] = new Tile(tileTex, new Vector2(tileTex.Width* j, tileTex.Height* i), Color.Black);
