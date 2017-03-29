@@ -19,11 +19,6 @@ namespace Dungeon_Crawler_2D
 
         public Room(Texture2D tileTex, Texture2D charTex, PlayerCharacter playerChar, int roomNr)
         {
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
-            
             tileList = new List<String>();
             StreamReader sr;
             if (roomNr == 0)
