@@ -18,7 +18,6 @@ namespace Dungeon_Crawler_2D.Object
         float frameTime, frameDuration;
         Vector2 origin;
         protected SpriteEffects effect;
-        Color color;
 
         protected bool moving;
 
@@ -41,6 +40,8 @@ namespace Dungeon_Crawler_2D.Object
             this.frameSize = frameSize;
             frame = startingFrame;
             this.frames = frames;
+
+            origin = new Vector2(frameSize.X / 2, frameSize.Y / 2);
         }
 
         public virtual void Update(GameTime gameTime)
@@ -100,7 +101,7 @@ namespace Dungeon_Crawler_2D.Object
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, srcRec,  color, 0, origin, 1, effect, 1);
+            spriteBatch.Draw(texture, position, srcRec,  Color.White, 0, origin, 1, effect, 1);
         }
     }
 }
