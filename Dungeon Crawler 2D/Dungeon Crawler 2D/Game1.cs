@@ -33,7 +33,7 @@ namespace Dungeon_Crawler_2D
             graphics.PreferredBackBufferHeight = 800;
             graphics.PreferredBackBufferWidth = 1200;
             graphics.ApplyChanges();
-
+            IsMouseVisible = true;
             //playerPos = new Vector2(50, 50);
             //playerHitBox = new Rectangle((int)playerPos.X, (int)playerPos.Y, playerTex.Width, playerTex.Height);
             //playerCharacter = new PlayerCharacter(playerTex, playerPos, playerHitBox, 5, 0, 0);
@@ -48,8 +48,8 @@ namespace Dungeon_Crawler_2D
             playerTex = Content.Load<Texture2D>("Player");
             exTex = Content.Load<Texture2D>("Example");
             rand = new Random();
-            int r = rand.Next(0, 3);
-            room = new Room(exTex, playerTex, player, r);
+            int roomNr = rand.Next(1, 4);
+            room = new Room(exTex, playerTex, player, "Maps/" + "StartRoom/" + roomNr + ".txt");
             Viewport view = GraphicsDevice.Viewport;
             cam = new Camera2D(view, room.tileList, 2.5f);
         }

@@ -17,18 +17,11 @@ namespace Dungeon_Crawler_2D
         public List<String> tileList;
         public PlayerCharacter playerChar;
 
-        public Room(Texture2D tileTex, Texture2D charTex, PlayerCharacter playerChar, int roomNr)
+        public Room(Texture2D tileTex, Texture2D charTex, PlayerCharacter playerChar, String map)
         {
             tileList = new List<String>();
             StreamReader sr;
-            if (roomNr == 0)
-                sr = new StreamReader(@"Map1.txt");
-            else if (roomNr == 1)
-                sr = new StreamReader(@"Map2.txt");
-            else if (roomNr == 2)
-                sr = new StreamReader(@"Map3.txt");
-            else
-                sr = new StreamReader(@"MapEx.txt");
+            sr = new StreamReader(map);
             while (!sr.EndOfStream)
             {
                 tileList.Add(sr.ReadLine());
@@ -52,11 +45,10 @@ namespace Dungeon_Crawler_2D
                 for (int j = 0; j < tileList[i].Length; j++)
                 {
                     if (tileList[i][j] == 'C')
-                    {
                         this.playerChar = new PlayerCharacter(charTex, new Vector2(charTex.Width * j, charTex.Height * i), 5, 0, 0, this);
-                    }
+
                     else if (tileList[i][j] == 'X')
-                        tiles[i, j] = new Tile(tileTex, new Vector2(tileTex.Width* j, tileTex.Height* i), Color.Black);
+                        tiles[i, j] = new Tile(tileTex, new Vector2(tileTex.Width* j, tileTex.Height* i), Color.Black, 1);
                     else if (tileList[i][j] == 'r')
                     {
                         //something randomly generated 
@@ -66,16 +58,15 @@ namespace Dungeon_Crawler_2D
                         //enemy
 
                     }
-                    else if (tileList[i][j] == 'n')
+                    else if (tileList[i][j] == 'N')
                     {
-                        //next room
+                        tiles[i, j] = new Tile(tileTex, new Vector2(tileTex.Width * j, tileTex.Height * i), Color.Green, 2);
                     }
+                        
                     
-                    if (tileList[i][j] != 'X')
-                    {
-                        Vector2 pos = new Vector2(tileTex.Width * j, tileTex.Height * i);
-                        tiles[i, j] = new Tile(tileTex, pos, Color.Beige);
-                    }
+                    if (tileList[i][j] != 'X' && tileList[i][j] != 'N')
+                        tiles[i, j] = new Tile(tileTex, new Vector2(tileTex.Width * j, tileTex.Height * i), Color.Beige, 0);
+                    
                 }
             }
         }

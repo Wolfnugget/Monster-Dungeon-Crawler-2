@@ -16,23 +16,20 @@ namespace Dungeon_Crawler_2D
         Vector2 pos;
         Color color;
         Rectangle rect;
-        bool passable;
+        public int tileType;
 
-        public Tile(Texture2D tex, Vector2 pos, Color color)
+        public Tile(Texture2D tex, Vector2 pos, Color color, int tileType)
         {
             this.tex = tex;
             this.pos = pos;
             this.color = color;
-            if (color == Color.Black)
-                passable = false;
-            else
-                passable = true;
+            this.tileType = tileType;
             rect = new Rectangle((int)pos.X, (int)pos.Y, tex.Width, tex.Width);
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
-
+            //om en tile ska ha en animation
         }
 
         public void Draw(SpriteBatch sp)
