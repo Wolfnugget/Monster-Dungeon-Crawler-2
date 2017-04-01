@@ -25,29 +25,27 @@ namespace Dungeon_Crawler_2D
 
             for (int i = 0; i < levelList.Count; i++)
             {
-                if (pos.X < 512)
+                if (pos.X < 0)
                 {
-                    transform = Matrix.CreateTranslation(0, 0, 0);
+                    transform = Matrix.CreateTranslation(0, 0, 0) * Matrix.CreateScale(new Vector3(zoom, zoom, 1));
                 }
-                else if (pos.X > levelList[i].Length * 64 - 576)
+                else if (pos.X > levelList[i].Length * 16 - 16)
                 {
-                    transform = Matrix.CreateTranslation(-levelList[i].Length * 64 + 1088, 0, 0);
+                    transform = Matrix.CreateTranslation(0, 0, 0) * Matrix.CreateScale(new Vector3(zoom, zoom, 1));
+                }
+                else if (pos.Y < 0)
+                {
+                    transform = Matrix.CreateTranslation(0, 0, 0) * Matrix.CreateScale(new Vector3(zoom, zoom, 1));
+                }
+                else if (pos.Y > levelList.Count * 16 - 16)
+                {
+                    transform = Matrix.CreateTranslation(0, 0, 0) * Matrix.CreateScale(new Vector3(zoom, zoom, 1));
                 }
                 else
                 {
-                    transform = Matrix.CreateTranslation(-pos.X + view.Width / 2 - 32, 0, 0);
+                    transform = Matrix.CreateTranslation(-pos.X + view.Width / 2, -pos.Y + view.Height / 2, 0) * Matrix.CreateScale(new Vector3(zoom, zoom, 1));
                 }
             }
-        }
-
-        public Matrix GetTransformation(GraphicsDevice graphicsDevice)
-        {
-            transform = Matrix.CreateTranslation(new Vector3(-cameraPos.X, -cameraPos.Y, 0))
-                * Matrix.CreateRotationZ(0)
-                * Matrix.CreateScale(new Vector3(zoom, zoom, 1))
-                * Matrix.CreateTranslation(new Vector3(graphicsDevice.Viewport.Width / 2, graphicsDevice.Viewport.Height / 2, 0));
-
-            return transform;
         }
 
         public Vector2 GetPosition()
