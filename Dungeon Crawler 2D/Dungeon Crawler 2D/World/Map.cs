@@ -171,6 +171,27 @@ namespace Dungeon_Crawler_2D.World
             return roomPaths[rand.Next(0, roomPaths.Count - 1)];
         }
 
+        void CheckMovement(Vector2 position, Point direction)
+        {
+            int room = GetCurrentRoomNumber();
+            Vector2 targetPosition = rooms[room].GetTargetTileCenter(position, direction);
 
+            if (targetPosition != position)
+            {
+
+            }
+        }
+
+        private int GetCurrentRoomNumber()
+        {
+            for (int i = 0; i < rooms.Count; i++)
+            {
+                if (rooms[i].roomCoords == currentRoom)
+                {
+                    return i;
+                }
+            }
+            return 0;
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace Dungeon_Crawler_2D.World
 {
     class Room
     {
-        Tile[,] tiles;
+        public Tile[,] tiles;
         public Vector2 PlayerStart;
 
         public Point roomCoords;
@@ -88,6 +88,29 @@ namespace Dungeon_Crawler_2D.World
             {
                 tile.Draw(spriteBatch);
             }
+        }
+
+        public Vector2 GetTargetTileCenter(Vector2 position, Point direction)
+        {
+            for (int y = 0; y < tiles.GetLength(0); y++)
+            {
+                for (int x = 0; x < tiles.GetLength(1); x++)
+                {
+                    if (tiles[y, x].tileRectangle.Contains(position) )
+                    {
+                        if (tiles[y + direction.Y, x + direction.X].pasable)
+                        {
+                            return tiles[y + direction.Y, x + direction.X].TileCenter;
+                        }
+                        else
+                        {
+                            return position;
+                        }
+                    }
+                }
+            }
+
+            return position;
         }
     }
 }
