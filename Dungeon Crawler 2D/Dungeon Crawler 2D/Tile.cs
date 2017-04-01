@@ -12,10 +12,10 @@ namespace Dungeon_Crawler_2D
 {
     public class Tile
     {
-        Texture2D tex;
-        Vector2 pos;
-        Color color;
-        Rectangle rect;
+        protected Texture2D tex;
+        protected Vector2 pos;
+        protected Color color;
+        public Rectangle rect;
         public int tileType;
 
         public Tile(Texture2D tex, Vector2 pos, Color color, int tileType)
