@@ -11,7 +11,7 @@ namespace Dungeon_Crawler_2D.World
 {
     class Tile
     {
-        Rectangle tileRectangle;
+        public Rectangle tileRectangle;
         Texture2D texture;
         TileType type;
         Color color;
@@ -52,7 +52,7 @@ namespace Dungeon_Crawler_2D.World
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, tileRectangle, Color.White);
+            spriteBatch.Draw(texture, tileRectangle, color);
         }
     }
 }
