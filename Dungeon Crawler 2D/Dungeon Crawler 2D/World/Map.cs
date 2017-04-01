@@ -99,7 +99,7 @@ namespace Dungeon_Crawler_2D.World
                     else if (r == 2)
                     {
                         rooms.Add(new Room(GetRandomRoomPath("Maps/South"), textures,
-                            rooms[addingExitsTo].roomCoords + new Point(0, -1)));
+                            rooms[addingExitsTo].roomCoords + new Point(0, 1)));
                         excludeExit.Add(2);
                         roomsAdded++;
                         exitsToAdd--;
@@ -107,7 +107,7 @@ namespace Dungeon_Crawler_2D.World
                     else if (r == 3)
                     {
                         rooms.Add(new Room(GetRandomRoomPath("Maps/East"), textures,
-                            rooms[addingExitsTo].roomCoords + new Point(0, -1)));
+                            rooms[addingExitsTo].roomCoords + new Point(1, 0)));
                         excludeExit.Add(3);
                         roomsAdded++;
                         exitsToAdd--;
@@ -115,7 +115,7 @@ namespace Dungeon_Crawler_2D.World
                     else if (r == 4)
                     {
                         rooms.Add(new Room(GetRandomRoomPath("Maps/West"), textures,
-                            rooms[addingExitsTo].roomCoords + new Point(0, -1)));
+                            rooms[addingExitsTo].roomCoords + new Point(-1, 0)));
                         excludeExit.Add(4);
                         roomsAdded++;
                         exitsToAdd--;
