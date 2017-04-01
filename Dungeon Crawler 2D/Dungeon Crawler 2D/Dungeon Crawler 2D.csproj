@@ -44,7 +44,11 @@
     <Compile Include="Camera2D.cs" />
     <Compile Include="Characters.cs" />
     <Compile Include="Game1.cs" />
+<<<<<<< HEAD
     <Compile Include="MapSystem\Map.cs" />
+=======
+    <Compile Include="Map.cs" />
+>>>>>>> origin/master
     <Compile Include="Object\Actor.cs" />
     <Compile Include="Object\Player.cs" />
     <Compile Include="PlayerCharacter.cs" />
@@ -52,7 +56,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MapSystem\Room.cs" />
     <Compile Include="TextureManager.cs" />
+<<<<<<< HEAD
     <Compile Include="MapSystem\Tile.cs" />
+=======
+    <Compile Include="Tile.cs" />
+    <Compile Include="World\Map.cs" />
+    <Compile Include="World\Room.cs" />
+    <Compile Include="World\Tile.cs" />
+>>>>>>> origin/master
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
