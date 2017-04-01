@@ -40,87 +40,89 @@ namespace Dungeon_Crawler_2D.World
             rooms.Add(new Room(GetRandomRoomPath("Maps/StartRoom"), textures, new Point(0, 0)));
             roomsAdded++;
 
+            HashSet<int> excludeRoom = new HashSet<int>();
             int addingExitsTo = 0;
 
             while (roomsAdded < numberOfRooms)
             {
                 int exitsToAdd = 0;
-                HashSet<int> exclude = new HashSet<int>();
+                HashSet<int> excludeExit = new HashSet<int>();
 
                 if (rooms[addingExitsTo].northExit &&
-                    CheckIfRoomExists(rooms[addingExitsTo].roomCoords, new Point(0, -1)))
+                    !CheckIfRoomExists(rooms[addingExitsTo].roomCoords, new Point(0, -1)))
                 {
                     exitsToAdd++;
                 }
                 else
                 {
-                    exclude.Add(1);
+                    excludeExit.Add(1);
                 }
                 if (rooms[addingExitsTo].southExit &&
-                    CheckIfRoomExists(rooms[addingExitsTo].roomCoords, new Point(0, 1)))
+                    !CheckIfRoomExists(rooms[addingExitsTo].roomCoords, new Point(0, 1)))
                 {
                     exitsToAdd++;
                 }
                 else
                 {
-                    exclude.Add(2);
+                    excludeExit.Add(2);
                 }
                 if (rooms[addingExitsTo].eastExit &&
-                    CheckIfRoomExists(rooms[addingExitsTo].roomCoords, new Point(1, 0)))
+                    !CheckIfRoomExists(rooms[addingExitsTo].roomCoords, new Point(1, 0)))
                 {
                     exitsToAdd++;
                 }
                 else
                 {
-                    exclude.Add(3);
+                    excludeExit.Add(3);
                 }
                 if (rooms[addingExitsTo].westExit &&
-                    CheckIfRoomExists(rooms[addingExitsTo].roomCoords, new Point(-1, 0)))
+                    !CheckIfRoomExists(rooms[addingExitsTo].roomCoords, new Point(-1, 0)))
                 {
                     exitsToAdd++;
                 }
                 else
                 {
-                    exclude.Add(4);
+                    excludeExit.Add(4);
                 }
 
-                while (exitsToAdd > 0)
+                while (exitsToAdd > 0 && roomsAdded < numberOfRooms)
                 {
-                    int r = GetRandomNumberExcluding(exclude, 1, 4);
+                    int r = GetRandomNumberExcluding(excludeExit, 1, 4);
                     if (r == 1)
                     {
                         rooms.Add(new Room(GetRandomRoomPath("Maps/North"), textures,
                             rooms[addingExitsTo].roomCoords + new Point(0, -1)));
-                        exclude.Add(1);
+                        excludeExit.Add(1);
                         roomsAdded++;
                         exitsToAdd--;
                     }
                     else if (r == 2)
                     {
                         rooms.Add(new Room(GetRandomRoomPath("Maps/South"), textures,
-                            rooms[addingExitsTo].roomCoords + new Point(0, -1)));
-                        exclude.Add(2);
+                            rooms[addingExitsTo].roomCoords + new Point(0, 1)));
+                        excludeExit.Add(2);
                         roomsAdded++;
                         exitsToAdd--;
                     }
                     else if (r == 3)
                     {
                         rooms.Add(new Room(GetRandomRoomPath("Maps/East"), textures,
-                            rooms[addingExitsTo].roomCoords + new Point(0, -1)));
-                        exclude.Add(3);
+                            rooms[addingExitsTo].roomCoords + new Point(1, 0)));
+                        excludeExit.Add(3);
                         roomsAdded++;
                         exitsToAdd--;
                     }
                     else if (r == 4)
                     {
                         rooms.Add(new Room(GetRandomRoomPath("Maps/West"), textures,
-                            rooms[addingExitsTo].roomCoords + new Point(0, -1)));
-                        exclude.Add(4);
+                            rooms[addingExitsTo].roomCoords + new Point(-1, 0)));
+                        excludeExit.Add(4);
                         roomsAdded++;
                         exitsToAdd--;
                     }
                 }
-                addingExitsTo++;
+                excludeRoom.Add(addingExitsTo);
+                addingExitsTo = GetRandomNumberExcluding(excludeRoom, 0, roomsAdded - 1);
             }
         }
 
