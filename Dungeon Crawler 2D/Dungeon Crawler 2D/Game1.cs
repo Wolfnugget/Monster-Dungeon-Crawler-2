@@ -14,7 +14,7 @@ namespace Dungeon_Crawler_2D
         Texture2D playerTex;
         Random rand;
 
-        Room room;
+        MapSystem.Room room;
         PlayerCharacter player;
         Camera2D cam;
 
@@ -49,7 +49,7 @@ namespace Dungeon_Crawler_2D
             exTex = Content.Load<Texture2D>("Example");
             rand = new Random();
             int roomNr = rand.Next(1, 4);
-            room = new Room(exTex, playerTex, "Maps/" + "StartRoom/" + roomNr + ".txt", 0);
+            room = new MapSystem.Room(exTex, playerTex, "Maps/" + "StartRoom/" + roomNr + ".txt", 0);
             Viewport view = GraphicsDevice.Viewport;
             cam = new Camera2D(view, room.tileList, 2.5f);
         }
