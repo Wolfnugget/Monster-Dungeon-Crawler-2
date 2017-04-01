@@ -31,19 +31,19 @@ namespace Dungeon_Crawler_2D.Object
         {
             direction = new Vector2(0, 0);
 
-            if (Keyboard.GetState().IsKeyDown(Keys.W))
+            if (Input.Up)
             {
                 direction.Y = -1;
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.S))
+            else if (Input.Down)
             {
                 direction.Y = 1;
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            if (Input.Right)
             {
                 direction.X = 1;
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.A))
+            else if (Input.Left)
             {
                 direction.X = -1;
             }
