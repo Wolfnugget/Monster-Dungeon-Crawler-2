@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 
 namespace Dungeon_Crawler_2D
@@ -14,7 +15,6 @@ namespace Dungeon_Crawler_2D
         Random rand;
 
         Room room;
-        Map map;
         PlayerCharacter player;
         Camera2D cam;
 
@@ -34,6 +34,11 @@ namespace Dungeon_Crawler_2D
             graphics.PreferredBackBufferWidth = 1200;
             graphics.ApplyChanges();
             IsMouseVisible = true;
+            //playerPos = new Vector2(50, 50);
+            //playerHitBox = new Rectangle((int)playerPos.X, (int)playerPos.Y, playerTex.Width, playerTex.Height);
+            //playerCharacter = new PlayerCharacter(playerTex, playerPos, playerHitBox, 5, 0, 0);
+            //playerCharacter = new PlayerCharacter(playerTex, playerPos, playerHitBox, 5, 0, 0);
+            //player = new Object.Player(playerTex, playerPos, 2, new Point(0, 0), new Point(16, 16), new Point(0, 0));
         }
 
         protected override void LoadContent()
@@ -44,10 +49,9 @@ namespace Dungeon_Crawler_2D
             exTex = Content.Load<Texture2D>("Example");
             rand = new Random();
             int roomNr = rand.Next(1, 4);
-            room = new Room(exTex, playerTex, "Maps/" + "StartRoom/" + roomNr + ".txt", 0);
+            room = new Room(exTex, playerTex, player, "Maps/" + "StartRoom/" + roomNr + ".txt");
             Viewport view = GraphicsDevice.Viewport;
             cam = new Camera2D(view, room.tileList, 2.5f);
-
         }
         protected override void Update(GameTime gameTime)
         {
