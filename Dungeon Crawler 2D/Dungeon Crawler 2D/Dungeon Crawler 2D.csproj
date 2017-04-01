@@ -44,16 +44,15 @@
     <Compile Include="Camera2D.cs" />
     <Compile Include="Characters.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="Input.cs" />
-    <Compile Include="Map.cs" />
+    <Compile Include="MapSystem\Map.cs" />
     <Compile Include="Object\Actor.cs" />
     <Compile Include="Object\Player.cs" />
     <Compile Include="PlayerCharacter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Room.cs" />
+    <Compile Include="MapSystem\Room.cs" />
     <Compile Include="TextureManager.cs" />
-    <Compile Include="Tile.cs" />
+    <Compile Include="MapSystem\Tile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

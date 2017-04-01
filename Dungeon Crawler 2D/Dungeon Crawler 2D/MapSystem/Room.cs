@@ -16,9 +16,15 @@ namespace Dungeon_Crawler_2D
         public Tile[,] tiles;
         public List<String> tileList;
         public PlayerCharacter playerChar;
+        public int roomNr;
+        protected Texture2D tileTex, charTex;
 
-        public Room(Texture2D tileTex, Texture2D charTex, PlayerCharacter playerChar, String map)
+        public Room(Texture2D tileTex, Texture2D charTex, String map, int roomNr)
         {
+            this.roomNr = roomNr;
+            this.tileTex = tileTex;
+            this.charTex = charTex;
+
             tileList = new List<String>();
             StreamReader sr;
             sr = new StreamReader(map);
@@ -39,36 +45,8 @@ namespace Dungeon_Crawler_2D
             }
             tiles = new Tile[x, y];
 
-
-            for (int i = 0; i < tileList.Count; i++)
-            {
-                for (int j = 0; j < tileList[i].Length; j++)
-                {
-                    if (tileList[i][j] == 'C')
-                        this.playerChar = new PlayerCharacter(charTex, new Vector2(charTex.Width * j, charTex.Height * i), 5, 0, 0, this);
-
-                    else if (tileList[i][j] == 'X')
-                        tiles[i, j] = new Tile(tileTex, new Vector2(tileTex.Width* j, tileTex.Height* i), Color.Black, 1);
-                    else if (tileList[i][j] == 'r')
-                    {
-                        //something randomly generated 
-                    }
-                    else if (tileList[i][j] == 'e')
-                    {
-                        //enemy
-
-                    }
-                    else if (tileList[i][j] == 'N')
-                    {
-                        tiles[i, j] = new Tile(tileTex, new Vector2(tileTex.Width * j, tileTex.Height * i), Color.Green, 2);
-                    }
-                        
-                    
-                    if (tileList[i][j] != 'X' && tileList[i][j] != 'N')
-                        tiles[i, j] = new Tile(tileTex, new Vector2(tileTex.Width * j, tileTex.Height * i), Color.Beige, 0);
-                    
-                }
-            }
+            LoadRoom(); // ska inte kallas på här. Är bara här för testning!
+            
         }
 
         public void Update(GameTime gameTime)
@@ -84,6 +62,43 @@ namespace Dungeon_Crawler_2D
                     if (tiles[i,j] != null)
                         tiles[i, j].Draw(spriteBatch);
             playerChar.Draw(spriteBatch);
+        }
+
+        public void LoadRoom()
+        {
+            for (int i = 0; i < tileList.Count; i++)
+            {
+                for (int j = 0; j < tileList[i].Length; j++)
+                {
+                    if (tileList[i][j] == 'C')
+                        this.playerChar = new PlayerCharacter(charTex, new Vector2(charTex.Width * j, charTex.Height * i), 5, 0, 0, this);
+
+                    else if (tileList[i][j] == 'X')
+                        tiles[i, j] = new Tile(tileTex, new Vector2(tileTex.Width* j, tileTex.Height* i), Color.Black, 1);
+                    else if (tileList[i][j] == 'R')
+                    {
+                        //something randomly generated 
+                    }
+                    else if (tileList[i][j] == 'E')
+                    {
+                        //Where you enter from
+                    }
+                    else if (tileList[i][j] == 'N')
+                    {
+                        tiles[i, j] = new Tile(tileTex, new Vector2(tileTex.Width * j, tileTex.Height * i), Color.Green, 2);
+                    }
+                    else if (tileList[i][j] == '1')
+                    {
+                        tiles[i, j] = new Tile(tileTex, new Vector2(tileTex.Width * j, tileTex.Height * i), Color.Red, 3);
+                    }
+
+
+                    if (tileList[i][j] != 'X' && tileList[i][j] != 'N' && tileList[i][j] != '1' 
+                        && tileList[i][j] != 'R' && tileList[i][j] != '1' && tileList[i][j] != '1')
+                        tiles[i, j] = new Tile(tileTex, new Vector2(tileTex.Width * j, tileTex.Height * i), Color.Beige, 0);
+                    
+                }
+            }
         }
     }
 }
