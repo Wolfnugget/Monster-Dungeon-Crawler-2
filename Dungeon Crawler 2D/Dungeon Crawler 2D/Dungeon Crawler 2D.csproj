@@ -46,6 +46,9 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="MapSystem\Map.cs" />
+    <Compile Include="MapSystem\Room.cs" />
+    <Compile Include="MapSystem\Tile.cs" />
     <Compile Include="Object\Actor.cs" />
     <Compile Include="Object\Player.cs" />
     <Compile Include="PlayerCharacter.cs" />
@@ -54,6 +57,9 @@
     <Compile Include="Room.cs" />
     <Compile Include="TextureManager.cs" />
     <Compile Include="Tile.cs" />
+    <Compile Include="World\Map.cs" />
+    <Compile Include="World\Room.cs" />
+    <Compile Include="World\Tile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.IO;
 
-namespace Dungeon_Crawler_2D
+namespace Dungeon_Crawler_2D.MapSystem
 {
     class Map
     {
