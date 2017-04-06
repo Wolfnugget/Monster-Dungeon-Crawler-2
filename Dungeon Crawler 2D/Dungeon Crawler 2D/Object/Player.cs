@@ -49,21 +49,20 @@ namespace Dungeon_Crawler_2D.Object
             }
         }
 
-        public PlayerEventHandler EventHandler;
-        public void OnInput()
-        {
+        public PlayerEventHandler Event;
 
-        }
-
-        public void HandleEvent()
+        public void OnEvent(PlayerEventType eventType)
         {
-            if (EventHandler != null)
+            if (Event != null)
             {
-                PlayerEventArgs args = new PlayerEventArgs(PlayerEventType.CheckDirection);
-                args.Direction = new Point((int)direction.X, (int)direction.Y);
-                args.Position = position;
+                if (eventType == PlayerEventType.CheckDirection)
+                {
+                    PlayerEventArgs args = new PlayerEventArgs(eventType);
+                    args.Direction = new Point((int)direction.X, (int)direction.Y);
+                    args.Position = position;
 
-                EventHandler(this, args);
+                    Event(this, args);
+                }
             }
         }
     }
