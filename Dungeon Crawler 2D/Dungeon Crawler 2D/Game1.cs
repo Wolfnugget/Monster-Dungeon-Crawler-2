@@ -50,9 +50,9 @@ namespace Dungeon_Crawler_2D
         }
         protected override void Update(GameTime gameTime)
         {
-            cam.SetPosition(room.playerChar.playerPos);
             room.Update(gameTime);
             base.Update(gameTime);
+            cam.SetPosition(room.playerChar.playerPos);
             Console.WriteLine(room.playerChar.playerPos);
         }
 
@@ -61,7 +61,7 @@ namespace Dungeon_Crawler_2D
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             //spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, cam.GetTransformation(GraphicsDevice));
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, cam.GetTransform());
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.GetTransform());
 
             room.Draw(spriteBatch);
             spriteBatch.End();

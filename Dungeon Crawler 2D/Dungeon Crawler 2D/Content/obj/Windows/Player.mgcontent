@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Marcus/Desktop/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Player.png</SourceFile>
-  <SourceTime>2017-04-01T15:31:16.6312783+02:00</SourceTime>
-  <DestFile>C:/Users/Marcus/Desktop/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Player.xnb</DestFile>
-  <DestTime>2017-04-01T16:03:13.6669264+02:00</DestTime>
+  <SourceFile>E:/Repository/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Player.png</SourceFile>
+  <SourceTime>2017-04-06T11:35:58+02:00</SourceTime>
+  <DestFile>E:/Repository/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Player.xnb</DestFile>
+  <DestTime>2017-04-06T11:40:18+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
