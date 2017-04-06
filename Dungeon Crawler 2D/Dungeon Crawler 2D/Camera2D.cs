@@ -21,7 +21,7 @@ namespace Dungeon_Crawler_2D
 
         public void SetPosition(Vector2 pos)
         {
-            this.cameraPos = pos;
+            cameraPos = pos;
 
             for (int i = 0; i < levelList.Count; i++)
             {

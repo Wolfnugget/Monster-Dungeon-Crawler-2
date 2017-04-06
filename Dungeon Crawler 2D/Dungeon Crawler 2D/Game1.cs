@@ -34,11 +34,6 @@ namespace Dungeon_Crawler_2D
             graphics.PreferredBackBufferWidth = 1200;
             graphics.ApplyChanges();
             IsMouseVisible = true;
-            //playerPos = new Vector2(50, 50);
-            //playerHitBox = new Rectangle((int)playerPos.X, (int)playerPos.Y, playerTex.Width, playerTex.Height);
-            //playerCharacter = new PlayerCharacter(playerTex, playerPos, playerHitBox, 5, 0, 0);
-            //playerCharacter = new PlayerCharacter(playerTex, playerPos, playerHitBox, 5, 0, 0);
-            //player = new Object.Player(playerTex, playerPos, 2, new Point(0, 0), new Point(16, 16), new Point(0, 0));
         }
 
         protected override void LoadContent()
@@ -55,8 +50,6 @@ namespace Dungeon_Crawler_2D
         }
         protected override void Update(GameTime gameTime)
         {
-            //playerCharacter.Update(gameTime);
-
             cam.SetPosition(room.playerChar.playerPos);
             room.Update(gameTime);
             base.Update(gameTime);

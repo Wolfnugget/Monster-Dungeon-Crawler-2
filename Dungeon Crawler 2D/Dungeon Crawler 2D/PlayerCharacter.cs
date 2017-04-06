@@ -25,9 +25,9 @@ namespace Dungeon_Crawler_2D
         public PlayerCharacter(Texture2D tex, Vector2 pos, int health, int mana, int xp, MapSystem.Room room):
             base(tex, pos, health, mana, xp)
         {
-            this.playerTex = tex;
-            this.playerPos = pos;
-            this.playerHitBox = hitBox;
+            playerTex = tex;
+            playerPos = pos;
+            playerHitBox = hitBox;
             this.room = room;
 
             this.health = health;
