@@ -23,7 +23,7 @@ namespace Dungeon_Crawler_2D.World
     class Map
     {
         List<Room> rooms;
-        int curretnRoom;
+        int currentRoom;
 
         Random rand;
 
@@ -182,12 +182,12 @@ namespace Dungeon_Crawler_2D.World
 
         public Vector2 GetPlayerStart()
         {
-            return rooms[curretnRoom].PlayerStart;
+            return rooms[currentRoom].PlayerStart;
         }
 
         void CheckMovement(Vector2 position, Point direction)
         {
-            Vector2 targetPosition = rooms[curretnRoom].GetTargetTileCenter(position, direction);
+            Vector2 targetPosition = rooms[currentRoom].GetTargetTileCenter(position, direction);
 
             if (targetPosition != position)
             {

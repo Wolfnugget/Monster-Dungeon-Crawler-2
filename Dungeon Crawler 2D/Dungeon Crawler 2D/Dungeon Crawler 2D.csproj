@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Camera2D.cs" />
     <Compile Include="Characters.cs" />
+    <Compile Include="Events.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="MapSystem\Map.cs" />
