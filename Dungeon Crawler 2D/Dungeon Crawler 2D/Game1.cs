@@ -18,6 +18,9 @@ namespace Dungeon_Crawler_2D
         PlayerCharacter player;
         Camera2D cam;
 
+        int windowHeight;
+        int windowWidth;
+
         //PlayerCharacter playerCharacter;
         //Object.Player player;
 
@@ -30,9 +33,6 @@ namespace Dungeon_Crawler_2D
         protected override void Initialize()
         {
             base.Initialize();
-            graphics.PreferredBackBufferHeight = 800;
-            graphics.PreferredBackBufferWidth = 1200;
-            graphics.ApplyChanges();
             IsMouseVisible = true;
         }
 
@@ -45,8 +45,14 @@ namespace Dungeon_Crawler_2D
             rand = new Random();
             int roomNr = rand.Next(1, 4);
             room = new MapSystem.Room(exTex, playerTex, "Maps/" + "StartRoom/" + roomNr + ".txt", 0);
+
             Viewport view = GraphicsDevice.Viewport;
-            cam = new Camera2D(view, room.tileList, 2.5f);
+            float zoom = 10f;
+            windowWidth = graphics.PreferredBackBufferWidth = 1200;
+            windowHeight = graphics.PreferredBackBufferHeight = 800;
+            graphics.ApplyChanges();
+
+            cam = new Camera2D(view, windowWidth, windowHeight, room.tileList, zoom);
         }
         protected override void Update(GameTime gameTime)
         {
@@ -54,6 +60,7 @@ namespace Dungeon_Crawler_2D
             base.Update(gameTime);
             cam.SetPosition(room.playerChar.playerPos);
             Console.WriteLine(room.playerChar.playerPos);
+            Console.WriteLine(cam.transform);
         }
 
         protected override void Draw(GameTime gameTime)

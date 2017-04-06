@@ -8,15 +8,23 @@ namespace Dungeon_Crawler_2D
     {
         public Matrix transform;
         public Vector2 cameraPos;
+        public Vector3 zoomVector;
         private Viewport view;
         private List<string> levelList;
         public float zoom;
 
-        public Camera2D(Viewport view, List<string> levelList, float zoom)
+        int windowWidth;
+        int windowHeight;
+
+        public Camera2D(Viewport view, int windowWidth, int windowHeight, List<string> levelList, float zoom)
         {
             this.zoom = zoom;
             this.view = view;
             this.levelList = levelList;
+            this.windowWidth = windowWidth;
+            this.windowHeight = windowHeight;
+
+            zoomVector = new Vector3(zoom, zoom, 1);
         }
 
         public void SetPosition(Vector2 pos)
@@ -25,25 +33,26 @@ namespace Dungeon_Crawler_2D
 
             for (int i = 0; i < levelList.Count; i++)
             {
-                if (pos.X < 0)
+                if ((-pos.X - 8) + (windowWidth / (2 * zoom)) > 0)
                 {
-                    transform = Matrix.CreateTranslation(0, 0, 0) * Matrix.CreateScale(new Vector3(zoom, zoom, 1));
+                    transform = Matrix.CreateTranslation(0, (-pos.Y - 8) + (windowHeight / (2 * zoom)), 0) * Matrix.CreateScale(zoomVector);
                 }
-                else if (pos.X > levelList[i].Length * 16 - 16)
+                if (pos.X > levelList[i].Length * 16 - 16)
                 {
-                    transform = Matrix.CreateTranslation(0, 0, 0) * Matrix.CreateScale(new Vector3(zoom, zoom, 1));
+                    transform = Matrix.CreateTranslation(0, 0, 0) * Matrix.CreateScale(zoomVector);
                 }
-                else if (pos.Y < 0)
+                if ((-pos.Y - 8) + (windowHeight / (2 * zoom)) > 0)
                 {
-                    transform = Matrix.CreateTranslation(0, 0, 0) * Matrix.CreateScale(new Vector3(zoom, zoom, 1));
+                    transform = Matrix.CreateTranslation((-pos.X - 8) + (windowWidth / (2 * zoom)), 0, 0) * Matrix.CreateScale(zoomVector);
                 }
-                else if (pos.Y > levelList.Count * 16 - 16)
+                if (pos.Y > levelList.Count * 16 - 16)
                 {
-                    transform = Matrix.CreateTranslation(0, 0, 0) * Matrix.CreateScale(new Vector3(zoom, zoom, 1));
+                    transform = Matrix.CreateTranslation(0, 0, 0) * Matrix.CreateScale(zoomVector);
                 }
                 else
                 {
-                    transform = Matrix.CreateTranslation(-pos.X + view.Width / 2, -pos.Y + view.Height / 2, 0) * Matrix.CreateScale(new Vector3(zoom, zoom, 1));
+                    //LÅT STÅ
+                    //transform = Matrix.CreateTranslation((-pos.X - 8) + (windowWidth / (2 * zoom)), (-pos.Y - 8) + (windowHeight / (2 * zoom)), 0) * Matrix.CreateScale(zoomVector);
                 }
             }
         }
