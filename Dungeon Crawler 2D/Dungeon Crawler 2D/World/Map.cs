@@ -13,6 +13,7 @@ namespace Dungeon_Crawler_2D.World
     {
         Wall,
         basic,
+        MonsterTile,
         NorthExit,
         SouthExit,
         WestExit,
@@ -22,7 +23,7 @@ namespace Dungeon_Crawler_2D.World
     class Map
     {
         List<Room> rooms;
-        Point currentRoom;
+        int curretnRoom;
 
         Random rand;
 
@@ -90,7 +91,7 @@ namespace Dungeon_Crawler_2D.World
                     int r = GetRandomNumberExcluding(excludeExit, 1, 4);
                     if (r == 1)
                     {
-                        rooms.Add(new Room(GetRandomRoomPath("Maps/North"), textures,
+                        rooms.Add(new Room(GetRandomRoomPath("Maps/South"), textures,
                             rooms[addingExitsTo].roomCoords + new Point(0, -1)));
                         excludeExit.Add(1);
                         roomsAdded++;
@@ -98,7 +99,7 @@ namespace Dungeon_Crawler_2D.World
                     }
                     else if (r == 2)
                     {
-                        rooms.Add(new Room(GetRandomRoomPath("Maps/South"), textures,
+                        rooms.Add(new Room(GetRandomRoomPath("Maps/North"), textures,
                             rooms[addingExitsTo].roomCoords + new Point(0, 1)));
                         excludeExit.Add(2);
                         roomsAdded++;
@@ -106,7 +107,7 @@ namespace Dungeon_Crawler_2D.World
                     }
                     else if (r == 3)
                     {
-                        rooms.Add(new Room(GetRandomRoomPath("Maps/East"), textures,
+                        rooms.Add(new Room(GetRandomRoomPath("Maps/West"), textures,
                             rooms[addingExitsTo].roomCoords + new Point(1, 0)));
                         excludeExit.Add(3);
                         roomsAdded++;
@@ -114,7 +115,7 @@ namespace Dungeon_Crawler_2D.World
                     }
                     else if (r == 4)
                     {
-                        rooms.Add(new Room(GetRandomRoomPath("Maps/West"), textures,
+                        rooms.Add(new Room(GetRandomRoomPath("Maps/East"), textures,
                             rooms[addingExitsTo].roomCoords + new Point(-1, 0)));
                         excludeExit.Add(4);
                         roomsAdded++;
@@ -131,6 +132,14 @@ namespace Dungeon_Crawler_2D.World
             foreach (Room room in rooms)
             {
                 room.Draw(spriteBatch);
+            }
+        }
+
+        private void RemoveOneWayDoors()
+        {
+            for (int i = 0; i < rooms.Count;i++)
+            {
+
             }
         }
 
@@ -164,17 +173,21 @@ namespace Dungeon_Crawler_2D.World
             List<string> roomPaths = new List<string>();
             foreach (string file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory + FolderPath).Select(Path.GetFileName))
             {
-                roomPaths.Add(file);
+                roomPaths.Add(FolderPath + "/" + file);
             }
             rand.Next(0, roomPaths.Count - 1);
 
             return roomPaths[rand.Next(0, roomPaths.Count - 1)];
         }
 
+        public Vector2 GetPlayerStart()
+        {
+            return rooms[curretnRoom].PlayerStart;
+        }
+
         void CheckMovement(Vector2 position, Point direction)
         {
-            int room = GetCurrentRoomNumber();
-            Vector2 targetPosition = rooms[room].GetTargetTileCenter(position, direction);
+            Vector2 targetPosition = rooms[curretnRoom].GetTargetTileCenter(position, direction);
 
             if (targetPosition != position)
             {
@@ -182,16 +195,19 @@ namespace Dungeon_Crawler_2D.World
             }
         }
 
-        private int GetCurrentRoomNumber()
+        public MapEventHandler HandleEvent;
+
+        public void OnEvent(object Object, EventArgs args)
         {
-            for (int i = 0; i < rooms.Count; i++)
+            if (Object is Object.Player)
             {
-                if (rooms[i].roomCoords == currentRoom)
-                {
-                    return i;
-                }
+                PlayerEvent((PlayerEventArgs)args);
             }
-            return 0;
+        }
+
+        private void PlayerEvent(PlayerEventArgs args)
+        {
+            CheckMovement(args.Position, args.Direction);
         }
     }
 }

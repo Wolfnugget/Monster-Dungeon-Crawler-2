@@ -30,54 +30,54 @@ namespace Dungeon_Crawler_2D.World
             int x = (roomBluePrint.Aggregate("", (max, cur) => max.Length > cur.Length ? max : cur)).Length;
             this.roomCoords = roomCoords;
 
-            tiles = new Tile[x, roomBluePrint.Count];
+            tiles = new Tile[roomBluePrint.Count, x];
 
-            for (int y = 0; y < roomBluePrint.Count; y++)
+            Console.WriteLine("Y = " + roomBluePrint.Count + "x: " + x);
+
+            for (int i = 0; i < tiles.GetLength(0); i++)
             {
-                x = 0;
-                while (x < roomBluePrint[y].Length)
+                for (int j = 0; j < tiles.GetLength(1); j++)
                 {
-                    if (roomBluePrint[y][x] == '0')
+                    if (roomBluePrint[i][j] == '0')
                     {
-                        tiles[y, x] = new Tile(new Vector2(x * textures.basicTile.Width, y * textures.basicTile.Height)
+                        tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)
                             , textures.basicTile, TileType.basic);
                     }
-                    else if (roomBluePrint[y][x] == 'X')
+                    else if (roomBluePrint[i][j] == 'X')
                     {
-                        tiles[y, x] = new Tile(new Vector2(x * textures.wall.Width, y * textures.wall.Height)
+                        tiles[i, j] = new Tile(new Vector2(j * textures.wall.Width, i * textures.wall.Height)
                             , textures.wall, TileType.Wall);
                     }
-                    else if (roomBluePrint[y][x] == 'N')
+                    else if (roomBluePrint[i][j] == 'N')
                     {
-                        tiles[y, x] = new Tile(new Vector2(x * textures.door.Width, y * textures.door.Height)
+                        tiles[i, j] = new Tile(new Vector2(j * textures.door.Width, i * textures.door.Height)
                             , textures.door, TileType.NorthExit);
                         northExit = true;
                     }
-                    else if (roomBluePrint[y][x] == 'S')
+                    else if (roomBluePrint[i][j] == 'S')
                     {
-                        tiles[y, x] = new Tile(new Vector2(x * textures.door.Width, y * textures.door.Height)
+                        tiles[i, j] = new Tile(new Vector2(j * textures.door.Width, i * textures.door.Height)
                             , textures.door, TileType.SouthExit);
                         southExit = true;
                     }
-                    else if (roomBluePrint[y][x] == 'W')
+                    else if (roomBluePrint[i][j] == 'W')
                     {
-                        tiles[y, x] = new Tile(new Vector2(x * textures.door.Width, y * textures.door.Height)
+                        tiles[i, j] = new Tile(new Vector2(j * textures.door.Width, i * textures.door.Height)
                             , textures.door, TileType.WestExit);
                         westExit = true;
                     }
-                    else if (roomBluePrint[y][x] == 'E')
+                    else if (roomBluePrint[i][j] == 'E')
                     {
-                        tiles[y, x] = new Tile(new Vector2(x * textures.door.Width, y * textures.door.Height)
+                        tiles[i, j] = new Tile(new Vector2(j * textures.door.Width, i * textures.door.Height)
                             , textures.door, TileType.EastExit);
                         eastExit = true;
                     }
-                    else if (roomBluePrint[y][x] == 'C')
+                    else if (roomBluePrint[i][j] == 'C')
                     {
-                        PlayerStart = new Vector2(x * textures.basicTile.Width, y * textures.basicTile.Height);
-                        tiles[y, x] = new Tile(new Vector2(x * textures.basicTile.Width, y * textures.basicTile.Height)
+                        PlayerStart = new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height);
+                        tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)
                             , textures.basicTile, TileType.basic);
                     }
-                    x++;
                 }
             }
         }

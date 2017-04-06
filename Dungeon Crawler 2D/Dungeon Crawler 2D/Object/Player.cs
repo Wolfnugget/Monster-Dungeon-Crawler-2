@@ -33,22 +33,38 @@ namespace Dungeon_Crawler_2D.Object
 
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
-                direction.Y = -1;
+                direction.X = -1;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
-                direction.Y = 1;
+                direction.X = 1;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                direction.X = 1;
+                direction.Y = 1;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                direction.X = -1;
+                direction.Y = -1;
             }
+        }
 
+        public PlayerEventHandler EventHandler;
+        public void OnInput()
+        {
 
+        }
+
+        public void HandleEvent()
+        {
+            if (EventHandler != null)
+            {
+                PlayerEventArgs args = new PlayerEventArgs(PlayerEventType.CheckDirection);
+                args.Direction = new Point((int)direction.X, (int)direction.Y);
+                args.Position = position;
+
+                EventHandler(this, args);
+            }
         }
     }
 }

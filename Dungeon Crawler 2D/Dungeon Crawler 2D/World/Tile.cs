@@ -21,7 +21,8 @@ namespace Dungeon_Crawler_2D.World
         {
             get
             {
-                return new Vector2();
+                return new Vector2(tileRectangle.X + tileRectangle.Width / 2,
+                    tileRectangle.Y + tileRectangle.Height / 2);
             }
         }
 

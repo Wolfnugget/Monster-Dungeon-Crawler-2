@@ -14,5 +14,35 @@ namespace Dungeon_Crawler_2D
         Move
     }
 
-    public delegate void MapEventHandler(MapEventType eventType, Vector2 position);
+    public enum PlayerEventType
+    {
+        CheckDirection
+    }
+
+    public delegate void PlayerEventHandler(object Object, PlayerEventArgs args);
+
+    public delegate void MapEventHandler(object Object, MapEventArgs args);
+
+    public class PlayerEventArgs : EventArgs
+    {
+        public Vector2 Position { get; set; }
+        public Point Direction { get; set; }
+        public PlayerEventType EventType;
+
+        public PlayerEventArgs(PlayerEventType EventType)
+        {
+            this.EventType = EventType;
+        }
+    }
+
+    public class MapEventArgs : EventArgs
+    {
+        public Vector2 Position { get; set; }
+        public MapEventType EventType;
+
+        public MapEventArgs(MapEventType EventType)
+        {
+            this.EventType = EventType;
+        }
+    }
 }

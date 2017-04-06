@@ -12,7 +12,8 @@ namespace Dungeon_Crawler_2D.Object
     {
         Texture2D texture;
         protected float speed;
-        protected Vector2 position, destination, direction;
+        public Vector2 position;
+        protected Vector2 destination, direction;
 
         Point startingFrame, frame, frames, frameSize;
         float frameTime, frameDuration;
