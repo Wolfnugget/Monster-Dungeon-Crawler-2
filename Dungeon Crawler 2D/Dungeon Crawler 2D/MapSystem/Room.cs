@@ -71,7 +71,7 @@ namespace Dungeon_Crawler_2D.MapSystem
                 for (int j = 0; j < tileList[i].Length; j++)
                 {
                     if (tileList[i][j] == 'C')
-                        playerChar = new PlayerCharacter(charTex, new Vector2(charTex.Width * j, charTex.Height * i), 5, 0, 0, this);
+                        playerChar = new PlayerCharacter(charTex, new Vector2(charTex.Width * j, charTex.Height * i), 5, 0, 0);
 
                     else if (tileList[i][j] == 'X')
                         tiles[i, j] = new Tile(tileTex, new Vector2(tileTex.Width* j, tileTex.Height* i), Color.Black, 1);

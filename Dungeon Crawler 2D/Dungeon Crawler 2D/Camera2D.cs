@@ -10,17 +10,17 @@ namespace Dungeon_Crawler_2D
         public Vector2 cameraPos;
         public Vector3 zoomVector;
         private Viewport view;
-        private List<string> levelList;
+        private World.Room room;
         public float zoom;
 
         int windowWidth;
         int windowHeight;
 
-        public Camera2D(Viewport view, int windowWidth, int windowHeight, List<string> levelList, float zoom)
+        public Camera2D(Viewport view, int windowWidth, int windowHeight, World.Room room, float zoom)
         {
             this.zoom = zoom;
             this.view = view;
-            this.levelList = levelList;
+            this.room = room;
             this.windowWidth = windowWidth;
             this.windowHeight = windowHeight;
 
@@ -31,13 +31,13 @@ namespace Dungeon_Crawler_2D
         {
             cameraPos = pos;
 
-            for (int i = 0; i < levelList.Count; i++)
+            for (int i = 0; i < room.roomBluePrint.Count; i++)
             {
                 if ((-pos.X - 8) + (windowWidth / (2 * zoom)) > 0)
                 {
                     transform = Matrix.CreateTranslation(0, (-pos.Y - 8) + (windowHeight / (2 * zoom)), 0) * Matrix.CreateScale(zoomVector);
                 }
-                if (pos.X > levelList[i].Length * 16 - 16)
+                if (pos.X > room.roomBluePrint[i].Length * 16 - 16)
                 {
                     transform = Matrix.CreateTranslation(0, 0, 0) * Matrix.CreateScale(zoomVector);
                 }
@@ -45,7 +45,7 @@ namespace Dungeon_Crawler_2D
                 {
                     transform = Matrix.CreateTranslation((-pos.X - 8) + (windowWidth / (2 * zoom)), 0, 0) * Matrix.CreateScale(zoomVector);
                 }
-                if (pos.Y > levelList.Count * 16 - 16)
+                if (pos.Y > room.roomBluePrint.Count * 16 - 16)
                 {
                     transform = Matrix.CreateTranslation(0, 0, 0) * Matrix.CreateScale(zoomVector);
                 }

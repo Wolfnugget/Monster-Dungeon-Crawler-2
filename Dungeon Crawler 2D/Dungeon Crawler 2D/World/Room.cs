@@ -13,14 +13,17 @@ namespace Dungeon_Crawler_2D.World
     {
         public Tile[,] tiles;
         public Vector2 PlayerStart;
+        public List<string> roomBluePrint;
+        TextureManager textures;
 
         public Point roomCoords;
 
         public bool northExit, southExit, westExit, eastExit;
 
-        public Room(string roomPath, TextureManager textures, Point roomCoords)
+        public Room(string roomPath, Point roomCoords, TextureManager textures)
         {
-            List<string> roomBluePrint = new List<string>();
+            this.roomBluePrint = new List<string>();
+            this.textures = textures;
             StreamReader sr = new StreamReader(roomPath);
             while (!sr.EndOfStream)
             {

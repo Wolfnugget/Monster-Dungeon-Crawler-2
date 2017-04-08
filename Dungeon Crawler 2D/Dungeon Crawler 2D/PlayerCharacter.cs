@@ -14,21 +14,28 @@ namespace Dungeon_Crawler_2D
         Texture2D playerTex;
         public Vector2 playerPos;
         Vector2 previousPlayerPos;
-        string playerDirection = null;
         Rectangle playerHitBox;
-        MapSystem.Room room;
+
+        public enum MoveDirection
+        {
+            Up,
+            Down,
+            Left,
+            Right,
+            none
+        }
+        MoveDirection currentMovement;
 
         int health;
         int mana;
         int xp;
 
-        public PlayerCharacter(Texture2D tex, Vector2 pos, int health, int mana, int xp, MapSystem.Room room):
+        public PlayerCharacter(Texture2D tex, Vector2 pos, int health, int mana, int xp):
             base(tex, pos, health, mana, xp)
         {
             playerTex = tex;
             playerPos = pos;
             playerHitBox = hitBox;
-            this.room = room;
 
             this.health = health;
             this.mana = mana;
@@ -46,49 +53,49 @@ namespace Dungeon_Crawler_2D
                 || previousPlayerPos.Y - playerPos.Y == 16)
             {
                 previousPlayerPos = playerPos;
-                playerDirection = null;
+                currentMovement = MoveDirection.none;
             }
 
             //Kollar när det är tillåtet att ändra stringen: "playerDirection", som kontrollerar om spelaren ska flytta sig, och i vilken riktning
-            if (Keyboard.GetState().IsKeyDown(Keys.W) && playerPos == previousPlayerPos
-                || playerDirection == "down" && Keyboard.GetState().IsKeyDown(Keys.W) && !Keyboard.GetState().IsKeyDown(Keys.S))
+            if (playerPos == previousPlayerPos)
             {
-                playerDirection = "up";
+                if (Keyboard.GetState().IsKeyDown(Keys.W))
+                {
+                    currentMovement = MoveDirection.Up;
+                }
+                else if (Keyboard.GetState().IsKeyDown(Keys.S))
+                {
+                    currentMovement = MoveDirection.Down;
+                }
+                else if (Keyboard.GetState().IsKeyDown(Keys.A))
+                {
+                    currentMovement = MoveDirection.Left;
+                }
+                else if (Keyboard.GetState().IsKeyDown(Keys.D))
+                {
+                    currentMovement = MoveDirection.Right;
+                }
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.S) && playerPos == previousPlayerPos
-                || playerDirection == "up" && Keyboard.GetState().IsKeyDown(Keys.S) && !Keyboard.GetState().IsKeyDown(Keys.W))
-            {
-                playerDirection = "down";
-            }
-            else if (Keyboard.GetState().IsKeyDown(Keys.A) && playerPos == previousPlayerPos
-                || playerDirection == "right" && Keyboard.GetState().IsKeyDown(Keys.A) && !Keyboard.GetState().IsKeyDown(Keys.D))
-            {
-                playerDirection = "left";
-            }
-            else if (Keyboard.GetState().IsKeyDown(Keys.D) && playerPos == previousPlayerPos
-                || playerDirection == "left" && Keyboard.GetState().IsKeyDown(Keys.D) && !Keyboard.GetState().IsKeyDown(Keys.A))
-            {
-                playerDirection = "right";
-            }
+            
             
             //flyttar spelaren vidare i en riktning tills nästa lediga ruta då en knap inte trycks ner
             // OBS!!! Vill ni göra något som bara ska ske när spelaren rör sig i en riktning. t.ex animationer, ÄNDRA DÅ HÄR! vid "//Animation för ...". 
-            if (playerDirection == "up")
+            if (currentMovement == MoveDirection.Up)
             {
                 playerPos.Y -= 2;
                 //Animation for Up
             }
-            else if (playerDirection == "down")
+            else if (currentMovement == MoveDirection.Down)
             {
                 playerPos.Y += 2;
                 //Animation for Down
             }
-            else if (playerDirection == "left")
+            else if (currentMovement == MoveDirection.Left)
             {
                 playerPos.X -= 2;
                 //Animation for Left
             }
-            else if (playerDirection == "right")
+            else if (currentMovement == MoveDirection.Right)
             {
                 playerPos.X += 2;
                 //Animation for Right

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Content;
 using System;
 
 namespace Dungeon_Crawler_2D
@@ -10,13 +11,13 @@ namespace Dungeon_Crawler_2D
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Texture2D exTex;
-        Texture2D playerTex;
         Random rand;
 
-        MapSystem.Room room;
+        World.Room room;
+        //MapSystem.Room room;
         PlayerCharacter player;
         Camera2D cam;
+        TextureManager textures;
 
         int windowHeight;
         int windowWidth;
@@ -39,27 +40,29 @@ namespace Dungeon_Crawler_2D
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            playerTex = Content.Load<Texture2D>("Player");
-            exTex = Content.Load<Texture2D>("Example");
+            
+            textures = new TextureManager(Content);
             rand = new Random();
             int roomNr = rand.Next(1, 4);
-            room = new MapSystem.Room(exTex, playerTex, "Maps/" + "StartRoom/" + roomNr + ".txt", 0);
+            //room = new MapSystem.Room(exTex, playerTex, "Maps/" + "StartRoom/" + roomNr + ".txt",0);
+            room = new World.Room("Maps/StartRoom/" + 5 + ".txt", new Point(-1, 0), textures);
+            player = new PlayerCharacter(textures.player, room.PlayerStart, 5, 0, 0);
 
             Viewport view = GraphicsDevice.Viewport;
-            float zoom = 10f;
+            float zoom = 8f;
             windowWidth = graphics.PreferredBackBufferWidth = 1200;
             windowHeight = graphics.PreferredBackBufferHeight = 800;
             graphics.ApplyChanges();
 
-            cam = new Camera2D(view, windowWidth, windowHeight, room.tileList, zoom);
+            cam = new Camera2D(view, windowWidth, windowHeight, room, zoom);
         }
         protected override void Update(GameTime gameTime)
         {
-            room.Update(gameTime);
+            //room.Update(gameTime);
+            player.Update(gameTime);
             base.Update(gameTime);
-            cam.SetPosition(room.playerChar.playerPos);
-            Console.WriteLine(room.playerChar.playerPos);
+            cam.SetPosition(player.playerPos);
+            Console.WriteLine(player.playerPos);
             Console.WriteLine(cam.transform);
         }
 
@@ -71,6 +74,7 @@ namespace Dungeon_Crawler_2D
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.GetTransform());
 
             room.Draw(spriteBatch);
+            player.Draw(spriteBatch);
             spriteBatch.End();
 
             spriteBatch.Begin();
