@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Dungeon_Crawler_2D.World
 {
-    class Room
+    public class Room
     {
         public Tile[,] tiles;
         public Vector2 PlayerStart;
@@ -34,8 +34,6 @@ namespace Dungeon_Crawler_2D.World
             this.roomCoords = roomCoords;
 
             tiles = new Tile[roomBluePrint.Count, x];
-
-            Console.WriteLine("Y = " + roomBluePrint.Count + "x: " + x);
 
             for (int i = 0; i < tiles.GetLength(0); i++)
             {
@@ -85,6 +83,11 @@ namespace Dungeon_Crawler_2D.World
             }
         }
 
+        void LoadRoom()
+        {
+            // this will load the room, this is so not all rooms get loaded at the same time.
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (Tile tile in tiles)
@@ -99,7 +102,7 @@ namespace Dungeon_Crawler_2D.World
             {
                 for (int x = 0; x < tiles.GetLength(1); x++)
                 {
-                    if (tiles[y, x].tileRectangle.Contains(position) )
+                    if (tiles[y, x].tileRectangle.Contains(position))
                     {
                         if (tiles[y + direction.Y, x + direction.X].pasable &&
                             tiles[y, x + direction.X].pasable &&
@@ -117,5 +120,21 @@ namespace Dungeon_Crawler_2D.World
 
             return position;
         }
+
+        public TileType GetTileType(Vector2 pos)
+        {
+            for (int i = 0; i < tiles.GetLength(0); i++)
+            {
+                for (int j = 0; j < tiles.GetLength(1); j++)
+                {
+                    if (tiles[i,j].tileRectangle.Contains(pos))
+                    {
+                        return tiles[i,j].type;
+                    }
+                }
+            }
+            return TileType.Wall;
+        }
+
     }
 }

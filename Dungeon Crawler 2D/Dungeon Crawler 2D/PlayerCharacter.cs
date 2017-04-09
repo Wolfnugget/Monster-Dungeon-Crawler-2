@@ -29,8 +29,9 @@ namespace Dungeon_Crawler_2D
         int health;
         int mana;
         int xp;
+        World.Map map;
 
-        public PlayerCharacter(Texture2D tex, Vector2 pos, int health, int mana, int xp):
+        public PlayerCharacter(Texture2D tex, Vector2 pos, int health, int mana, int xp, World.Map map): // Add conection to map
             base(tex, pos, health, mana, xp)
         {
             playerTex = tex;
@@ -40,6 +41,7 @@ namespace Dungeon_Crawler_2D
             this.health = health;
             this.mana = mana;
             this.xp = xp;
+            this.map = map;
 
             previousPlayerPos = playerPos;
         }
@@ -57,25 +59,25 @@ namespace Dungeon_Crawler_2D
             }
 
             //Kollar när det är tillåtet att ändra stringen: "playerDirection", som kontrollerar om spelaren ska flytta sig, och i vilken riktning
-            if (playerPos == previousPlayerPos)
-            {
-                if (Keyboard.GetState().IsKeyDown(Keys.W))
-                {
-                    currentMovement = MoveDirection.Up;
-                }
-                else if (Keyboard.GetState().IsKeyDown(Keys.S))
-                {
-                    currentMovement = MoveDirection.Down;
-                }
-                else if (Keyboard.GetState().IsKeyDown(Keys.A))
-                {
-                    currentMovement = MoveDirection.Left;
-                }
-                else if (Keyboard.GetState().IsKeyDown(Keys.D))
-                {
-                    currentMovement = MoveDirection.Right;
-                }
-            }
+            //if (playerPos == previousPlayerPos)
+            //{
+            //    if (Keyboard.GetState().IsKeyDown(Keys.W) && map.CheckMovement(playerPos, new Point(0, -1)))
+            //    {
+            //        currentMovement = MoveDirection.Up;
+            //    }
+            //    else if (Keyboard.GetState().IsKeyDown(Keys.S) && map.CheckMovement(playerPos, new Point(0, 1)))
+            //    {
+            //        currentMovement = MoveDirection.Down;
+            //    }
+            //    else if (Keyboard.GetState().IsKeyDown(Keys.A) && map.CheckMovement(playerPos, new Point(-1, 0)))
+            //    {
+            //        currentMovement = MoveDirection.Left;
+            //    }
+            //    else if (Keyboard.GetState().IsKeyDown(Keys.D) && map.CheckMovement(playerPos, new Point(1, 0)))
+            //    {
+            //        currentMovement = MoveDirection.Right;
+            //    }
+            //}
             
             
             //flyttar spelaren vidare i en riktning tills nästa lediga ruta då en knap inte trycks ner

@@ -9,11 +9,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Dungeon_Crawler_2D.World
 {
-    class Tile
+    public class Tile
     {
         public Rectangle tileRectangle;
         Texture2D texture;
-        TileType type;
+        public TileType type;
         Color color;
         public bool pasable;
 
@@ -33,22 +33,22 @@ namespace Dungeon_Crawler_2D.World
                 texture.Width, texture.Height);
 
             this.type = type;
-
-            if (type == TileType.basic)
-            {
-                pasable = true;
-                color = Color.White;
-            }
-            else if (type == TileType.Wall)
+            if (type == TileType.Wall)
             {
                 pasable = false;
                 color = Color.Black;
+            }
+            else if (type == TileType.basic)
+            {
+                pasable = true;
+                color = Color.White;
             }
             else
             {
                 pasable = true;
                 color = Color.Green;
             }
+
         }
 
         public void Draw(SpriteBatch spriteBatch)

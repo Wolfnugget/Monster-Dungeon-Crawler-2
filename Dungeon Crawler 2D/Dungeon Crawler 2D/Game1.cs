@@ -13,9 +13,10 @@ namespace Dungeon_Crawler_2D
 
         Random rand;
 
-        World.Room room;
         World.Map map;
         Object.Player player;
+
+
         //MapSystem.Room room;
         //PlayerCharacter player;
         Camera2D cam;
@@ -45,6 +46,7 @@ namespace Dungeon_Crawler_2D
             textures = new TextureManager(Content);
             rand = new Random();
             int roomNr = rand.Next(1, 4);
+
             //room = new MapSystem.Room(exTex, playerTex, "Maps/" + "StartRoom/" + roomNr + ".txt",0);
             //room = new World.Room("Maps/StartRoom/" + 5 + ".txt", new Point(-1, 0), textures);
             //player = new PlayerCharacter(textures.player, room.PlayerStart, 5, 0, 0);
@@ -61,6 +63,7 @@ namespace Dungeon_Crawler_2D
             graphics.ApplyChanges();
 
             //cam = new Camera2D(view, windowWidth, windowHeight, room, zoom);
+            //cam = new Camera2D(view, windowWidth, windowHeight, map.getRoom(), zoom);
         }
         protected override void Update(GameTime gameTime)
         {
@@ -84,11 +87,9 @@ namespace Dungeon_Crawler_2D
             spriteBatch.Begin();
 
             //room.Draw(spriteBatch);
+
             map.Draw(spriteBatch);
             player.Draw(spriteBatch);
-            spriteBatch.End();
-
-            spriteBatch.Begin();
             spriteBatch.End();
 
             base.Draw(gameTime);

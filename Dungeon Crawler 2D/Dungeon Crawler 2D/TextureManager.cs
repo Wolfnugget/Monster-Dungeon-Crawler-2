@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Dungeon_Crawler_2D
 {
-    class TextureManager
+    public class TextureManager
     {
         public Texture2D player, wall, basicTile, door; //osv
 

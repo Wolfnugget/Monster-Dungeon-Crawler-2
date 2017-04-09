@@ -88,6 +88,7 @@ namespace Dungeon_Crawler_2D.Object
 
         public void SetDestination(Vector2 destination)
         {
+            Console.WriteLine("gets destination");
             this.destination = destination;
             moving = true;
         }
