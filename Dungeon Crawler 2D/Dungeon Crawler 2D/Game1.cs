@@ -14,8 +14,10 @@ namespace Dungeon_Crawler_2D
         Random rand;
 
         World.Room room;
+        World.Map map;
+        Object.Player player;
         //MapSystem.Room room;
-        PlayerCharacter player;
+        //PlayerCharacter player;
         Camera2D cam;
         TextureManager textures;
 
@@ -23,7 +25,6 @@ namespace Dungeon_Crawler_2D
         int windowWidth;
 
         //PlayerCharacter playerCharacter;
-        //Object.Player player;
 
         public Game1()
         {
@@ -45,8 +46,13 @@ namespace Dungeon_Crawler_2D
             rand = new Random();
             int roomNr = rand.Next(1, 4);
             //room = new MapSystem.Room(exTex, playerTex, "Maps/" + "StartRoom/" + roomNr + ".txt",0);
-            room = new World.Room("Maps/StartRoom/" + 5 + ".txt", new Point(-1, 0), textures);
-            player = new PlayerCharacter(textures.player, room.PlayerStart, 5, 0, 0);
+            //room = new World.Room("Maps/StartRoom/" + 5 + ".txt", new Point(-1, 0), textures);
+            //player = new PlayerCharacter(textures.player, room.PlayerStart, 5, 0, 0);
+
+            map = new World.Map(textures, 1, 0);
+            map.Event += HandleEvents;
+            player = new Object.Player(textures.player, map.GetPlayerStart(), 16, new Point(0, 0), new Point(16, 16), new Point(0, 0));
+            player.Action += HandleEvents;
 
             Viewport view = GraphicsDevice.Viewport;
             float zoom = 8f;
@@ -54,16 +60,18 @@ namespace Dungeon_Crawler_2D
             windowHeight = graphics.PreferredBackBufferHeight = 800;
             graphics.ApplyChanges();
 
-            cam = new Camera2D(view, windowWidth, windowHeight, room, zoom);
+            //cam = new Camera2D(view, windowWidth, windowHeight, room, zoom);
         }
         protected override void Update(GameTime gameTime)
         {
             //room.Update(gameTime);
+
             player.Update(gameTime);
             base.Update(gameTime);
-            cam.SetPosition(player.playerPos);
-            Console.WriteLine(player.playerPos);
-            Console.WriteLine(cam.transform);
+
+            //cam.SetPosition(player.position);
+            //Console.WriteLine(player.position);
+            //Console.WriteLine(cam.transform);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -71,9 +79,12 @@ namespace Dungeon_Crawler_2D
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             //spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, cam.GetTransformation(GraphicsDevice));
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.GetTransform());
+            //spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.GetTransform());
 
-            room.Draw(spriteBatch);
+            spriteBatch.Begin();
+
+            //room.Draw(spriteBatch);
+            map.Draw(spriteBatch);
             player.Draw(spriteBatch);
             spriteBatch.End();
 
@@ -83,12 +94,32 @@ namespace Dungeon_Crawler_2D
             base.Draw(gameTime);
         }
 
-        public bool CheckTile(Vector2 direction, out Vector2 destination)
+        public void HandleEvents(object Object, EventArgs args)
         {
-
-            destination = new Vector2(0, 0);
-            return false;
+            if (Object is Object.Player)
+            {
+                HandlePlayer((PlayerEventArgs)args);
+            }
+            else if (Object is World.Map)
+            {
+                HandleMap((MapEventArgs)args);
+            }
         }
 
+        private void HandlePlayer(PlayerEventArgs args)
+        {
+            if (args.EventType == PlayerEventType.CheckDirection)
+            {
+                map.PlayerEvent(args);
+            }
+        }
+
+        private void HandleMap(MapEventArgs args)
+        {
+            if (args.EventType == MapEventType.Move)
+            {
+                player.SetDestination(args.Position);
+            }
+        }
     }
 }

@@ -27,8 +27,9 @@ namespace Dungeon_Crawler_2D.World
         TextureManager textures;
         Random rand;
 
-        public Map(int minNumberOfRooms, int maxNumberOfRoomsOffset = 0)
+        public Map(TextureManager textures ,int minNumberOfRooms, int maxNumberOfRoomsOffset = 0)
         {
+            this.textures = textures;
             rand = new Random();
             GenerateMap(rand.Next(minNumberOfRooms, minNumberOfRooms + maxNumberOfRoomsOffset));
         }
@@ -191,23 +192,25 @@ namespace Dungeon_Crawler_2D.World
 
             if (targetPosition != position)
             {
-
+                MapEventArgs args = new MapEventArgs(MapEventType.Move);
+                args.Position = targetPosition;
+                OnEvent(args);
             }
         }
 
-        public MapEventHandler HandleEvent;
+        public MapEventHandler Event;
 
-        public void OnEvent(object Object, EventArgs args)
+        public void OnEvent(MapEventArgs e)
         {
-            if (Object is Object.Player)
+            Event?.Invoke(this, e);
+        }
+
+        public void PlayerEvent(PlayerEventArgs args)
+        {
+            if (args.EventType == PlayerEventType.CheckDirection)
             {
-                PlayerEvent((PlayerEventArgs)args);
+                CheckMovement(args.Position, args.Direction);
             }
-        }
-
-        private void PlayerEvent(PlayerEventArgs args)
-        {
-            CheckMovement(args.Position, args.Direction);
         }
     }
 }

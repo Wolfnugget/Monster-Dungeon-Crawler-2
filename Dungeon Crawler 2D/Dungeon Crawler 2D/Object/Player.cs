@@ -29,40 +29,33 @@ namespace Dungeon_Crawler_2D.Object
 
         void CheckInput()
         {
-            direction = new Vector2(0, 0);
+            Point direction = new Point(0, 0);
+            bool input = false;
 
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
-                direction.X = -1;
+                direction.Y = -1;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
-                direction.X = 1;
+                direction.Y = 1;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                direction.Y = 1;
+                direction.X = 1;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                direction.Y = -1;
+                direction.X = -1;
             }
-        }
 
-        public PlayerEventHandler Event;
-
-        public void OnEvent(PlayerEventType eventType)
-        {
-            if (Event != null)
+            if (direction != new Point(0, 0))
             {
-                if (eventType == PlayerEventType.CheckDirection)
-                {
-                    PlayerEventArgs args = new PlayerEventArgs(eventType);
-                    args.Direction = new Point((int)direction.X, (int)direction.Y);
-                    args.Position = position;
-
-                    Event(this, args);
-                }
+                Console.WriteLine("input Working: " + direction);
+                PlayerEventArgs args = new PlayerEventArgs(PlayerEventType.CheckDirection);
+                args.Direction = direction;
+                args.Position = position;
+                OnAction(args);
             }
         }
     }

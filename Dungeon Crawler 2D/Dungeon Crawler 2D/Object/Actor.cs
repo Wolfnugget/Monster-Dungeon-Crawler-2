@@ -13,7 +13,7 @@ namespace Dungeon_Crawler_2D.Object
         Texture2D texture;
         protected float speed;
         public Vector2 position;
-        protected Vector2 destination, direction;
+        protected Vector2 destination;
 
         Point startingFrame, frame, frames, frameSize;
         float frameTime, frameDuration;
@@ -41,6 +41,7 @@ namespace Dungeon_Crawler_2D.Object
             this.frameSize = frameSize;
             frame = startingFrame;
             this.frames = frames;
+            moving = false;
 
             origin = new Vector2(frameSize.X / 2, frameSize.Y / 2);
         }
@@ -85,17 +86,25 @@ namespace Dungeon_Crawler_2D.Object
             }
         }
 
+        public void SetDestination(Vector2 destination)
+        {
+            this.destination = destination;
+            moving = true;
+        }
+
         public void Move(GameTime gameTime)
         {
+            Vector2 dir = new Vector2(destination.X - position.X, destination.Y - position.Y);
+            Vector2 norm = Vector2.Normalize(dir);
+
             if (Vector2.Distance(position, destination) > 1 &&
-                Vector2.Distance(position + direction, destination) < Vector2.Distance(position, destination))
+                Vector2.Distance(position + (norm * speed * (float)gameTime.ElapsedGameTime.TotalSeconds), destination) < Vector2.Distance(position, destination))
             {
-                position += speed * direction * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                position += speed * norm * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
             else
             {
                 position = destination;
-                direction = new Vector2(0, 0);
                 moving = false;
             }
         }
@@ -103,6 +112,13 @@ namespace Dungeon_Crawler_2D.Object
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position, srcRec,  Color.White, 0, origin, 1, effect, 1);
+        }
+
+        public PlayerEventHandler Action;
+
+        public void OnAction(PlayerEventArgs e)
+        {
+            Action?.Invoke(this, e);
         }
     }
 }

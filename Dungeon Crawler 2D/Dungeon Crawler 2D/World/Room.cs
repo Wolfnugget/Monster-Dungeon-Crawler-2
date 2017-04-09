@@ -77,9 +77,9 @@ namespace Dungeon_Crawler_2D.World
                     }
                     else if (roomBluePrint[i][j] == 'C')
                     {
-                        PlayerStart = new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height);
                         tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)
                             , textures.basicTile, TileType.basic);
+                        PlayerStart = tiles[i, j].TileCenter;
                     }
                 }
             }
@@ -101,7 +101,9 @@ namespace Dungeon_Crawler_2D.World
                 {
                     if (tiles[y, x].tileRectangle.Contains(position) )
                     {
-                        if (tiles[y + direction.Y, x + direction.X].pasable)
+                        if (tiles[y + direction.Y, x + direction.X].pasable &&
+                            tiles[y, x + direction.X].pasable &&
+                            tiles[y + direction.Y, x].pasable)
                         {
                             return tiles[y + direction.Y, x + direction.X].TileCenter;
                         }
