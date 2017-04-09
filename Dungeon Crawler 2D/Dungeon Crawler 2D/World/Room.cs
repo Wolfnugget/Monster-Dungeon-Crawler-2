@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Dungeon_Crawler_2D.World
 {
-    class Room
+    public class Room
     {
         public Tile[,] tiles;
         public Vector2 PlayerStart;
@@ -44,45 +44,50 @@ namespace Dungeon_Crawler_2D.World
                     if (roomBluePrint[i][j] == '0')
                     {
                         tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)
-                            , textures.basicTile, TileType.basic);
+                            , textures.basicTile, TileType.basic, Color.Beige);
                     }
                     else if (roomBluePrint[i][j] == 'X')
                     {
                         tiles[i, j] = new Tile(new Vector2(j * textures.wall.Width, i * textures.wall.Height)
-                            , textures.wall, TileType.Wall);
+                            , textures.wall, TileType.Wall, Color.Black);
                     }
                     else if (roomBluePrint[i][j] == 'N')
                     {
                         tiles[i, j] = new Tile(new Vector2(j * textures.door.Width, i * textures.door.Height)
-                            , textures.door, TileType.NorthExit);
+                            , textures.door, TileType.NorthExit, Color.Green);
                         northExit = true;
                     }
                     else if (roomBluePrint[i][j] == 'S')
                     {
                         tiles[i, j] = new Tile(new Vector2(j * textures.door.Width, i * textures.door.Height)
-                            , textures.door, TileType.SouthExit);
+                            , textures.door, TileType.SouthExit, Color.Green);
                         southExit = true;
                     }
                     else if (roomBluePrint[i][j] == 'W')
                     {
                         tiles[i, j] = new Tile(new Vector2(j * textures.door.Width, i * textures.door.Height)
-                            , textures.door, TileType.WestExit);
+                            , textures.door, TileType.WestExit, Color.Green);
                         westExit = true;
                     }
                     else if (roomBluePrint[i][j] == 'E')
                     {
                         tiles[i, j] = new Tile(new Vector2(j * textures.door.Width, i * textures.door.Height)
-                            , textures.door, TileType.EastExit);
+                            , textures.door, TileType.EastExit, Color.Green);
                         eastExit = true;
                     }
                     else if (roomBluePrint[i][j] == 'C')
                     {
                         PlayerStart = new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height);
                         tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)
-                            , textures.basicTile, TileType.basic);
+                            , textures.basicTile, TileType.basic, Color.Beige);
                     }
                 }
             }
+        }
+
+        void LoadRoom()
+        {
+            // this will load the room, this is so not all rooms get loaded at the same time.
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -99,7 +104,7 @@ namespace Dungeon_Crawler_2D.World
             {
                 for (int x = 0; x < tiles.GetLength(1); x++)
                 {
-                    if (tiles[y, x].tileRectangle.Contains(position) )
+                    if (tiles[y, x].tileRectangle.Contains(position))
                     {
                         if (tiles[y + direction.Y, x + direction.X].pasable)
                         {
@@ -115,5 +120,21 @@ namespace Dungeon_Crawler_2D.World
 
             return position;
         }
+
+        public TileType GetTileType(Vector2 pos)
+        {
+            for (int i = 0; i < tiles.GetLength(0); i++)
+            {
+                for (int j = 0; j < tiles.GetLength(1); j++)
+                {
+                    if (tiles[i,j].tileRectangle.Contains(pos))
+                    {
+                        return tiles[i,j].type;
+                    }
+                }
+            }
+            return TileType.Wall;
+        }
+
     }
 }

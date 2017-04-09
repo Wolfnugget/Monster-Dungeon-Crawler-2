@@ -20,20 +20,19 @@ namespace Dungeon_Crawler_2D.World
         EastExit
     }
 
-    class Map
+    public class Map
     {
         List<Room> rooms;
         int currentRoom;
-        TextureManager textures;
         Random rand;
 
-        public Map(int minNumberOfRooms, int maxNumberOfRoomsOffset = 0)
+        public Map(int minNumberOfRooms, int maxNumberOfRoomsOffset, TextureManager textures)
         {
             rand = new Random();
-            GenerateMap(rand.Next(minNumberOfRooms, minNumberOfRooms + maxNumberOfRoomsOffset));
+            GenerateMap(rand.Next(minNumberOfRooms, minNumberOfRooms + maxNumberOfRoomsOffset), textures);
         }
 
-        void GenerateMap(int numberOfRooms)
+        void GenerateMap(int numberOfRooms, TextureManager textures)
         {
             rooms = new List<Room>();
             int roomsAdded = 0;
@@ -185,14 +184,25 @@ namespace Dungeon_Crawler_2D.World
             return rooms[currentRoom].PlayerStart;
         }
 
-        void CheckMovement(Vector2 position, Point direction)
+        public bool CheckMovement(Vector2 position, Point direction)
         {
             Vector2 targetPosition = rooms[currentRoom].GetTargetTileCenter(position, direction);
 
             if (targetPosition != position)
             {
-
+                TileType targetTile = rooms[currentRoom].GetTileType(targetPosition);
+                if (targetTile != TileType.Wall)
+                {
+                    return true;
+                }
+                return false;
             }
+            return false;
+        }
+
+        public Room getRoom()
+        {
+            return rooms[currentRoom];
         }
 
         public MapEventHandler HandleEvent;
