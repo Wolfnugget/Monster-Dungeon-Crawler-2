@@ -51,9 +51,9 @@ namespace Dungeon_Crawler_2D
             //room = new World.Room("Maps/StartRoom/" + 5 + ".txt", new Point(-1, 0), textures);
             //player = new PlayerCharacter(textures.player, room.PlayerStart, 5, 0, 0);
 
-            map = new World.Map(textures, 1, 0);
+            map = new World.Map(textures, 4, 2);
             map.Event += HandleEvents;
-            player = new Object.Player(textures.player, map.GetPlayerStart(), 16, new Point(0, 0), new Point(16, 16), new Point(0, 0));
+            player = new Object.Player(textures.player, map.GetPlayerStart(), 32, new Point(0, 0), new Point(16, 16), new Point(0, 0));
             player.Action += HandleEvents;
 
             Viewport view = GraphicsDevice.Viewport;
@@ -113,6 +113,10 @@ namespace Dungeon_Crawler_2D
             {
                 map.PlayerEvent(args);
             }
+            else if (args.EventType == PlayerEventType.EnterTile)
+            {
+                map.PlayerEvent(args);
+            }
         }
 
         private void HandleMap(MapEventArgs args)
@@ -120,6 +124,10 @@ namespace Dungeon_Crawler_2D
             if (args.EventType == MapEventType.Move)
             {
                 player.SetDestination(args.Position);
+            }
+            else if (args.EventType == MapEventType.ChangeRoom)
+            {
+                player.SetPosition(args.Position);
             }
         }
     }

@@ -16,7 +16,8 @@ namespace Dungeon_Crawler_2D
 
     public enum PlayerEventType
     {
-        CheckDirection
+        CheckDirection,
+        EnterTile
     }
 
     public delegate void PlayerEventHandler(object Object, PlayerEventArgs args);

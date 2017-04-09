@@ -11,6 +11,7 @@ namespace Dungeon_Crawler_2D.World
 {
     public enum TileType
     {
+        None,
         Wall,
         basic,
         MonsterTile,
@@ -43,12 +44,13 @@ namespace Dungeon_Crawler_2D.World
             roomsAdded++;
 
             HashSet<int> excludeRoom = new HashSet<int>();
+            HashSet<int> excludeExit = new HashSet<int>();
             int addingExitsTo = 0;
 
             while (roomsAdded < numberOfRooms)
             {
                 int exitsToAdd = 0;
-                HashSet<int> excludeExit = new HashSet<int>();
+                excludeExit.Clear();
 
                 if (rooms[addingExitsTo].northExit &&
                     !CheckIfRoomExists(rooms[addingExitsTo].roomCoords, new Point(0, -1)))
@@ -130,10 +132,7 @@ namespace Dungeon_Crawler_2D.World
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Room room in rooms)
-            {
-                room.Draw(spriteBatch);
-            }
+            rooms[currentRoom].Draw(spriteBatch);
         }
 
         private void RemoveOneWayDoors()
@@ -164,7 +163,7 @@ namespace Dungeon_Crawler_2D.World
             var range = Enumerable.Range(min, max).Where(i => !exclude.Contains(i));
 
             Random random = new Random();
-            int index = random.Next(min, max - exclude.Count);
+            int index = random.Next(0, max - exclude.Count);
 
             return range.ElementAt(index);
         }
@@ -186,7 +185,7 @@ namespace Dungeon_Crawler_2D.World
             return rooms[currentRoom].PlayerStart;
         }
 
-        public void CheckMovement(Vector2 position, Point direction)
+        private void CheckMovement(Vector2 position, Point direction)
         {
             Vector2 targetPosition = rooms[currentRoom].GetTargetTileCenter(position, direction);
 
@@ -196,6 +195,51 @@ namespace Dungeon_Crawler_2D.World
                 args.Position = targetPosition;
                 OnEvent(args);
             }
+        }
+
+        private void TileCheck(Vector2 position)
+        {
+            TileType type = rooms[currentRoom].GetTileType(position);
+
+            Console.WriteLine("Tile Check");
+
+            if (type == TileType.NorthExit)
+            {
+                ChangeRoom(new Point(1, 0), TileType.SouthExit);
+            }
+            else if (type == TileType.SouthExit)
+            {
+                ChangeRoom(new Point(-1, 0), TileType.NorthExit);
+            }
+            else if (type == TileType.EastExit)
+            {
+                ChangeRoom(new Point(0, 1), TileType.WestExit);
+            }
+            else if (type == TileType.WestExit)
+            {
+                ChangeRoom(new Point(0, -1), TileType.EastExit);
+            }
+        }
+
+        private void ChangeRoom(Point RoomDirection, TileType entrance)
+        {
+            Point newRoomCoords = rooms[currentRoom].roomCoords + RoomDirection;
+
+            Console.WriteLine("change room from: " + currentRoom + " to: " + newRoomCoords);
+
+            for (int i = 0; i < rooms.Count; i++)
+            {
+                if (rooms[i].roomCoords == newRoomCoords)
+                {
+                    currentRoom = i;
+                    MapEventArgs args = new MapEventArgs(MapEventType.ChangeRoom);
+                    args.Position = rooms[currentRoom].GetTileCenterOfType(entrance);
+                    OnEvent(args);
+                    break;
+                }
+            }
+
+            Console.WriteLine("No Room");
         }
 
         public MapEventHandler Event;
@@ -210,6 +254,10 @@ namespace Dungeon_Crawler_2D.World
             if (args.EventType == PlayerEventType.CheckDirection)
             {
                 CheckMovement(args.Position, args.Direction);
+            }
+            else if (args.EventType == PlayerEventType.EnterTile)
+            {
+                TileCheck(args.Position);
             }
         }
     }

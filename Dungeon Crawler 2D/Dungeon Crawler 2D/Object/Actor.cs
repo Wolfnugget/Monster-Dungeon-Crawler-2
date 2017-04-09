@@ -93,6 +93,11 @@ namespace Dungeon_Crawler_2D.Object
             moving = true;
         }
 
+        public void SetPosition(Vector2 position)
+        {
+            this.position = position;
+        }
+
         public void Move(GameTime gameTime)
         {
             Vector2 dir = new Vector2(destination.X - position.X, destination.Y - position.Y);
@@ -107,6 +112,10 @@ namespace Dungeon_Crawler_2D.Object
             {
                 position = destination;
                 moving = false;
+                PlayerEventArgs args = new PlayerEventArgs(PlayerEventType.EnterTile);
+                args.Position = position;
+                OnAction(args);
+                Console.WriteLine("Move Over");
             }
         }
 

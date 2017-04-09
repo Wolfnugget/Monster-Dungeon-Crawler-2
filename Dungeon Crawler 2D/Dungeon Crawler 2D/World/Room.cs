@@ -121,19 +121,35 @@ namespace Dungeon_Crawler_2D.World
             return position;
         }
 
-        public TileType GetTileType(Vector2 pos)
+        public Vector2 GetTileCenterOfType(TileType type)
         {
             for (int i = 0; i < tiles.GetLength(0); i++)
             {
                 for (int j = 0; j < tiles.GetLength(1); j++)
                 {
-                    if (tiles[i,j].tileRectangle.Contains(pos))
+                    if (tiles[i, j].type == type)
+                    {
+                        return tiles[i, j].TileCenter;
+                    }
+                }
+            }
+
+            return new Vector2(0, 0);
+        }
+
+        public TileType GetTileType(Vector2 position)
+        {
+            for (int i = 0; i < tiles.GetLength(0); i++)
+            {
+                for (int j = 0; j < tiles.GetLength(1); j++)
+                {
+                    if (tiles[i,j].tileRectangle.Contains(position))
                     {
                         return tiles[i,j].type;
                     }
                 }
             }
-            return TileType.Wall;
+            return TileType.None;
         }
 
     }
