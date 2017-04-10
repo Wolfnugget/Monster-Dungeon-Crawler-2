@@ -44,6 +44,7 @@ namespace Dungeon_Crawler_2D.World
             roomsAdded++;
 
             HashSet<int> excludeRoom = new HashSet<int>();
+            excludeRoom.Clear();
             HashSet<int> excludeExit = new HashSet<int>();
             int addingExitsTo = 0;
 
@@ -160,10 +161,18 @@ namespace Dungeon_Crawler_2D.World
 
         private int GetRandomNumberExcluding(HashSet<int> exclude, int min, int max)
         {
-            var range = Enumerable.Range(min, max).Where(i => !exclude.Contains(i));
+            HashSet<int> range = new HashSet<int>();
+
+            for (int number = min; number <= max; number++)
+            {
+                if (!exclude.Contains(number))
+                {
+                    range.Add(number);
+                }
+            }
 
             Random random = new Random();
-            int index = random.Next(0, max - exclude.Count);
+            int index = random.Next(0, range.Count());
 
             return range.ElementAt(index);
         }
@@ -175,7 +184,7 @@ namespace Dungeon_Crawler_2D.World
             {
                 roomPaths.Add(FolderPath + "/" + file);
             }
-            rand.Next(0, roomPaths.Count - 1);
+            rand.Next(0, roomPaths.Count);
 
             return roomPaths[rand.Next(0, roomPaths.Count - 1)];
         }
@@ -205,19 +214,19 @@ namespace Dungeon_Crawler_2D.World
 
             if (type == TileType.NorthExit)
             {
-                ChangeRoom(new Point(1, 0), TileType.SouthExit);
+                ChangeRoom(new Point(0, -1), TileType.SouthExit);
             }
             else if (type == TileType.SouthExit)
             {
-                ChangeRoom(new Point(-1, 0), TileType.NorthExit);
+                ChangeRoom(new Point(0, 1), TileType.NorthExit);
             }
             else if (type == TileType.EastExit)
             {
-                ChangeRoom(new Point(0, 1), TileType.WestExit);
+                ChangeRoom(new Point(1, 0), TileType.WestExit);
             }
             else if (type == TileType.WestExit)
             {
-                ChangeRoom(new Point(0, -1), TileType.EastExit);
+                ChangeRoom(new Point(-1, 0), TileType.EastExit);
             }
         }
 
