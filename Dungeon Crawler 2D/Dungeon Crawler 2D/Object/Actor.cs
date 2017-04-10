@@ -115,7 +115,6 @@ namespace Dungeon_Crawler_2D.Object
                 PlayerEventArgs args = new PlayerEventArgs(PlayerEventType.EnterTile);
                 args.Position = position;
                 OnAction(args);
-                Console.WriteLine("Move Over");
             }
         }
 

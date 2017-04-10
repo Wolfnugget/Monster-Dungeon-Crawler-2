@@ -234,7 +234,7 @@ namespace Dungeon_Crawler_2D.World
         {
             Point newRoomCoords = rooms[currentRoom].roomCoords + RoomDirection;
 
-            Console.WriteLine("change room from: " + currentRoom + " to: " + newRoomCoords);
+            Console.WriteLine("change room from: " + rooms[currentRoom].roomCoords + " to: " + newRoomCoords);
 
             for (int i = 0; i < rooms.Count; i++)
             {
@@ -245,12 +245,9 @@ namespace Dungeon_Crawler_2D.World
                     args.Position = rooms[currentRoom].GetTileCenterOfType(entrance);
                     OnEvent(args);
                     CheckMovement(args.Position, RoomDirection);
-
                     break;
                 }
             }
-
-            Console.WriteLine("No Room");
         }
 
         public MapEventHandler Event;

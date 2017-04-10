@@ -72,7 +72,7 @@ namespace Dungeon_Crawler_2D
             base.Update(gameTime);
             
             cam.SetPosition(player.position);
-            Console.WriteLine(cam.transform);
+            //Console.WriteLine(cam.transform);
         }
 
         protected override void Draw(GameTime gameTime)
