@@ -244,6 +244,8 @@ namespace Dungeon_Crawler_2D.World
                     MapEventArgs args = new MapEventArgs(MapEventType.ChangeRoom);
                     args.Position = rooms[currentRoom].GetTileCenterOfType(entrance);
                     OnEvent(args);
+                    CheckMovement(args.Position, RoomDirection);
+
                     break;
                 }
             }
