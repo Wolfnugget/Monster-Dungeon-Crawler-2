@@ -16,7 +16,7 @@ namespace Dungeon_Crawler_2D
         World.Map map;
         Object.Player player;
 
-
+        
         //MapSystem.Room room;
         //PlayerCharacter player;
         Camera2D cam;
@@ -57,39 +57,43 @@ namespace Dungeon_Crawler_2D
             player.Action += HandleEvents;
 
             Viewport view = GraphicsDevice.Viewport;
-            float zoom = 8f;
+            float zoom = 6f;
             windowWidth = graphics.PreferredBackBufferWidth = 1200;
             windowHeight = graphics.PreferredBackBufferHeight = 800;
             graphics.ApplyChanges();
 
-            //cam = new Camera2D(view, windowWidth, windowHeight, room, zoom);
-            //cam = new Camera2D(view, windowWidth, windowHeight, map.getRoom(), zoom);
+            cam = new Camera2D(view, windowWidth, windowHeight, map, zoom);
         }
         protected override void Update(GameTime gameTime)
         {
             //room.Update(gameTime);
-
+            
             player.Update(gameTime);
             base.Update(gameTime);
-
-            //cam.SetPosition(player.position);
-            //Console.WriteLine(player.position);
-            //Console.WriteLine(cam.transform);
+            
+            cam.SetPosition(player.position);
+            Console.WriteLine(cam.transform);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            //GraphicsDevice.Clear(Color.Black);
 
-            //spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, cam.GetTransformation(GraphicsDevice));
-            //spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.GetTransform());
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.GetTransform());
+
+            map.Draw(spriteBatch);
+            player.Draw(spriteBatch);
+
+            spriteBatch.End();
 
             spriteBatch.Begin();
 
             //room.Draw(spriteBatch);
 
-            map.Draw(spriteBatch);
-            player.Draw(spriteBatch);
+            //map.Draw(spriteBatch);
+            //player.Draw(spriteBatch);
+
             spriteBatch.End();
 
             base.Draw(gameTime);

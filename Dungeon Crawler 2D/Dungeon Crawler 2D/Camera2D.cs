@@ -8,52 +8,126 @@ namespace Dungeon_Crawler_2D
     {
         public Matrix transform;
         public Vector2 cameraPos;
-        public Vector3 zoomVector;
+        private Vector2 screenCenter;
+        private Vector2 roomSize;
+        private Vector3 zoomVector;
         private Viewport view;
-        private World.Room room;
+        private World.Map map;
         public float zoom;
 
         int windowWidth;
         int windowHeight;
 
-        public Camera2D(Viewport view, int windowWidth, int windowHeight, World.Room room, float zoom)
+        public Camera2D(Viewport view, int windowWidth, int windowHeight, World.Map map, float zoom)
         {
             this.zoom = zoom;
             this.view = view;
-            this.room = room;
+            this.map = map;
             this.windowWidth = windowWidth;
             this.windowHeight = windowHeight;
 
-            zoomVector = new Vector3(zoom, zoom, 1);
+            screenCenter = new Vector2(windowWidth / (2 * zoom), windowHeight / (2 * zoom));
+            roomSize = new Vector2(map.rooms[map.currentRoom].tiles.GetLength(1) * 16, map.rooms[map.currentRoom].tiles.GetLength(0) * 16);
+            zoomVector = new Vector3(zoom, zoom, 0);
         }
 
         public void SetPosition(Vector2 pos)
         {
+            roomSize = new Vector2(map.rooms[map.currentRoom].tiles.GetLength(1) * 16, map.rooms[map.currentRoom].tiles.GetLength(0) * 16);
             cameraPos = pos;
-
-            for (int i = 0; i < room.roomBluePrint.Count; i++)
+            
+            //Is the room bigger than the screen? (both X, and Y)
+            if (roomSize.X >= screenCenter.X * 2 && roomSize.Y >= screenCenter.Y * 2)
             {
-                if ((-pos.X - 8) + (windowWidth / (2 * zoom)) > 0)
+                transform = Matrix.CreateTranslation(-cameraPos.X + screenCenter.X, -cameraPos.Y + screenCenter.Y, 0) * Matrix.CreateScale(zoomVector);
+
+                //Has it reached the left edge?
+                if (-cameraPos.X + screenCenter.X > 0)
                 {
-                    transform = Matrix.CreateTranslation(0, (-pos.Y - 8) + (windowHeight / (2 * zoom)), 0) * Matrix.CreateScale(zoomVector);
+                    transform = Matrix.CreateTranslation(0, -cameraPos.Y + screenCenter.Y, 0) * Matrix.CreateScale(zoomVector);
                 }
-                if (pos.X > room.roomBluePrint[i].Length * 16 - 16)
+
+                //Has it reached the top edge?
+                if (-cameraPos.Y + screenCenter.Y > 0)
+                {
+                    transform = Matrix.CreateTranslation(-cameraPos.X + screenCenter.X, 0, 0) * Matrix.CreateScale(zoomVector);
+                }
+
+                //Has it reached the right edge?
+                if (cameraPos.X + screenCenter.X > roomSize.X)
+                {
+                    transform = Matrix.CreateTranslation(-roomSize.X + screenCenter.X * 2, -cameraPos.Y + screenCenter.Y, 0) * Matrix.CreateScale(zoomVector);
+                }
+
+                //Has it reached the bottom edge?
+                if (cameraPos.Y + screenCenter.Y > roomSize.Y)
+                {
+                    transform = Matrix.CreateTranslation(-cameraPos.X + screenCenter.X, -roomSize.Y + screenCenter.Y * 2, 0) * Matrix.CreateScale(zoomVector);
+                }
+
+                //Has it reached the left edge and the top edge?
+                if (-cameraPos.X + screenCenter.X > 0 && -cameraPos.Y + screenCenter.Y > 0)
                 {
                     transform = Matrix.CreateTranslation(0, 0, 0) * Matrix.CreateScale(zoomVector);
                 }
-                if ((-pos.Y - 8) + (windowHeight / (2 * zoom)) > 0)
+
+                //Has it reached the top edge and the right edge?
+                if (-cameraPos.Y + screenCenter.Y > 0 && cameraPos.X + screenCenter.X > roomSize.X)
                 {
-                    transform = Matrix.CreateTranslation((-pos.X - 8) + (windowWidth / (2 * zoom)), 0, 0) * Matrix.CreateScale(zoomVector);
+                    transform = Matrix.CreateTranslation(-roomSize.X + screenCenter.X * 2, 0, 0) * Matrix.CreateScale(zoomVector);
                 }
-                if (pos.Y > room.roomBluePrint.Count * 16 - 16)
+
+                //Has it reached the right edge and the bottom edge?
+                if (cameraPos.X + screenCenter.X > roomSize.X && cameraPos.Y + screenCenter.Y > roomSize.Y)
                 {
-                    transform = Matrix.CreateTranslation(0, 0, 0) * Matrix.CreateScale(zoomVector);
+                    transform = Matrix.CreateTranslation(-roomSize.X + screenCenter.X * 2, -roomSize.Y + screenCenter.Y * 2, 0) * Matrix.CreateScale(zoomVector);
                 }
-                else
+
+                //Has it reached the bottom edge and the left edge?
+                if (cameraPos.Y + screenCenter.Y > roomSize.Y && -cameraPos.X + screenCenter.X > 0)
                 {
-                    //LÅT STÅ
-                    //transform = Matrix.CreateTranslation((-pos.X - 8) + (windowWidth / (2 * zoom)), (-pos.Y - 8) + (windowHeight / (2 * zoom)), 0) * Matrix.CreateScale(zoomVector);
+                    transform = Matrix.CreateTranslation(0, -roomSize.Y + screenCenter.Y * 2, 0) * Matrix.CreateScale(zoomVector);
                 }
+            }
+
+            //Is the room bigger than the screen? (X, but not Y)
+            if (roomSize.X >= screenCenter.X * 2 && roomSize.Y < screenCenter.Y * 2)
+            {
+                transform = Matrix.CreateTranslation(-cameraPos.X + screenCenter.X, (-roomSize.Y / 2) + screenCenter.Y, 0) * Matrix.CreateScale(zoomVector);
+                //Has it reached the left edge?
+                if (-cameraPos.X + screenCenter.X > 0)
+                {
+                    transform = Matrix.CreateTranslation(0, (-roomSize.Y / 2) + screenCenter.Y, 0) * Matrix.CreateScale(zoomVector);
+                }
+
+                //Has it reached the right edge?
+                if (cameraPos.X + screenCenter.X > roomSize.X)
+                {
+                    transform = Matrix.CreateTranslation(-roomSize.X + screenCenter.X * 2, (-roomSize.Y / 2) + screenCenter.Y, 0) * Matrix.CreateScale(zoomVector);
+                }
+            }
+
+            //Is the room bigger than the screen? (Y, but not X)
+            if (roomSize.X < screenCenter.X * 2 && roomSize.Y >= screenCenter.Y * 2)
+            {
+                transform = Matrix.CreateTranslation((-roomSize.X / 2) + screenCenter.X, -cameraPos.Y + screenCenter.Y, 0) * Matrix.CreateScale(zoomVector);
+                //Has it reached the top edge?
+                if (-cameraPos.Y + screenCenter.Y > 0)
+                {
+                    transform = Matrix.CreateTranslation((-roomSize.X / 2) + screenCenter.X, 0, 0) * Matrix.CreateScale(zoomVector);
+                }
+
+                //Has it reached the bottom edge?
+                if (cameraPos.Y + screenCenter.Y > roomSize.Y)
+                {
+                    transform = Matrix.CreateTranslation((-roomSize.X / 2) + screenCenter.X, -roomSize.Y + screenCenter.Y * 2, 0) * Matrix.CreateScale(zoomVector);
+                }
+            }
+
+            //Is the room smaller than the screen ? (both X, and Y)
+            if (roomSize.X < screenCenter.X * 2 && roomSize.Y < screenCenter.Y * 2)
+            {
+                transform = Matrix.CreateTranslation((-roomSize.X / 2) + screenCenter.X, (-roomSize.Y / 2) + screenCenter.Y, 0) * Matrix.CreateScale(zoomVector);
             }
         }
 

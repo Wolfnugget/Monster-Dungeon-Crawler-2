@@ -23,8 +23,8 @@ namespace Dungeon_Crawler_2D.World
 
     public class Map
     {
-        List<Room> rooms;
-        int currentRoom;
+        public List<Room> rooms;
+        public int currentRoom;
         Random rand;
         TextureManager textures;
 
