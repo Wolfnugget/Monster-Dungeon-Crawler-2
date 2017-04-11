@@ -93,6 +93,12 @@ namespace Dungeon_Crawler_2D.World
             }
         }
 
+        /// <summary>
+        /// Ger centrum av en tile i riktning från en annan tile med en viss position.
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="direction"></param>
+        /// <returns></returns>
         public Vector2 GetTargetTileCenter(Vector2 position, Point direction)
         {
             for (int y = 0; y < tiles.GetLength(0); y++)
@@ -118,6 +124,12 @@ namespace Dungeon_Crawler_2D.World
             return position;
         }
 
+        /// <summary>
+        /// Hämtar ett tile center av den första tilen av en viss typ.
+        /// Används för att hitta en viss ingång till ett rum.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public Vector2 GetTileCenterOfType(TileType type)
         {
             for (int i = 0; i < tiles.GetLength(0); i++)
@@ -134,6 +146,10 @@ namespace Dungeon_Crawler_2D.World
             return new Vector2(0, 0);
         }
 
+        /// <summary>
+        /// Stänger en dörr.
+        /// </summary>
+        /// <param name="typeOfExit"></param>
         public void RemoveExit(TileType typeOfExit)
         {
             for (int i = 0; i < tiles.GetLength(0); i++)

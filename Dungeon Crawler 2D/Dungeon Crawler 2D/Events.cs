@@ -20,22 +20,28 @@ namespace Dungeon_Crawler_2D
         EnterTile
     }
 
-    public delegate void PlayerEventHandler(object Object, PlayerEventArgs args);
+    public delegate void ActorEventHandler(object Object, ActorEventArgs args);
 
     public delegate void MapEventHandler(object Object, MapEventArgs args);
 
-    public class PlayerEventArgs : EventArgs
+    /// <summary>
+    /// All information som kan skickas från spelaren eller annan actor via events.
+    /// </summary>
+    public class ActorEventArgs : EventArgs
     {
         public Vector2 Position { get; set; }
         public Point Direction { get; set; }
         public PlayerEventType EventType;
 
-        public PlayerEventArgs(PlayerEventType EventType)
+        public ActorEventArgs(PlayerEventType EventType)
         {
             this.EventType = EventType;
         }
     }
 
+    /// <summary>
+    /// All information som kan skickas från map via event.
+    /// </summary>
     public class MapEventArgs : EventArgs
     {
         public Vector2 Position { get; set; }

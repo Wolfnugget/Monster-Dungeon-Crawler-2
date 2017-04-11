@@ -9,6 +9,9 @@ using System.IO;
 
 namespace Dungeon_Crawler_2D.World
 {
+    /// <summary>
+    /// Tile typer, dörrar väggar osv.
+    /// </summary>
     public enum TileType
     {
         None,
@@ -35,6 +38,11 @@ namespace Dungeon_Crawler_2D.World
             GenerateMap(rand.Next(minNumberOfRooms, minNumberOfRooms + maxNumberOfRoomsOffset), textures);
         }
 
+        /// <summary>
+        /// Genererar rum.
+        /// </summary>
+        /// <param name="numberOfRooms"></param>
+        /// <param name="textures"></param>
         void GenerateMap(int numberOfRooms, TextureManager textures)
         {
             rooms = new List<Room>();
@@ -43,16 +51,17 @@ namespace Dungeon_Crawler_2D.World
             rooms.Add(new Room(GetRandomRoomPath("Maps/StartRoom"), new Point(0, 0), textures));
             roomsAdded++;
 
-            HashSet<int> excludeRoom = new HashSet<int>();
+            HashSet<int> excludeRoom = new HashSet<int>(); //Rum vars dörrar har genererats.
             excludeRoom.Clear();
-            HashSet<int> excludeExit = new HashSet<int>();
-            int addingExitsTo = 0;
+            HashSet<int> excludeExit = new HashSet<int>(); //dörrar som är klara(leder till ett rum).
+            int addingExitsTo = 0; //rum som arbetas med.
 
             while (roomsAdded < numberOfRooms)
             {
                 int exitsToAdd = 0;
                 excludeExit.Clear();
 
+                //kollar hur vilka dörrar som finns i rummet.
                 if (rooms[addingExitsTo].northExit &&
                     !CheckIfRoomExists(rooms[addingExitsTo].roomCoords, new Point(0, -1)))
                 {
@@ -90,7 +99,7 @@ namespace Dungeon_Crawler_2D.World
                     excludeExit.Add(4);
                 }
 
-                while (exitsToAdd > 0 && roomsAdded < numberOfRooms)
+                while (exitsToAdd > 0 && roomsAdded < numberOfRooms) //genererar rum för varje dör, eller tills det inte ska genereras fler rum.
                 {
                     int r = GetRandomNumberExcluding(excludeExit, 1, 4);
                     if (r == 1)
@@ -126,8 +135,8 @@ namespace Dungeon_Crawler_2D.World
                         exitsToAdd--;
                     }
                 }
-                excludeRoom.Add(addingExitsTo);
-                addingExitsTo = GetRandomNumberExcluding(excludeRoom, 0, roomsAdded - 1);
+                excludeRoom.Add(addingExitsTo); //lägger till rummet som har genererats så att den inte försöker generera till det rummet igen.
+                addingExitsTo = GetRandomNumberExcluding(excludeRoom, 0, roomsAdded - 1); //tar ett nytt random rum som det sedan ska genereras nya rum till baserat på antal dörrar.
             }
             RemoveOneWayDoors();
         }
@@ -137,6 +146,9 @@ namespace Dungeon_Crawler_2D.World
             rooms[currentRoom].Draw(spriteBatch);
         }
 
+        /// <summary>
+        /// Tar bort dörrar som inte leder någonstans
+        /// </summary>
         private void RemoveOneWayDoors()
         {
             for (int i = 0; i < rooms.Count; i++)
@@ -228,6 +240,12 @@ namespace Dungeon_Crawler_2D.World
             }
         }
 
+        /// <summary>
+        /// Kolla om ett rum finns i riktning från ett annat rum.
+        /// </summary>
+        /// <param name="checkingFrom"></param>
+        /// <param name="direction"></param>
+        /// <returns></returns>
         private bool CheckIfRoomExists(Point checkingFrom, Point direction)
         {
             Point roomToCheck = checkingFrom + direction;
@@ -243,6 +261,13 @@ namespace Dungeon_Crawler_2D.World
             return false;
         }
 
+        /// <summary>
+        /// Genererar ett tal mellan min och max, utesluter talen i listan exclude.
+        /// </summary>
+        /// <param name="exclude"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
         private int GetRandomNumberExcluding(HashSet<int> exclude, int min, int max)
         {
             HashSet<int> range = new HashSet<int>();
@@ -261,6 +286,11 @@ namespace Dungeon_Crawler_2D.World
             return range.ElementAt(index);
         }
 
+        /// <summary>
+        /// väljer en random fil i en folder från spelets bas folder.
+        /// </summary>
+        /// <param name="FolderPath"></param>
+        /// <returns></returns>
         private string GetRandomRoomPath(string FolderPath)
         {
             List<string> roomPaths = new List<string>();
@@ -273,11 +303,20 @@ namespace Dungeon_Crawler_2D.World
             return roomPaths[rand.Next(0, roomPaths.Count - 1)];
         }
 
+        /// <summary>
+        /// hämtar spelaren start position.
+        /// </summary>
+        /// <returns></returns>
         public Vector2 GetPlayerStart()
         {
             return rooms[currentRoom].PlayerStart;
         }
 
+        /// <summary>
+        /// Kolla om det går att gå i en viss riktning och sedan kallar ett event om det går.
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="direction"></param>
         private void CheckMovement(Vector2 position, Point direction)
         {
             Vector2 targetPosition = rooms[currentRoom].GetTargetTileCenter(position, direction);
@@ -290,11 +329,13 @@ namespace Dungeon_Crawler_2D.World
             }
         }
 
+        /// <summary>
+        /// kolla vad det är för typ av tile spelaren hamnat på och sedan gör något baserat på det.
+        /// </summary>
+        /// <param name="position"></param>
         private void TileCheck(Vector2 position)
         {
-            TileType type = rooms[currentRoom].GetTileType(position);
-
-            Console.WriteLine("Tile Check");
+            TileType type = rooms[currentRoom].GetTileType(position); //hämtar tile typen från room.
 
             if (type == TileType.NorthExit)
             {
@@ -314,6 +355,11 @@ namespace Dungeon_Crawler_2D.World
             }
         }
 
+        /// <summary>
+        /// Ändrar rum om spelaren går in i en dörr.
+        /// </summary>
+        /// <param name="RoomDirection"></param>
+        /// <param name="entrance"></param>
         private void ChangeRoom(Point RoomDirection, TileType entrance)
         {
             Point newRoomCoords = rooms[currentRoom].roomCoords + RoomDirection;
@@ -336,12 +382,21 @@ namespace Dungeon_Crawler_2D.World
 
         public MapEventHandler Event;
 
+        /// <summary>
+        /// Kallar event.
+        /// </summary>
+        /// <param name="e"></param>
         public void OnEvent(MapEventArgs e)
         {
             Event?.Invoke(this, e);
         }
 
-        public void PlayerEvent(PlayerEventArgs args)
+        /// <summary>
+        /// Om map tar emot ett event från spelaren, t.ex om spelaren
+        /// försöker gå i en viss riktning eller hamnat på en ny tile.
+        /// </summary>
+        /// <param name="args"></param>
+        public void PlayerEvent(ActorEventArgs args)
         {
             if (args.EventType == PlayerEventType.CheckDirection)
             {

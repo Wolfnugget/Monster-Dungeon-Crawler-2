@@ -53,10 +53,12 @@ namespace Dungeon_Crawler_2D.Object
                 direction.X = -1;
             }
 
+            //Här ska frames bytas senare när vi har en sprite
+
             if (direction != new Point(0, 0))
             {
                 Console.WriteLine("input Working: " + direction);
-                PlayerEventArgs args = new PlayerEventArgs(PlayerEventType.CheckDirection);
+                ActorEventArgs args = new ActorEventArgs(PlayerEventType.CheckDirection);
                 args.Direction = direction;
                 args.Position = position;
                 OnAction(args);

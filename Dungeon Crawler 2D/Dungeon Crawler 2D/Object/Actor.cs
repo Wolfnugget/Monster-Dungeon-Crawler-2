@@ -86,13 +86,20 @@ namespace Dungeon_Crawler_2D.Object
             }
         }
 
+        /// <summary>
+        /// Sätter positionen actorn ska röra sig till.
+        /// </summary>
+        /// <param name="destination"></param>
         public void SetDestination(Vector2 destination)
         {
-            Console.WriteLine("gets destination");
             this.destination = destination;
             moving = true;
         }
 
+        /// <summary>
+        /// Förflytta till position.
+        /// </summary>
+        /// <param name="position"></param>
         public void SetPosition(Vector2 position)
         {
             this.position = position;
@@ -103,16 +110,17 @@ namespace Dungeon_Crawler_2D.Object
             Vector2 dir = new Vector2(destination.X - position.X, destination.Y - position.Y);
             Vector2 norm = Vector2.Normalize(dir);
 
+            //Kolla avstånd till målet eller om actorn råkat gå för långt.
             if (Vector2.Distance(position, destination) > 1 &&
                 Vector2.Distance(position + (norm * speed * (float)gameTime.ElapsedGameTime.TotalSeconds), destination) < Vector2.Distance(position, destination))
             {
                 position += speed * norm * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
-            else
+            else //är framme och ska sluta röra sig. Kallar ett event att actorn är framme på en tile.
             {
                 position = destination;
                 moving = false;
-                PlayerEventArgs args = new PlayerEventArgs(PlayerEventType.EnterTile);
+                ActorEventArgs args = new ActorEventArgs(PlayerEventType.EnterTile);
                 args.Position = position;
                 OnAction(args);
             }
@@ -123,9 +131,9 @@ namespace Dungeon_Crawler_2D.Object
             spriteBatch.Draw(texture, position, srcRec,  Color.White, 0, origin, 1, effect, 1);
         }
 
-        public PlayerEventHandler Action;
+        public ActorEventHandler Action;
 
-        public void OnAction(PlayerEventArgs e)
+        public void OnAction(ActorEventArgs e)
         {
             Action?.Invoke(this, e);
         }

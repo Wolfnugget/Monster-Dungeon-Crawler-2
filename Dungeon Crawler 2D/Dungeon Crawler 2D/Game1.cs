@@ -101,11 +101,16 @@ namespace Dungeon_Crawler_2D
             base.Draw(gameTime);
         }
 
+        /// <summary>
+        /// Tar hand om events.
+        /// </summary>
+        /// <param name="Object"></param>
+        /// <param name="args"></param>
         public void HandleEvents(object Object, EventArgs args)
         {
             if (Object is Object.Player)
             {
-                HandlePlayer((PlayerEventArgs)args);
+                HandlePlayer((ActorEventArgs)args);
             }
             else if (Object is World.Map)
             {
@@ -113,21 +118,29 @@ namespace Dungeon_Crawler_2D
             }
         }
 
-        private void HandlePlayer(PlayerEventArgs args)
+        /// <summary>
+        /// Allt som skickas av player via events.
+        /// </summary>
+        /// <param name="args"></param>
+        private void HandlePlayer(ActorEventArgs args)
         {
-            if (args.EventType == PlayerEventType.CheckDirection)
+            if (args.EventType == PlayerEventType.CheckDirection) //spelaren försöker gå i en viss riktning.
             {
                 map.PlayerEvent(args);
             }
-            else if (args.EventType == PlayerEventType.EnterTile)
+            else if (args.EventType == PlayerEventType.EnterTile) //spelaren är framme på en tile.
             {
                 map.PlayerEvent(args);
             }
         }
 
+        /// <summary>
+        /// allt som skickas från map via events.
+        /// </summary>
+        /// <param name="args"></param>
         private void HandleMap(MapEventArgs args)
         {
-            if (args.EventType == MapEventType.Move)
+            if (args.EventType == MapEventType.Move) //Spelaren ska börja gå till nästa en viss tile.
             {
                 player.SetDestination(args.Position);
             }
