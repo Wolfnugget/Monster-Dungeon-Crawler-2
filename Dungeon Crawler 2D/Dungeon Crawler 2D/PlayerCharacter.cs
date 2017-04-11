@@ -26,9 +26,9 @@ namespace Dungeon_Crawler_2D
         }
         MoveDirection currentMovement;
 
-        int health;
-        int mana;
-        int xp;
+        //int health;
+        //int mana;
+        //int xp;
         World.Map map;
 
         public PlayerCharacter(Texture2D tex, Vector2 pos, int health, int mana, int xp, World.Map map): // Add conection to map

@@ -37,3 +37,9 @@
 /processorParam:TextureFormat=Color
 /build:Example.png
 
+#begin textFont1.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:textFont1.spritefont
+
