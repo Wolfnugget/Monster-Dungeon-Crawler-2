@@ -129,6 +129,7 @@ namespace Dungeon_Crawler_2D.World
                 excludeRoom.Add(addingExitsTo);
                 addingExitsTo = GetRandomNumberExcluding(excludeRoom, 0, roomsAdded - 1);
             }
+            RemoveOneWayDoors();
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -138,9 +139,92 @@ namespace Dungeon_Crawler_2D.World
 
         private void RemoveOneWayDoors()
         {
-            for (int i = 0; i < rooms.Count;i++)
+            for (int i = 0; i < rooms.Count; i++)
             {
-
+                if (rooms[i].northExit)
+                {
+                    bool foundEntance = false;
+                    for (int y = 0; y < rooms.Count; y++)
+                    {
+                        if (rooms[y].roomCoords ==
+                            (rooms[i].roomCoords + new Point(0, -1)))
+                        {
+                            foundEntance = true;
+                            if (!rooms[y].southExit)
+                            {
+                                rooms[i].RemoveExit(TileType.NorthExit);
+                                break;
+                            }
+                        }
+                    }
+                    if (!foundEntance)
+                    {
+                        rooms[i].RemoveExit(TileType.NorthExit);
+                    }
+                }
+                if (rooms[i].eastExit)
+                {
+                    bool foundEntance = false;
+                    for (int y = 0; y < rooms.Count; y++)
+                    {
+                        if (rooms[y].roomCoords ==
+                            (rooms[i].roomCoords + new Point(1, 0)))
+                        {
+                            foundEntance = true;
+                            if (!rooms[y].westExit)
+                            {
+                                rooms[i].RemoveExit(TileType.EastExit);
+                                break;
+                            }
+                        }
+                    }
+                    if (!foundEntance)
+                    {
+                        rooms[i].RemoveExit(TileType.EastExit);
+                    }
+                }
+                if (rooms[i].southExit)
+                {
+                    bool foundEntance = false;
+                    for (int y = 0; y < rooms.Count; y++)
+                    {
+                        if (rooms[y].roomCoords ==
+                            (rooms[i].roomCoords + new Point(0, 1)))
+                        {
+                            foundEntance = true;
+                            if (!rooms[y].northExit)
+                            {
+                                rooms[i].RemoveExit(TileType.SouthExit);
+                                break;
+                            }
+                        }
+                    }
+                    if (!foundEntance)
+                    {
+                        rooms[i].RemoveExit(TileType.SouthExit);
+                    }
+                }
+                if (rooms[i].westExit)
+                {
+                    bool foundEntance = false;
+                    for (int y = 0; y < rooms.Count; y++)
+                    {
+                        if (rooms[y].roomCoords ==
+                            (rooms[i].roomCoords + new Point(-1, 0)))
+                        {
+                            foundEntance = true;
+                            if (!rooms[y].eastExit)
+                            {
+                                rooms[i].RemoveExit(TileType.WestExit);
+                                break;
+                            }
+                        }
+                    }
+                    if (!foundEntance)
+                    {
+                        rooms[i].RemoveExit(TileType.WestExit);
+                    }
+                }
             }
         }
 

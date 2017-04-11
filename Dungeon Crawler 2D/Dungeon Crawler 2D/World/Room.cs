@@ -13,8 +13,6 @@ namespace Dungeon_Crawler_2D.World
     {
         public Tile[,] tiles;
         public Vector2 PlayerStart;
-        public List<string> roomBluePrint;
-        TextureManager textures;
 
         public Point roomCoords;
 
@@ -22,8 +20,7 @@ namespace Dungeon_Crawler_2D.World
 
         public Room(string roomPath, Point roomCoords, TextureManager textures)
         {
-            this.roomBluePrint = new List<string>();
-            this.textures = textures;
+            List<string>  roomBluePrint = new List<string>();
             StreamReader sr = new StreamReader(roomPath);
             while (!sr.EndOfStream)
             {
@@ -137,6 +134,20 @@ namespace Dungeon_Crawler_2D.World
             return new Vector2(0, 0);
         }
 
+        public void RemoveExit(TileType typeOfExit)
+        {
+            for (int i = 0; i < tiles.GetLength(0); i++)
+            {
+                for (int y = 0; y < tiles.GetLength(1); y++)
+                {
+                    if (tiles[i, y].type == typeOfExit)
+                    {
+                        tiles[i, y].pasable = false;
+                    }
+                }
+            }
+        }
+
         public TileType GetTileType(Vector2 position)
         {
             for (int i = 0; i < tiles.GetLength(0); i++)
@@ -151,6 +162,5 @@ namespace Dungeon_Crawler_2D.World
             }
             return TileType.None;
         }
-
     }
 }

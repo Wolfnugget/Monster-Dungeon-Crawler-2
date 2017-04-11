@@ -30,10 +30,11 @@ namespace Dungeon_Crawler_2D.Object
             base.Update(gameTime);
         }
 
+
+
         void CheckInput()
         {
             Point direction = new Point(0, 0);
-            bool input = false;
 
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
@@ -43,7 +44,7 @@ namespace Dungeon_Crawler_2D.Object
             {
                 direction.Y = 1;
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.D))
+            if (Keyboard.GetState().IsKeyDown(Keys.D)) //Detta är en "if" så man ska kunna gå diagonalt. Map klassen har stöd för det.
             {
                 direction.X = 1;
             }
