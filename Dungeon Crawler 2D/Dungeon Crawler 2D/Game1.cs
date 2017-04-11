@@ -54,13 +54,13 @@ namespace Dungeon_Crawler_2D
             
             map = new World.Map(textures, 4, 2);
             map.Event += HandleEvents;
-            player = new Object.Player(textures.player, map.GetPlayerStart(), 32, new Point(0, 0), new Point(16, 16), new Point(0, 0));
+            player = new Object.Player(textures.player, map.GetPlayerStart(), 64, new Point(0, 0), new Point(16, 16), new Point(0, 0));
             player.Action += HandleEvents;
 
             bars = new BarManager(Content, player);
 
             Viewport view = GraphicsDevice.Viewport;
-            float zoom = 8f;
+            float zoom = 5f;
             windowWidth = graphics.PreferredBackBufferWidth = 1200;
             windowHeight = graphics.PreferredBackBufferHeight = 800;
             graphics.ApplyChanges();

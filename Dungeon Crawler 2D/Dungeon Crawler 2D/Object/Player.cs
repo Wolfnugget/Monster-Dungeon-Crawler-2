@@ -11,6 +11,9 @@ namespace Dungeon_Crawler_2D.Object
 {
     class Player : Actor
     {
+        public int health;
+        public int mana;
+        public int xp;
         public Player(Texture2D texture, Vector2 position, float speed, Point startingFrame, Point frameSize, Point frames, float frameTime = 0.3f)
             : base(texture, position, speed, startingFrame, frameSize, frames, frameTime)
         {
@@ -40,7 +43,7 @@ namespace Dungeon_Crawler_2D.Object
             {
                 direction.Y = 1;
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            else if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 direction.X = 1;
             }
