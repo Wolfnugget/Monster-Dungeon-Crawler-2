@@ -43,6 +43,11 @@ namespace Dungeon_Crawler_2D.World
                 pasable = true;
                 color = Color.White;
             }
+            else if (type == TileType.MonsterTile)
+            {
+                pasable = true;
+                color = Color.Blue;
+            }
             else
             {
                 pasable = true;

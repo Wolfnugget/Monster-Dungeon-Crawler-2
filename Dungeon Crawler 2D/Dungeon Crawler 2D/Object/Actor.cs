@@ -135,7 +135,7 @@ namespace Dungeon_Crawler_2D.Object
 
         public void OnAction(ActorEventArgs e)
         {
-            Action?.Invoke(this, e);
+            Action.Invoke(this, e);
         }
     }
 }

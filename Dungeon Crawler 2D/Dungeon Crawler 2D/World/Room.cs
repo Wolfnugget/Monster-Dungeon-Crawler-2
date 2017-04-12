@@ -76,6 +76,29 @@ namespace Dungeon_Crawler_2D.World
                             , textures.basicTile, TileType.basic);
                         PlayerStart = tiles[i, j].TileCenter;
                     }
+                    else if (roomBluePrint[i][j] == '1')
+                    {
+                        tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)
+                            , textures.basicTile, TileType.MonsterTile);
+                    }
+                    else if (roomBluePrint[i][j] == 'P')
+                    {
+                        tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)
+                            , textures.basicTile, TileType.basic);
+                        //kod för en potion som antingen helar eller ger mana till spelaren / en pickupp
+                    }
+                    else if (roomBluePrint[i][j] == 'T')
+                    {
+                        tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)
+                            , textures.basicTile, TileType.basic);
+                        //kod för treasure chest som ger en item
+                    }
+                    else if (roomBluePrint[i][j] == 'R')
+                    {
+                        tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)
+                            , textures.basicTile, TileType.basic);
+                        //behöver ändras till en random funktion som kan vara chest, enemy, potion eller något annat
+                    }
                 }
             }
         }

@@ -1,0 +1,11 @@
+0 - Basic tile
+X - Wall
+N - North Door
+S - South Door
+E - East Door
+W - West Door
+C - Character start
+R - Random
+1 - Enemy
+T - Treasure
+P - Potion

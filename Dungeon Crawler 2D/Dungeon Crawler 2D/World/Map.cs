@@ -388,7 +388,7 @@ namespace Dungeon_Crawler_2D.World
         /// <param name="e"></param>
         public void OnEvent(MapEventArgs e)
         {
-            Event?.Invoke(this, e);
+            Event.Invoke(this, e);
         }
 
         /// <summary>
