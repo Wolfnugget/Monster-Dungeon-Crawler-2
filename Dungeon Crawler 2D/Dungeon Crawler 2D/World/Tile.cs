@@ -36,7 +36,7 @@ namespace Dungeon_Crawler_2D.World
             if (type == TileType.Wall)
             {
                 pasable = false;
-                color = Color.Black;
+                color = Color.White;
             }
             else if (type == TileType.basic)
             {
@@ -51,7 +51,7 @@ namespace Dungeon_Crawler_2D.World
             else
             {
                 pasable = true;
-                color = Color.Green;
+                color = Color.White;
             }
 
         }

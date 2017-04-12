@@ -18,6 +18,8 @@ namespace Dungeon_Crawler_2D.World
 
         public bool northExit, southExit, westExit, eastExit;
 
+        Point TileSize = new Point(16, 16);
+
         public Room(string roomPath, Point roomCoords, TextureManager textures)
         {
             List<string>  roomBluePrint = new List<string>();
@@ -36,68 +38,76 @@ namespace Dungeon_Crawler_2D.World
             {
                 for (int j = 0; j < tiles.GetLength(1); j++)
                 {
-                    if (roomBluePrint[i][j] == '0')
+                    switch (roomBluePrint[i][j])
                     {
-                        tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)
+                        case '0':
+                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
                             , textures.basicTile, TileType.basic);
-                    }
-                    else if (roomBluePrint[i][j] == 'X')
-                    {
-                        tiles[i, j] = new Tile(new Vector2(j * textures.wall.Width, i * textures.wall.Height)
-                            , textures.wall, TileType.Wall);
-                    }
-                    else if (roomBluePrint[i][j] == 'N')
-                    {
-                        tiles[i, j] = new Tile(new Vector2(j * textures.door.Width, i * textures.door.Height)
-                            , textures.door, TileType.NorthExit);
-                        northExit = true;
-                    }
-                    else if (roomBluePrint[i][j] == 'S')
-                    {
-                        tiles[i, j] = new Tile(new Vector2(j * textures.door.Width, i * textures.door.Height)
-                            , textures.door, TileType.SouthExit);
-                        southExit = true;
-                    }
-                    else if (roomBluePrint[i][j] == 'W')
-                    {
-                        tiles[i, j] = new Tile(new Vector2(j * textures.door.Width, i * textures.door.Height)
-                            , textures.door, TileType.WestExit);
-                        westExit = true;
-                    }
-                    else if (roomBluePrint[i][j] == 'E')
-                    {
-                        tiles[i, j] = new Tile(new Vector2(j * textures.door.Width, i * textures.door.Height)
-                            , textures.door, TileType.EastExit);
-                        eastExit = true;
-                    }
-                    else if (roomBluePrint[i][j] == 'C')
-                    {
-                        tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)
+                            break;
+                        case 'X':
+                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            , textures.horizontalWall, TileType.Wall);
+                            break;
+                        case 'H':
+                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            , textures.horizontalWall, TileType.Wall);
+                            break;
+                        case 'V':
+                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            , textures.vericalWall, TileType.Wall);
+                            break;
+                        case 'J':
+                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            , textures.wallRightCorner, TileType.Wall);
+                            break;
+                        case 'L':
+                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            , textures.wallLeftCorner, TileType.Wall);
+                            break;
+                        case 'N':
+                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            , textures.northDoor, TileType.NorthExit);
+                            northExit = true;
+                            break;
+                        case 'E':
+                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            , textures.eastDoor, TileType.EastExit);
+                            eastExit = true;
+                            break;
+                        case 'S':
+                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            , textures.southDoor, TileType.SouthExit);
+                            southExit = true;
+                            break;
+                        case 'W':
+                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            , textures.westDoor, TileType.WestExit);
+                            westExit = true;
+                            break;
+                        case 'C':
+                            tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)
                             , textures.basicTile, TileType.basic);
-                        PlayerStart = tiles[i, j].TileCenter;
-                    }
-                    else if (roomBluePrint[i][j] == '1')
-                    {
-                        tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)
+                            PlayerStart = tiles[i, j].TileCenter;
+                            break;
+                        case '1':
+                            tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)
                             , textures.basicTile, TileType.MonsterTile);
-                    }
-                    else if (roomBluePrint[i][j] == 'P')
-                    {
-                        tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)
+                            break;
+                        case 'P':
+                            tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)
                             , textures.basicTile, TileType.basic);
-                        //kod för en potion som antingen helar eller ger mana till spelaren / en pickupp
-                    }
-                    else if (roomBluePrint[i][j] == 'T')
-                    {
-                        tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)
+                            //kod för en potion som antingen helar eller ger mana till spelaren / en pickupp
+                            break;
+                        case 'T':
+                            tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)
                             , textures.basicTile, TileType.basic);
-                        //kod för treasure chest som ger en item
-                    }
-                    else if (roomBluePrint[i][j] == 'R')
-                    {
-                        tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)
+                            //kod för treasure chest som ger en item
+                            break;
+                        case 'R':
+                            tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)
                             , textures.basicTile, TileType.basic);
-                        //behöver ändras till en random funktion som kan vara chest, enemy, potion eller något annat
+                            //behöver ändras till en random funktion som kan vara chest, enemy, potion eller något annat
+                            break;
                     }
                 }
             }

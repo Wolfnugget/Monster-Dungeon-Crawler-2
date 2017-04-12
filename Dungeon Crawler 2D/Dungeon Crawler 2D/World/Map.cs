@@ -61,7 +61,7 @@ namespace Dungeon_Crawler_2D.World
                 int exitsToAdd = 0;
                 excludeExit.Clear();
 
-                //kollar hur vilka dörrar som finns i rummet.
+                //kollar vilka dörrar som finns i rummet.
                 if (rooms[addingExitsTo].northExit &&
                     !CheckIfRoomExists(rooms[addingExitsTo].roomCoords, new Point(0, -1)))
                 {
