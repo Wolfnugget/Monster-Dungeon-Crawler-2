@@ -58,11 +58,19 @@ namespace Dungeon_Crawler_2D.World
                             break;
                         case 'J':
                             tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
-                            , textures.wallRightCorner, TileType.Wall);
+                            , textures.wallTRightCorner, TileType.Wall);
                             break;
                         case 'L':
                             tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
-                            , textures.wallLeftCorner, TileType.Wall);
+                            , textures.wallTLeftCorner, TileType.Wall);
+                            break;
+                        case 'j':
+                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            , textures.wallBRightCorner, TileType.Wall);
+                            break;
+                        case 'l':
+                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            , textures.wallBLeftCorner, TileType.Wall);
                             break;
                         case 'N':
                             tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)

@@ -12,7 +12,7 @@ namespace Dungeon_Crawler_2D
     public class TextureManager
     {
         public Texture2D player, horizontalWall, vericalWall,
-            wallRightCorner, wallLeftCorner,
+            wallTRightCorner, wallTLeftCorner, wallBRightCorner, wallBLeftCorner,
             northDoor, southDoor, eastDoor, westDoor,
             basicTile; //osv
 
@@ -26,8 +26,10 @@ namespace Dungeon_Crawler_2D
             southDoor = content.Load<Texture2D>("Textures/Dungeon/SouthDoor");
             eastDoor = content.Load<Texture2D>("Textures/Dungeon/EastDoor");
             westDoor =  content.Load<Texture2D>("Textures/Dungeon/WestDoor");
-            wallRightCorner = content.Load<Texture2D>("Textures/Dungeon/WallRightCorner");
-            wallLeftCorner = content.Load<Texture2D>("Textures/Dungeon/WallLeftCorner");
+            wallTRightCorner = content.Load<Texture2D>("Textures/Dungeon/WallTRightCorner");
+            wallTLeftCorner = content.Load<Texture2D>("Textures/Dungeon/WallTLeftCorner");
+            wallBRightCorner = content.Load<Texture2D>("Textures/Dungeon/WallBRightCorner");
+            wallBLeftCorner = content.Load<Texture2D>("Textures/Dungeon/WallBLeftCorner");
         }
     }
 }
