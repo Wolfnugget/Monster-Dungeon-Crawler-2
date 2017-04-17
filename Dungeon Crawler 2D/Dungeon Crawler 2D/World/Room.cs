@@ -12,13 +12,13 @@ namespace Dungeon_Crawler_2D.World
     public class Room
     {
         public Tile[,] tiles;
-        public Vector2 PlayerStart;
+        public Vector2 playerStart;
 
         public Point roomCoords;
 
         public bool northExit, southExit, westExit, eastExit;
 
-        Point TileSize = new Point(16, 16);
+        Point tileSize = new Point(16, 16);
 
         public Room(string roomPath, Point roomCoords, TextureManager textures)
         {
@@ -41,61 +41,61 @@ namespace Dungeon_Crawler_2D.World
                     switch (roomBluePrint[i][j])
                     {
                         case '0':
-                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            tiles[i, j] = new Tile(new Vector2(j * tileSize.X, i * tileSize.Y)
                             , textures.basicTile, TileType.basic);
                             break;
                         case 'X':
-                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            tiles[i, j] = new Tile(new Vector2(j * tileSize.X, i * tileSize.Y)
                             , textures.horizontalWall, TileType.Wall);
                             break;
                         case 'H':
-                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            tiles[i, j] = new Tile(new Vector2(j * tileSize.X, i * tileSize.Y)
                             , textures.horizontalWall, TileType.Wall);
                             break;
                         case 'V':
-                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            tiles[i, j] = new Tile(new Vector2(j * tileSize.X, i * tileSize.Y)
                             , textures.vericalWall, TileType.Wall);
                             break;
                         case 'J':
-                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            tiles[i, j] = new Tile(new Vector2(j * tileSize.X, i * tileSize.Y)
                             , textures.wallTRightCorner, TileType.Wall);
                             break;
                         case 'L':
-                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            tiles[i, j] = new Tile(new Vector2(j * tileSize.X, i * tileSize.Y)
                             , textures.wallTLeftCorner, TileType.Wall);
                             break;
                         case 'j':
-                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            tiles[i, j] = new Tile(new Vector2(j * tileSize.X, i * tileSize.Y)
                             , textures.wallBRightCorner, TileType.Wall);
                             break;
                         case 'l':
-                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            tiles[i, j] = new Tile(new Vector2(j * tileSize.X, i * tileSize.Y)
                             , textures.wallBLeftCorner, TileType.Wall);
                             break;
                         case 'N':
-                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            tiles[i, j] = new Tile(new Vector2(j * tileSize.X, i * tileSize.Y)
                             , textures.northDoor, TileType.NorthExit);
                             northExit = true;
                             break;
                         case 'E':
-                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            tiles[i, j] = new Tile(new Vector2(j * tileSize.X, i * tileSize.Y)
                             , textures.eastDoor, TileType.EastExit);
                             eastExit = true;
                             break;
                         case 'S':
-                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            tiles[i, j] = new Tile(new Vector2(j * tileSize.X, i * tileSize.Y)
                             , textures.southDoor, TileType.SouthExit);
                             southExit = true;
                             break;
                         case 'W':
-                            tiles[i, j] = new Tile(new Vector2(j * TileSize.X, i * TileSize.Y)
+                            tiles[i, j] = new Tile(new Vector2(j * tileSize.X, i * tileSize.Y)
                             , textures.westDoor, TileType.WestExit);
                             westExit = true;
                             break;
                         case 'C':
                             tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)
                             , textures.basicTile, TileType.basic);
-                            PlayerStart = tiles[i, j].TileCenter;
+                            playerStart = tiles[i, j].TileCenter;
                             break;
                         case '1':
                             tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)

@@ -46,16 +46,10 @@
   <ItemGroup>
     <Compile Include="BarManager.cs" />
     <Compile Include="Camera2D.cs" />
-    <Compile Include="Characters.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="Input.cs" />
-    <Compile Include="MapSystem\Map.cs" />
-    <Compile Include="MapSystem\Room.cs" />
-    <Compile Include="MapSystem\Tile.cs" />
     <Compile Include="Object\Actor.cs" />
     <Compile Include="Object\Player.cs" />
-    <Compile Include="PlayerCharacter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextureManager.cs" />

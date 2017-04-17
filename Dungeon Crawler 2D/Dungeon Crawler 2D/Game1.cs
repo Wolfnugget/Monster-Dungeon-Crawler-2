@@ -8,25 +8,19 @@ namespace Dungeon_Crawler_2D
 {
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
 
-        Random rand;
+        private World.Map map;
+        private Object.Player player;
 
-        World.Map map;
-        Object.Player player;
+        private Camera2D cam;
+        private TextureManager textures;
+        private BarManager bars;
 
-        
-        //MapSystem.Room room;
-        //PlayerCharacter player;
-        Camera2D cam;
-        TextureManager textures;
-        BarManager bars;
+        private int windowHeight;
+        private int windowWidth;
 
-        int windowHeight;
-        int windowWidth;
-
-        //PlayerCharacter playerCharacter;
 
         public Game1()
         {
@@ -45,12 +39,6 @@ namespace Dungeon_Crawler_2D
             spriteBatch = new SpriteBatch(GraphicsDevice);
             
             textures = new TextureManager(Content);
-            rand = new Random();
-            int roomNr = rand.Next(1, 4);
-
-            //room = new MapSystem.Room(exTex, playerTex, "Maps/" + "StartRoom/" + roomNr + ".txt",0);
-            //room = new World.Room("Maps/StartRoom/" + 5 + ".txt", new Point(-1, 0), textures);
-            //player = new PlayerCharacter(textures.player, room.PlayerStart, 5, 0, 0);
             
             map = new World.Map(textures, 20, 2);
             map.Event += HandleEvents;
@@ -69,8 +57,6 @@ namespace Dungeon_Crawler_2D
         }
         protected override void Update(GameTime gameTime)
         {
-            //room.Update(gameTime);
-            
             player.Update(gameTime);
             base.Update(gameTime);
             

@@ -309,7 +309,7 @@ namespace Dungeon_Crawler_2D.World
         /// <returns></returns>
         public Vector2 GetPlayerStart()
         {
-            return rooms[currentRoom].PlayerStart;
+            return rooms[currentRoom].playerStart;
         }
 
         /// <summary>
