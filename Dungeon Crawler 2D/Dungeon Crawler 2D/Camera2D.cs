@@ -15,8 +15,8 @@ namespace Dungeon_Crawler_2D
         private World.Map map;
         public float zoom;
 
-        int windowWidth;
-        int windowHeight;
+        private int windowWidth;
+        private int windowHeight;
 
         public Camera2D(Viewport view, int windowWidth, int windowHeight, World.Map map, float zoom)
         {
