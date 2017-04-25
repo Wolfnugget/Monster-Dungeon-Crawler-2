@@ -6,6 +6,13 @@ using System;
 
 namespace Dungeon_Crawler_2D
 {
+    public enum GameState
+    {
+        Explore,
+        Battle,
+        Menu
+    }
+
     public class Game1 : Game
     {
         private GraphicsDeviceManager graphics;
@@ -21,6 +28,7 @@ namespace Dungeon_Crawler_2D
         private int windowHeight;
         private int windowWidth;
 
+        GameState gameState;
 
         public Game1()
         {
@@ -53,11 +61,24 @@ namespace Dungeon_Crawler_2D
             windowHeight = graphics.PreferredBackBufferHeight = 800;
             graphics.ApplyChanges();
 
+            gameState = GameState.Battle; //Vilken gamestate spelet startas i.
+
             cam = new Camera2D(view, windowWidth, windowHeight, map, zoom);
         }
         protected override void Update(GameTime gameTime)
         {
-            player.Update(gameTime);
+            if (gameState == GameState.Explore)
+            {
+                player.Update(gameTime);
+            }
+            else if (gameState == GameState.Battle)
+            {
+
+            }
+            else if (gameState == GameState.Menu)
+            {
+
+            }
             base.Update(gameTime);
             
             //OBS!! Låt kameran alltid uppdateras sist
@@ -69,20 +90,31 @@ namespace Dungeon_Crawler_2D
             //GraphicsDevice.Clear(Color.CornflowerBlue);
             GraphicsDevice.Clear(Color.Black);
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.GetTransform());
+            if (gameState == GameState.Explore)
+            {
+                spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.GetTransform());
 
-            //OBS!! Skriv bara här om ni vill att det som ritas ut ska vara beroende av kameran (allt utom tex healthbars eller poäng)
-            map.Draw(spriteBatch);
-            player.Draw(spriteBatch);
+                //OBS!! Skriv bara här om ni vill att det som ritas ut ska vara beroende av kameran (allt utom tex healthbars eller poäng)
+                map.Draw(spriteBatch);
+                player.Draw(spriteBatch);
 
-            spriteBatch.End();
+                spriteBatch.End();
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null);
+                spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null);
 
-            //OBS!! Skriv bara här om ni vill att det som ritas ut ska vara oberoende av kameran (tex healthbars eller poäng)
-            bars.Draw(spriteBatch);
+                //OBS!! Skriv bara här om ni vill att det som ritas ut ska vara oberoende av kameran (tex healthbars eller poäng)
+                bars.Draw(spriteBatch);
 
-            spriteBatch.End();
+                spriteBatch.End();
+            }
+            else if (gameState == GameState.Battle)
+            {
+
+            }
+            else if (gameState == GameState.Battle)
+            {
+
+            }
 
             base.Draw(gameTime);
         }
