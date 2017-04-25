@@ -16,13 +16,14 @@ namespace Dungeon_Crawler_2D.World
 
         public Point roomCoords;
 
-        public bool northExit, southExit, westExit, eastExit;
+        public bool[] doors;
 
         Point tileSize = new Point(16, 16);
 
         public Room(string roomPath, Point roomCoords, TextureManager textures)
         {
             List<string>  roomBluePrint = new List<string>();
+            doors = new bool[4] { false, false, false, false};
             StreamReader sr = new StreamReader(roomPath);
             while (!sr.EndOfStream)
             {
@@ -75,22 +76,22 @@ namespace Dungeon_Crawler_2D.World
                         case 'N':
                             tiles[i, j] = new Tile(new Vector2(j * tileSize.X, i * tileSize.Y)
                             , textures.northDoor, TileType.NorthExit);
-                            northExit = true;
+                            doors[0] = true;
                             break;
                         case 'E':
                             tiles[i, j] = new Tile(new Vector2(j * tileSize.X, i * tileSize.Y)
                             , textures.eastDoor, TileType.EastExit);
-                            eastExit = true;
+                            doors[1] = true;
                             break;
                         case 'S':
                             tiles[i, j] = new Tile(new Vector2(j * tileSize.X, i * tileSize.Y)
                             , textures.southDoor, TileType.SouthExit);
-                            southExit = true;
+                            doors[2] = true;
                             break;
                         case 'W':
                             tiles[i, j] = new Tile(new Vector2(j * tileSize.X, i * tileSize.Y)
                             , textures.westDoor, TileType.WestExit);
-                            westExit = true;
+                            doors[3] = true;
                             break;
                         case 'C':
                             tiles[i, j] = new Tile(new Vector2(j * textures.basicTile.Width, i * textures.basicTile.Height)

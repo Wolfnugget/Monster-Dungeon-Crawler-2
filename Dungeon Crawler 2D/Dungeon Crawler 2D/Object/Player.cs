@@ -57,7 +57,6 @@ namespace Dungeon_Crawler_2D.Object
 
             if (direction != new Point(0, 0))
             {
-                Console.WriteLine("input Working: " + direction);
                 ActorEventArgs args = new ActorEventArgs(PlayerEventType.CheckDirection);
                 args.Direction = direction;
                 args.Position = position;

@@ -288,3 +288,5 @@ C:\Users\Datorlabbet\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 
 C:\Users\Datorlabbet\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\Dungeon\WestDoor.xnb
 C:\Users\Datorlabbet\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\Menu\Bars.xnb
 C:\Users\Datorlabbet\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\Menu\SideBars.xnb
+E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\Menu\Bars.xnb
+E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\Menu\SideBars.xnb
