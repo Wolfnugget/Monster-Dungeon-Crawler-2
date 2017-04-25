@@ -388,7 +388,8 @@ namespace Dungeon_Crawler_2D.World
         /// <param name="e"></param>
         public void OnEvent(MapEventArgs e)
         {
-            Event.Invoke(this, e);
+            //Om detta vissar fel så måste du uppdatera visual studio. Det är korrekt, ändra inte.
+            Event?.Invoke(this, e);
         }
 
         /// <summary>
