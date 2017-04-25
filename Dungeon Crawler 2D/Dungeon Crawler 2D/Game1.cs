@@ -42,7 +42,7 @@ namespace Dungeon_Crawler_2D
             
             map = new World.Map(textures, 20, 2);
             map.Event += HandleEvents;
-            player = new Object.Player(textures.player, map.GetPlayerStart(), 64, new Point(0, 0), new Point(16, 16), new Point(0, 0));
+            player = new Object.Player(textures.player, map.GetPlayerStart(), 128, new Point(0, 0), new Point(16, 16), new Point(0, 0));
             player.Action += HandleEvents;
 
             bars = new BarManager(Content, player);

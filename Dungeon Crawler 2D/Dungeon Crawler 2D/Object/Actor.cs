@@ -111,8 +111,7 @@ namespace Dungeon_Crawler_2D.Object
             Vector2 norm = Vector2.Normalize(dir);
 
             //Kolla avstånd till målet eller om actorn råkat gå för långt.
-            if (Vector2.Distance(position, destination) > 1 &&
-                Vector2.Distance(position + (norm * speed * (float)gameTime.ElapsedGameTime.TotalSeconds), destination) < Vector2.Distance(position, destination))
+            if (Vector2.Distance(position, destination) > speed * gameTime.ElapsedGameTime.TotalSeconds)
             {
                 position += speed * norm * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
