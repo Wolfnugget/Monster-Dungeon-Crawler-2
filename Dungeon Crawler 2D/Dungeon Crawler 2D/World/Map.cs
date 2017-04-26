@@ -13,7 +13,15 @@ namespace Dungeon_Crawler_2D.World
     {
         None,
         Wall,
+        VerticalWall,
+        HorizontalWall,
         basic,
+        Stairs,
+        Portal,
+        TopRightCorner,
+        TopLeftCorner,
+        BottomRightCorner,
+        BottomLeftCorner,
         MonsterTile,
         NorthExit,
         SouthExit,
@@ -23,17 +31,16 @@ namespace Dungeon_Crawler_2D.World
 
     public class Map
     {
-        public List<Room> rooms;
+        public List<PreMadeFloor> rooms;
         public int currentRoom;
         protected TextureManager textures;
-
 
         public Map(TextureManager textures)
         {
             this.textures = textures;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             rooms[currentRoom].Draw(spriteBatch);
         }
