@@ -20,7 +20,7 @@ namespace Dungeon_Crawler_2D
         private SpriteBatch spriteBatch;
 
         //private World.Map map;
-        private World.GeneratedMap map;
+        private World.Map map;
         private Object.Player player;
 
         private Camera2D cam;
@@ -57,11 +57,7 @@ namespace Dungeon_Crawler_2D
 
             textures = new TextureManager(Content);
             
-//<<<<<<< HEAD
             map = new World.GeneratedMap(textures, 20, 4);
-//=======
-            map = new World.GeneratedMap(textures, 20, 2);
-//>>>>>>> origin/master
             map.Event += HandleEvents;
             player = new Object.Player(textures.player, textures, map.GetPlayerStart(), 128, new Point(0, 0), new Point(16, 16), new Point(0, 0));
             player.Action += HandleEvents;
