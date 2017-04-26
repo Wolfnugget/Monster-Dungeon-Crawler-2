@@ -11,13 +11,12 @@ namespace Dungeon_Crawler_2D.Object
 {
     class Player : Actor
     {
-        public int health;
-        public int mana;
-        public int xp;
-        public Player(Texture2D texture, Vector2 position, float speed, Point startingFrame, Point frameSize, Point frames, float frameTime = 0.3f)
+        public Stats stats;
+
+        public Player(Texture2D texture, TextureManager textures, Vector2 position, float speed, Point startingFrame, Point frameSize, Point frames, float frameTime = 0.3f)
             : base(texture, position, speed, startingFrame, frameSize, frames, frameTime)
         {
-
+            stats = new Stats(textures, 100, 100, 100, 100, 10, 10, 10, 10, 0);
         }
 
         public override void Update(GameTime gameTime)

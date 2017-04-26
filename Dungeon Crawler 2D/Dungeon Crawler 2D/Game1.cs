@@ -18,7 +18,8 @@ namespace Dungeon_Crawler_2D
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
-        private World.Map map;
+        //private World.Map map;
+        private World.GeneratedMap map;
         private Object.Player player;
 
         private Camera2D cam;
@@ -48,9 +49,9 @@ namespace Dungeon_Crawler_2D
             
             textures = new TextureManager(Content);
             
-            map = new World.Map(textures, 20, 2);
+            map = new World.GeneratedMap(textures, 20, 4);
             map.Event += HandleEvents;
-            player = new Object.Player(textures.player, map.GetPlayerStart(), 128, new Point(0, 0), new Point(16, 16), new Point(0, 0));
+            player = new Object.Player(textures.player, textures, map.GetPlayerStart(), 128, new Point(0, 0), new Point(16, 16), new Point(0, 0));
             player.Action += HandleEvents;
 
             bars = new BarManager(Content, player);
@@ -61,7 +62,7 @@ namespace Dungeon_Crawler_2D
             windowHeight = graphics.PreferredBackBufferHeight = 800;
             graphics.ApplyChanges();
 
-            gameState = GameState.Battle; //Vilken gamestate spelet startas i.
+            gameState = GameState.Explore; //Vilken gamestate spelet startas i.
 
             cam = new Camera2D(view, windowWidth, windowHeight, map, zoom);
         }

@@ -135,7 +135,7 @@ namespace Dungeon_Crawler_2D.Object
         public void OnAction(ActorEventArgs e)
         {
             //Om detta vissar fel så måste du uppdatera visual studio. Det är korrekt, ändra inte.
-            Action?.Invoke(this, e);
+            Action.Invoke(this, e);
         }
     }
 }

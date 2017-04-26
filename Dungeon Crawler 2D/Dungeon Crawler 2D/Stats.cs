@@ -12,65 +12,89 @@ namespace Dungeon_Crawler_2D
     }
     public enum Stat
     {
-        maxHealth, health, maxMana, mana, strength, inteligence, dextarity, luck
+        maxHealth, health, maxMana, mana, strength, inteligence, dextarity, luck, experience
     }
 
     class Stats
     {
         
-        
+        private int maxHealth, health, maxMana, mana, strength, inteligence, dextarity, luck, experience;
+        private List<Effect> activeEffects;
+        private TextureManager textures;
 
-        int maxHealth, health, maxMana, mana, strength, inteligence, dextarity, luck;
-        List<Effect> activeEffects;
-        TextureManager textures;
-
-        public Stats(TextureManager textures, int maxHealth, int maxMana, int strength, int inteligence, int dextarity, int luck)
+        public Stats(TextureManager textures, int maxHealth, int health, int maxMana, int mana, int strength, 
+            int inteligence, int dextarity, int luck, int experience)
         {
             this.textures = textures;
             this.health = maxHealth;
-            maxHealth = health;
+            this.health = health;
             this.maxMana = maxMana;
-            mana = maxMana;
+            this.mana = mana;
             this.strength = strength;
             this.inteligence = inteligence;
             this.dextarity = dextarity;
             this.luck = luck;
-            activeEffects = new List<Effect>(4);//number goes up 
+            this.experience = experience;
+            activeEffects = new List<Effect>(4);//number goes up with amount of effects
         }
 
-        public void AddStats(int addition, Stat stat)
+        // used when a stat goes upp or down
+        public void ChangeStat(int addition, Stat stat)
         {
-            if (stat == Stat.maxHealth)
+            switch (stat)
             {
-                maxHealth += addition;
+                case Stat.maxHealth:
+                    maxHealth += addition;
+                    break;
+                case Stat.health:
+                    health += addition;
+                    break;
+                case Stat.maxMana:
+                    maxMana += addition;
+                    break;
+                case Stat.mana:
+                    mana += addition;
+                    break;
+                case Stat.strength:
+                    strength += addition;
+                    break;
+                case Stat.inteligence:
+                    inteligence += addition;
+                    break;
+                case Stat.dextarity:
+                    dextarity += addition;
+                    break;
+                case Stat.luck:
+                    luck += addition;
+                    break;
+                case Stat.experience:
+                    experience += addition;
+                    break;
             }
-            if (stat == Stat.health)
+        }
+        
+        public int CheckStat(Stat stat)
+        {
+            switch (stat)
             {
-                health += addition;
-            }
-            if (stat == Stat.maxMana)
-            {
-                maxMana += addition;
-            }
-            if (stat == Stat.mana)
-            {
-                mana += addition;
-            }
-            if (stat == Stat.strength)
-            {
-                strength += addition;
-            }
-            if (stat == Stat.inteligence)
-            {
-                inteligence += addition;
-            }
-            if (stat == Stat.dextarity)
-            {
-                dextarity += addition;
-            }
-            if (stat == Stat.luck)
-            {
-                luck += addition;
+                case Stat.maxHealth:
+                    return maxHealth;
+                case Stat.health:
+                    return health;
+                case Stat.maxMana:
+                    return maxMana;
+                case Stat.mana:
+                    return mana;
+                case Stat.strength:
+                    return strength;
+                case Stat.inteligence:
+                    return inteligence;
+                case Stat.dextarity:
+                    return dextarity;
+                case Stat.luck:
+                    return luck;
+                default :
+                    return experience;
             }
         }
 
@@ -86,13 +110,11 @@ namespace Dungeon_Crawler_2D
                 {
                     if (e.effect == effect)
                     {
-                        e.timer = length;
+                        e.timer += length;
                         e.power = power;
                     }
                 }
             }
-
-            
         }
 
         public bool CheckEffects(Effects effect)
@@ -107,32 +129,37 @@ namespace Dungeon_Crawler_2D
             return false;
         }
 
-        public void Buff(int multiplication, Stat stat)
+        public int CheckEffectTime(Effects effect)
         {
-            if (stat == Stat.health)
+            foreach (Effect e in activeEffects)
             {
-                health *= multiplication;
+                if (e.effect == effect)
+                {
+                    return e.timer;
+                }
             }
-            if (stat == Stat.mana)
+            return 0;
+        }
+
+        public void Buff(int multiplication, Stat stat) //needs to be changed
+        {
+            switch (stat)
             {
-                mana *= multiplication;
-            }
-            if (stat == Stat.strength)
-            {
-                strength *= multiplication;
-            }
-            if (stat == Stat.inteligence)
-            {
-                inteligence *= multiplication;
-            }
-            if (stat == Stat.dextarity)
-            {
-                dextarity *= multiplication;
-            }
-            if (stat == Stat.luck)
-            {
-                luck *= multiplication;
+                case Stat.strength:
+                    strength *= multiplication;
+                    break;
+                case Stat.inteligence:
+                    inteligence *= multiplication;
+                    break;
+                case Stat.dextarity:
+                    dextarity *= multiplication;
+                    break;
+                case Stat.luck:
+                    luck *= multiplication;
+                    break;
             }
         }
+
+
     }
 }

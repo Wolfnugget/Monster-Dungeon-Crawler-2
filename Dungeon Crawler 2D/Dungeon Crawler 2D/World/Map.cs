@@ -123,7 +123,7 @@ namespace Dungeon_Crawler_2D.World
         public void OnEvent(MapEventArgs e)
         {
             //Om detta vissar fel så måste du uppdatera visual studio. Det är korrekt, ändra inte.
-            Event?.Invoke(this, e);
+            Event.Invoke(this, e);
         }
 
         /// <summary>
