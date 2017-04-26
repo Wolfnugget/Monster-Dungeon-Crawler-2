@@ -320,3 +320,4 @@ C:\Users\Alfred Bengtsson\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Cra
 C:\Users\Alfred Bengtsson\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\Dungeon\WallTRightCorner.xnb
 C:\Users\Alfred Bengtsson\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\Dungeon\WestDoor.xnb
 C:\Users\Alfred Bengtsson\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Font1.xnb
+C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Font1.xnb

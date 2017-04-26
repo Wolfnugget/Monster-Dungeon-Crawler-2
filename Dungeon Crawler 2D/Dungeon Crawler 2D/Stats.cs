@@ -8,11 +8,15 @@ namespace Dungeon_Crawler_2D
 {
     public enum Effects
     {
-        poison, bleed, confusion, strenghtBuff
+        poison, bleed, confusion, strenghtBuff, intelligenceBuff, dexterityBuff, luckBuff
     }
     public enum Stat
     {
-        maxHealth, health, maxMana, mana, strength, inteligence, dextarity, luck, experience
+        maxHealth, health, maxMana, mana, strength, inteligence, dexterity, luck, experience
+    }
+    public enum EffectPoint
+    {
+        attack, endPhase, startPhase
     }
 
     class Stats
@@ -26,7 +30,7 @@ namespace Dungeon_Crawler_2D
             int inteligence, int dextarity, int luck, int experience)
         {
             this.textures = textures;
-            this.health = maxHealth;
+            this.maxHealth = maxHealth;
             this.health = health;
             this.maxMana = maxMana;
             this.mana = mana;
@@ -61,7 +65,7 @@ namespace Dungeon_Crawler_2D
                 case Stat.inteligence:
                     inteligence += addition;
                     break;
-                case Stat.dextarity:
+                case Stat.dexterity:
                     dextarity += addition;
                     break;
                 case Stat.luck:
@@ -89,7 +93,7 @@ namespace Dungeon_Crawler_2D
                     return strength;
                 case Stat.inteligence:
                     return inteligence;
-                case Stat.dextarity:
+                case Stat.dexterity:
                     return dextarity;
                 case Stat.luck:
                     return luck;
@@ -141,25 +145,49 @@ namespace Dungeon_Crawler_2D
             return 0;
         }
 
-        public void Buff(int multiplication, Stat stat) //needs to be changed
+        public int CheckBuff(Stat stat) //needs to be changed
         {
             switch (stat)
             {
                 case Stat.strength:
-                    strength *= multiplication;
-                    break;
+                    foreach (Effect e in activeEffects)
+                    {   
+                        if (e.effect == Effects.strenghtBuff)
+                        {
+                            return e.power;
+                        }
+                    }
+                    return 1;
                 case Stat.inteligence:
-                    inteligence *= multiplication;
-                    break;
-                case Stat.dextarity:
-                    dextarity *= multiplication;
-                    break;
+                    foreach (Effect e in activeEffects)
+                    {
+                        if (e.effect == Effects.intelligenceBuff)
+                        {
+                            return e.power;
+                        }
+                    }
+                    return 1;
+                case Stat.dexterity:
+                    foreach (Effect e in activeEffects)
+                    {
+                        if (e.effect == Effects.dexterityBuff || e.effect == Effects.confusion)
+                        {
+                            return e.power;
+                        }
+                    }
+                    return 1;
                 case Stat.luck:
-                    luck *= multiplication;
-                    break;
+                    foreach (Effect e in activeEffects)
+                    {
+                        if (e.effect == Effects.luckBuff)
+                        {
+                            return e.power;
+                        }
+                    }
+                    return 1;
+                default :
+                    return 0; //should never happen. just there bc it needs to be
             }
         }
-
-
     }
 }

@@ -19,24 +19,38 @@ namespace Dungeon_Crawler_2D
         public Effect(TextureManager textures, Effects effect, int timer, Stats stats, int power)
         {
             this.textures = textures;
-            this.stats = stats;
-            this.timer = timer;
             this.effect = effect;
+            this.timer = timer;
+            this.stats = stats;
             this.power = power;
         }
 
         // the effect of the effect happens
-        public void Update()
+        public void Update(EffectPoint currentTime)
         {
             if (timer < 0)
             {
-                if (effect == Effects.poison)
+                if (currentTime == EffectPoint.startPhase)
                 {
-                    stats.ChangeStat(-power, Stat.health);
+
                 }
-                if (effect == Effects.bleed)
+                else if (currentTime == EffectPoint.attack)
                 {
-                    stats.ChangeStat(-power, Stat.health); //kommer vara olik från poison
+                    if (effect == Effects.confusion)
+                    {
+
+                    }
+                }
+                else if (currentTime == EffectPoint.endPhase)
+                {
+                    if (effect == Effects.poison)
+                    {
+                        stats.ChangeStat(-power, Stat.health);
+                    }
+                    if (effect == Effects.bleed)
+                    {
+                        stats.ChangeStat(-power, Stat.health); //kommer vara olik från poison
+                    }
                 }
             }
         }
