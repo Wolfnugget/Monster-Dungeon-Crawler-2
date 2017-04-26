@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using System;
+using Dungeon_Crawler_2D.Menus;
 
 namespace Dungeon_Crawler_2D
 {
@@ -41,19 +42,26 @@ namespace Dungeon_Crawler_2D
         {
             base.Initialize();
             IsMouseVisible = true;
+            ScreenManager.Instance.Initialize();
+            ScreenManager.Instance.Dimensions = new Vector2(1200, 800);
+            graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
+            graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
+            graphics.ApplyChanges();
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+
+            ScreenManager.Instance.LoadContent(Content);
+
             textures = new TextureManager(Content);
             
-<<<<<<< HEAD
+//<<<<<<< HEAD
             map = new World.GeneratedMap(textures, 20, 4);
-=======
+//=======
             map = new World.GeneratedMap(textures, 20, 2);
->>>>>>> origin/master
+//>>>>>>> origin/master
             map.Event += HandleEvents;
             player = new Object.Player(textures.player, textures, map.GetPlayerStart(), 128, new Point(0, 0), new Point(16, 16), new Point(0, 0));
             player.Action += HandleEvents;
@@ -72,6 +80,8 @@ namespace Dungeon_Crawler_2D
         }
         protected override void Update(GameTime gameTime)
         {
+            ScreenManager.Instance.Update(gameTime);
+
             if (gameState == GameState.Explore)
             {
                 player.Update(gameTime);
@@ -83,7 +93,7 @@ namespace Dungeon_Crawler_2D
             }
             else if (gameState == GameState.Menu)
             {
-
+                ScreenManager.Instance.Update(gameTime);
             }
             base.Update(gameTime);
             
@@ -93,6 +103,8 @@ namespace Dungeon_Crawler_2D
         {
             //GraphicsDevice.Clear(Color.CornflowerBlue);
             GraphicsDevice.Clear(Color.Black);
+
+            ScreenManager.Instance.Draw(spriteBatch);
 
             if (gameState == GameState.Explore)
             {

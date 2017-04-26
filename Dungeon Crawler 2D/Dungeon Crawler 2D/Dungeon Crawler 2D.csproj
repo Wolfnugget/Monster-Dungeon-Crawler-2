@@ -49,6 +49,12 @@
     <Compile Include="Effect.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Menus\Animation.cs" />
+    <Compile Include="Menus\FadeAnimation.cs" />
+    <Compile Include="Menus\GameScreen.cs" />
+    <Compile Include="Menus\ScreenManager.cs" />
+    <Compile Include="Menus\SplashScreen.cs" />
+    <Compile Include="Menus\TitleScreen.cs" />
     <Compile Include="Object\Actor.cs" />
     <Compile Include="Object\Player.cs" />
     <Compile Include="Program.cs" />

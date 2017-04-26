@@ -175,3 +175,9 @@
 /processorParam:TextureFormat=Color
 /build:Textures/Dungeon/WallTRightCorner.png
 
+#begin Font1.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:Font1.spritefont
+
