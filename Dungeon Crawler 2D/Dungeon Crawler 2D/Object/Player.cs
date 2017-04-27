@@ -12,10 +12,12 @@ namespace Dungeon_Crawler_2D.Object
     class Player : Actor
     {
         public Stats stats;
+        private TextureManager textures;
 
-        public Player(Texture2D texture, TextureManager textures, Vector2 position, float speed, Point startingFrame, Point frameSize, Point frames, float frameTime = 0.3f)
-            : base(texture, position, speed, startingFrame, frameSize, frames, frameTime)
+        public Player(Texture2D texture, TextureManager textures, Vector2 position, float speed, int frameSize, int frames, float frameTime = 0.3f)
+            : base(texture, position, speed, frameSize, frames, frameTime)
         {
+            this.textures = textures;
             stats = new Stats(textures, 100, 100, 100, 100, 10, 10, 10, 10, 0);
         }
 
@@ -38,18 +40,22 @@ namespace Dungeon_Crawler_2D.Object
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 direction.Y = -1;
+                SetTexture(textures.player_Up, 16, 3);
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 direction.Y = 1;
+                SetTexture(textures.player_Down, 16, 3);
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D)) //Detta är en "if" så man ska kunna gå diagonalt. Map klassen har stöd för det.
             {
                 direction.X = 1;
+                SetTexture(textures.player_Right, 16, 3);
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 direction.X = -1;
+                SetTexture(textures.player_Left, 16, 3);
             }
 
             //Här ska frames bytas senare när vi har en sprite

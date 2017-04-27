@@ -11,14 +11,17 @@ namespace Dungeon_Crawler_2D
 {
     public class TextureManager
     {
-        public Texture2D player, horizontalWall, vericalWall,
+        public Texture2D player_Up, player_Down, player_Left, player_Right, horizontalWall, vericalWall,
             wallTRightCorner, wallTLeftCorner, wallBRightCorner, wallBLeftCorner,
             northDoor, southDoor, eastDoor, westDoor,
             basicTile; //osv
 
         public TextureManager(ContentManager content)
         {
-            player = content.Load<Texture2D>("Player");
+            player_Up = content.Load<Texture2D>("Player_Animation/Walking_Up");
+            player_Down = content.Load<Texture2D>("Player_Animation/Walking_Down");
+            player_Left= content.Load<Texture2D>("Player_Animation/Walking_Left");
+            player_Right = content.Load<Texture2D>("Player_Animation/Walking_Right");
             basicTile = content.Load<Texture2D>("Textures/Dungeon/SmallTiles");
             horizontalWall = content.Load<Texture2D>("Textures/Dungeon/HorizontalWall");
             vericalWall = content.Load<Texture2D>("Textures/Dungeon/VerticalWall");
