@@ -61,9 +61,7 @@ namespace Dungeon_Crawler_2D
             map.Event += HandleEvents;
             player = new Object.Player(textures.playerSpriteSheet, textures, map.GetPlayerStart(), 128, new Point(16, 16), new Point(2, 0), 0.3f);
             player.Action += HandleEvents;
-
-            bars = new BarManager(Content, player);
-
+            
             Viewport view = GraphicsDevice.Viewport;
             float zoom = 5f;
             windowWidth = graphics.PreferredBackBufferWidth = 1200;
@@ -72,7 +70,8 @@ namespace Dungeon_Crawler_2D
 
             gameState = GameState.Explore; //Vilken gamestate spelet startas i.
 
-            cam = new Camera2D(view, windowWidth, windowHeight, map, zoom);
+            bars = new BarManager(GraphicsDevice, Content, player, windowWidth, windowHeight);
+            cam = new Camera2D(bars, view, windowWidth, windowHeight, map, zoom);
         }
         protected override void Update(GameTime gameTime)
         {

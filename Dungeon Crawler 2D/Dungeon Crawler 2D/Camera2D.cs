@@ -6,6 +6,7 @@ namespace Dungeon_Crawler_2D
 {
     class Camera2D
     {
+        private BarManager bars;
         public Matrix transform;
         public Vector2 cameraPos;
         private Vector2 screenCenter;
@@ -18,8 +19,9 @@ namespace Dungeon_Crawler_2D
         private int windowWidth;
         private int windowHeight;
 
-        public Camera2D(Viewport view, int windowWidth, int windowHeight, World.Map map, float zoom)
+        public Camera2D(BarManager bars, Viewport view, int windowWidth, int windowHeight, World.Map map, float zoom)
         {
+            this.bars = bars;
             this.zoom = zoom;
             this.view = view;
             this.map = map;
@@ -35,16 +37,16 @@ namespace Dungeon_Crawler_2D
         {
             roomSize = new Vector2(map.rooms[map.currentRoom].tiles.GetLength(1) * 16, map.rooms[map.currentRoom].tiles.GetLength(0) * 16);
             cameraPos = pos;
-            
+
             //Is the room bigger than the screen? (both X, and Y)
-            if (roomSize.X >= screenCenter.X * 2 && roomSize.Y >= screenCenter.Y * 2)
+            if (roomSize.X >= (screenCenter.X * 2) - ((bars.sideBarWidth * 2) / zoom) && roomSize.Y >= screenCenter.Y * 2)
             {
                 transform = Matrix.CreateTranslation(-cameraPos.X + screenCenter.X, -cameraPos.Y + screenCenter.Y, 0) * Matrix.CreateScale(zoomVector);
 
                 //Has it reached the left edge?
-                if (-cameraPos.X + screenCenter.X > 0)
+                if (-cameraPos.X + screenCenter.X > bars.sideBarWidth / zoom)
                 {
-                    transform = Matrix.CreateTranslation(0, -cameraPos.Y + screenCenter.Y, 0) * Matrix.CreateScale(zoomVector);
+                    transform = Matrix.CreateTranslation(bars.sideBarWidth / zoom, -cameraPos.Y + screenCenter.Y, 0) * Matrix.CreateScale(zoomVector);
                 }
 
                 //Has it reached the top edge?
@@ -54,9 +56,9 @@ namespace Dungeon_Crawler_2D
                 }
 
                 //Has it reached the right edge?
-                if (cameraPos.X + screenCenter.X > roomSize.X)
+                if (cameraPos.X + screenCenter.X > roomSize.X + (bars.sideBarWidth / zoom))
                 {
-                    transform = Matrix.CreateTranslation(-roomSize.X + screenCenter.X * 2, -cameraPos.Y + screenCenter.Y, 0) * Matrix.CreateScale(zoomVector);
+                    transform = Matrix.CreateTranslation(-roomSize.X + (screenCenter.X * 2) - (bars.sideBarWidth / zoom), -cameraPos.Y + screenCenter.Y, 0) * Matrix.CreateScale(zoomVector);
                 }
 
                 //Has it reached the bottom edge?
@@ -66,44 +68,44 @@ namespace Dungeon_Crawler_2D
                 }
 
                 //Has it reached the left edge and the top edge?
-                if (-cameraPos.X + screenCenter.X > 0 && -cameraPos.Y + screenCenter.Y > 0)
+                if (-cameraPos.X + screenCenter.X > bars.sideBarWidth / zoom && -cameraPos.Y + screenCenter.Y > 0)
                 {
-                    transform = Matrix.CreateTranslation(0, 0, 0) * Matrix.CreateScale(zoomVector);
+                    transform = Matrix.CreateTranslation(bars.sideBarWidth / zoom, 0, 0) * Matrix.CreateScale(zoomVector);
                 }
 
                 //Has it reached the top edge and the right edge?
-                if (-cameraPos.Y + screenCenter.Y > 0 && cameraPos.X + screenCenter.X > roomSize.X)
+                if (-cameraPos.Y + screenCenter.Y > 0 && cameraPos.X + screenCenter.X > roomSize.X + (bars.sideBarWidth / zoom))
                 {
-                    transform = Matrix.CreateTranslation(-roomSize.X + screenCenter.X * 2, 0, 0) * Matrix.CreateScale(zoomVector);
+                    transform = Matrix.CreateTranslation(-roomSize.X + (screenCenter.X * 2) - (bars.sideBarWidth / zoom), 0, 0) * Matrix.CreateScale(zoomVector);
                 }
 
                 //Has it reached the right edge and the bottom edge?
-                if (cameraPos.X + screenCenter.X > roomSize.X && cameraPos.Y + screenCenter.Y > roomSize.Y)
+                if (cameraPos.X + screenCenter.X > roomSize.X + (bars.sideBarWidth / zoom) && cameraPos.Y + screenCenter.Y > roomSize.Y)
                 {
-                    transform = Matrix.CreateTranslation(-roomSize.X + screenCenter.X * 2, -roomSize.Y + screenCenter.Y * 2, 0) * Matrix.CreateScale(zoomVector);
+                    transform = Matrix.CreateTranslation(-roomSize.X + (screenCenter.X * 2) - (bars.sideBarWidth / zoom), -roomSize.Y + screenCenter.Y * 2, 0) * Matrix.CreateScale(zoomVector);
                 }
 
                 //Has it reached the bottom edge and the left edge?
-                if (cameraPos.Y + screenCenter.Y > roomSize.Y && -cameraPos.X + screenCenter.X > 0)
+                if (cameraPos.Y + screenCenter.Y > roomSize.Y && -cameraPos.X + screenCenter.X > bars.sideBarWidth / zoom)
                 {
-                    transform = Matrix.CreateTranslation(0, -roomSize.Y + screenCenter.Y * 2, 0) * Matrix.CreateScale(zoomVector);
+                    transform = Matrix.CreateTranslation(bars.sideBarWidth / zoom, -roomSize.Y + screenCenter.Y * 2, 0) * Matrix.CreateScale(zoomVector);
                 }
             }
 
             //Is the room bigger than the screen? (X, but not Y)
-            if (roomSize.X >= screenCenter.X * 2 && roomSize.Y < screenCenter.Y * 2)
+            if (roomSize.X >= (screenCenter.X * 2) - (bars.sideBarWidth / zoom) && roomSize.Y < screenCenter.Y * 2)
             {
                 transform = Matrix.CreateTranslation(-cameraPos.X + screenCenter.X, (-roomSize.Y / 2) + screenCenter.Y, 0) * Matrix.CreateScale(zoomVector);
                 //Has it reached the left edge?
-                if (-cameraPos.X + screenCenter.X > 0)
+                if (-cameraPos.X + screenCenter.X > bars.sideBarWidth / zoom)
                 {
-                    transform = Matrix.CreateTranslation(0, (-roomSize.Y / 2) + screenCenter.Y, 0) * Matrix.CreateScale(zoomVector);
+                    transform = Matrix.CreateTranslation(bars.sideBarWidth / zoom, (-roomSize.Y / 2) + screenCenter.Y, 0) * Matrix.CreateScale(zoomVector);
                 }
 
                 //Has it reached the right edge?
-                if (cameraPos.X + screenCenter.X > roomSize.X)
+                if (cameraPos.X + screenCenter.X > roomSize.X + (bars.sideBarWidth / zoom))
                 {
-                    transform = Matrix.CreateTranslation(-roomSize.X + screenCenter.X * 2, (-roomSize.Y / 2) + screenCenter.Y, 0) * Matrix.CreateScale(zoomVector);
+                    transform = Matrix.CreateTranslation(-roomSize.X + (screenCenter.X * 2) - (bars.sideBarWidth / zoom), (-roomSize.Y / 2) + screenCenter.Y, 0) * Matrix.CreateScale(zoomVector);
                 }
             }
 
@@ -125,7 +127,7 @@ namespace Dungeon_Crawler_2D
             }
 
             //Is the room smaller than the screen ? (both X, and Y)
-            if (roomSize.X < screenCenter.X * 2 && roomSize.Y < screenCenter.Y * 2)
+            if (roomSize.X < (screenCenter.X * 2) - ((bars.sideBarWidth * 2) / zoom) && roomSize.Y < screenCenter.Y * 2)
             {
                 transform = Matrix.CreateTranslation((-roomSize.X / 2) + screenCenter.X, (-roomSize.Y / 2) + screenCenter.Y, 0) * Matrix.CreateScale(zoomVector);
             }
