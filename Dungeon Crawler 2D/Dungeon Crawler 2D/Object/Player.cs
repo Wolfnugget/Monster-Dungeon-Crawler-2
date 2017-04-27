@@ -12,13 +12,17 @@ namespace Dungeon_Crawler_2D.Object
     class Player : Actor
     {
         public Stats stats;
+        public StatScreen statScreen;
+        public bool showStats;
         private TextureManager textures;
 
         public Player(Texture2D texture, TextureManager textures, Vector2 position, float speed, Point frameSize, Point frames, float frameTime = 0.3f)
             : base(texture, position, speed, frameSize, frames, frameTime)
         {
             this.textures = textures;
-            stats = new Stats(textures, 100, 100, 100, 100, 10, 10, 10, 10, 0);
+            stats = new Stats(textures, 100, 100, 100, 100, 10, 10, 10, 10, 10, 0, 1);
+            statScreen = new StatScreen(this, textures);
+            showStats = false;
         }
 
         public override void Update(GameTime gameTime)
@@ -56,6 +60,10 @@ namespace Dungeon_Crawler_2D.Object
                 startingFrame = new Point(0, 1);
             }
 
+            if (Keyboard.GetState().IsKeyDown(Keys.I))
+            {
+                showStats = !showStats;
+            }
             //Här ska frames bytas senare när vi har en sprite
 
             if (direction != new Point(0, 0))

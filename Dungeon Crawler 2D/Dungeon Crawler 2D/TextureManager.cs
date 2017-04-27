@@ -14,7 +14,8 @@ namespace Dungeon_Crawler_2D
         public Texture2D playerSpriteSheet, horizontalWall, vericalWall,
             wallTRightCorner, wallTLeftCorner, wallBRightCorner, wallBLeftCorner,
             northDoor, southDoor, eastDoor, westDoor,
-            basicTile; //osv
+            basicTile, whiteSquare; //osv
+        public SpriteFont comicSans; //osv
 
         public TextureManager(ContentManager content)
         {
@@ -30,6 +31,10 @@ namespace Dungeon_Crawler_2D
             wallTLeftCorner = content.Load<Texture2D>("Textures/Dungeon/WallTLeftCorner");
             wallBRightCorner = content.Load<Texture2D>("Textures/Dungeon/WallBRightCorner");
             wallBLeftCorner = content.Load<Texture2D>("Textures/Dungeon/WallBLeftCorner");
+            whiteSquare = content.Load<Texture2D>("Example");
+
+
+            comicSans = content.Load<SpriteFont>("textFont1");
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Dungeon_Crawler_2D
     }
     public enum Stat
     {
-        maxHealth, health, maxMana, mana, strength, inteligence, dexterity, luck, experience
+        maxHealth, health, maxMana, mana, strength, inteligence, dexterity, luck, maxXp, xp, level
     }
     public enum EffectPoint
     {
@@ -22,12 +22,13 @@ namespace Dungeon_Crawler_2D
     class Stats
     {
         
-        private int maxHealth, health, maxMana, mana, strength, inteligence, dextarity, luck, experience;
+        private int maxHealth, health, maxMana, mana, strength, inteligence, dextarity, luck, maxXp, xp, level;
+        public int uppgrade;
         private List<Effect> activeEffects;
         private TextureManager textures;
 
         public Stats(TextureManager textures, int maxHealth, int health, int maxMana, int mana, int strength, 
-            int inteligence, int dextarity, int luck, int experience)
+            int inteligence, int dextarity, int luck, int maxXp, int xp, int level)
         {
             this.textures = textures;
             this.maxHealth = maxHealth;
@@ -38,12 +39,14 @@ namespace Dungeon_Crawler_2D
             this.inteligence = inteligence;
             this.dextarity = dextarity;
             this.luck = luck;
-            this.experience = experience;
+            this.xp = xp;
+            this.level = level;
+            uppgrade = 0;
             activeEffects = new List<Effect>(4);//number goes up with amount of effects
         }
 
         // used when a stat goes upp or down
-        public void ChangeStat(int addition, Stat stat)
+        public void ChangeStat(Stat stat, int addition)
         {
             switch (stat)
             {
@@ -71,8 +74,11 @@ namespace Dungeon_Crawler_2D
                 case Stat.luck:
                     luck += addition;
                     break;
-                case Stat.experience:
-                    experience += addition;
+                case Stat.maxXp:
+                    maxXp += addition;
+                    break;
+                case Stat.xp:
+                    xp += addition;
                     break;
             }
         }
@@ -97,8 +103,43 @@ namespace Dungeon_Crawler_2D
                     return dextarity;
                 case Stat.luck:
                     return luck;
+                case Stat.maxXp:
+                    return maxXp;
+                case Stat.xp:
+                    return xp;
+                case Stat.level:
+                    return level;
                 default :
-                    return experience;
+                    return 0;
+            }
+        }
+
+        public void CheckLevelUpp()
+        {
+            if (xp >= maxXp)
+            {
+                xp -= maxXp;
+                LevelUpp();
+            }
+        }
+
+        public void LevelUpp()
+        {
+            if (level <= 5)
+            {
+                uppgrade += 3;
+            }
+            else if (level <= 10)
+            {
+                uppgrade += 5;
+            }
+            else if (level <= 15)
+            {
+                uppgrade += 7;
+            }
+            else if (level > 15)
+            {
+                uppgrade += 10;
             }
         }
 

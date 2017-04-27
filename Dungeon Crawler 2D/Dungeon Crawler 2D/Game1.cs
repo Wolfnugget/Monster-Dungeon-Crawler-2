@@ -57,9 +57,10 @@ namespace Dungeon_Crawler_2D
 
             textures = new TextureManager(Content);
             
+            
             map = new World.GeneratedMap(textures, 20, 4);
             map.Event += HandleEvents;
-            player = new Object.Player(textures.playerSpriteSheet, textures, map.GetPlayerStart(), 128, new Point(16, 16), new Point(2, 0), 0.3f);
+            player = new Object.Player(textures.playerSpriteSheet, textures, map.GetPlayerStart(), 100, new Point(16, 16), new Point(2, 0), 0.3f);
             player.Action += HandleEvents;
             
             Viewport view = GraphicsDevice.Viewport;
@@ -115,6 +116,11 @@ namespace Dungeon_Crawler_2D
 
                 //OBS!! Skriv bara här om ni vill att det som ritas ut ska vara oberoende av kameran (tex healthbars eller poäng)
                 bars.Draw(spriteBatch);
+                if (player.showStats == true)
+                {
+                    player.statScreen.Draw(spriteBatch);
+                }
+                
 
                 spriteBatch.End();
             }

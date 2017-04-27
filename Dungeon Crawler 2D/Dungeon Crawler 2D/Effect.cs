@@ -45,11 +45,11 @@ namespace Dungeon_Crawler_2D
                 {
                     if (effect == Effects.poison)
                     {
-                        stats.ChangeStat(-power, Stat.health);
+                        stats.ChangeStat(Stat.health, -power);
                     }
                     if (effect == Effects.bleed)
                     {
-                        stats.ChangeStat(-power, Stat.health); //kommer vara olik från poison
+                        stats.ChangeStat(Stat.health, -power); //kommer vara olik från poison
                     }
                 }
             }
