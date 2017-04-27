@@ -14,8 +14,12 @@ namespace Dungeon_Crawler_2D
         public Texture2D playerSpriteSheet, horizontalWall, vericalWall,
             wallTRightCorner, wallTLeftCorner, wallBRightCorner, wallBLeftCorner,
             northDoor, southDoor, eastDoor, westDoor,
+<<<<<<< HEAD
             basicTile, whiteSquare; //osv
         public SpriteFont comicSans; //osv
+=======
+            basicTile, poisonIcon, bleedIcon, confusionIcon, barsSheet; //osv
+>>>>>>> origin/master
 
         public TextureManager(ContentManager content)
         {
@@ -31,10 +35,21 @@ namespace Dungeon_Crawler_2D
             wallTLeftCorner = content.Load<Texture2D>("Textures/Dungeon/WallTLeftCorner");
             wallBRightCorner = content.Load<Texture2D>("Textures/Dungeon/WallBRightCorner");
             wallBLeftCorner = content.Load<Texture2D>("Textures/Dungeon/WallBLeftCorner");
+<<<<<<< HEAD
             whiteSquare = content.Load<Texture2D>("Example");
 
 
             comicSans = content.Load<SpriteFont>("textFont1");
+=======
+            
+            //Sidebar Icons
+            poisonIcon = content.Load<Texture2D>("Battle/Icons/Poison");
+            bleedIcon = content.Load<Texture2D>("Battle/Icons/Blood_Loss");
+            confusionIcon = content.Load<Texture2D>("Battle/Icons/Confusion_Icon");
+
+            //Sidebar-sheet
+            barsSheet = content.Load<Texture2D>("Bars/BarsSheet");
+>>>>>>> origin/master
         }
     }
 }

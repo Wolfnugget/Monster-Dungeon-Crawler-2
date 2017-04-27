@@ -418,9 +418,16 @@ C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawl
 C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\SharpDX.RawInput.xml
 C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.csprojResolveAssemblyReference.cache
+<<<<<<< HEAD
 C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\PlayerSpriteSheet.png
 C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Player_Animation\Walking_Down.png
 C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Player_Animation\Walking_Left.png
 C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Player_Animation\Walking_Right.png
 C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Player_Animation\Walking_Up.png
 C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\PlayerSpriteSheet.xnb
+=======
+C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Icons\Blood_Loss.png
+C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Icons\Poison.png
+C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Icons\Confusion_Icon.png
+C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Bars\BarsSheet.png
+>>>>>>> origin/master

@@ -71,7 +71,7 @@ namespace Dungeon_Crawler_2D
 
             gameState = GameState.Explore; //Vilken gamestate spelet startas i.
 
-            bars = new BarManager(GraphicsDevice, Content, player, windowWidth, windowHeight);
+            bars = new BarManager(textures, GraphicsDevice, Content, player, windowWidth, windowHeight);
             cam = new Camera2D(bars, view, windowWidth, windowHeight, map, zoom);
         }
         protected override void Update(GameTime gameTime)
