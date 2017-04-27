@@ -45,19 +45,19 @@ namespace Dungeon_Crawler_2D
 
 
             //health-bar
-            spriteBatch.Draw(pixelTex, new Rectangle((sideBarWidth / 2) - (statBarWidth / 2), windowHeight - sideBarWidth - player.stats.CheckStat(Stat.maxHealth), statBarWidth, player.stats.CheckStat(Stat.maxHealth)), Color.Gray);
-            spriteBatch.Draw(pixelTex, new Rectangle((sideBarWidth / 2) - (statBarWidth / 2), windowHeight - sideBarWidth - player.stats.CheckStat(Stat.maxHealth), statBarWidth, player.stats.CheckStat(Stat.health)), Color.Red);
+            spriteBatch.Draw(pixelTex, new Rectangle((sideBarWidth / 2) - (statBarWidth / 2), windowHeight - sideBarWidth - (player.stats.CheckStat(Stat.maxHealth) * 2), statBarWidth, player.stats.CheckStat(Stat.maxHealth) * 2), Color.Gray);
+            spriteBatch.Draw(pixelTex, new Rectangle((sideBarWidth / 2) - (statBarWidth / 2), windowHeight - sideBarWidth - (player.stats.CheckStat(Stat.health) * 2), statBarWidth, player.stats.CheckStat(Stat.health) * 2), Color.Red);
 
             //mana-bar
-            spriteBatch.Draw(pixelTex, new Rectangle(windowWidth - sideBarWidth + (sideBarWidth / 2) - (statBarWidth / 2), windowHeight - sideBarWidth - player.stats.CheckStat(Stat.maxMana), statBarWidth, player.stats.CheckStat(Stat.maxMana)), Color.Gray);
-            spriteBatch.Draw(pixelTex, new Rectangle(windowWidth - sideBarWidth + (sideBarWidth / 2) - (statBarWidth / 2), windowHeight - sideBarWidth - player.stats.CheckStat(Stat.maxMana), statBarWidth, player.stats.CheckStat(Stat.mana)), Color.Blue);
+            spriteBatch.Draw(pixelTex, new Rectangle(windowWidth - sideBarWidth + (sideBarWidth / 2) - (statBarWidth / 2), windowHeight - sideBarWidth - (player.stats.CheckStat(Stat.maxMana) * 2), statBarWidth, player.stats.CheckStat(Stat.maxMana) * 2), Color.Gray);
+            spriteBatch.Draw(pixelTex, new Rectangle(windowWidth - sideBarWidth + (sideBarWidth / 2) - (statBarWidth / 2), windowHeight - sideBarWidth - (player.stats.CheckStat(Stat.mana) * 2), statBarWidth, player.stats.CheckStat(Stat.mana) * 2), Color.Blue);
 
             //text
             Vector2 textSizeHP = comicSans.MeasureString("HP: " + player.stats.CheckStat(Stat.health));
             Vector2 originHP = new Vector2(textSizeHP.X * 0.5f, 0);
 
             Vector2 textSizeMP = comicSans.MeasureString("MP: " + player.stats.CheckStat(Stat.mana));
-            Vector2 originMP = new Vector2(textSizeHP.X * 0.5f, 0);
+            Vector2 originMP = new Vector2(textSizeMP.X * 0.5f, 0);
 
             spriteBatch.DrawString(comicSans, "HP: " + player.stats.CheckStat(Stat.health), new Vector2((sideBarWidth / 2), windowHeight - sideBarWidth), Color.Red, 0, originHP, 2, SpriteEffects.None, 0);
             spriteBatch.DrawString(comicSans, "MP: " + player.stats.CheckStat(Stat.mana), new Vector2(windowWidth - (sideBarWidth / 2), windowHeight - sideBarWidth), Color.Blue, 0, originMP, 2, SpriteEffects.None, 0);
