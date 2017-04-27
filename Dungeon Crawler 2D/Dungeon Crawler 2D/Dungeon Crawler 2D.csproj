@@ -76,6 +76,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Bars\BarsSheet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Battle\Icons\Attack_Icon.png" />
+    <Content Include="Content\Battle\Icons\Blood_Loss.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Battle\Icons\Confusion_Icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Battle\Icons\Magic_Icon.png" />
+    <Content Include="Content\Battle\Icons\Poison.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Battle\Icons\Shield_Icon.png" />
+    <Content Include="Content\Battle\Icons\SuperAttack_Icon.png" />
+    <Content Include="Content\Battle\Player_Battle.png" />
+    <Content Include="Content\Battle\Zombie_Enemy.png" />
     <Content Include="Content\Example.png" />
     <Content Include="Content\Player.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
