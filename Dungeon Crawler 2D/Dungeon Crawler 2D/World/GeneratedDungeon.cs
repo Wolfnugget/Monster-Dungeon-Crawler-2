@@ -32,11 +32,6 @@ namespace Dungeon_Crawler_2D.World
             return start;
         }
 
-        private void GenerateCorridor()
-        {
-
-        }
-
         private int GenerateRoom(Point dimensions)
         {
             int numberOfEntrences = 1;
@@ -44,7 +39,17 @@ namespace Dungeon_Crawler_2D.World
             return numberOfEntrences;
         }
 
-        private void MakeEntrence(Point entrenceTile, Point direction)
+        private void GenerateCorridor(Point start, Point direction, int length, int width)
+        {
+            MakeEntrence(start, direction, width);
+
+            for (int t = 0; t < length; t++)
+            {
+
+            }
+        }
+
+        private void MakeEntrence(Point entrenceTile, Point direction, int width)
         {
             tiles[entrenceTile.X, entrenceTile.Y] = new Tile(TileType.basic, true);
 
@@ -52,13 +57,13 @@ namespace Dungeon_Crawler_2D.World
             {
                 if (direction.Y == 1)
                 {
-                    tiles[entrenceTile.X - 1, entrenceTile.Y] = new Tile(TileType.TopRightCorner, false);
+                    tiles[entrenceTile.X - width, entrenceTile.Y] = new Tile(TileType.TopRightCorner, false);
                     tiles[entrenceTile.X + 1, entrenceTile.Y] = new Tile(TileType.TopLeftCorner, false);
                 }
                 else
                 {
                     tiles[entrenceTile.X - 1, entrenceTile.Y] = new Tile(TileType.BottomRightCorner, false);
-                    tiles[entrenceTile.X + 1, entrenceTile.Y] = new Tile(TileType.BottomLeftCorner, false);
+                    tiles[entrenceTile.X + width, entrenceTile.Y] = new Tile(TileType.BottomLeftCorner, false);
                 }
             }
             else
@@ -66,11 +71,11 @@ namespace Dungeon_Crawler_2D.World
                 if (direction.X == 1)
                 {
                     tiles[entrenceTile.X, entrenceTile.Y - 1] = new Tile(TileType.BottomLeftCorner, false);
-                    tiles[entrenceTile.X, entrenceTile.Y + 1] = new Tile(TileType.BottomRightCorner, false);
+                    tiles[entrenceTile.X, entrenceTile.Y + width] = new Tile(TileType.BottomRightCorner, false);
                 }
                 else
                 {
-                    tiles[entrenceTile.X, entrenceTile.Y - 1] = new Tile(TileType.TopRightCorner, false);
+                    tiles[entrenceTile.X, entrenceTile.Y - width] = new Tile(TileType.TopRightCorner, false);
                     tiles[entrenceTile.X, entrenceTile.Y + 1] = new Tile(TileType.TopLeftCorner, false);
                 }
             }
