@@ -8,12 +8,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Dungeon_Crawler_2D.World
 {
-    class GeneratedFloor: Floor
+    class GeneratedDungeon: Area
     {
-        int floor;
         Random rand;
 
-        public GeneratedFloor(Point dimensions, TextureManager textures, int floor, TileType entry)
+        public GeneratedDungeon(Point dimensions, TextureManager textures, int floor, TileType entry)
             : base(textures)
         {
             rand = new Random();

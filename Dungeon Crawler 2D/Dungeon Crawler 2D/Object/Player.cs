@@ -31,8 +31,6 @@ namespace Dungeon_Crawler_2D.Object
             base.Update(gameTime);
         }
 
-
-
         void CheckInput()
         {
             Point direction = new Point(0, 0);

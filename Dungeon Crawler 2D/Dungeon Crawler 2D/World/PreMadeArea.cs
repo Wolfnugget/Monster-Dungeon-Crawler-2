@@ -9,12 +9,12 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Dungeon_Crawler_2D.World
 {
-    public class PreMadeFloor: Floor
+    public class PreMadeArea: Area
     {
         public Point roomCoords;
         public bool[] doors;
 
-        public PreMadeFloor(string roomPath, Point roomCoords, TextureManager textures)
+        public PreMadeArea(string roomPath, Point roomCoords, TextureManager textures)
             : base(textures)
         {
             List<string>  roomBluePrint = new List<string>();

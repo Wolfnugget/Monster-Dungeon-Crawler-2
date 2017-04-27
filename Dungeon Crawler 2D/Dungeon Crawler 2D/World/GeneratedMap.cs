@@ -27,9 +27,9 @@ namespace Dungeon_Crawler_2D.World
         /// <param name="textures"></param>
         void GenerateMap(int numberOfRooms, TextureManager textures)
         {
-            rooms = new List<PreMadeFloor>();
+            rooms = new List<PreMadeArea>();
 
-            rooms.Add(new PreMadeFloor(GetRandomRoomPath("Maps/StartRoom"), new Point(0, 0), textures));
+            rooms.Add(new PreMadeArea(GetRandomRoomPath("Maps/StartRoom"), new Point(0, 0), textures));
 
             HashSet<int> excludeRoom = new HashSet<int>(); //Rum vars dörrar har genererats.
             excludeRoom.Clear();
@@ -84,28 +84,28 @@ namespace Dungeon_Crawler_2D.World
                     int r = GetRandomNumberExcluding(excludeExit, 0, 3);
                     if (r == 0)
                     {
-                        rooms.Add(new PreMadeFloor(GetRandomRoomPath("Maps/South"),
+                        rooms.Add(new PreMadeArea(GetRandomRoomPath("Maps/South"),
                             rooms[addingExitsTo].roomCoords + new Point(0, -1), textures));
                         excludeExit.Add(0);
                         exitsToAdd--;
                     }
                     else if (r == 1)
                     {
-                        rooms.Add(new PreMadeFloor(GetRandomRoomPath("Maps/West"),
+                        rooms.Add(new PreMadeArea(GetRandomRoomPath("Maps/West"),
                             rooms[addingExitsTo].roomCoords + new Point(1, 0), textures));
                         excludeExit.Add(1);
                         exitsToAdd--;
                     }
                     else if (r == 2)
                     {
-                        rooms.Add(new PreMadeFloor(GetRandomRoomPath("Maps/North"),
+                        rooms.Add(new PreMadeArea(GetRandomRoomPath("Maps/North"),
                             rooms[addingExitsTo].roomCoords + new Point(0, 1), textures));
                         excludeExit.Add(2);
                         exitsToAdd--;
                     }
                     else if (r == 3)
                     {
-                        rooms.Add(new PreMadeFloor(GetRandomRoomPath("Maps/East"),
+                        rooms.Add(new PreMadeArea(GetRandomRoomPath("Maps/East"),
                             rooms[addingExitsTo].roomCoords + new Point(-1, 0), textures));
                         excludeExit.Add(3);
                         exitsToAdd--;
