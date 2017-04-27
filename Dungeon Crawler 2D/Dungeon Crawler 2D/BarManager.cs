@@ -132,6 +132,11 @@ namespace Dungeon_Crawler_2D
             Vector2 textSizeConfusion = comicSans.MeasureString("" + player.stats.CheckEffectTime(Effects.confusion));
             Vector2 originConfusion = new Vector2(textSizeConfusion.X * 0.5f, 0);
             spriteBatch.DrawString(comicSans, "" + player.stats.CheckEffectTime(Effects.confusion), new Vector2(leftSideBarRect.X + (sideBarWidth / 2), sideBarWidth + (statBarWidth * 5)), Color.Yellow, 0, originConfusion, 2, SpriteEffects.None, 0);
+
+            //visar experience level
+            Vector2 textSizeXpLevel = comicSans.MeasureString("lvl " + "?");
+            Vector2 originXpLevel = new Vector2(textSizeXpLevel.X * 0.5f, 0);
+            spriteBatch.DrawString(comicSans, "lvl " + "?", new Vector2(rightSideBarRect.X + (sideBarWidth / 2), statBarWidth * 2), Color.GhostWhite, 0, originXpLevel, 3, SpriteEffects.None, 0);
         }
     }
 }
