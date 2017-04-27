@@ -8,14 +8,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Dungeon_Crawler_2D.World
 {
-    public abstract class Floor
+    public abstract class Area
     {
         public Tile[,] tiles;
         protected Point tileSize = new Point(16, 16);
         public Vector2 playerStart;
         TextureManager textures;
 
-        public Floor(TextureManager textures)
+        public Area(TextureManager textures)
         {
             this.textures = textures;
         }

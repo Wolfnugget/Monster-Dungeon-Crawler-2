@@ -31,7 +31,7 @@ namespace Dungeon_Crawler_2D.World
 
     public class Map
     {
-        public List<PreMadeFloor> rooms;
+        public List<PreMadeArea> rooms;
         public int currentRoom;
         protected TextureManager textures;
 
