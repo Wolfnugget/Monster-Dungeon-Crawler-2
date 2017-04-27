@@ -93,7 +93,7 @@ namespace Dungeon_Crawler_2D
             }
 
             //Is the room bigger than the screen? (X, but not Y)
-            if (roomSize.X >= (screenCenter.X * 2) - (bars.sideBarWidth / zoom) && roomSize.Y < screenCenter.Y * 2)
+            if (roomSize.X >= (screenCenter.X * 2) - ((bars.sideBarWidth * 2)  / zoom) && roomSize.Y < screenCenter.Y * 2)
             {
                 transform = Matrix.CreateTranslation(-cameraPos.X + screenCenter.X, (-roomSize.Y / 2) + screenCenter.Y, 0) * Matrix.CreateScale(zoomVector);
                 //Has it reached the left edge?
