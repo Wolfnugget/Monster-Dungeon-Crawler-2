@@ -15,7 +15,7 @@ namespace Dungeon_Crawler_2D.Object
         public Vector2 position;
         protected Vector2 destination;
 
-        int startingFrame, frame, frames, frameSize;
+        protected Point startingFrame, frame, frames, frameSize;
         float frameTime, frameDuration;
         Vector2 origin;
         protected SpriteEffects effect;
@@ -26,11 +26,13 @@ namespace Dungeon_Crawler_2D.Object
         {
             get
             {
-                return new Rectangle(frameSize * frame, 0, frameSize, frameSize);
+                return new Rectangle(frame.X * frameSize.Y,
+                    frame.Y * frameSize.Y,
+                    frameSize.X, frameSize.Y);
             }
         }
 
-        public Actor(Texture2D texture, Vector2 position, float speed, int frameSize, int frames, float frameTime)
+        public Actor(Texture2D texture, Vector2 position, float speed, Point frameSize, Point frames, float frameTime)
         {
             this.texture = texture;
             this.position = position;
@@ -41,7 +43,7 @@ namespace Dungeon_Crawler_2D.Object
             this.frames = frames;
             moving = false;
 
-            origin = new Vector2(frameSize / 2f, frameSize / 2f);
+            origin = new Vector2(frameSize.X / 2, frameSize.Y / 2);
         }
 
         public virtual void Update(GameTime gameTime)
@@ -56,22 +58,31 @@ namespace Dungeon_Crawler_2D.Object
         protected void Animate(GameTime gameTime)
         {
             frameDuration -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (frame.Y < startingFrame.Y || frame.Y > startingFrame.Y + frames.Y)
+            {
+                frame.Y = startingFrame.Y;
+            }
+            if (frame.X < startingFrame.X || frame.X > startingFrame.X + frames.X)
+            {
+                frame.X = startingFrame.X;
+            }
             if (frameDuration <= 0)
             {
                 frameDuration = frameTime;
-                frame++;
-                if (frame == frames)
+                if (frame.X < startingFrame.X + frames.X)
                 {
-                    frame = 0;
+                    frame.X++;
+                }
+                else if (frame.Y < startingFrame.Y + frames.Y)
+                {
+                    frame.X = startingFrame.X;
+                    frame.Y++;
+                }
+                else
+                {
+                    frame = startingFrame;
                 }
             }
-        }
-
-        public void SetTexture(Texture2D texture, int frameSize, int frames)
-        {
-            this.texture = texture;
-            this.frameSize = frameSize;
-            this.frames = frames;
         }
 
         /// <summary>
