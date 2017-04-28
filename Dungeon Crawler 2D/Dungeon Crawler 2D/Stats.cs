@@ -81,6 +81,19 @@ namespace Dungeon_Crawler_2D
                     xp += addition;
                     break;
             }
+
+            if (health <= 0)
+            {
+                health = 0;
+            }
+            if (xp <= 0)
+            {
+                xp = 0;
+            }
+            if (mana <= 0)
+            {
+                mana = 0;
+            }
         }
         
         public int CheckStat(Stat stat)
@@ -112,6 +125,8 @@ namespace Dungeon_Crawler_2D
                 default :
                     return 0;
             }
+            
+            
         }
 
         public void CheckLevelUpp()
@@ -180,7 +195,12 @@ namespace Dungeon_Crawler_2D
             {
                 if (e.effect == effect)
                 {
-                    return e.timer;
+                    if (e.timer <= 0)
+                    {
+                        e.timer = 0;
+                        
+                    }
+                    return e.timer;                   
                 }
             }
             return 0;

@@ -11,7 +11,7 @@ namespace Dungeon_Crawler_2D.Object
 {
     class Player : Actor
     {
-        bool alreadyPressed = false;
+        KeyboardState kbState, lastkbState;
         public Stats stats;
         public StatScreen statScreen;
         public bool showStats;
@@ -60,12 +60,12 @@ namespace Dungeon_Crawler_2D.Object
                 startingFrame = new Point(0, 1);
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.I))
+            lastkbState = kbState;
+            kbState = Keyboard.GetState();
+            if (kbState.IsKeyDown(Keys.I) && lastkbState.IsKeyUp(Keys.I))
             {
                 showStats = !showStats;
-                
             }
-                
 
             //Här ska frames bytas senare när vi har en sprite
 
