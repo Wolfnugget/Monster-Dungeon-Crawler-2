@@ -12,6 +12,7 @@ namespace Dungeon_Crawler_2D
 {
     class BarManager
     {
+        Stats stat;
         private Texture2D pixelTex;
         private SpriteFont comicSans;
 
@@ -98,6 +99,8 @@ namespace Dungeon_Crawler_2D
                 player.stats.ChangeStat(Stat.mana, -1);
                 player.stats.ChangeStat(Stat.xp, -1);
             }
+
+            
 
             //effects-display
             spriteBatch.Draw(textures.poisonIcon, new Rectangle(leftSideBarRect.X + (sideBarWidth / 2) - (statBarWidth / 2), sideBarWidth, statBarWidth, statBarWidth), Color.White * 0.1f);
