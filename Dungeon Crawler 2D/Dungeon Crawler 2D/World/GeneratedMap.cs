@@ -81,7 +81,7 @@ namespace Dungeon_Crawler_2D.World
 
                 while (exitsToAdd > 0 && rooms.Count < numberOfRooms) //genererar rum för varje dör, eller tills det inte ska genereras fler rum.
                 {
-                    int r = GetRandomNumberExcluding(excludeExit, 0, 3);
+                    int r = GeneratorUtility.GetRandomNumberExcluding(excludeExit, 0, 3);
                     if (r == 0)
                     {
                         rooms.Add(new PreMadeArea(GetRandomRoomPath("Maps/South"),
@@ -113,7 +113,7 @@ namespace Dungeon_Crawler_2D.World
                 }
                 excludeRoom.Add(addingExitsTo); //lägger till rummet som har genererats så att den inte försöker generera till det rummet igen.
 
-                addingExitsTo = GetRandomNumberExcluding(excludeRoom, 0, rooms.Count - 1); //tar ett nytt random rum som det sedan ska genereras nya rum till baserat på antal dörrar.
+                addingExitsTo = GeneratorUtility.GetRandomNumberExcluding(excludeRoom, 0, rooms.Count - 1); //tar ett nytt random rum som det sedan ska genereras nya rum till baserat på antal dörrar.
 
             }
             for (int i = 0; i < rooms.Count; i++)
@@ -236,31 +236,6 @@ namespace Dungeon_Crawler_2D.World
             }
 
             return false;
-        }
-
-        /// <summary>
-        /// Genererar ett tal mellan min och max, utesluter talen i listan exclude.
-        /// </summary>
-        /// <param name="exclude"></param>
-        /// <param name="min"></param>
-        /// <param name="max"></param>
-        /// <returns></returns>
-        private int GetRandomNumberExcluding(HashSet<int> exclude, int min, int max)
-        {
-            HashSet<int> range = new HashSet<int>();
-
-            for (int number = min; number <= max; number++)
-            {
-                if (!exclude.Contains(number))
-                {
-                    range.Add(number);
-                }
-            }
-
-            Random random = new Random();
-            int index = random.Next(0, range.Count());
-
-            return range.ElementAt(index);
         }
 
         /// <summary>

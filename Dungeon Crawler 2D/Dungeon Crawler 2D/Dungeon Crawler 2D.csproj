@@ -65,6 +65,7 @@
     <Compile Include="World\Area.cs" />
     <Compile Include="World\GeneratedDungeon.cs" />
     <Compile Include="World\GeneratedMap.cs" />
+    <Compile Include="World\GeneratorUtility.cs" />
     <Compile Include="World\Map.cs" />
     <Compile Include="World\PreMadeArea.cs" />
     <Compile Include="World\Tile.cs" />
