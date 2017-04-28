@@ -104,7 +104,7 @@ namespace Dungeon_Crawler_2D.World
                 for (int x = 1; x < tiles.GetLength(1) - 1; x += 2)
                 {
                     if (tileNumBP[y, x] == 0 &&
-                        !SampleAdjacentTiles(new Point(x, y), TileType.HorizontalWall))
+                        SampleAdjacentNumericalTiles(new Point(x, y)))
                     {
 
                     }
@@ -135,7 +135,7 @@ namespace Dungeon_Crawler_2D.World
                         if (floodList[index].Y > 1 && floodList[index].X
                             > 1 && floodList[index].X < tiles.GetLength(1) - 2)
                         {
-                            if (!TestDirection(floodList[index], new Point(0, -1),TileType.basic))
+                            if (!TestDirection(floodList[index], new Point(0, -1)))
                             {
                                 tiles[floodList[index].Y - 1, floodList[index].X] = new Tile(TileType.basic, true);
                                 floodList.Add(floodList[index] + new Point(0, -1));
@@ -148,7 +148,7 @@ namespace Dungeon_Crawler_2D.World
                         if (floodList[index].Y > 1 && floodList[index].Y
                             < tiles.GetLength(0) - 2 && floodList[index].X < tiles.GetLength(1) - 2)
                         {
-                            if (!TestDirection(floodList[index], new Point(1, 0), TileType.basic))
+                            if (!TestDirection(floodList[index], new Point(1, 0)))
                             {
                                 tiles[floodList[index].Y, floodList[index].X + 1] = new Tile(TileType.basic, true);
                                 floodList.Add(floodList[index] + new Point(1, 0));
@@ -161,7 +161,7 @@ namespace Dungeon_Crawler_2D.World
                         if (floodList[index].X > 1 && floodList[index].X
                             < tiles.GetLength(1) - 2 && floodList[index].Y > 1)
                         {
-                            if (!TestDirection(floodList[index], new Point(1, 0), TileType.basic))
+                            if (!TestDirection(floodList[index], new Point(1, 0)))
                             {
                                 tiles[floodList[index].Y + 1, floodList[index].X] = new Tile(TileType.basic, true);
                                 floodList.Add(floodList[index] + new Point(0, 1));
@@ -174,7 +174,7 @@ namespace Dungeon_Crawler_2D.World
                         if (floodList[index].X > 1 && floodList[index].Y
                             < tiles.GetLength(0) - 2 && floodList[index].Y > 1)
                         {
-                            if (!TestDirection(floodList[index], new Point(1, 0), TileType.basic))
+                            if (!TestDirection(floodList[index], new Point(1, 0)))
                             {
                                 tiles[floodList[index].Y, floodList[index].X - 1] = new Tile(TileType.basic, true);
                                 floodList.Add(floodList[index] + new Point(-1, 0));
@@ -191,13 +191,13 @@ namespace Dungeon_Crawler_2D.World
             }
         }
 
-        private bool TestDirection(Point tile, Point direction, byte lookingFor)
+        private bool TestDirection(Point tile, Point direction)
         {
             if (direction.X == 0)
             {
                 for (int t = -1; t < 2; t++)
                 {
-                    if (tileNumBP[tile.Y + direction.Y, tile.X + t] == lookingFor)
+                    if (tileNumBP[tile.Y + direction.Y, tile.X + t] != 0)
                     {
                         return true;
                     }
@@ -207,7 +207,7 @@ namespace Dungeon_Crawler_2D.World
             {
                 for (int t = -1; t < 2; t++)
                 {
-                    if (tileNumBP[tile.Y + t, tile.X + direction.X] == lookingFor)
+                    if (tileNumBP[tile.Y + t, tile.X + direction.X] != 0)
                     {
                         return true;
                     }

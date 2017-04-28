@@ -9,6 +9,5 @@ namespace Dungeon_Crawler_2D.Menus
     public class FadeAnimation : Animation
     {
         bool increase;
-
     }
 }

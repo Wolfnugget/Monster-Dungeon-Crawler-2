@@ -62,7 +62,7 @@ namespace Dungeon_Crawler_2D
             
             //experience-bar
             spriteBatch.Draw(textures.barsSheet, new Rectangle(rightSideBarRect.X + (sideBarWidth / 2) - (statBarWidth / 2), (windowHeight / 2) - (sideBarWidth * 2), statBarWidth, sideBarWidth * 2), new Rectangle(24, 0, 8, textures.barsSheet.Height), Color.White);
-            spriteBatch.Draw(textures.barsSheet, new Rectangle(rightSideBarRect.X + (sideBarWidth / 2) - (statBarWidth / 2), (windowHeight / 2) - (player.stats.CheckStat(Stat.experience) * 4), statBarWidth, player.stats.CheckStat(Stat.experience) * 4), new Rectangle(16, 0, 8, textures.barsSheet.Height), Color.White);
+            spriteBatch.Draw(textures.barsSheet, new Rectangle(rightSideBarRect.X + (sideBarWidth / 2) - (statBarWidth / 2), (windowHeight / 2) - (player.stats.CheckStat(Stat.xp) * 4), statBarWidth, player.stats.CheckStat(Stat.xp) * 4), new Rectangle(16, 0, 8, textures.barsSheet.Height), Color.White);
 
 
             if (Keyboard.GetState().IsKeyDown(Keys.Q))
@@ -71,9 +71,9 @@ namespace Dungeon_Crawler_2D
                 player.stats.AddEffect(1, Effects.bleed, 1);
                 player.stats.AddEffect(1, Effects.confusion, 1);
 
-                player.stats.ChangeStat(1, Stat.health);
-                player.stats.ChangeStat(1, Stat.mana);
-                player.stats.ChangeStat(1, Stat.experience);
+                player.stats.ChangeStat(Stat.health, 1);
+                player.stats.ChangeStat(Stat.mana, 1);
+                player.stats.ChangeStat(Stat.xp, 1);
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.E))
@@ -82,9 +82,9 @@ namespace Dungeon_Crawler_2D
                 player.stats.AddEffect(-1, Effects.bleed, 1);
                 player.stats.AddEffect(-1, Effects.confusion, 1);
 
-                player.stats.ChangeStat(-1, Stat.health);
-                player.stats.ChangeStat(-1, Stat.mana);
-                player.stats.ChangeStat(-1, Stat.experience);
+                player.stats.ChangeStat(Stat.health, -1);
+                player.stats.ChangeStat(Stat.mana, -1);
+                player.stats.ChangeStat(Stat.xp, -1);
             }
 
             //effects-display
@@ -116,9 +116,9 @@ namespace Dungeon_Crawler_2D
             Vector2 originMP = new Vector2(textSizeMP.X * 0.5f, 0);
             spriteBatch.DrawString(comicSans, "MP: " + player.stats.CheckStat(Stat.mana), new Vector2(rightSideBarRect.X + (sideBarWidth / 2), windowHeight - sideBarWidth), Color.Blue, 0, originMP, 2, SpriteEffects.None, 0);
 
-            Vector2 textSizeXP = comicSans.MeasureString("XP: " + player.stats.CheckStat(Stat.experience));
+            Vector2 textSizeXP = comicSans.MeasureString("XP: " + player.stats.CheckStat(Stat.xp));
             Vector2 originXP = new Vector2(textSizeXP.X * 0.5f, 0);
-            spriteBatch.DrawString(comicSans, "XP: " + player.stats.CheckStat(Stat.experience), new Vector2(rightSideBarRect.X + (sideBarWidth / 2), windowHeight / 2), Color.Green, 0, originXP, 2, SpriteEffects.None, 0);
+            spriteBatch.DrawString(comicSans, "XP: " + player.stats.CheckStat(Stat.xp), new Vector2(rightSideBarRect.X + (sideBarWidth / 2), windowHeight / 2), Color.Green, 0, originXP, 2, SpriteEffects.None, 0);
 
             //text till icons
             Vector2 textSizePoison = comicSans.MeasureString("" + player.stats.CheckEffectTime(Effects.poison));
