@@ -60,7 +60,8 @@ namespace Dungeon_Crawler_2D
             textures = new TextureManager(Content);
             
             
-            map = new World.GeneratedMap(textures, 20, 4);
+            //map = new World.GeneratedMap(textures, 20, 4);
+            map = new World.RandomGeneratedMap(textures);
             map.Event += HandleEvents;
             player = new Object.Player(textures.playerSpriteSheet, textures, map.GetPlayerStart(), 100, new Point(16, 16), new Point(2, 0), 0.3f);
             player.Action += HandleEvents;
@@ -75,8 +76,6 @@ namespace Dungeon_Crawler_2D
 
             bars = new BarManager(textures, GraphicsDevice, Content, player, windowWidth, windowHeight);
             cam = new Camera2D(bars, view, windowWidth, windowHeight, map, zoom);
-
-            genTest = new World.GeneratedDungeon(new Point(60, 60), textures, 0);
         }
         protected override void Update(GameTime gameTime)
         {

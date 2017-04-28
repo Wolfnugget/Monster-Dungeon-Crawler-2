@@ -11,10 +11,7 @@ namespace Dungeon_Crawler_2D.World
 {
     public class PreMadeArea: Area
     {
-        public Point roomCoords;
-        public bool[] doors;
-
-        public PreMadeArea(string roomPath, Point roomCoords, TextureManager textures)
+        public PreMadeArea(string roomPath, Point areaCoords, TextureManager textures)
             : base(textures)
         {
             List<string>  roomBluePrint = new List<string>();
@@ -26,7 +23,7 @@ namespace Dungeon_Crawler_2D.World
             }
 
             int x = (roomBluePrint.Aggregate("", (max, cur) => max.Length > cur.Length ? max : cur)).Length;
-            this.roomCoords = roomCoords;
+            this.areaCoords = areaCoords;
 
             tiles = new Tile[roomBluePrint.Count, x];
 
