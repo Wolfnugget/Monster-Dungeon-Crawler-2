@@ -30,6 +30,8 @@ namespace Dungeon_Crawler_2D
         private int windowHeight;
         private int windowWidth;
 
+        World.GeneratedDungeon genTest;
+
         GameState gameState;
 
         public Game1()
@@ -73,6 +75,8 @@ namespace Dungeon_Crawler_2D
 
             bars = new BarManager(textures, GraphicsDevice, Content, player, windowWidth, windowHeight);
             cam = new Camera2D(bars, view, windowWidth, windowHeight, map, zoom);
+
+            genTest = new World.GeneratedDungeon(new Point(60, 60), textures, 0);
         }
         protected override void Update(GameTime gameTime)
         {

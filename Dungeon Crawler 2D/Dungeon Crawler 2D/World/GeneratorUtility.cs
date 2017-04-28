@@ -17,7 +17,7 @@ namespace Dungeon_Crawler_2D.World
         /// <param name="min"></param>
         /// <param name="max"></param>
         /// <returns></returns>
-        public static int GetRandomNumberExcluding(HashSet<int> exclude, int min, int max)
+        public static int GetRandomNumberExcluding(Random random, HashSet<int> exclude, int min, int max)
         {
             HashSet<int> range = new HashSet<int>();
 
@@ -29,7 +29,6 @@ namespace Dungeon_Crawler_2D.World
                 }
             }
 
-            Random random = new Random();
             int index = random.Next(0, range.Count());
 
             return range.ElementAt(index);
