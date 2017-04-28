@@ -53,16 +53,28 @@ namespace Dungeon_Crawler_2D
             spriteBatch.Draw(pixelTex, rightSideBarRect, Color.Black);
             
             //health-bar
-            spriteBatch.Draw(textures.barsSheet, new Rectangle(leftSideBarRect.X + (sideBarWidth / 2) - (statBarWidth / 2), windowHeight - sideBarWidth - (player.stats.CheckStat(Stat.maxHealth) * 2), statBarWidth, player.stats.CheckStat(Stat.maxHealth) * 2), new Rectangle(24, 0, 8, textures.barsSheet.Height), Color.White);
-            spriteBatch.Draw(textures.barsSheet, new Rectangle(leftSideBarRect.X + (sideBarWidth / 2) - (statBarWidth / 2), windowHeight - sideBarWidth - (player.stats.CheckStat(Stat.health) * 2), statBarWidth, player.stats.CheckStat(Stat.health) * 2), new Rectangle(0, 0, 8, textures.barsSheet.Height), Color.White);
+            spriteBatch.Draw(textures.barsSheet, new Rectangle(leftSideBarRect.X + (sideBarWidth / 2)
+                - (statBarWidth / 2), windowHeight - sideBarWidth - (player.stats.CheckStat(Stat.maxHealth) * 2)
+                , statBarWidth, player.stats.CheckStat(Stat.maxHealth) * 2), new Rectangle(24, 0, 8, textures.barsSheet.Height), Color.White);
+            spriteBatch.Draw(textures.barsSheet, new Rectangle(leftSideBarRect.X + (sideBarWidth / 2)
+                - (statBarWidth / 2), windowHeight - sideBarWidth - (player.stats.CheckStat(Stat.health) * 2),
+                statBarWidth, player.stats.CheckStat(Stat.health) * 2), new Rectangle(0, 0, 8, textures.barsSheet.Height), Color.White);
 
             //mana-bar
-            spriteBatch.Draw(textures.barsSheet, new Rectangle(rightSideBarRect.X + (sideBarWidth / 2) - (statBarWidth / 2), windowHeight - sideBarWidth - (player.stats.CheckStat(Stat.maxMana) * 2), statBarWidth, player.stats.CheckStat(Stat.maxMana) * 2), new Rectangle(24, 0, 8, textures.barsSheet.Height), Color.White);
-            spriteBatch.Draw(textures.barsSheet, new Rectangle(rightSideBarRect.X + (sideBarWidth / 2) - (statBarWidth / 2), windowHeight - sideBarWidth - (player.stats.CheckStat(Stat.mana) * 2), statBarWidth, player.stats.CheckStat(Stat.mana) * 2), new Rectangle(8, 0, 8, textures.barsSheet.Height), Color.White);
+            spriteBatch.Draw(textures.barsSheet, new Rectangle(rightSideBarRect.X + (sideBarWidth / 2)
+                - (statBarWidth / 2), windowHeight - sideBarWidth - (player.stats.CheckStat(Stat.maxMana) * 2),
+                statBarWidth, player.stats.CheckStat(Stat.maxMana) * 2), new Rectangle(24, 0, 8, textures.barsSheet.Height), Color.White);
+            spriteBatch.Draw(textures.barsSheet, new Rectangle(rightSideBarRect.X + (sideBarWidth / 2)
+                - (statBarWidth / 2), windowHeight - sideBarWidth - (player.stats.CheckStat(Stat.mana) * 2),
+                statBarWidth, player.stats.CheckStat(Stat.mana) * 2), new Rectangle(8, 0, 8, textures.barsSheet.Height), Color.White);
             
             //experience-bar
-            spriteBatch.Draw(textures.barsSheet, new Rectangle(rightSideBarRect.X + (sideBarWidth / 2) - (statBarWidth / 2), (windowHeight / 2) - (sideBarWidth * 2), statBarWidth, sideBarWidth * 2), new Rectangle(24, 0, 8, textures.barsSheet.Height), Color.White);
-            spriteBatch.Draw(textures.barsSheet, new Rectangle(rightSideBarRect.X + (sideBarWidth / 2) - (statBarWidth / 2), (windowHeight / 2) - (player.stats.CheckStat(Stat.xp) * 4), statBarWidth, player.stats.CheckStat(Stat.xp) * 4), new Rectangle(16, 0, 8, textures.barsSheet.Height), Color.White);
+            spriteBatch.Draw(textures.barsSheet, new Rectangle(rightSideBarRect.X + (sideBarWidth / 2)
+                - (statBarWidth / 2), (windowHeight / 2) - (sideBarWidth * 2), statBarWidth, sideBarWidth * 2),
+                new Rectangle(24, 0, 8, textures.barsSheet.Height), Color.White);
+            spriteBatch.Draw(textures.barsSheet, new Rectangle(rightSideBarRect.X + (sideBarWidth / 2)
+                - (statBarWidth / 2), (windowHeight / 2) - (player.stats.CheckStat(Stat.xp) * 4), statBarWidth, player.stats.CheckStat(Stat.xp) * 4),
+                new Rectangle(16, 0, 8, textures.barsSheet.Height), Color.White);
 
 
             if (Keyboard.GetState().IsKeyDown(Keys.Q))
