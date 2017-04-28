@@ -122,33 +122,46 @@ namespace Dungeon_Crawler_2D
             //text till bars
             Vector2 textSizeHP = comicSans.MeasureString("HP: " + player.stats.CheckStat(Stat.health));
             Vector2 originHP = new Vector2(textSizeHP.X * 0.5f, 0);
-            spriteBatch.DrawString(comicSans, "HP: " + player.stats.CheckStat(Stat.health), new Vector2(leftSideBarRect.X + (sideBarWidth / 2), windowHeight - sideBarWidth), Color.Red, 0, originHP, 2, SpriteEffects.None, 0);
+            spriteBatch.DrawString(comicSans, "HP: " + player.stats.CheckStat(Stat.health),
+                new Vector2(leftSideBarRect.X + (sideBarWidth / 2), windowHeight - sideBarWidth),
+                Color.Red, 0, originHP, 2, SpriteEffects.None, 0);
 
             Vector2 textSizeMP = comicSans.MeasureString("MP: " + player.stats.CheckStat(Stat.mana));
             Vector2 originMP = new Vector2(textSizeMP.X * 0.5f, 0);
-            spriteBatch.DrawString(comicSans, "MP: " + player.stats.CheckStat(Stat.mana), new Vector2(rightSideBarRect.X + (sideBarWidth / 2), windowHeight - sideBarWidth), Color.Blue, 0, originMP, 2, SpriteEffects.None, 0);
+            spriteBatch.DrawString(comicSans, "MP: " + player.stats.CheckStat(Stat.mana),
+                new Vector2(rightSideBarRect.X + (sideBarWidth / 2), windowHeight - sideBarWidth),
+                Color.Blue, 0, originMP, 2, SpriteEffects.None, 0);
 
             Vector2 textSizeXP = comicSans.MeasureString("XP: " + player.stats.CheckStat(Stat.xp));
             Vector2 originXP = new Vector2(textSizeXP.X * 0.5f, 0);
-            spriteBatch.DrawString(comicSans, "XP: " + player.stats.CheckStat(Stat.xp), new Vector2(rightSideBarRect.X + (sideBarWidth / 2), windowHeight / 2), Color.Green, 0, originXP, 2, SpriteEffects.None, 0);
+            spriteBatch.DrawString(comicSans, "XP: " + player.stats.CheckStat(Stat.xp),
+                new Vector2(rightSideBarRect.X + (sideBarWidth / 2), windowHeight / 2),
+                Color.Green, 0, originXP, 2, SpriteEffects.None, 0);
 
             //text till icons
             Vector2 textSizePoison = comicSans.MeasureString("" + player.stats.CheckEffectTime(Effects.poison));
             Vector2 originPoison = new Vector2(textSizePoison.X * 0.5f, 0);
-            spriteBatch.DrawString(comicSans, "" + player.stats.CheckEffectTime(Effects.poison), new Vector2(leftSideBarRect.X + (sideBarWidth / 2), sideBarWidth + statBarWidth), Color.Green, 0, originPoison, 2, SpriteEffects.None, 0);
+            spriteBatch.DrawString(comicSans, "" + player.stats.CheckEffectTime(Effects.poison),
+                new Vector2(leftSideBarRect.X + (sideBarWidth / 2), sideBarWidth + statBarWidth),
+                Color.Green, 0, originPoison, 2, SpriteEffects.None, 0);
 
             Vector2 textSizeBleed = comicSans.MeasureString("" + player.stats.CheckEffectTime(Effects.bleed));
             Vector2 originBleed = new Vector2(textSizeBleed.X * 0.5f, 0);
-            spriteBatch.DrawString(comicSans, "" + player.stats.CheckEffectTime(Effects.bleed), new Vector2(leftSideBarRect.X + (sideBarWidth / 2), sideBarWidth + (statBarWidth * 3)), Color.Red, 0, originBleed, 2, SpriteEffects.None, 0);
+            spriteBatch.DrawString(comicSans, "" + player.stats.CheckEffectTime(Effects.bleed),
+                new Vector2(leftSideBarRect.X + (sideBarWidth / 2), sideBarWidth + (statBarWidth * 3)),
+                Color.Red, 0, originBleed, 2, SpriteEffects.None, 0);
 
             Vector2 textSizeConfusion = comicSans.MeasureString("" + player.stats.CheckEffectTime(Effects.confusion));
             Vector2 originConfusion = new Vector2(textSizeConfusion.X * 0.5f, 0);
-            spriteBatch.DrawString(comicSans, "" + player.stats.CheckEffectTime(Effects.confusion), new Vector2(leftSideBarRect.X + (sideBarWidth / 2), sideBarWidth + (statBarWidth * 5)), Color.Yellow, 0, originConfusion, 2, SpriteEffects.None, 0);
+            spriteBatch.DrawString(comicSans, "" + player.stats.CheckEffectTime(Effects.confusion),
+                new Vector2(leftSideBarRect.X + (sideBarWidth / 2), sideBarWidth + (statBarWidth * 5)),
+                Color.Yellow, 0, originConfusion, 2, SpriteEffects.None, 0);
 
             //visar experience level
             Vector2 textSizeXpLevel = comicSans.MeasureString("lvl " + "?");
             Vector2 originXpLevel = new Vector2(textSizeXpLevel.X * 0.5f, 0);
-            spriteBatch.DrawString(comicSans, "lvl " + "?", new Vector2(rightSideBarRect.X + (sideBarWidth / 2), statBarWidth * 2), Color.GhostWhite, 0, originXpLevel, 3, SpriteEffects.None, 0);
+            spriteBatch.DrawString(comicSans, "lvl " + "?", new Vector2(rightSideBarRect.X + (sideBarWidth / 2),
+                statBarWidth * 2), Color.GhostWhite, 0, originXpLevel, 3, SpriteEffects.None, 0);
         }
     }
 }
