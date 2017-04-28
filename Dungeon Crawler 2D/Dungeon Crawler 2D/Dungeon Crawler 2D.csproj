@@ -44,9 +44,11 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Abilities.cs" />
     <Compile Include="BarManager.cs" />
     <Compile Include="Camera2D.cs" />
     <Compile Include="Effect.cs" />
+    <Compile Include="Enemy.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Menus\Animation.cs" />
