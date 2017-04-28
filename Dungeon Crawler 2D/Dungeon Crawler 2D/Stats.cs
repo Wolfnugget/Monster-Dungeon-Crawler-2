@@ -86,13 +86,25 @@ namespace Dungeon_Crawler_2D
             {
                 health = 0;
             }
+            if (health >= maxHealth)
+            {
+                health = maxHealth;
+            }
             if (xp <= 0)
             {
                 xp = 0;
             }
+            if (xp >= maxXp)
+            {
+                xp = maxXp;
+            }
             if (mana <= 0)
             {
                 mana = 0;
+            }
+            if (mana >= maxMana)
+            {
+                mana = maxMana;
             }
         }
         
