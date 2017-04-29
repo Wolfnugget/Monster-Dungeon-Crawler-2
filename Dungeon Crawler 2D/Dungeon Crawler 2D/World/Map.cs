@@ -18,6 +18,7 @@ namespace Dungeon_Crawler_2D.World
         basic,
         Stairs,
         Portal,
+        ExitPortal,
         TopRightCorner,
         TopLeftCorner,
         BottomRightCorner,

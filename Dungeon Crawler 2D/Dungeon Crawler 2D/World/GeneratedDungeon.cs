@@ -16,6 +16,8 @@ namespace Dungeon_Crawler_2D.World
 
         int bossRoom;
 
+        Random rand;
+
         int totalRegions { get { return roomRegions.Count + mazeRegions.Count; } }
 
         public GeneratedDungeon(Point dimensions, TextureManager textures)
@@ -31,6 +33,8 @@ namespace Dungeon_Crawler_2D.World
             }
 
             tiles = new Tile[dimensions.Y, dimensions.X];
+
+            rand = new Random();
 
             tileNumBP = new byte[dimensions.Y, dimensions.X];
             GenerateDungeon();
@@ -56,7 +60,6 @@ namespace Dungeon_Crawler_2D.World
             List<Rectangle> roomsToMake = new List<Rectangle>();
 
             int failedTries, maxFailedTries;
-            Random rand = new Random();
 
             failedTries = 0;
             maxFailedTries = 100;
@@ -137,8 +140,6 @@ namespace Dungeon_Crawler_2D.World
             floodList.Clear();
             tileNumBP[start.Y, start.X] = region;
             floodList.Add(start);
-
-            Random rand = new Random();
 
             HashSet<int> exludePaths = new HashSet<int>();
 
@@ -295,7 +296,6 @@ namespace Dungeon_Crawler_2D.World
 
             List<byte> connectedRegions = new List<byte>();
 
-            Random rand = new Random();
             byte connectingTo = 1;
             connectedRegions.Add(1);
             List<int> possibleConnections = new List<int>();
@@ -439,7 +439,6 @@ namespace Dungeon_Crawler_2D.World
 
         private void ConvertBPToTiles()
         {
-            Random rand = new Random();
             List<int> monsterRegions = new List<int>();
             List<Point> possibleStartTiles = new List<Point>();
 
@@ -569,7 +568,6 @@ namespace Dungeon_Crawler_2D.World
         private int FindRoomFurthestFromStar(int startX, int startY)
         {
             int currentMatch = 0;
-            Random rand = new Random();
             int index, currentMatchLength = 0, processingLength;
             List<Point> tilesInRegion = new List<Point>();
 
@@ -671,6 +669,55 @@ namespace Dungeon_Crawler_2D.World
                 this.prior = prior;
                 this.movesTo = movesTo;
             }
+        }
+
+
+        private void AddEnemies()
+        {
+            int enemyPercentageInMaze = 1;
+            int monsterTilePercentageInMaze = 2;
+            int enemyPercentageNormalRooms = 2;
+            int enemyPercentageInMonsterRooms = 5;
+
+            for (int y = 1; y < tiles.GetLength(0); y++)
+                for (int x = 1; x < tiles.GetLength(1); x++)
+                {
+                    if (tileNumBP[y, x] > 1)
+                    {
+                        if (mazeRegions.Contains(tileNumBP[y, x]))
+                        {
+                            if (rand.Next(0, 100) > enemyPercentageInMaze)
+                            {
+
+                            }
+                            if (rand.Next(0, 100) > monsterTilePercentageInMaze)
+                            {
+                                tiles[y, x].type = TileType.MonsterTile;
+                            }
+                        }
+                        else if (tileNumBP[y, x] == bossRoom)
+                        {
+
+                        }
+                        else if (tiles[y, x].type == TileType.MonsterTile)
+                        {
+                            if (rand.Next(0, 100) > enemyPercentageInMonsterRooms)
+                            {
+
+                            }
+                        }
+                        else
+                        {
+                            if (rand.Next(0, 100) > enemyPercentageNormalRooms)
+                            {
+
+                            }
+                        }
+                    }
+                }
+
+
+
         }
 
         #region Debug
