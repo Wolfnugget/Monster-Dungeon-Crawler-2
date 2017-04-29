@@ -58,8 +58,8 @@ namespace Dungeon_Crawler_2D
             ScreenManager.Instance.LoadContent(Content);
 
             textures = new TextureManager(Content);
-            
-            
+
+
             //map = new World.GeneratedMap(textures, 20, 4);
             map = new World.RandomGeneratedMap(textures);
             map.Event += HandleEvents;

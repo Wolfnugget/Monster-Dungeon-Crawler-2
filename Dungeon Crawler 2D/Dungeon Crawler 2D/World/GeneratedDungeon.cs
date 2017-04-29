@@ -14,6 +14,8 @@ namespace Dungeon_Crawler_2D.World
 
         List<int> roomRegions, mazeRegions;
 
+        int bossRoom;
+
         int totalRegions { get { return roomRegions.Count + mazeRegions.Count; } }
 
         public GeneratedDungeon(Point dimensions, TextureManager textures)
@@ -45,8 +47,8 @@ namespace Dungeon_Crawler_2D.World
             FillEmptySpace();
             ConnectRegions();
             RemoveDeadEnds();
-            //DebugNumericalTileArray();
             ConvertBPToTiles();
+            DebugNumericalTileArray();
         }
 
         private void GenerateNumericalRooms(Point maxRoomDimensions, Point minRoomDimensions)
@@ -304,6 +306,8 @@ namespace Dungeon_Crawler_2D.World
 
             while (connectedRegions.Count < totalRegions)
             {
+                index = GeneratorUtility.GetRandomNumberExcluding(rand, exlude, 0, connectedRegions.Count - 1);
+                connectingTo = connectedRegions[index];
                 possibleConnections.Clear();
                 for (int i = 0; i < connections.Count; i++)
                 {
@@ -338,10 +342,6 @@ namespace Dungeon_Crawler_2D.World
                         }
                     }
                 }
-
-                index = GeneratorUtility.GetRandomNumberExcluding(rand, exlude, 0, connectedRegions.Count - 1);
-
-                connectingTo = connectedRegions[index];
             }
 
             int extraConnectorPercentage = 3;
@@ -471,8 +471,7 @@ namespace Dungeon_Crawler_2D.World
 
             Point startTile = possibleStartTiles[rand.Next(0, possibleStartTiles.Count - 1)];
             playerStart = GetTileCenter(startTile.X, startTile.Y);
-
-            DebugNumericalTileArrayContainedInList(monsterRegions);
+            bossRoom = FindRoomFurthestFromStar(startTile.X, startTile.Y);
         }
 
         private TileType TilePicker(int x, int y, out bool pasable)
@@ -567,6 +566,115 @@ namespace Dungeon_Crawler_2D.World
             }
         }
 
+        private int FindRoomFurthestFromStar(int startX, int startY)
+        {
+            int currentMatch = 0;
+            Random rand = new Random();
+            int index, currentMatchLength = 0, processingLength;
+            List<Point> tilesInRegion = new List<Point>();
+
+            for (int i = 1; i < roomRegions.Count; i++)
+            {
+                tilesInRegion.Clear();
+                for (int y = 0; y < tileNumBP.GetLength(0); y++)
+                    for (int x = 0; x < tileNumBP.GetLength(1); x++)
+                    {
+                        if (tileNumBP[y, x] == roomRegions[i])
+                        {
+                            tilesInRegion.Add(new Point(x, y));
+                        }
+                    }
+
+                index = rand.Next(0, tilesInRegion.Count - 1);
+                processingLength = FindShortestPath(startX, startY, tilesInRegion[index].X, tilesInRegion[index].Y);
+
+                if (currentMatch == 0)
+                {
+                    currentMatch = roomRegions[i];
+                    currentMatchLength = processingLength;
+                }
+                else if (processingLength > currentMatchLength)
+                {
+                    currentMatch = roomRegions[i];
+                    currentMatchLength = processingLength;
+                }
+            }
+            Console.WriteLine("Boss: " + currentMatch);
+            Console.ReadLine();
+            return currentMatch;
+        }
+
+        private int FindShortestPath(int startX, int startY, int destX, int destY)
+        {
+            Dictionary<Point, PathNode> visitedTiles = new Dictionary<Point, PathNode>();
+            Queue<Point> processing = new Queue<Point>();
+            processing.Enqueue(new Point(startX, startY));
+
+            PathNode processingNode;
+
+            visitedTiles.Add(new Point(startX, startY), new PathNode(new Point (startX, startY),new Point(startX, startY), 0));
+            List<Point> possibleMoves = new List<Point>();
+
+            while (processing.Count > 0)
+            {
+                visitedTiles.TryGetValue(processing.Dequeue(), out processingNode);
+                if (processingNode.tile.X == destX && processingNode.tile.Y == destY)
+                {
+                    return processingNode.movesTo;
+                }
+                possibleMoves = GetPossibleMoves(processingNode.tile);
+                for (int i = 0; i < possibleMoves.Count; i++)
+                {
+                    if (!visitedTiles.ContainsKey(possibleMoves[i]))
+                    {
+                        visitedTiles.Add(new Point(possibleMoves[i].X, possibleMoves[i].Y),
+                            new PathNode(new Point(possibleMoves[i].X, possibleMoves[i].Y),
+                            new Point(processingNode.tile.X, processingNode.tile.Y), processingNode.movesTo + 1));
+                        processing.Enqueue(possibleMoves[i]);
+                    }
+                }
+            }
+            return 0;
+        }
+
+        private List<Point> GetPossibleMoves(Point from)
+        {
+            List<Point> possible = new List<Point>();
+
+            if (from.Y < tileNumBP.GetLength(0) - 2 && tileNumBP[from.Y + 1, from.X] != 0)
+            {
+                possible.Add(new Point(from.X, from.Y + 1));
+            }
+            if (from.Y > 1 && tileNumBP[from.Y - 1, from.X] != 0)
+            {
+                possible.Add(new Point(from.X, from.Y - 1));
+            }
+            if (from.X < tileNumBP.GetLength(1) - 2 && tileNumBP[from.Y, from.X + 1] != 0)
+            {
+                possible.Add(new Point(from.X + 1, from.Y));
+            }
+            if (from.X > 1 && tileNumBP[from.Y, from.X - 1] != 0)
+            {
+                possible.Add(new Point(from.X - 1, from.Y));
+            }
+
+            return possible;
+        }
+
+        private struct PathNode
+        {
+            public Point tile;
+            public Point prior;
+            public int movesTo;
+
+            public PathNode(Point tile, Point prior, int movesTo)
+            {
+                this.tile = tile;
+                this.prior = prior;
+                this.movesTo = movesTo;
+            }
+        }
+
         #region Debug
         private void DebugNumericalTileArray()
         {
@@ -582,8 +690,13 @@ namespace Dungeon_Crawler_2D.World
                     }
                     else if (tileNumBP[y, x] == 1)
                     {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.ForegroundColor = ConsoleColor.White;
                         Console.Write("1");
+                    }
+                    else if (tileNumBP[y, x] == bossRoom)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("B");
                     }
                     else if (roomRegions.Contains(tileNumBP[y, x]))
                     {
