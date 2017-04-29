@@ -54,10 +54,12 @@ namespace Dungeon_Crawler_2D
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             textures = new TextureManager(Content);
+
             ScreenManager.Instance.LoadContent(Content);
             
             map = new World.GeneratedMap(textures, 20, 4);
             //map = new World.RandomGeneratedMap(textures);
+            
             map.Event += HandleEvents;
             player = new Object.Player(textures.playerSpriteSheet, textures, map.GetPlayerStart(), 100, new Point(16, 16), new Point(2, 0), 0.1f);
             player.Action += HandleEvents;
@@ -75,7 +77,6 @@ namespace Dungeon_Crawler_2D
         }
         protected override void Update(GameTime gameTime)
         {
-            //-----------------------------------------------------------------------
             if (Keyboard.GetState().IsKeyDown(Keys.F))
             {
                 gameState = GameState.Explore;
@@ -84,8 +85,6 @@ namespace Dungeon_Crawler_2D
             {
                 gameState = GameState.Battle;
             }
-
-            //-----------------------------------------------------------------------
 
             if (gameState == GameState.Menu)
             {

@@ -17,14 +17,14 @@ namespace Dungeon_Crawler_2D.World
         public bool[] doors;
         public Point areaCoords;
 
-        private int renderRadiusX, renderRadiusY, screenCenterX, screenCenterY;
+        private int renderDistanceX, renderDistanceY, screenCenterX, screenCenterY;
 
         public Area(TextureManager textures)
         {
             this.textures = textures;
 
-            renderRadiusX = 20;
-            renderRadiusY = 20;
+            renderDistanceX = 20;
+            renderDistanceY = 20;
         }
 
         public void Update(GameTime gameTime, Vector2 cameraCenter)
@@ -34,10 +34,10 @@ namespace Dungeon_Crawler_2D.World
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            int yStart = Math.Max(0, screenCenterY - renderRadiusY);
-            int xStart = Math.Max(0, screenCenterX - renderRadiusX);
-            int yMax = Math.Min(tiles.GetLength(0), screenCenterY + renderRadiusY);
-            int xMax = Math.Min(tiles.GetLength(1), screenCenterX + renderRadiusX);
+            int yStart = Math.Max(0, screenCenterY - renderDistanceY);
+            int xStart = Math.Max(0, screenCenterX - renderDistanceX);
+            int yMax = Math.Min(tiles.GetLength(0), screenCenterY + renderDistanceY);
+            int xMax = Math.Min(tiles.GetLength(1), screenCenterX + renderDistanceX);
 
             for (int y = yStart; y < yMax; y++)
                 for (int x = xStart; x < xMax; x++)
