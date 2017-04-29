@@ -53,20 +53,17 @@ namespace Dungeon_Crawler_2D
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            ScreenManager.Instance.LoadContent(Content);
-
             textures = new TextureManager(Content);
-            
+            ScreenManager.Instance.LoadContent(Content);
             
             map = new World.GeneratedMap(textures, 20, 4);
             //map = new World.RandomGeneratedMap(textures);
             map.Event += HandleEvents;
-            player = new Object.Player(textures.playerSpriteSheet, textures, map.GetPlayerStart(), 100, new Point(16, 16), new Point(2, 0), 0.3f);
+            player = new Object.Player(textures.playerSpriteSheet, textures, map.GetPlayerStart(), 100, new Point(16, 16), new Point(2, 0), 0.1f);
             player.Action += HandleEvents;
             
             Viewport view = GraphicsDevice.Viewport;
-            float zoom = 5f;
+            float zoom = 6f;
             windowWidth = graphics.PreferredBackBufferWidth = 1200;
             windowHeight = graphics.PreferredBackBufferHeight = 800;
             graphics.ApplyChanges();
@@ -98,11 +95,12 @@ namespace Dungeon_Crawler_2D
             {
                 player.Update(gameTime);
                 map.Update(gameTime, player.position);
+                hud.Update(gameState);
                 cam.SetPosition(player.position);
             }
             else if (gameState == GameState.Battle)
             {
-
+                hud.Update(gameState);
             }
             
             base.Update(gameTime);
@@ -111,11 +109,8 @@ namespace Dungeon_Crawler_2D
 
         protected override void Draw(GameTime gameTime)
         {
-            //GraphicsDevice.Clear(Color.CornflowerBlue);
             GraphicsDevice.Clear(Color.Black);
-
             
-
             if (gameState == GameState.Menu)
             {
                 spriteBatch.Begin();
@@ -126,7 +121,19 @@ namespace Dungeon_Crawler_2D
             }
             else if (gameState == GameState.Battle)
             {
+                GraphicsDevice.Clear(Color.Purple);
+                spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.GetTransform());
 
+                //OBS!! Skriv bara här om ni vill att det som ritas ut ska vara beroende av kameran (allt utom tex healthbars eller poäng)
+
+                spriteBatch.End();
+
+                spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null);
+
+                //OBS!! Skriv bara här om ni vill att det som ritas ut ska vara oberoende av kameran (tex healthbars eller poäng)
+                hud.DrawBattle(spriteBatch);
+
+                spriteBatch.End();
             }
             else if (gameState == GameState.Explore)
             {
@@ -141,7 +148,7 @@ namespace Dungeon_Crawler_2D
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null);
 
                 //OBS!! Skriv bara här om ni vill att det som ritas ut ska vara oberoende av kameran (tex healthbars eller poäng)
-                hud.Draw(spriteBatch);
+                hud.DrawExplore(spriteBatch);
                 if (player.showStats == true)
                 {
                     player.statScreen.Draw(spriteBatch);

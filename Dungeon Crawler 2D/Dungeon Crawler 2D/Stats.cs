@@ -39,6 +39,7 @@ namespace Dungeon_Crawler_2D
             this.inteligence = inteligence;
             this.dextarity = dextarity;
             this.luck = luck;
+            this.maxXp = maxXp;
             this.xp = xp;
             this.level = level;
             uppgrade = 0;
