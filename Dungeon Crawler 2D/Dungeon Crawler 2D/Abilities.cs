@@ -53,7 +53,7 @@ namespace Dungeon_Crawler_2D
                             effect = Effects.none;
                         }
                     }
-                    else { this.usedAbility = UsedAbility.Miss; power = 0; effect = Effects.none; }
+                    else { usedAbility = UsedAbility.Miss; power = 0; effect = Effects.none; }
                 }
                 else
                 {
@@ -80,24 +80,24 @@ namespace Dungeon_Crawler_2D
 
             #region Defence
 
-            if (usedAbility == UsedAbility.Defence)
+            if (ability == UsedAbility.Defence)
             {
                 effect = Effects.none;
                 if (usedBy == UsedBy.player)
                 {
-                    this.usedAbility = UsedAbility.Defence;
+                    usedAbility = UsedAbility.Defence;
                     power = (player.stats.CheckStat(Stat.strength) / 2) + (player.stats.CheckStat(Stat.dexterity) / 2);
                 }
                 else
                 {
-                    this.usedAbility = UsedAbility.Defence;
+                    usedAbility = UsedAbility.Defence;
                     power = (enemy.stats.CheckStat(Stat.strength) / 2) + (enemy.stats.CheckStat(Stat.dexterity) / 2);
                 }
             }
             #endregion
 
             #region Magic
-            if (usedAbility == UsedAbility.Magic)
+            if (ability == UsedAbility.Magic)
             {
                 if (usedBy == UsedBy.player)
                 {
@@ -105,7 +105,7 @@ namespace Dungeon_Crawler_2D
                         (player.stats.CheckStat(Stat.luck) / 2) + rand.Next(0, 80);
                     if (accuracy >= 50)
                     {
-                        this.usedAbility = UsedAbility.Magic;
+                        usedAbility = UsedAbility.Magic;
                         if (accuracy >= 100)
                         {
                             power = player.stats.CheckStat(Stat.inteligence) + player.stats.CheckStat(Stat.luck);
@@ -117,7 +117,7 @@ namespace Dungeon_Crawler_2D
                             effect = Effects.none;
                         }
                     }
-                    else { this.usedAbility = UsedAbility.Miss; power = 0; effect = Effects.none; }
+                    else { usedAbility = UsedAbility.Miss; power = 0; effect = Effects.none; }
                 }
                 else
                 {
@@ -143,7 +143,7 @@ namespace Dungeon_Crawler_2D
             #endregion
 
             #region Dodge
-            if (usedAbility == UsedAbility.Dodge)
+            if (ability == UsedAbility.Dodge)
             {
                 effect = Effects.none;
                 if (usedBy == UsedBy.player)
@@ -152,9 +152,9 @@ namespace Dungeon_Crawler_2D
                         (player.stats.CheckStat(Stat.luck)) + rand.Next(0, 80);
                     if (accuracy >= 50)
                     {
-                        this.usedAbility = UsedAbility.Dodge;
+                        usedAbility = UsedAbility.Dodge;
                     }
-                    else this.usedAbility = UsedAbility.Miss;
+                    else usedAbility = UsedAbility.Miss;
                 }
                 else
                 {
@@ -162,15 +162,15 @@ namespace Dungeon_Crawler_2D
                         (enemy.stats.CheckStat(Stat.luck)) + rand.Next(0, 80);
                     if (accuracy >= 50)
                     {
-                        this.usedAbility = UsedAbility.Dodge;
+                        usedAbility = UsedAbility.Dodge;
                     }
-                    else this.usedAbility = UsedAbility.Miss;
+                    else usedAbility = UsedAbility.Miss;
                 }
             }
             #endregion
 
             #region Poison Hit
-            if (usedAbility == UsedAbility.PoisonHit)
+            if (ability == UsedAbility.PoisonHit)
             {
                 if (usedBy == UsedBy.player)
                 {
@@ -178,7 +178,7 @@ namespace Dungeon_Crawler_2D
                         (player.stats.CheckStat(Stat.luck) / 2) + rand.Next(0, 100);
                     if (accuracy >= 50)
                     {
-                        this.usedAbility = UsedAbility.PoisonHit;
+                        usedAbility = UsedAbility.PoisonHit;
                         if (accuracy >= 100)
                         {
                             power = player.stats.CheckStat(Stat.strength);
@@ -190,7 +190,7 @@ namespace Dungeon_Crawler_2D
                             effect = Effects.poison;
                         }
                     }
-                    else { this.usedAbility = UsedAbility.Miss; power = 0; effect = Effects.none; }
+                    else { usedAbility = UsedAbility.Miss; power = 0; effect = Effects.none; }
                 }
                 else
                 {
@@ -198,7 +198,7 @@ namespace Dungeon_Crawler_2D
                         (enemy.stats.CheckStat(Stat.luck) / 2) + rand.Next(0, 100);
                     if (accuracy >= 50)
                     {
-                        this.usedAbility = UsedAbility.PoisonHit;
+                        usedAbility = UsedAbility.PoisonHit;
                         if (accuracy >= 100)
                         {
                             power = enemy.stats.CheckStat(Stat.strength);
@@ -210,7 +210,7 @@ namespace Dungeon_Crawler_2D
                             effect = Effects.poison;
                         }
                     }
-                    else { this.usedAbility = UsedAbility.Miss; power = 0; effect = Effects.none; }
+                    else { usedAbility = UsedAbility.Miss; power = 0; effect = Effects.none; }
                 }
             }
             #endregion

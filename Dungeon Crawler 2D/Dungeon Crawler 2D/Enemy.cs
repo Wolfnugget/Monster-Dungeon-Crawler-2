@@ -33,7 +33,7 @@ namespace Dungeon_Crawler_2D
             GiveStats();
         }
 
-        public void Update()
+        public bool Update()
         {
             if (theEnemy == EnemyType.zombie)
             {
@@ -46,6 +46,8 @@ namespace Dungeon_Crawler_2D
                     ability.Ability(this, player, UsedAbility.Defence);
                 }
             }
+
+            return false;
         }
 
         public void Draw(SpriteBatch spriteBatch)

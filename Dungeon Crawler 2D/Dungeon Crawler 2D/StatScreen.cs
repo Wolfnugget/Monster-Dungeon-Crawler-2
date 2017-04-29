@@ -39,7 +39,7 @@ namespace Dungeon_Crawler_2D
                     spriteBatch.Draw(textures.whiteSquare, new Vector2(440 + textures.whiteSquare.Width * i, 240 + textures.whiteSquare.Height * j), Color.Gray);
                 }
             }
-            spriteBatch.DrawString(textures.comicSans, player.stats.CheckStat(Stat.maxHealth).ToString(),
+            spriteBatch.DrawString(textures.comicSans, player.stats.uppgrade.ToString(),
                     new Vector2(440 + (screenWidth / 4) * 1, 240 + (screenHeight / 3)), Color.Red,
                     0, origin, 2, SpriteEffects.None, 0);
             spriteBatch.DrawString(textures.comicSans, player.stats.CheckStat(Stat.strength).ToString(),
@@ -49,7 +49,7 @@ namespace Dungeon_Crawler_2D
                     new Vector2(440 + (screenWidth / 4) * 3, 240 + (screenHeight / 3)), Color.Red,
                     0, origin, 2, SpriteEffects.None, 0);
 
-            spriteBatch.DrawString(textures.comicSans, player.stats.CheckStat(Stat.maxMana).ToString(),
+            spriteBatch.DrawString(textures.comicSans, player.stats.CheckStat(Stat.speed).ToString(),
                 new Vector2(440 + (screenWidth / 4) * 1, 240 + (screenHeight / 6) * 4), Color.Red,
                 0, origin, 2, SpriteEffects.None, 0);
             spriteBatch.DrawString(textures.comicSans, player.stats.CheckStat(Stat.inteligence).ToString(),

@@ -183,6 +183,14 @@ namespace Dungeon_Crawler_2D
             }
         }
 
+        public void UpdateEffects()
+        {
+            foreach (Effect e in activeEffects)
+            {
+                e.Update();
+            }
+        }
+
         public bool CheckEffects(Effects effect)
         {
             foreach(Effect e in activeEffects)

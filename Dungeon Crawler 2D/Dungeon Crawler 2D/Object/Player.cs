@@ -88,24 +88,24 @@ namespace Dungeon_Crawler_2D.Object
             if (Keyboard.GetState().IsKeyDown(Keys.Q))
             {
                 abilities.Ability(enemy, this, playerAbilities[0]);
-                return true;
+                return false;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 abilities.Ability(enemy, this, playerAbilities[1]);
-                return true;
+                return false;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 abilities.Ability(enemy, this, playerAbilities[2]);
-                return true;
+                return false;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 abilities.Ability(enemy, this, playerAbilities[3]);
-                return true;
+                return false;
             }
-            else return false;
+            else return true;
         }
 
 

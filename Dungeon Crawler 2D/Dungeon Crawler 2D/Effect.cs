@@ -26,32 +26,19 @@ namespace Dungeon_Crawler_2D
         }
 
         // the effect of the effect happens
-        public void Update(EffectPoint currentTime)
+        public void Update()
         {
-            if (timer < 0)
+            if (timer > 0)
             {
-                if (currentTime == EffectPoint.startPhase)
+                if (effect == Effects.poison)
                 {
-
+                    stats.ChangeStat(Stat.health, -power);
                 }
-                else if (currentTime == EffectPoint.attack)
+                if (effect == Effects.bleed)
                 {
-                    if (effect == Effects.confusion)
-                    {
-
-                    }
+                    stats.ChangeStat(Stat.health, -power); //kommer vara olik från poison
                 }
-                else if (currentTime == EffectPoint.endPhase)
-                {
-                    if (effect == Effects.poison)
-                    {
-                        stats.ChangeStat(Stat.health, -power);
-                    }
-                    if (effect == Effects.bleed)
-                    {
-                        stats.ChangeStat(Stat.health, -power); //kommer vara olik från poison
-                    }
-                }
+                timer--;
             }
         }
         
