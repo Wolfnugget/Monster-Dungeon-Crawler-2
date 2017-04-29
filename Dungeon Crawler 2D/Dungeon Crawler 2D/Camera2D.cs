@@ -19,9 +19,9 @@ namespace Dungeon_Crawler_2D
         private int windowWidth;
         private int windowHeight;
 
-        public Camera2D(HUDManager bars, Viewport view, int windowWidth, int windowHeight, World.Map map, float zoom)
+        public Camera2D(HUDManager hud, Viewport view, int windowWidth, int windowHeight, World.Map map, float zoom)
         {
-            this.bars = bars;
+            this.bars = hud;
             this.zoom = zoom;
             this.view = view;
             this.map = map;

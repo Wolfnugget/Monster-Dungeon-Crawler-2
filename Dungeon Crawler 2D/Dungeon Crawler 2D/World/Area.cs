@@ -23,8 +23,8 @@ namespace Dungeon_Crawler_2D.World
         {
             this.textures = textures;
 
-            renderRadiusX = 10;
-            renderRadiusY = 10;
+            renderRadiusX = 20;
+            renderRadiusY = 20;
         }
 
         public void Update(GameTime gameTime, Vector2 cameraCenter)

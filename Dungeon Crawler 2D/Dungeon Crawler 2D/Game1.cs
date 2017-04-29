@@ -12,21 +12,19 @@ namespace Dungeon_Crawler_2D
         Menu,
         Explore,
         Battle
-        
     }
 
     public class Game1 : Game
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-
-        //private World.Map map;
+        
         private World.Map map;
         private Object.Player player;
 
         private Camera2D cam;
         private TextureManager textures;
-        private HUDManager bars;
+        private HUDManager hud;
 
         private int windowHeight;
         private int windowWidth;
@@ -43,8 +41,6 @@ namespace Dungeon_Crawler_2D
 
         protected override void Initialize()
         {
-            
-            
             ScreenManager.Instance.Initialize();
             ScreenManager.Instance.Dimensions = new Vector2(1200, 800);
             graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
@@ -63,8 +59,8 @@ namespace Dungeon_Crawler_2D
             textures = new TextureManager(Content);
             
             
-            //map = new World.GeneratedMap(textures, 20, 4);
-            map = new World.RandomGeneratedMap(textures);
+            map = new World.GeneratedMap(textures, 20, 4);
+            //map = new World.RandomGeneratedMap(textures);
             map.Event += HandleEvents;
             player = new Object.Player(textures.playerSpriteSheet, textures, map.GetPlayerStart(), 100, new Point(16, 16), new Point(2, 0), 0.3f);
             player.Action += HandleEvents;
@@ -77,12 +73,22 @@ namespace Dungeon_Crawler_2D
 
             gameState = GameState.Explore; //Vilken gamestate spelet startas i.
 
-            bars = new HUDManager(gameState, textures, GraphicsDevice, Content, player, windowWidth, windowHeight);
-            cam = new Camera2D(bars, view, windowWidth, windowHeight, map, zoom);
+            hud = new HUDManager(gameState, textures, GraphicsDevice, Content, player, windowWidth, windowHeight);
+            cam = new Camera2D(hud, view, windowWidth, windowHeight, map, zoom);
         }
         protected override void Update(GameTime gameTime)
         {
-            
+            //-----------------------------------------------------------------------
+            if (Keyboard.GetState().IsKeyDown(Keys.F))
+            {
+                gameState = GameState.Explore;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.G))
+            {
+                gameState = GameState.Battle;
+            }
+
+            //-----------------------------------------------------------------------
 
             if (gameState == GameState.Menu)
             {
@@ -135,7 +141,7 @@ namespace Dungeon_Crawler_2D
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null);
 
                 //OBS!! Skriv bara här om ni vill att det som ritas ut ska vara oberoende av kameran (tex healthbars eller poäng)
-                bars.Draw(spriteBatch);
+                hud.Draw(spriteBatch);
                 if (player.showStats == true)
                 {
                     player.statScreen.Draw(spriteBatch);

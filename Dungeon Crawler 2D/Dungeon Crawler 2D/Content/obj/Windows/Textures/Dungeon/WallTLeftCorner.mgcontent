@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-<<<<<<< HEAD
   <SourceFile>C:/Users/Marcus/Desktop/Monster-Dungeon-Crawler REPOSITORY/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/Dungeon/WallTLeftCorner.png</SourceFile>
   <SourceTime>2017-04-28T12:12:52+02:00</SourceTime>
   <DestFile>C:/Users/Marcus/Desktop/Monster-Dungeon-Crawler REPOSITORY/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Textures/Dungeon/WallTLeftCorner.xnb</DestFile>
-  <DestTime>2017-04-29T13:44:11.690678+02:00</DestTime>
-=======
-  <SourceFile>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/Dungeon/WallTLeftCorner.png</SourceFile>
-  <SourceTime>2017-04-13T11:01:40.3208333+02:00</SourceTime>
-  <DestFile>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Textures/Dungeon/WallTLeftCorner.xnb</DestFile>
-  <DestTime>2017-04-29T00:32:08.7964477+02:00</DestTime>
->>>>>>> origin/master
+  <DestTime>2017-04-29T14:00:50.0787825+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

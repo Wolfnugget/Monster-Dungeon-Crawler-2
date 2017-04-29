@@ -44,12 +44,8 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="HUDManager.cs" />
-=======
     <Compile Include="Abilities.cs" />
-    <Compile Include="BarManager.cs" />
->>>>>>> origin/master
     <Compile Include="Camera2D.cs" />
     <Compile Include="Effect.cs" />
     <Compile Include="Enemy.cs" />

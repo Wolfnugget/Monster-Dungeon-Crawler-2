@@ -21,7 +21,7 @@ namespace Dungeon_Crawler_2D.Object
             : base(texture, position, speed, frameSize, frames, frameTime)
         {
             this.textures = textures;
-            stats = new Stats(textures, 100, 100, 100, 100, 10, 10, 10, 10, 10, 0, 1);
+            stats = new Stats(textures, 100, 100, 100, 100, 10, 10, 10, 10, 50, 0, 1);
             statScreen = new StatScreen(this, textures);
             showStats = false;
         }
