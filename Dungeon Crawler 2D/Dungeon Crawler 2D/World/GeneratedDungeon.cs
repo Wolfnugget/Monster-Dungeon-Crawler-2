@@ -599,8 +599,6 @@ namespace Dungeon_Crawler_2D.World
                     currentMatchLength = processingLength;
                 }
             }
-            Console.WriteLine("Boss: " + currentMatch);
-            Console.ReadLine();
             return currentMatch;
         }
 
