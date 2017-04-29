@@ -29,6 +29,7 @@ namespace Dungeon_Crawler_2D
             this.textures = textures;
             this.theEnemy = theEnemy;
             this.player = player;
+            ability = new Abilities(UsedBy.enemy);
             GiveStats();
         }
 
@@ -38,11 +39,11 @@ namespace Dungeon_Crawler_2D
             {
                 if (rand.Next(0,2) == 1)
                 {
-                    ability.Hit(this, player);
+                    ability.Ability(this, player, UsedAbility.Hit);
                 }
                 else
                 {
-                    ability.Defence(this, player);
+                    ability.Ability(this, player, UsedAbility.Defence);
                 }
             }
         }
@@ -63,7 +64,8 @@ namespace Dungeon_Crawler_2D
                 int inteligence = rand.Next(6, 15) + 3 * player.stats.CheckStat(Stat.level);
                 int dextarity = rand.Next(6, 15) + 3 * player.stats.CheckStat(Stat.level);
                 int luck = rand.Next(6, 15) + 3 * player.stats.CheckStat(Stat.level);
-                stats = new Stats(textures, health, health, mana, mana, strenght, inteligence, dextarity, luck, 0, 0, 0);
+                int speed = rand.Next(6, 15) + 3 * player.stats.CheckStat(Stat.level);
+                stats = new Stats(textures, health, health, mana, mana, strenght, inteligence, dextarity, luck, speed, 0, 0, 0);
             }
         }
         

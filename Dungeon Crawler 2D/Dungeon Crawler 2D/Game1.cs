@@ -78,7 +78,6 @@ namespace Dungeon_Crawler_2D
         }
         protected override void Update(GameTime gameTime)
         {
-            //-----------------------------------------------------------------------
             if (Keyboard.GetState().IsKeyDown(Keys.F))
             {
                 gameState = GameState.Explore;
@@ -88,7 +87,6 @@ namespace Dungeon_Crawler_2D
                 gameState = GameState.Battle;
             }
 
-            //-----------------------------------------------------------------------
 
             if (gameState == GameState.Menu)
             {
