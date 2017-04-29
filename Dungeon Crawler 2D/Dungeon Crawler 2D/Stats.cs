@@ -104,6 +104,11 @@ namespace Dungeon_Crawler_2D
                     {
                         xp -= maxXp;
                         LevelUpp();
+                        maxXp += 10;
+                    }
+                    if (xp <= 0)
+                    {
+                        xp = 0;
                     }
                     break;
             }
@@ -162,6 +167,7 @@ namespace Dungeon_Crawler_2D
             {
                 uppgrade += 10;
             }
+            level += 1;
         }
 
         public void AddEffect(int length, Effects effect, int power)
