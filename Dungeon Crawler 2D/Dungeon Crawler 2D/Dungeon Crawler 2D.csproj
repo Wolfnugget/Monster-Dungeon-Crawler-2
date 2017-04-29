@@ -44,8 +44,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Combat.cs" />
+    <Compile Include="HUDManager.cs" />
     <Compile Include="Abilities.cs" />
-    <Compile Include="BarManager.cs" />
     <Compile Include="Camera2D.cs" />
     <Compile Include="Effect.cs" />
     <Compile Include="Enemy.cs" />

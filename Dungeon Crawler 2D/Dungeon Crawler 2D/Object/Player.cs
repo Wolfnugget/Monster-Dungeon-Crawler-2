@@ -16,14 +16,19 @@ namespace Dungeon_Crawler_2D.Object
         public StatScreen statScreen;
         public bool showStats;
         private TextureManager textures;
+        public Abilities abilities;
+        public List<UsedAbility> playerAbilities;
 
         public Player(Texture2D texture, TextureManager textures, Vector2 position, float speed, Point frameSize, Point frames, float frameTime = 0.3f)
             : base(texture, position, speed, frameSize, frames, frameTime)
         {
             this.textures = textures;
-            stats = new Stats(textures, 100, 100, 100, 100, 10, 10, 10, 10, 10, 0, 1);
+            stats = new Stats(textures, 100, 100, 100, 100, 10, 10, 10, 10, 10, 50, 0, 1);
             statScreen = new StatScreen(this, textures);
             showStats = false;
+            abilities = new Abilities(UsedBy.player);
+            playerAbilities = new List<UsedAbility>(4);
+            
         }
 
         public override void Update(GameTime gameTime)
@@ -76,6 +81,40 @@ namespace Dungeon_Crawler_2D.Object
                 args.Position = position;
                 OnAction(args);
             }
+        }
+
+        public bool ChoseAbility(Enemy enemy)
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Q))
+            {
+                abilities.Ability(enemy, this, playerAbilities[0]);
+                return false;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.W))
+            {
+                abilities.Ability(enemy, this, playerAbilities[1]);
+                return false;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.W))
+            {
+                abilities.Ability(enemy, this, playerAbilities[2]);
+                return false;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.W))
+            {
+                abilities.Ability(enemy, this, playerAbilities[3]);
+                return false;
+            }
+            else return true;
+        }
+
+
+        public void GetAbilities()
+        {
+            playerAbilities.Add(UsedAbility.Hit);
+            playerAbilities.Add(UsedAbility.Magic);
+            playerAbilities.Add(UsedAbility.Dodge);
+            playerAbilities.Add(UsedAbility.PoisonHit);
         }
     }
 }

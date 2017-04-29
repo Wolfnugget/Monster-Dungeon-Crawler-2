@@ -29,22 +29,25 @@ namespace Dungeon_Crawler_2D
             this.textures = textures;
             this.theEnemy = theEnemy;
             this.player = player;
+            ability = new Abilities(UsedBy.enemy);
             GiveStats();
         }
 
-        public void Update()
+        public bool Update()
         {
             if (theEnemy == EnemyType.zombie)
             {
                 if (rand.Next(0,2) == 1)
                 {
-                    ability.Hit(this, player);
+                    ability.Ability(this, player, UsedAbility.Hit);
                 }
                 else
                 {
-                    ability.Defence(this, player);
+                    ability.Ability(this, player, UsedAbility.Defence);
                 }
             }
+
+            return false;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -63,7 +66,8 @@ namespace Dungeon_Crawler_2D
                 int inteligence = rand.Next(6, 15) + 3 * player.stats.CheckStat(Stat.level);
                 int dextarity = rand.Next(6, 15) + 3 * player.stats.CheckStat(Stat.level);
                 int luck = rand.Next(6, 15) + 3 * player.stats.CheckStat(Stat.level);
-                stats = new Stats(textures, health, health, mana, mana, strenght, inteligence, dextarity, luck, 0, 0, 0);
+                int speed = rand.Next(6, 15) + 3 * player.stats.CheckStat(Stat.level);
+                stats = new Stats(textures, health, health, mana, mana, strenght, inteligence, dextarity, luck, speed, 0, 0, 0);
             }
         }
         

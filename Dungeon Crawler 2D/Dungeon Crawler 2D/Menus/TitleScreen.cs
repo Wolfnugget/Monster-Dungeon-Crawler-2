@@ -37,7 +37,7 @@ namespace Dungeon_Crawler_2D.Menus
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(font, "TitleScreen", new Vector2(100, 100), Color.Black);
+            spriteBatch.DrawString(font, "TitleScreen", new Vector2(100, 100), Color.Red);
         }
     }
 }

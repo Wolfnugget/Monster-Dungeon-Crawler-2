@@ -9,23 +9,22 @@ namespace Dungeon_Crawler_2D
 {
     public enum GameState
     {
+        Menu,
         Explore,
-        Battle,
-        Menu
+        Battle
     }
 
     public class Game1 : Game
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-
-        //private World.Map map;
+        
         private World.Map map;
         private Object.Player player;
 
         private Camera2D cam;
         private TextureManager textures;
-        private BarManager bars;
+        private HUDManager hud;
 
         private int windowHeight;
         private int windowWidth;
@@ -42,13 +41,13 @@ namespace Dungeon_Crawler_2D
 
         protected override void Initialize()
         {
-            base.Initialize();
-            IsMouseVisible = true;
             ScreenManager.Instance.Initialize();
             ScreenManager.Instance.Dimensions = new Vector2(1200, 800);
             graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
             graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
             graphics.ApplyChanges();
+            IsMouseVisible = true;
+            base.Initialize();
         }
 
         protected override void LoadContent()
@@ -74,14 +73,25 @@ namespace Dungeon_Crawler_2D
 
             gameState = GameState.Explore; //Vilken gamestate spelet startas i.
 
-            bars = new BarManager(textures, GraphicsDevice, Content, player, windowWidth, windowHeight);
-            cam = new Camera2D(bars, view, windowWidth, windowHeight, map, zoom);
+            hud = new HUDManager(gameState, textures, GraphicsDevice, Content, player, windowWidth, windowHeight);
+            cam = new Camera2D(hud, view, windowWidth, windowHeight, map, zoom);
         }
         protected override void Update(GameTime gameTime)
         {
-            ScreenManager.Instance.Update(gameTime);
+            if (Keyboard.GetState().IsKeyDown(Keys.F))
+            {
+                gameState = GameState.Explore;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.G))
+            {
+                gameState = GameState.Battle;
+            }
 
-            if (gameState == GameState.Explore)
+            if (gameState == GameState.Menu)
+            {
+                ScreenManager.Instance.Update(gameTime);
+            }
+            else if (gameState == GameState.Explore)
             {
                 player.Update(gameTime);
                 map.Update(gameTime, player.position);
@@ -91,10 +101,7 @@ namespace Dungeon_Crawler_2D
             {
 
             }
-            else if (gameState == GameState.Menu)
-            {
-                ScreenManager.Instance.Update(gameTime);
-            }
+            
             base.Update(gameTime);
             
         }
@@ -104,9 +111,21 @@ namespace Dungeon_Crawler_2D
             //GraphicsDevice.Clear(Color.CornflowerBlue);
             GraphicsDevice.Clear(Color.Black);
 
-            ScreenManager.Instance.Draw(spriteBatch);
+            
 
-            if (gameState == GameState.Explore)
+            if (gameState == GameState.Menu)
+            {
+                spriteBatch.Begin();
+                ScreenManager.Instance.Draw(spriteBatch);
+
+
+                spriteBatch.End();
+            }
+            else if (gameState == GameState.Battle)
+            {
+
+            }
+            else if (gameState == GameState.Explore)
             {
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.GetTransform());
 
@@ -119,23 +138,17 @@ namespace Dungeon_Crawler_2D
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null);
 
                 //OBS!! Skriv bara här om ni vill att det som ritas ut ska vara oberoende av kameran (tex healthbars eller poäng)
-                bars.Draw(spriteBatch);
+                hud.Draw(spriteBatch);
                 if (player.showStats == true)
                 {
                     player.statScreen.Draw(spriteBatch);
                 }
-                
+
 
                 spriteBatch.End();
             }
-            else if (gameState == GameState.Battle)
-            {
-
-            }
-            else if (gameState == GameState.Battle)
-            {
-
-            }
+            
+            
 
             base.Draw(gameTime);
         }
