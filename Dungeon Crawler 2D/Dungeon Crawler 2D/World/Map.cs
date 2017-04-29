@@ -41,6 +41,11 @@ namespace Dungeon_Crawler_2D.World
             rooms = new List<Area>();
         }
 
+        public virtual void Update(GameTime gameTime, Vector2 cameraCenter)
+        {
+            rooms[currentRoom].Update(gameTime, cameraCenter);
+        }
+
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             rooms[currentRoom].Draw(spriteBatch);

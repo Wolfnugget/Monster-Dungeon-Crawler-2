@@ -338,6 +338,7 @@ namespace Dungeon_Crawler_2D.World
                         }
                     }
                 }
+
                 index = GeneratorUtility.GetRandomNumberExcluding(rand, exlude, 0, connectedRegions.Count - 1);
 
                 connectingTo = connectedRegions[index];
@@ -447,102 +448,126 @@ namespace Dungeon_Crawler_2D.World
 
             monsterRegions = GeneratorUtility.GetRandomListofIntFromList(rand, roomRegions, minMonsterRooms, maxMonsterRooms);
 
+            bool pasable;
+            TileType tileType;
+
             for (int y = 0; y < tileNumBP.GetLength(0); y++)
                 for (int x = 0; x < tileNumBP.GetLength(1); x++)
                 {
-                    if (tileNumBP[y, x] == 0)
-                    {
-                        if (y == 0)
-                        {
-                            if (x == 0)
-                            {
-                                tiles[y, x] = new Tile(TileType.TopLeftCorner, false);
-                            }
-                            else if (x == tileNumBP.GetLength(1) - 1)
-                            {
-                                tiles[y, x] = new Tile(TileType.BottomLeftCorner, false);
-                            }
-                            else
-                            {
-                                tiles[y, x] = new Tile(TileType.VerticalWall, false);
-                            }
-                        }
-                        else if (y == tileNumBP.GetLength(0) - 1)
-                        {
-                            if (x == 0)
-                            {
-                                tiles[y, x] = new Tile(TileType.TopRightCorner, false);
-                            }
-                            else if (x == tileNumBP.GetLength(1) - 1)
-                            {
-                                tiles[y, x] = new Tile(TileType.BottomRightCorner, false);
-                            }
-                            else
-                            {
-                                tiles[y, x] = new Tile(TileType.VerticalWall, false);
-                            }
-                        }
-                        else if (x == 0 || x == tileNumBP.GetLength(1) - 1)
-                        {
-                            tiles[y, x] = new Tile(TileType.HorizontalWall, false);
-                        }
-                        else
-                        {
-                            if (tileNumBP[y - 1, x] == 0 && tileNumBP[y + 1, x] == 0)
-                            {
-                                tiles[y, x] = new Tile(TileType.VerticalWall, false);
-                            }
-                            else if (tileNumBP[y, x - 1] == 0 && tileNumBP[y, x + 1] == 0)
-                            {
-                                tiles[y, x] = new Tile(TileType.HorizontalWall, false);
-                            }
-                            else if (tileNumBP[y, x + 1] == 0 && tileNumBP[y + 1, x] == 0)
-                            {
-                                tiles[y, x] = new Tile(TileType.TopLeftCorner, false);
-                            }
-                            else if (tileNumBP[y, x - 1] == 0 && tileNumBP[y + 1, x] == 0)
-                            {
-                                tiles[y, x] = new Tile(TileType.TopRightCorner, false);
-                            }
-                            else if (tileNumBP[y - 1, x] == 0 && tileNumBP[y, x + 1] == 0)
-                            {
-                                tiles[y, x] = new Tile(TileType.BottomLeftCorner, false);
-                            }
-                            else if (tileNumBP[y - 1, x] == 0 && tileNumBP[y, x - 1] == 0)
-                            {
-                                tiles[y, x] = new Tile(TileType.BottomRightCorner, false);
-                            }
-                            else
-                            {
-                                tiles[y, x] = new Tile(TileType.Wall, false);
-                            }
-                        }
-                    }
-                    else
+                    tileType = TilePicker(x, y, out pasable);
+                    if (pasable)
                     {
                         if (tileNumBP[y, x] == 1)
                         {
                             possibleStartTiles.Add(new Point(x, y));
-                            tiles[y, x] = new Tile(TileType.basic, true);
                         }
                         else if (monsterRegions.Contains(tileNumBP[y, x]))
                         {
-                            tiles[y, x] = new Tile(TileType.MonsterTile, true);
-                        }
-                        else
-                        {
-                            tiles[y, x] = new Tile(TileType.basic, true);
+                            tileType = TileType.MonsterTile;
                         }
                     }
+                    tiles[y, x] = new Tile(tileType, pasable);
                 }
+
             Point startTile = possibleStartTiles[rand.Next(0, possibleStartTiles.Count - 1)];
             playerStart = GetTileCenter(startTile.X, startTile.Y);
 
             DebugNumericalTileArrayContainedInList(monsterRegions);
         }
 
-        //Debug
-        #region
+        private TileType TilePicker(int x, int y, out bool pasable)
+        {
+            if (tileNumBP[y, x] == 0)
+            {
+                if (y == 0)
+                {
+                    if (x == 0)
+                    {
+                        pasable = false;
+                        return TileType.TopLeftCorner;
+                    }
+                    else if (x == tileNumBP.GetLength(1) - 1)
+                    {
+                        pasable = false;
+                        return TileType.BottomLeftCorner;
+                    }
+                    else
+                    {
+                        pasable = false;
+                        return TileType.VerticalWall;
+                    }
+                }
+                else if (y == tileNumBP.GetLength(0) - 1)
+                {
+                    if (x == 0)
+                    {
+                        pasable = false;
+                        return TileType.TopRightCorner;
+                    }
+                    else if (x == tileNumBP.GetLength(1) - 1)
+                    {
+                        pasable = false;
+                        return TileType.BottomRightCorner;
+                    }
+                    else
+                    {
+                        pasable = false;
+                        return TileType.VerticalWall;
+                    }
+                }
+                else if (x == 0 || x == tileNumBP.GetLength(1) - 1)
+                {
+                    pasable = false;
+                    return TileType.HorizontalWall;
+                }
+                else
+                {
+                    if (tileNumBP[y - 1, x] == 0 && tileNumBP[y + 1, x] == 0)
+                    {
+                        pasable = false;
+                        return TileType.VerticalWall;
+                    }
+                    else if (tileNumBP[y, x - 1] == 0 && tileNumBP[y, x + 1] == 0)
+                    {
+                        pasable = false;
+                        return TileType.HorizontalWall;
+                    }
+                    else if (tileNumBP[y, x + 1] == 0 && tileNumBP[y + 1, x] == 0)
+                    {
+                        pasable = false;
+                        return TileType.TopLeftCorner;
+                    }
+                    else if (tileNumBP[y, x - 1] == 0 && tileNumBP[y + 1, x] == 0)
+                    {
+                        pasable = false;
+                        return TileType.TopRightCorner;
+                    }
+                    else if (tileNumBP[y - 1, x] == 0 && tileNumBP[y, x + 1] == 0)
+                    {
+                        pasable = false;
+                        return TileType.BottomLeftCorner;
+                    }
+                    else if (tileNumBP[y - 1, x] == 0 && tileNumBP[y, x - 1] == 0)
+                    {
+                        pasable = false;
+                        return TileType.BottomRightCorner;
+                    }
+                    else
+                    {
+                        pasable = false;
+                        return TileType.Wall;
+                    }
+                }
+
+            }
+            else
+            {
+                pasable = true;
+                return TileType.basic;
+            }
+        }
+
+        #region Debug
         private void DebugNumericalTileArray()
         {
 

@@ -17,15 +17,30 @@ namespace Dungeon_Crawler_2D.World
         public bool[] doors;
         public Point areaCoords;
 
+        private int renderRadiusX, renderRadiusY, screenCenterX, screenCenterY;
+
         public Area(TextureManager textures)
         {
             this.textures = textures;
+
+            renderRadiusX = 10;
+            renderRadiusY = 10;
+        }
+
+        public void Update(GameTime gameTime, Vector2 cameraCenter)
+        {
+            GetTileAtPosition(cameraCenter, out screenCenterX, out screenCenterY);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            for (int y = 0; y < tiles.GetLength(0); y++)
-                for (int x = 0; x < tiles.GetLength(1); x++)
+            int yStart = Math.Max(0, screenCenterY - renderRadiusY);
+            int xStart = Math.Max(0, screenCenterX - renderRadiusX);
+            int yMax = Math.Min(tiles.GetLength(0), screenCenterY + renderRadiusY);
+            int xMax = Math.Min(tiles.GetLength(1), screenCenterX + renderRadiusX);
+
+            for (int y = yStart; y < yMax; y++)
+                for (int x = xStart; x < xMax; x++)
                 {
                     spriteBatch.Draw(TextureByType(tiles[y, x].type), GetTileRectangle(x, y), Color.White);
                 }
@@ -70,27 +85,37 @@ namespace Dungeon_Crawler_2D.World
         /// <returns></returns>
         public Vector2 GetTargetTileCenter(Vector2 position, Point direction)
         {
+            int x, y;
+
+            GetTileAtPosition(position, out x, out y);
+            if (tiles[y + direction.Y, x + direction.X].pasable &&
+                            tiles[y, x + direction.X].pasable &&
+                            tiles[y + direction.Y, x].pasable)
+            {
+                return GetTileCenter(x + direction.X, y + direction.Y);
+            }
+            else
+            {
+                return position;
+            }
+        }
+
+        protected void GetTileAtPosition(Vector2 position, out int tileX, out int tileY)
+        {
             for (int y = 0; y < tiles.GetLength(0); y++)
             {
                 for (int x = 0; x < tiles.GetLength(1); x++)
                 {
                     if (GetTileRectangle(x, y).Contains(position))
                     {
-                        if (tiles[y + direction.Y, x + direction.X].pasable &&
-                            tiles[y, x + direction.X].pasable &&
-                            tiles[y + direction.Y, x].pasable)
-                        {
-                            return GetTileCenter(x + direction.X, y + direction.Y);
-                        }
-                        else
-                        {
-                            return position;
-                        }
+                        tileX = x;
+                        tileY = y;
+                        return;
                     }
                 }
             }
-
-            return position;
+            tileX = 0;
+            tileY = 0;
         }
 
         /// <summary>

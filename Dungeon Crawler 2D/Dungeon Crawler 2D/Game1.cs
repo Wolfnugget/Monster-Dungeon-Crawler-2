@@ -84,6 +84,7 @@ namespace Dungeon_Crawler_2D
             if (gameState == GameState.Explore)
             {
                 player.Update(gameTime);
+                map.Update(gameTime, player.position);
                 cam.SetPosition(player.position);
             }
             else if (gameState == GameState.Battle)
