@@ -29,15 +29,21 @@ namespace Dungeon_Crawler_2D.World
         EastExit
     }
 
-    public class Map
+    public abstract class Map
     {
-        public List<PreMadeArea> rooms;
+        public List<Area> rooms;
         public int currentRoom;
         protected TextureManager textures;
 
         public Map(TextureManager textures)
         {
             this.textures = textures;
+            rooms = new List<Area>();
+        }
+
+        public virtual void Update(GameTime gameTime, Vector2 cameraCenter)
+        {
+            rooms[currentRoom].Update(gameTime, cameraCenter);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
@@ -59,7 +65,7 @@ namespace Dungeon_Crawler_2D.World
         /// </summary>
         /// <param name="position"></param>
         /// <param name="direction"></param>
-        private void CheckMovement(Vector2 position, Point direction)
+        protected void CheckMovement(Vector2 position, Point direction)
         {
             Vector2 targetPosition = rooms[currentRoom].GetTargetTileCenter(position, direction);
 
@@ -102,24 +108,7 @@ namespace Dungeon_Crawler_2D.World
         /// </summary>
         /// <param name="RoomDirection"></param>
         /// <param name="entrance"></param>
-        private void ChangeRoom(Point RoomDirection, TileType entrance)
-        {
-            Point newRoomCoords = rooms[currentRoom].roomCoords + RoomDirection;
-
-            for (int i = 0; i < rooms.Count; i++)
-            {
-                if (rooms[i].roomCoords == newRoomCoords)
-                {
-                    Console.WriteLine("Entering" + newRoomCoords);
-                    currentRoom = i;
-                    MapEventArgs args = new MapEventArgs(MapEventType.ChangeRoom);
-                    args.Position = rooms[currentRoom].GetTileCenterOfType(entrance);
-                    OnEvent(args);
-                    CheckMovement(args.Position, RoomDirection);
-                    break;
-                }
-            }
-        }
+        protected abstract void ChangeRoom(Point RoomDirection, TileType entrance);
 
         public MapEventHandler Event;
 

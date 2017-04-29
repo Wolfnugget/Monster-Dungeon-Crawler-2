@@ -31,6 +31,8 @@ namespace Dungeon_Crawler_2D
         private int windowHeight;
         private int windowWidth;
 
+        World.GeneratedDungeon genTest;
+
         GameState gameState;
 
         public Game1()
@@ -61,7 +63,8 @@ namespace Dungeon_Crawler_2D
             textures = new TextureManager(Content);
             
             
-            map = new World.GeneratedMap(textures, 20, 4);
+            //map = new World.GeneratedMap(textures, 20, 4);
+            map = new World.RandomGeneratedMap(textures);
             map.Event += HandleEvents;
             player = new Object.Player(textures.playerSpriteSheet, textures, map.GetPlayerStart(), 100, new Point(16, 16), new Point(2, 0), 0.3f);
             player.Action += HandleEvents;
@@ -88,6 +91,7 @@ namespace Dungeon_Crawler_2D
             else if (gameState == GameState.Explore)
             {
                 player.Update(gameTime);
+                map.Update(gameTime, player.position);
                 cam.SetPosition(player.position);
             }
             else if (gameState == GameState.Battle)

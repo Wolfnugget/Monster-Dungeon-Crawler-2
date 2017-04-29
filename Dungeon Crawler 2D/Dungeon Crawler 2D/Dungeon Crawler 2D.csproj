@@ -44,9 +44,15 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="HUDManager.cs" />
+=======
+    <Compile Include="Abilities.cs" />
+    <Compile Include="BarManager.cs" />
+>>>>>>> origin/master
     <Compile Include="Camera2D.cs" />
     <Compile Include="Effect.cs" />
+    <Compile Include="Enemy.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Menus\Animation.cs" />
@@ -68,6 +74,7 @@
     <Compile Include="World\GeneratorUtility.cs" />
     <Compile Include="World\Map.cs" />
     <Compile Include="World\PreMadeArea.cs" />
+    <Compile Include="World\RandomGeneratedMap.cs" />
     <Compile Include="World\Tile.cs" />
   </ItemGroup>
   <ItemGroup>

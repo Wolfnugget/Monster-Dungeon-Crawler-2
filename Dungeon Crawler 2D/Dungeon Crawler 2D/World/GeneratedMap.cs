@@ -27,8 +27,6 @@ namespace Dungeon_Crawler_2D.World
         /// <param name="textures"></param>
         void GenerateMap(int numberOfRooms, TextureManager textures)
         {
-            rooms = new List<PreMadeArea>();
-
             rooms.Add(new PreMadeArea(GetRandomRoomPath("Maps/StartRoom"), new Point(0, 0), textures));
 
             HashSet<int> excludeRoom = new HashSet<int>(); //Rum vars dörrar har genererats.
@@ -39,7 +37,7 @@ namespace Dungeon_Crawler_2D.World
 
             int addingExitsTo = 0; //rum som arbetas med.
 
-            while (rooms.Count < numberOfRooms)
+            while (base.rooms.Count < numberOfRooms)
             {
                 excludeExit.Clear();
 
@@ -51,25 +49,25 @@ namespace Dungeon_Crawler_2D.World
                         switch (i)
                         {
                             case 0:
-                                if (CheckIfRoomExists(rooms[addingExitsTo].roomCoords, new Point(0, -1)))
+                                if (CheckIfRoomExists(rooms[addingExitsTo].areaCoords, new Point(0, -1)))
                                 {
                                     excludeExit.Add(i);
                                 }
                                     break;
                             case 1:
-                                if (CheckIfRoomExists(rooms[addingExitsTo].roomCoords, new Point(1, 0)))
+                                if (CheckIfRoomExists(rooms[addingExitsTo].areaCoords, new Point(1, 0)))
                                 {
                                     excludeExit.Add(i);
                                 }
                                     break;
                             case 2:
-                                if (CheckIfRoomExists(rooms[addingExitsTo].roomCoords, new Point(0, 1)))
+                                if (CheckIfRoomExists(rooms[addingExitsTo].areaCoords, new Point(0, 1)))
                                 {
                                     excludeExit.Add(i);
                                 }
                                     break;
                             case 3:
-                                if (CheckIfRoomExists(rooms[addingExitsTo].roomCoords, new Point(-1, 0)))
+                                if (CheckIfRoomExists(rooms[addingExitsTo].areaCoords, new Point(-1, 0)))
                                 {
                                     excludeExit.Add(i);
                                 }
@@ -79,46 +77,46 @@ namespace Dungeon_Crawler_2D.World
                 }
                 int exitsToAdd = rooms[addingExitsTo].doors.Length - excludeExit.Count;
 
-                while (exitsToAdd > 0 && rooms.Count < numberOfRooms) //genererar rum för varje dör, eller tills det inte ska genereras fler rum.
+                while (exitsToAdd > 0 && base.rooms.Count < numberOfRooms) //genererar rum för varje dör, eller tills det inte ska genereras fler rum.
                 {
-                    int r = GeneratorUtility.GetRandomNumberExcluding(excludeExit, 0, 3);
+                    int r = GeneratorUtility.GetRandomNumberExcluding(rand, excludeExit, 0, 3);
                     if (r == 0)
                     {
-                        rooms.Add(new PreMadeArea(GetRandomRoomPath("Maps/South"),
-                            rooms[addingExitsTo].roomCoords + new Point(0, -1), textures));
+                        base.rooms.Add(new PreMadeArea(GetRandomRoomPath("Maps/South"),
+                            base.rooms[addingExitsTo].areaCoords + new Point(0, -1), textures));
                         excludeExit.Add(0);
                         exitsToAdd--;
                     }
                     else if (r == 1)
                     {
-                        rooms.Add(new PreMadeArea(GetRandomRoomPath("Maps/West"),
-                            rooms[addingExitsTo].roomCoords + new Point(1, 0), textures));
+                        base.rooms.Add(new PreMadeArea(GetRandomRoomPath("Maps/West"),
+                            base.rooms[addingExitsTo].areaCoords + new Point(1, 0), textures));
                         excludeExit.Add(1);
                         exitsToAdd--;
                     }
                     else if (r == 2)
                     {
-                        rooms.Add(new PreMadeArea(GetRandomRoomPath("Maps/North"),
-                            rooms[addingExitsTo].roomCoords + new Point(0, 1), textures));
+                        base.rooms.Add(new PreMadeArea(GetRandomRoomPath("Maps/North"),
+                            base.rooms[addingExitsTo].areaCoords + new Point(0, 1), textures));
                         excludeExit.Add(2);
                         exitsToAdd--;
                     }
                     else if (r == 3)
                     {
-                        rooms.Add(new PreMadeArea(GetRandomRoomPath("Maps/East"),
-                            rooms[addingExitsTo].roomCoords + new Point(-1, 0), textures));
+                        base.rooms.Add(new PreMadeArea(GetRandomRoomPath("Maps/East"),
+                            base.rooms[addingExitsTo].areaCoords + new Point(-1, 0), textures));
                         excludeExit.Add(3);
                         exitsToAdd--;
                     }
                 }
                 excludeRoom.Add(addingExitsTo); //lägger till rummet som har genererats så att den inte försöker generera till det rummet igen.
 
-                addingExitsTo = GeneratorUtility.GetRandomNumberExcluding(excludeRoom, 0, rooms.Count - 1); //tar ett nytt random rum som det sedan ska genereras nya rum till baserat på antal dörrar.
+                addingExitsTo = GeneratorUtility.GetRandomNumberExcluding(rand, excludeRoom, 0, base.rooms.Count - 1); //tar ett nytt random rum som det sedan ska genereras nya rum till baserat på antal dörrar.
 
             }
             for (int i = 0; i < rooms.Count; i++)
             {
-                Console.WriteLine(rooms[i].roomCoords);
+                Console.WriteLine(rooms[i].areaCoords);
             }
             RemoveOneWayDoors();
         }
@@ -135,8 +133,8 @@ namespace Dungeon_Crawler_2D.World
                     bool foundEntance = false;
                     for (int y = 0; y < rooms.Count; y++)
                     {
-                        if (rooms[y].roomCoords ==
-                            (rooms[i].roomCoords + new Point(0, -1)))
+                        if (rooms[y].areaCoords ==
+                            (rooms[i].areaCoords + new Point(0, -1)))
                         {
                             foundEntance = true;
                             if (!rooms[y].doors[2])
@@ -156,8 +154,8 @@ namespace Dungeon_Crawler_2D.World
                     bool foundEntance = false;
                     for (int y = 0; y < rooms.Count; y++)
                     {
-                        if (rooms[y].roomCoords ==
-                            (rooms[i].roomCoords + new Point(1, 0)))
+                        if (rooms[y].areaCoords ==
+                            (rooms[i].areaCoords + new Point(1, 0)))
                         {
                             foundEntance = true;
                             if (!rooms[y].doors[3])
@@ -177,8 +175,8 @@ namespace Dungeon_Crawler_2D.World
                     bool foundEntance = false;
                     for (int y = 0; y < rooms.Count; y++)
                     {
-                        if (rooms[y].roomCoords ==
-                            (rooms[i].roomCoords + new Point(0, 1)))
+                        if (rooms[y].areaCoords ==
+                            (rooms[i].areaCoords + new Point(0, 1)))
                         {
                             foundEntance = true;
                             if (!rooms[y].doors[0])
@@ -198,8 +196,8 @@ namespace Dungeon_Crawler_2D.World
                     bool foundEntance = false;
                     for (int y = 0; y < rooms.Count; y++)
                     {
-                        if (rooms[y].roomCoords ==
-                            (rooms[i].roomCoords + new Point(-1, 0)))
+                        if (rooms[y].areaCoords ==
+                            (rooms[i].areaCoords + new Point(-1, 0)))
                         {
                             foundEntance = true;
                             if (!rooms[y].doors[1])
@@ -229,7 +227,7 @@ namespace Dungeon_Crawler_2D.World
 
             for (int i = 0; i < rooms.Count; i++)
             {
-                if (rooms[i].roomCoords == roomToCheck)
+                if (rooms[i].areaCoords == roomToCheck)
                 {
                     return true;
                 }
@@ -266,5 +264,25 @@ namespace Dungeon_Crawler_2D.World
 
             return roomsDoors;
         }
+
+        protected override void ChangeRoom(Point RoomDirection, TileType entrance)
+        {
+            Point newRoomCoords = rooms[currentRoom].areaCoords + RoomDirection;
+
+            for (int i = 0; i < rooms.Count; i++)
+            {
+                if (rooms[i].areaCoords == newRoomCoords)
+                {
+                    Console.WriteLine("Entering" + newRoomCoords);
+                    currentRoom = i;
+                    MapEventArgs args = new MapEventArgs(MapEventType.ChangeRoom);
+                    args.Position = rooms[currentRoom].GetTileCenterOfType(entrance);
+                    OnEvent(args);
+                    CheckMovement(args.Position, RoomDirection);
+                    break;
+                }
+            }
+        }
+
     }
 }
