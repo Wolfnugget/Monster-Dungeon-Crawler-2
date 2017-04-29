@@ -80,7 +80,7 @@ namespace Dungeon_Crawler_2D.Menus
         public void LoadContent(ContentManager Content)
         {
             content = new ContentManager(Content.ServiceProvider, "Content");
-            //currentScreen.LoadContent(Content);
+            currentScreen.LoadContent(Content);
         }
         public void Update(GameTime gameTime)
         {

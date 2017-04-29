@@ -44,7 +44,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BarManager.cs" />
+    <Compile Include="HUDManager.cs" />
     <Compile Include="Camera2D.cs" />
     <Compile Include="Effect.cs" />
     <Compile Include="Events.cs" />

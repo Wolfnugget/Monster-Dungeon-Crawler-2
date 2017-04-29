@@ -6,7 +6,7 @@ namespace Dungeon_Crawler_2D
 {
     class Camera2D
     {
-        private BarManager bars;
+        private HUDManager bars;
         public Matrix transform;
         public Vector2 cameraPos;
         private Vector2 screenCenter;
@@ -19,7 +19,7 @@ namespace Dungeon_Crawler_2D
         private int windowWidth;
         private int windowHeight;
 
-        public Camera2D(BarManager bars, Viewport view, int windowWidth, int windowHeight, World.Map map, float zoom)
+        public Camera2D(HUDManager bars, Viewport view, int windowWidth, int windowHeight, World.Map map, float zoom)
         {
             this.bars = bars;
             this.zoom = zoom;

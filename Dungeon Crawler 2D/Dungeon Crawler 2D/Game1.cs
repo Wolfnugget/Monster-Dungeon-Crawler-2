@@ -9,9 +9,10 @@ namespace Dungeon_Crawler_2D
 {
     public enum GameState
     {
+        Menu,
         Explore,
-        Battle,
-        Menu
+        Battle
+        
     }
 
     public class Game1 : Game
@@ -25,7 +26,7 @@ namespace Dungeon_Crawler_2D
 
         private Camera2D cam;
         private TextureManager textures;
-        private BarManager bars;
+        private HUDManager bars;
 
         private int windowHeight;
         private int windowWidth;
@@ -40,13 +41,15 @@ namespace Dungeon_Crawler_2D
 
         protected override void Initialize()
         {
-            base.Initialize();
-            IsMouseVisible = true;
+            
+            
             ScreenManager.Instance.Initialize();
             ScreenManager.Instance.Dimensions = new Vector2(1200, 800);
             graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
             graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
             graphics.ApplyChanges();
+            IsMouseVisible = true;
+            base.Initialize();
         }
 
         protected override void LoadContent()
@@ -71,14 +74,18 @@ namespace Dungeon_Crawler_2D
 
             gameState = GameState.Explore; //Vilken gamestate spelet startas i.
 
-            bars = new BarManager(textures, GraphicsDevice, Content, player, windowWidth, windowHeight);
+            bars = new HUDManager(gameState, textures, GraphicsDevice, Content, player, windowWidth, windowHeight);
             cam = new Camera2D(bars, view, windowWidth, windowHeight, map, zoom);
         }
         protected override void Update(GameTime gameTime)
         {
-            ScreenManager.Instance.Update(gameTime);
+            
 
-            if (gameState == GameState.Explore)
+            if (gameState == GameState.Menu)
+            {
+                ScreenManager.Instance.Update(gameTime);
+            }
+            else if (gameState == GameState.Explore)
             {
                 player.Update(gameTime);
                 cam.SetPosition(player.position);
@@ -87,10 +94,7 @@ namespace Dungeon_Crawler_2D
             {
 
             }
-            else if (gameState == GameState.Menu)
-            {
-                ScreenManager.Instance.Update(gameTime);
-            }
+            
             base.Update(gameTime);
             
         }
@@ -100,9 +104,21 @@ namespace Dungeon_Crawler_2D
             //GraphicsDevice.Clear(Color.CornflowerBlue);
             GraphicsDevice.Clear(Color.Black);
 
-            ScreenManager.Instance.Draw(spriteBatch);
+            
 
-            if (gameState == GameState.Explore)
+            if (gameState == GameState.Menu)
+            {
+                spriteBatch.Begin();
+                ScreenManager.Instance.Draw(spriteBatch);
+
+
+                spriteBatch.End();
+            }
+            else if (gameState == GameState.Battle)
+            {
+
+            }
+            else if (gameState == GameState.Explore)
             {
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.GetTransform());
 
@@ -120,18 +136,12 @@ namespace Dungeon_Crawler_2D
                 {
                     player.statScreen.Draw(spriteBatch);
                 }
-                
+
 
                 spriteBatch.End();
             }
-            else if (gameState == GameState.Battle)
-            {
-
-            }
-            else if (gameState == GameState.Battle)
-            {
-
-            }
+            
+            
 
             base.Draw(gameTime);
         }
