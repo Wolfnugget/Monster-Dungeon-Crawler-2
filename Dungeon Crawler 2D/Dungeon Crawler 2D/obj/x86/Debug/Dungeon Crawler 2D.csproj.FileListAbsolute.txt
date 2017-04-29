@@ -59,7 +59,6 @@ E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dunge
 E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\SharpDX.XInput.xml
 E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\SharpDX.RawInput.xml
 E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
-E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.csprojResolveAssemblyReference.cache
 E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.exe
 E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.pdb
 C:\Users\heden\OneDrive\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Bars\BarsSheet.png
@@ -224,3 +223,22 @@ C:\Users\Datorlabbet\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 
 C:\Users\Datorlabbet\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\SharpDX.RawInput.xml
 C:\Users\Datorlabbet\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\Datorlabbet\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.csprojResolveAssemblyReference.cache
+E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Icons\Attack_Icon.png
+E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Icons\Magic_Icon.png
+E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Icons\Shield_Icon.png
+E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Icons\SuperAttack_Icon.png
+E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Bars\BarsSheet.xnb
+E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Player_Battle.xnb
+E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Zombie_Enemy.xnb
+E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Icons\Attack_Icon.xnb
+E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Icons\Blood_Loss.xnb
+E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Icons\Confusion_Icon.xnb
+E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Icons\Magic_Icon.xnb
+E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Icons\Poison.xnb
+E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Icons\Shield_Icon.xnb
+E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Icons\SuperAttack_Icon.xnb
+E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Player_Animation\Walking_Down.xnb
+E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Player_Animation\Walking_Left.xnb
+E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Player_Animation\Walking_Right.xnb
+E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Player_Animation\Walking_Up.xnb
+E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.csprojResolveAssemblyReference.cache

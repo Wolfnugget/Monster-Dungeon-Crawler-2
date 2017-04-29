@@ -33,5 +33,21 @@ namespace Dungeon_Crawler_2D.World
 
              return range.ElementAt(index);
         }
+
+        public static List<int> GetRandomListofIntFromList(Random random, List<int> list, int min, int max)
+        {
+            List<int> randomList = new List<int>();
+
+            int number = random.Next(min, max);
+            int index;
+
+            while (randomList.Count < number)
+            {
+                index = random.Next(0, list.Count - 1);
+                randomList.Add(list[index]);
+            }
+
+            return randomList;
+        }
     }
 }
