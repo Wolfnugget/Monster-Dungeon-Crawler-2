@@ -13,16 +13,18 @@ namespace Dungeon_Crawler_2D
 {
     class Combat
     {
-        Object.Player player;
-        TextureManager textures;
-        Enemy enemy;
+        public Object.Player player;
+        public TextureManager textures;
+        public Enemy enemy;
+        private HUDManager hud;
 
         bool playerTurn, enemyTurn;
 
-        public Combat(Object.Player player, TextureManager textures)
+        public Combat(Object.Player player, TextureManager textures, HUDManager hud)
         {
             this.player = player;
             this.textures = textures;
+            this.hud = hud;
             playerTurn = true;
             enemyTurn = true;
 
@@ -106,9 +108,10 @@ namespace Dungeon_Crawler_2D
             }
         }
 
-        public void Draw()
+        public void Draw(SpriteBatch spriteBatch)
         {
 
+            hud.DrawBattle(spriteBatch, this);
         }
 
         public void NextTurn()
