@@ -90,14 +90,6 @@ namespace Dungeon_Crawler_2D
                 player.stats.ChangeStat(Stat.xp, -1);
             }
 
-            previousState = currentState;
-            currentState = Keyboard.GetState();
-            if (currentState.IsKeyDown(Keys.R) && previousState.IsKeyUp(Keys.R))
-            {
-                Enemy enemy = new Enemy(textures, EnemyType.zombie, player);
-                CombatText(3, enemy);
-                textScaleTimer = 10;
-            }
             //---------------------------------------------------------------------
             
             // making icons flash
@@ -529,49 +521,49 @@ namespace Dungeon_Crawler_2D
             textScaleTimer = 10;
             switch (combatLine)
             {
-                case '0':
+                case 0:
                     turnEvents = "And nothing happened that round";
                     turn = false;
                     break;
-                case '1':
+                case 1:
                     turnEvents = "Viking defends against " + enemy.theEnemy + "'s " + 
                         enemy.ability.usedAbility + " blocking " + player.abilities.power 
                         + " out of " + enemy.ability.power + " damage!";
                     turn = false;
                     break;
-                case '2':
+                case 2:
                     turnEvents = enemy.theEnemy + " defends against the Viking's " + 
                         player.abilities.usedAbility + " blocking " + enemy.ability.power 
                         + " out of " + player.abilities.power + " damage!";
                     turn = false;
                     break;
-                case '3':
+                case 3:
                     turnEvents = "The Viking Misses but the " + enemy.theEnemy + " attacks using " + 
                         enemy.ability.usedAbility + " dealing " + enemy.ability.power + " damage!";
                     turn = false;
                     break;
-                case '4':
+                case 4:
                     turnEvents = enemy.theEnemy + " misses but the Viking attacks using " +
                         player.abilities.usedAbility + " dealing " + player.abilities.power + " damage!";
                     turn = false;
                     break;
-                case '5':
+                case 5:
                     turnEvents = "The Viking kills the " + enemy.theEnemy + " before it can attack!";
                     turn = false;
                     break;
-                case'6':
-                    turnEvents = "The Viking hits the " + enemy.theEnemy + " using " + 
+                case 6:
+                    turnEvents = "The Viking attacks the " + enemy.theEnemy + " using " + 
                         player.abilities.usedAbility + " for " + player.abilities.power + 
                         " damage! While " + enemy.theEnemy + " attacks for " + enemy.ability.power + 
                         " damage using " + enemy.ability.usedAbility;
                     turn = false;
                     break;
-                case'7':
+                case 7:
                     turnEvents = enemy.theEnemy + " kills the Viking before he can even attack!";
                     turn = false;
                     break;
-                case '8':
-                    turnEvents = enemy.theEnemy +" hits the Viking using " +
+                case 8:
+                    turnEvents = enemy.theEnemy +" attacks the Viking using " +
                         enemy.ability.usedAbility + " for " + enemy.ability.power +
                         " damage! While the Viking attacks for " + player.abilities.power +
                         " damage using " + player.abilities.usedAbility;

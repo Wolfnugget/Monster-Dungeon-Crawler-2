@@ -47,22 +47,22 @@ namespace Dungeon_Crawler_2D.Object
             previousState = currentState;
             currentState = Keyboard.GetState();
 
-            if (currentState.IsKeyDown(Keys.W) && previousState.IsKeyUp(Keys.W))
+            if (currentState.IsKeyDown(Keys.W))
             {
                 direction.Y = -1;
                 startingFrame = new Point(0, 3);
             }
-            else if (currentState.IsKeyDown(Keys.S) && previousState.IsKeyUp(Keys.S))
+            else if (currentState.IsKeyDown(Keys.S))
             {
                 direction.Y = 1;
                 startingFrame = new Point(0, 0);
             }
-            if (currentState.IsKeyDown(Keys.D) && previousState.IsKeyUp(Keys.D)) //Detta är en "if" så man ska kunna gå diagonalt. Map klassen har stöd för det.
+            if (currentState.IsKeyDown(Keys.D)) //Detta är en "if" så man ska kunna gå diagonalt. Map klassen har stöd för det.
             {
                 direction.X = 1;
                 startingFrame = new Point(0, 2);
             }
-            else if (currentState.IsKeyDown(Keys.A) && previousState.IsKeyUp(Keys.A))
+            else if (currentState.IsKeyDown(Keys.A))
             {
                 direction.X = -1;
                 startingFrame = new Point(0, 1);
@@ -84,6 +84,11 @@ namespace Dungeon_Crawler_2D.Object
                 args.Position = position;
                 OnAction(args);
             }
+        }
+
+        public void CombatDraw(SpriteBatch spriteBatch)
+        {
+
         }
 
         public bool ChoseAbility(Enemy enemy)

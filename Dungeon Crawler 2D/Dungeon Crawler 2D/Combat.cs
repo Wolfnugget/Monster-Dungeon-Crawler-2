@@ -44,26 +44,48 @@ namespace Dungeon_Crawler_2D
             }
             else
             {
-                if (player.abilities.usedAbility == UsedAbility.Dodge || 
-                    enemy.ability.usedAbility == UsedAbility.Dodge || 
-                    player.abilities.usedAbility == UsedAbility.Miss && enemy.ability.usedAbility == UsedAbility.Miss
-                    || player.abilities.usedAbility == UsedAbility.Defence && enemy.ability.usedAbility == UsedAbility.Defence)
+                if (player.abilities.usedAbility == UsedAbility.Dodge || enemy.ability.usedAbility == UsedAbility.Dodge)
                 {
                     hud.CombatText(0, enemy);
-                } 
-                else if (player.abilities.usedAbility == UsedAbility.Defence && enemy.ability.usedAbility != UsedAbility.Miss) 
+                }
+                else if (player.abilities.usedAbility == UsedAbility.Miss && enemy.ability.usedAbility == UsedAbility.Miss)
+                {
+                    hud.CombatText(0, enemy);
+                }
+                else if (player.abilities.usedAbility == UsedAbility.Defence && enemy.ability.usedAbility == UsedAbility.Defence)
+                {
+                    hud.CombatText(0, enemy);
+                }
+                else if (player.abilities.usedAbility == UsedAbility.Defence && enemy.ability.usedAbility == UsedAbility.Miss)
+                {
+                    hud.CombatText(0, enemy);
+                }
+                else if (enemy.ability.usedAbility == UsedAbility.Defence && player.abilities.usedAbility == UsedAbility.Miss)
+                {
+                    hud.CombatText(0, enemy);
+                }
+                else if (player.abilities.usedAbility == UsedAbility.Defence && enemy.ability.usedAbility != UsedAbility.Miss)
                 {
                     int damage = enemy.ability.power - player.abilities.power;
-                    player.stats.ChangeStat(Stat.health, -damage);
-                    player.stats.AddEffect(2, enemy.ability.effect, 1);
-                    hud.CombatText(1, enemy);
+                    if (damage > 0)
+                    {
+                        player.stats.ChangeStat(Stat.health, -damage);
+                        player.stats.AddEffect(2, enemy.ability.effect, 1);
+                        hud.CombatText(1, enemy);
+                    }
+                    else{ hud.CombatText(10000, enemy);  }
                 }
                 else if (enemy.ability.usedAbility == UsedAbility.Defence && player.abilities.usedAbility != UsedAbility.Miss)
                 {
                     int damage = player.abilities.power - enemy.ability.power;
-                    enemy.stats.ChangeStat(Stat.health, -damage);
-                    enemy.stats.AddEffect(2, player.abilities.effect, 1);
-                    hud.CombatText(2, enemy);
+                    if (damage > 0)
+                    {
+                        enemy.stats.ChangeStat(Stat.health, -damage);
+                        enemy.stats.AddEffect(2, player.abilities.effect, 1);
+                        hud.CombatText(2, enemy);
+                    }
+                    else { hud.CombatText(10001, enemy); }
+
                 }
                 else if (player.abilities.usedAbility == UsedAbility.Miss)
                 {
@@ -123,6 +145,8 @@ namespace Dungeon_Crawler_2D
         public void Draw(SpriteBatch spriteBatch)
         {
             hud.DrawBattle(spriteBatch, this);
+            enemy.Draw(spriteBatch);
+            player.CombatDraw(spriteBatch);
         }
 
         public void NextTurn()

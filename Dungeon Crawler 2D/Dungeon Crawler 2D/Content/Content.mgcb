@@ -363,3 +363,15 @@
 /processorParam:TextureFormat=Color
 /build:Bars/BarsSheet.png
 
+#begin Battle/Dungeon_Wallpaper.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Battle/Dungeon_Wallpaper.png
+
