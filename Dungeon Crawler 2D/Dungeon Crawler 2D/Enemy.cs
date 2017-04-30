@@ -22,7 +22,7 @@ namespace Dungeon_Crawler_2D
         Random rand = new Random();
         public Abilities ability;
         Object.Player player;
-        EnemyType theEnemy;
+        public EnemyType theEnemy;
 
         public Enemy(TextureManager textures, EnemyType theEnemy, Object.Player player)
         {

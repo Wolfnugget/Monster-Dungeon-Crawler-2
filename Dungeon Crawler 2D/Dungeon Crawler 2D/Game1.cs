@@ -25,6 +25,7 @@ namespace Dungeon_Crawler_2D
         private Camera2D cam;
         private TextureManager textures;
         private HUDManager hud;
+        private Combat combat;
 
         private int windowHeight;
         private int windowWidth;
@@ -74,6 +75,8 @@ namespace Dungeon_Crawler_2D
 
             hud = new HUDManager(gameState, textures, GraphicsDevice, Content, player, windowWidth, windowHeight);
             cam = new Camera2D(hud, view, windowWidth, windowHeight, map, zoom);
+
+            
         }
         protected override void Update(GameTime gameTime)
         {
@@ -84,6 +87,7 @@ namespace Dungeon_Crawler_2D
             if (Keyboard.GetState().IsKeyDown(Keys.G))
             {
                 gameState = GameState.Battle;
+                combat = new Combat(player, textures, hud);
             }
 
             if (gameState == GameState.Menu)
@@ -100,6 +104,7 @@ namespace Dungeon_Crawler_2D
             else if (gameState == GameState.Battle)
             {
                 hud.Update(gameState);
+                combat.Update();
             }
             
             base.Update(gameTime);
@@ -130,7 +135,7 @@ namespace Dungeon_Crawler_2D
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null);
 
                 //OBS!! Skriv bara här om ni vill att det som ritas ut ska vara oberoende av kameran (tex healthbars eller poäng)
-                hud.DrawBattle(spriteBatch, null);
+                combat.Draw(spriteBatch);
 
                 spriteBatch.End();
             }

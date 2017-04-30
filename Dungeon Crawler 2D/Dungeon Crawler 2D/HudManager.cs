@@ -38,12 +38,9 @@ namespace Dungeon_Crawler_2D
 
         //TEMP!! Data som kommer att hämtas från player/enemy-klassen
         private KeyboardState currentState, previousState;
-        private Color turnColor;
-        private int damage;
         private bool turn;
-        private string turnStringMain;
-        private string turnStringSecondary;
-        private string actionType;
+        private string turnEvents;
+
 
         private Object.Player player;
 
@@ -61,17 +58,15 @@ namespace Dungeon_Crawler_2D
             flashTimer = 0;
             flashTimerToggle = false;
 
-            damage = 0;
             textScaleTimer = 0;
             turn = true;
-            actionType = "'attack-type'";
         }
 
         public void Update(GameState gameState)
         {
             this.gameState = gameState;
             
-            if (Keyboard.GetState().IsKeyDown(Keys.Q))
+            if (Keyboard.GetState().IsKeyDown(Keys.V))
             {
                 player.stats.AddEffect(1, Effects.poison, 1);
                 player.stats.AddEffect(1, Effects.bleed, 1);
@@ -84,7 +79,7 @@ namespace Dungeon_Crawler_2D
 
             // Temporära button-mappings för att testa vad som sker när olika värden ändras
             //-------------------------------------------------------------------
-            if (Keyboard.GetState().IsKeyDown(Keys.E))
+            if (Keyboard.GetState().IsKeyDown(Keys.N))
             {
                 player.stats.AddEffect(-1, Effects.poison, 1);
                 player.stats.AddEffect(-1, Effects.bleed, 1);
@@ -99,25 +94,12 @@ namespace Dungeon_Crawler_2D
             currentState = Keyboard.GetState();
             if (currentState.IsKeyDown(Keys.R) && previousState.IsKeyUp(Keys.R))
             {
-                turn = !turn;
+                Enemy enemy = new Enemy(textures, EnemyType.zombie, player);
+                CombatText(3, enemy);
                 textScaleTimer = 10;
             }
             //---------------------------------------------------------------------
             
-            //Kollar vems tur det är
-            if (turn == true)
-            {
-                turnStringMain = "Monster";
-                turnStringSecondary = "Viking-Dude";
-                turnColor = Color.Green;
-            }
-            else
-            {
-                turnStringMain = "Viking-Dude";
-                turnStringSecondary = "Monster";
-                turnColor = Color.Yellow;
-            }
-
             // making icons flash
             if (flashTimer <= 0)
             {
@@ -532,14 +514,72 @@ namespace Dungeon_Crawler_2D
             }
 
             //text för övre rutan
-            if (1 == 1)
+            if (turn == false)
             {
-                Vector2 textSizeInfo = textures.comicSans.MeasureString("" + turnStringMain + "used " + actionType + "on " + turnStringSecondary + ", dealing " + damage + "damage!");
+                Vector2 textSizeInfo = textures.comicSans.MeasureString(turnEvents);
                 Vector2 originInfo = new Vector2(textSizeInfo.X * 0.5f, textSizeInfo.Y * 0.5f);
-                spriteBatch.DrawString(textures.comicSans, ("" + turnStringMain + " used " + actionType + " on " + turnStringSecondary + ", dealing " + damage + " damage!"),
+                spriteBatch.DrawString(textures.comicSans, turnEvents,
                     new Vector2(topBarRect.Width / 2, topBarRect.Height / 2),
-                    turnColor, 0, originInfo, textScale, SpriteEffects.None, 0);
+                    Color.Green, 0, originInfo, textScale, SpriteEffects.None, 0);
             }
         }
+
+        public void CombatText(int combatLine, Enemy enemy)
+        {
+            textScaleTimer = 10;
+            switch (combatLine)
+            {
+                case '0':
+                    turnEvents = "And nothing happened that round";
+                    turn = false;
+                    break;
+                case '1':
+                    turnEvents = "Viking defends against " + enemy.theEnemy + "'s " + 
+                        enemy.ability.usedAbility + " blocking " + player.abilities.power 
+                        + " out of " + enemy.ability.power + " damage!";
+                    turn = false;
+                    break;
+                case '2':
+                    turnEvents = enemy.theEnemy + " defends against the Viking's " + 
+                        player.abilities.usedAbility + " blocking " + enemy.ability.power 
+                        + " out of " + player.abilities.power + " damage!";
+                    turn = false;
+                    break;
+                case '3':
+                    turnEvents = "The Viking Misses but the " + enemy.theEnemy + " attacks using " + 
+                        enemy.ability.usedAbility + " dealing " + enemy.ability.power + " damage!";
+                    turn = false;
+                    break;
+                case '4':
+                    turnEvents = enemy.theEnemy + " misses but the Viking attacks using " +
+                        player.abilities.usedAbility + " dealing " + player.abilities.power + " damage!";
+                    turn = false;
+                    break;
+                case '5':
+                    turnEvents = "The Viking kills the " + enemy.theEnemy + " before it can attack!";
+                    turn = false;
+                    break;
+                case'6':
+                    turnEvents = "The Viking hits the " + enemy.theEnemy + " using " + 
+                        player.abilities.usedAbility + " for " + player.abilities.power + 
+                        " damage! While " + enemy.theEnemy + " attacks for " + enemy.ability.power + 
+                        " damage using " + enemy.ability.usedAbility;
+                    turn = false;
+                    break;
+                case'7':
+                    turnEvents = enemy.theEnemy + " kills the Viking before he can even attack!";
+                    turn = false;
+                    break;
+                case '8':
+                    turnEvents = enemy.theEnemy +" hits the Viking using " +
+                        enemy.ability.usedAbility + " for " + enemy.ability.power +
+                        " damage! While the Viking attacks for " + player.abilities.power +
+                        " damage using " + player.abilities.usedAbility;
+                    turn = false;
+                    break;
+            }
+            
+        }
+
     }
 }

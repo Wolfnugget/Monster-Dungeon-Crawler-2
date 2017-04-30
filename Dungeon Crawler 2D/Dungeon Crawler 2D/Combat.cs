@@ -35,11 +35,12 @@ namespace Dungeon_Crawler_2D
         {
             if (playerTurn == true)
             {
-                player.ChoseAbility(enemy);
+                playerTurn = player.ChoseAbility(enemy);
             }
             else if (enemyTurn == true && playerTurn == false)
             {
                 enemy.Update();
+                enemyTurn = false;
             }
             else
             {
@@ -48,52 +49,63 @@ namespace Dungeon_Crawler_2D
                     player.abilities.usedAbility == UsedAbility.Miss && enemy.ability.usedAbility == UsedAbility.Miss
                     || player.abilities.usedAbility == UsedAbility.Defence && enemy.ability.usedAbility == UsedAbility.Defence)
                 {
-
+                    hud.CombatText(0, enemy);
                 } 
                 else if (player.abilities.usedAbility == UsedAbility.Defence && enemy.ability.usedAbility != UsedAbility.Miss) 
                 {
                     int damage = enemy.ability.power - player.abilities.power;
                     player.stats.ChangeStat(Stat.health, -damage);
                     player.stats.AddEffect(2, enemy.ability.effect, 1);
+                    hud.CombatText(1, enemy);
                 }
                 else if (enemy.ability.usedAbility == UsedAbility.Defence && player.abilities.usedAbility != UsedAbility.Miss)
                 {
                     int damage = player.abilities.power - enemy.ability.power;
                     enemy.stats.ChangeStat(Stat.health, -damage);
                     enemy.stats.AddEffect(2, player.abilities.effect, 1);
+                    hud.CombatText(2, enemy);
                 }
                 else if (player.abilities.usedAbility == UsedAbility.Miss)
                 {
                     player.stats.ChangeStat(Stat.health, -enemy.ability.power);
                     player.stats.AddEffect(2, enemy.ability.effect, 1);
+                    hud.CombatText(3, enemy);
                 }
                 else if (enemy.ability.usedAbility == UsedAbility.Miss)
                 {
                     enemy.stats.ChangeStat(Stat.health, -player.abilities.power);
                     enemy.stats.AddEffect(2, player.abilities.effect, 1);
+                    hud.CombatText(4, enemy);
                 }
                 else if (player.stats.CheckStat(Stat.speed) >= enemy.stats.CheckStat(Stat.speed))
                 {
                     enemy.stats.ChangeStat(Stat.health, -player.abilities.power);
                     if (enemy.stats.CheckStat(Stat.health) <= 0)
                     {
+                        hud.CombatText(5, enemy);
                         //ends encounter
                     }
                     enemy.stats.AddEffect(2, player.abilities.effect, 1);
                     player.stats.ChangeStat(Stat.health, -enemy.ability.power);
                     player.stats.AddEffect(2, enemy.ability.effect, 1);
+                    hud.CombatText(6, enemy);
                 }
                 else
                 {
                     player.stats.ChangeStat(Stat.health, -enemy.ability.power);
                     if (player.stats.CheckStat(Stat.health) <= 0)
                     {
-                        //ends encounter
+                        hud.CombatText(7, enemy);
+                        //game over
                     }
                     player.stats.AddEffect(2, enemy.ability.effect, 1);
                     enemy.stats.ChangeStat(Stat.health, -player.abilities.power);
                     enemy.stats.AddEffect(2, player.abilities.effect, 1);
+                    hud.CombatText(8, enemy);
                 }
+
+                player.stats.UpdateEffects();
+                enemy.stats.UpdateEffects();
 
                 if (player.stats.CheckStat(Stat.health) <= 0)
                 {
@@ -110,7 +122,6 @@ namespace Dungeon_Crawler_2D
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
             hud.DrawBattle(spriteBatch, this);
         }
 

@@ -16,6 +16,7 @@ namespace Dungeon_Crawler_2D.Object
         public StatScreen statScreen;
         public bool showStats;
         private TextureManager textures;
+        private KeyboardState currentState, previousState;
         public Abilities abilities;
         public List<UsedAbility> playerAbilities;
 
@@ -28,7 +29,7 @@ namespace Dungeon_Crawler_2D.Object
             showStats = false;
             abilities = new Abilities(UsedBy.player);
             playerAbilities = new List<UsedAbility>(4);
-            
+            GetAbilities();
         }
 
         public override void Update(GameTime gameTime)
@@ -43,23 +44,25 @@ namespace Dungeon_Crawler_2D.Object
         void CheckInput()
         {
             Point direction = new Point(0, 0);
+            previousState = currentState;
+            currentState = Keyboard.GetState();
 
-            if (Keyboard.GetState().IsKeyDown(Keys.W))
+            if (currentState.IsKeyDown(Keys.W) && previousState.IsKeyUp(Keys.W))
             {
                 direction.Y = -1;
                 startingFrame = new Point(0, 3);
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.S))
+            else if (currentState.IsKeyDown(Keys.S) && previousState.IsKeyUp(Keys.S))
             {
                 direction.Y = 1;
                 startingFrame = new Point(0, 0);
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.D)) //Detta är en "if" så man ska kunna gå diagonalt. Map klassen har stöd för det.
+            if (currentState.IsKeyDown(Keys.D) && previousState.IsKeyUp(Keys.D)) //Detta är en "if" så man ska kunna gå diagonalt. Map klassen har stöd för det.
             {
                 direction.X = 1;
                 startingFrame = new Point(0, 2);
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.A))
+            else if (currentState.IsKeyDown(Keys.A) && previousState.IsKeyUp(Keys.A))
             {
                 direction.X = -1;
                 startingFrame = new Point(0, 1);
@@ -85,22 +88,24 @@ namespace Dungeon_Crawler_2D.Object
 
         public bool ChoseAbility(Enemy enemy)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Q))
+            previousState = currentState;
+            currentState = Keyboard.GetState();
+            if (currentState.IsKeyDown(Keys.Q) && previousState.IsKeyUp(Keys.Q))
             {
                 abilities.Ability(enemy, this, playerAbilities[0]);
                 return false;
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.W))
+            else if (currentState.IsKeyDown(Keys.W) && previousState.IsKeyUp(Keys.W))
             {
                 abilities.Ability(enemy, this, playerAbilities[1]);
                 return false;
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.W))
+            else if (currentState.IsKeyDown(Keys.E) && previousState.IsKeyUp(Keys.E))
             {
                 abilities.Ability(enemy, this, playerAbilities[2]);
                 return false;
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.W))
+            else if (currentState.IsKeyDown(Keys.R) && previousState.IsKeyUp(Keys.R))
             {
                 abilities.Ability(enemy, this, playerAbilities[3]);
                 return false;
