@@ -12,7 +12,7 @@ namespace Dungeon_Crawler_2D
     }
     public enum Stat
     {
-        maxHealth, health, maxMana, mana, strength, inteligence, dexterity, luck, speed, maxXp, xp, level
+        maxHealth, health, maxMana, mana, strength, intelligence, dexterity, luck, speed, maxXp, xp, level
     }
     public enum EffectPoint
     {
@@ -23,7 +23,7 @@ namespace Dungeon_Crawler_2D
     {
         
         private int maxHealth, health, maxMana, mana, strength, inteligence, dextarity, luck, speed, maxXp, xp, level;
-        public int uppgrade;
+        public int upgrade;
         private List<Effect> activeEffects;
         private TextureManager textures;
 
@@ -43,7 +43,7 @@ namespace Dungeon_Crawler_2D
             this.maxXp = maxXp;
             this.xp = xp;
             this.level = level;
-            uppgrade = 0;
+            upgrade = 0;
             activeEffects = new List<Effect>(8);//number goes up with amount of effects
         }
 
@@ -83,7 +83,7 @@ namespace Dungeon_Crawler_2D
                 case Stat.strength:
                     strength += addition;
                     break;
-                case Stat.inteligence:
+                case Stat.intelligence:
                     inteligence += addition;
                     break;
                 case Stat.dexterity:
@@ -128,7 +128,7 @@ namespace Dungeon_Crawler_2D
                     return mana;
                 case Stat.strength:
                     return strength;
-                case Stat.inteligence:
+                case Stat.intelligence:
                     return inteligence;
                 case Stat.dexterity:
                     return dextarity;
@@ -153,19 +153,19 @@ namespace Dungeon_Crawler_2D
         {
             if (level <= 5)
             {
-                uppgrade += 3;
+                upgrade += 3;
             }
             else if (level <= 10)
             {
-                uppgrade += 5;
+                upgrade += 5;
             }
             else if (level <= 15)
             {
-                uppgrade += 7;
+                upgrade += 7;
             }
             else if (level > 15)
             {
-                uppgrade += 10;
+                upgrade += 10;
             }
             level += 1;
         }
@@ -239,7 +239,7 @@ namespace Dungeon_Crawler_2D
                         }
                     }
                     return 1;
-                case Stat.inteligence:
+                case Stat.intelligence:
                     foreach (Effect e in activeEffects)
                     {
                         if (e.effect == Effects.intelligenceBuff)

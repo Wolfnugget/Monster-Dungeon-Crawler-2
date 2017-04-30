@@ -108,12 +108,12 @@ namespace Dungeon_Crawler_2D
                         usedAbility = UsedAbility.Magic;
                         if (accuracy >= 100)
                         {
-                            power = player.stats.CheckStat(Stat.inteligence) + player.stats.CheckStat(Stat.luck);
+                            power = player.stats.CheckStat(Stat.intelligence) + player.stats.CheckStat(Stat.luck);
                             effect = Effects.confusion;
                         }
                         else
                         {
-                            power = player.stats.CheckStat(Stat.inteligence) + player.stats.CheckStat(Stat.luck);
+                            power = player.stats.CheckStat(Stat.intelligence) + player.stats.CheckStat(Stat.luck);
                             effect = Effects.none;
                         }
                     }
@@ -128,12 +128,12 @@ namespace Dungeon_Crawler_2D
                         this.usedAbility = UsedAbility.Magic;
                         if (accuracy >= 100)
                         {
-                            power = enemy.stats.CheckStat(Stat.inteligence) + enemy.stats.CheckStat(Stat.luck);
+                            power = enemy.stats.CheckStat(Stat.intelligence) + enemy.stats.CheckStat(Stat.luck);
                             effect = Effects.confusion;
                         }
                         else
                         {
-                            power = enemy.stats.CheckStat(Stat.inteligence) + enemy.stats.CheckStat(Stat.luck);
+                            power = enemy.stats.CheckStat(Stat.intelligence) + enemy.stats.CheckStat(Stat.luck);
                             effect = Effects.none;
                         }
                     }

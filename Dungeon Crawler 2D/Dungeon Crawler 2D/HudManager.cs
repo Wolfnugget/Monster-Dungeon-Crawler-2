@@ -14,20 +14,23 @@ namespace Dungeon_Crawler_2D
     {
         private GameState gameState;
 
-        private Texture2D pixelTex;
+        public Texture2D pixelTex;
 
         private TextureManager textures;
 
+        public StatScreen statScreen;
+        public bool showStats;
+        
         private Rectangle leftBarRect;
         private Rectangle rightBarRect;
         private Rectangle bottomBarRect;
         private Rectangle topBarRect;
         
-        private int windowWidth;
-        private int windowHeight;
+        public int windowWidth;
+        public int windowHeight;
         public int sideBarWidth;
         private int statBarWidth;
-
+        
         //Specialeffekt-relaterat
         private float flashTimer;
         private bool flashTimerToggle;
@@ -40,9 +43,8 @@ namespace Dungeon_Crawler_2D
         private KeyboardState currentState, previousState;
         private bool turn;
         private string turnEvents;
-
-
-        private Object.Player player;
+        
+        public Object.Player player;
 
         public HUDManager(GameState gameState, TextureManager textures, GraphicsDevice graphicsDevice, ContentManager content, Object.Player player, int windowWidth, int windowHeight)
         {
@@ -51,7 +53,10 @@ namespace Dungeon_Crawler_2D
             this.player = player;
             this.windowWidth = windowWidth;
             this.windowHeight = windowHeight;
-            
+
+            statScreen = new StatScreen(this, textures);
+            showStats = false;
+
             pixelTex = new Texture2D(graphicsDevice, 1, 1);
             pixelTex.SetData<Color>(new Color[] { Color.White });
 
@@ -76,9 +81,6 @@ namespace Dungeon_Crawler_2D
                 player.stats.ChangeStat(Stat.mana, 1);
                 player.stats.ChangeStat(Stat.xp, 1);
             }
-
-            // Temporära button-mappings för att testa vad som sker när olika värden ändras
-            //-------------------------------------------------------------------
             if (Keyboard.GetState().IsKeyDown(Keys.N))
             {
                 player.stats.AddEffect(-1, Effects.poison, 1);
@@ -89,9 +91,17 @@ namespace Dungeon_Crawler_2D
                 player.stats.ChangeStat(Stat.mana, -1);
                 player.stats.ChangeStat(Stat.xp, -1);
             }
-
-            //---------------------------------------------------------------------
+            if (gameState == GameState.Explore)
+            {
+                previousState = currentState;
+                currentState = Keyboard.GetState();
+                if (currentState.IsKeyDown(Keys.I) && previousState.IsKeyUp(Keys.I))
+                {
+                    showStats = !showStats;
+                }
+            }
             
+
             // making icons flash
             if (flashTimer <= 0)
             {

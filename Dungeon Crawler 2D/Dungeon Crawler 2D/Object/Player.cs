@@ -13,8 +13,6 @@ namespace Dungeon_Crawler_2D.Object
     {
         KeyboardState kbState, lastkbState;
         public Stats stats;
-        public StatScreen statScreen;
-        public bool showStats;
         private TextureManager textures;
         private KeyboardState currentState, previousState;
         public Abilities abilities;
@@ -25,8 +23,6 @@ namespace Dungeon_Crawler_2D.Object
         {
             this.textures = textures;
             stats = new Stats(textures, 100, 100, 100, 100, 10, 10, 10, 10, 10, 50, 0, 1);
-            statScreen = new StatScreen(this, textures);
-            showStats = false;
             abilities = new Abilities(UsedBy.player);
             playerAbilities = new List<UsedAbility>(4);
             GetAbilities();
@@ -67,14 +63,7 @@ namespace Dungeon_Crawler_2D.Object
                 direction.X = -1;
                 startingFrame = new Point(0, 1);
             }
-
-            lastkbState = kbState;
-            kbState = Keyboard.GetState();
-            if (kbState.IsKeyDown(Keys.I) && lastkbState.IsKeyUp(Keys.I))
-            {
-                showStats = !showStats;
-            }
-
+            
             //Här ska frames bytas senare när vi har en sprite
 
             if (direction != new Point(0, 0))

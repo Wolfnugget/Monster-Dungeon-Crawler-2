@@ -153,9 +153,9 @@ namespace Dungeon_Crawler_2D
 
                 //OBS!! Skriv bara här om ni vill att det som ritas ut ska vara oberoende av kameran (tex healthbars eller poäng)
                 hud.DrawExplore(spriteBatch);
-                if (player.showStats == true)
+                if (hud.showStats == true)
                 {
-                    player.statScreen.Draw(spriteBatch);
+                    hud.statScreen.Draw(spriteBatch);
                 }
                 
                 spriteBatch.End();
