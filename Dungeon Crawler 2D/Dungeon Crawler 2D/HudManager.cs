@@ -331,17 +331,17 @@ namespace Dungeon_Crawler_2D
             spriteBatch.Draw(textures.bleedIcon, new Rectangle(rightBarRect.X + (sideBarWidth / 4), sideBarWidth * 2, sideBarWidth / 2, sideBarWidth / 2), Color.White * 0.3f);
             spriteBatch.Draw(textures.confusionIcon, new Rectangle(rightBarRect.X + (sideBarWidth / 4), sideBarWidth * 3, sideBarWidth / 2, sideBarWidth / 2), Color.White * 0.3f);
 
-            if (player.stats.CheckEffectTime(Effects.poison) > 0)
+            if (combat.enemy.stats.CheckEffectTime(Effects.poison) > 0)
             {
                 spriteBatch.Draw(textures.poisonIcon, new Rectangle(rightBarRect.X + (sideBarWidth / 4), sideBarWidth, sideBarWidth / 2, sideBarWidth / 2), Color.White * flashAlpha);
             }
 
-            if (player.stats.CheckEffectTime(Effects.bleed) > 0)
+            if (combat.enemy.stats.CheckEffectTime(Effects.bleed) > 0)
             {
                 spriteBatch.Draw(textures.bleedIcon, new Rectangle(rightBarRect.X + (sideBarWidth / 4), sideBarWidth * 2, sideBarWidth / 2, sideBarWidth / 2), Color.White * flashAlpha);
             }
 
-            if (player.stats.CheckEffectTime(Effects.confusion) > 0)
+            if (combat.enemy.stats.CheckEffectTime(Effects.confusion) > 0)
             {
                 spriteBatch.Draw(textures.confusionIcon, new Rectangle(rightBarRect.X + (sideBarWidth / 4), sideBarWidth * 3, sideBarWidth / 2, sideBarWidth / 2), Color.White * flashAlpha);
             }
@@ -368,9 +368,9 @@ namespace Dungeon_Crawler_2D
                 new Rectangle(24, 0, 8, textures.barsSheet.Height), Color.White);
 
             spriteBatch.Draw(textures.barsSheet, new Rectangle(rightBarRect.X - sideBarWidth + (sideBarWidth / 2) - (statBarWidth / 2),
-                windowHeight - statBarWidth - (player.stats.CheckStat(Stat.health) * (bottomBarRect.Height - (statBarWidth * 2)) / (player.stats.CheckStat(Stat.maxHealth))),
+                windowHeight - statBarWidth - (combat.enemy.stats.CheckStat(Stat.health) * (bottomBarRect.Height - (statBarWidth * 2)) / (combat.enemy.stats.CheckStat(Stat.maxHealth))),
                 statBarWidth,
-                (player.stats.CheckStat(Stat.health) * (bottomBarRect.Height - (statBarWidth * 2)) / (player.stats.CheckStat(Stat.maxHealth)))),
+                (combat.enemy.stats.CheckStat(Stat.health) * (bottomBarRect.Height - (statBarWidth * 2)) / (combat.enemy.stats.CheckStat(Stat.maxHealth)))),
                 new Rectangle(0, 0, 8, textures.barsSheet.Height), Color.White);
 
             //mana-bars
@@ -395,9 +395,9 @@ namespace Dungeon_Crawler_2D
                 new Rectangle(24, 0, 8, textures.barsSheet.Height), Color.White);
 
             spriteBatch.Draw(textures.barsSheet, new Rectangle(rightBarRect.X + (sideBarWidth / 2) - (statBarWidth / 2),
-                windowHeight - statBarWidth - (player.stats.CheckStat(Stat.mana) * (bottomBarRect.Height - (statBarWidth * 2)) / (player.stats.CheckStat(Stat.maxMana))),
+                windowHeight - statBarWidth - (combat.enemy.stats.CheckStat(Stat.mana) * (bottomBarRect.Height - (statBarWidth * 2)) / (combat.enemy.stats.CheckStat(Stat.maxMana))),
                 statBarWidth,
-                (player.stats.CheckStat(Stat.mana) * (bottomBarRect.Height - (statBarWidth * 2)) / (player.stats.CheckStat(Stat.maxMana)))),
+                (combat.enemy.stats.CheckStat(Stat.mana) * (bottomBarRect.Height - (statBarWidth * 2)) / (combat.enemy.stats.CheckStat(Stat.maxMana)))),
                 new Rectangle(8, 0, 8, textures.barsSheet.Height), Color.White);
 
 
@@ -431,9 +431,9 @@ namespace Dungeon_Crawler_2D
 
             //fienden
             //HP
-            Vector2 textSizeEnemyHPNr = textures.comicSans.MeasureString("" + player.stats.CheckStat(Stat.health) + "/" + player.stats.CheckStat(Stat.maxHealth));
+            Vector2 textSizeEnemyHPNr = textures.comicSans.MeasureString("" + combat.enemy.stats.CheckStat(Stat.health) + "/" + combat.enemy.stats.CheckStat(Stat.maxHealth));
             Vector2 originEnemyHPNr = new Vector2(textSizeEnemyHPNr.X * 0.5f, 0);
-            spriteBatch.DrawString(textures.comicSans, ("" + player.stats.CheckStat(Stat.health) + "/" + player.stats.CheckStat(Stat.maxHealth)),
+            spriteBatch.DrawString(textures.comicSans, ("" + combat.enemy.stats.CheckStat(Stat.health) + "/" + combat.enemy.stats.CheckStat(Stat.maxHealth)),
                 new Vector2(rightBarRect.X - sideBarWidth + (sideBarWidth / 2), windowHeight - statBarWidth),
                 Color.Red, 0, originEnemyHPNr, 2, SpriteEffects.None, 0);
 
@@ -444,9 +444,9 @@ namespace Dungeon_Crawler_2D
                 Color.Red, 0, originEnemyHPTxt, 2, SpriteEffects.None, 0);
 
             //MP
-            Vector2 textSizeEnemyMPNr = textures.comicSans.MeasureString("" + player.stats.CheckStat(Stat.mana) + "/" + player.stats.CheckStat(Stat.maxMana));
+            Vector2 textSizeEnemyMPNr = textures.comicSans.MeasureString("" + combat.enemy.stats.CheckStat(Stat.mana) + "/" + combat.enemy.stats.CheckStat(Stat.maxMana));
             Vector2 originEnemyMPNr = new Vector2(textSizeEnemyMPNr.X * 0.5f, 0);
-            spriteBatch.DrawString(textures.comicSans, ("" + player.stats.CheckStat(Stat.mana) + "/" + player.stats.CheckStat(Stat.maxMana)),
+            spriteBatch.DrawString(textures.comicSans, ("" + combat.enemy.stats.CheckStat(Stat.mana) + "/" + combat.enemy.stats.CheckStat(Stat.maxMana)),
                 new Vector2(rightBarRect.X + (sideBarWidth / 2), windowHeight - statBarWidth),
                 Color.Blue, 0, originEnemyMPNr, 2, SpriteEffects.None, 0);
 
@@ -486,29 +486,29 @@ namespace Dungeon_Crawler_2D
             }
 
             //fienden
-            if (player.stats.CheckEffectTime(Effects.poison) > 0)
+            if (combat.enemy.stats.CheckEffectTime(Effects.poison) > 0)
             {
-                Vector2 textSizeEnemyPoison = textures.comicSans.MeasureString("" + player.stats.CheckEffectTime(Effects.poison));
+                Vector2 textSizeEnemyPoison = textures.comicSans.MeasureString("" + combat.enemy.stats.CheckEffectTime(Effects.poison));
                 Vector2 originEnemyPoison = new Vector2(textSizeEnemyPoison.X * 0.5f, 0);
-                spriteBatch.DrawString(textures.comicSans, "" + player.stats.CheckEffectTime(Effects.poison),
+                spriteBatch.DrawString(textures.comicSans, "" + combat.enemy.stats.CheckEffectTime(Effects.poison),
                     new Vector2(rightBarRect.X + (sideBarWidth / 2), sideBarWidth + (sideBarWidth / 2)),
                     Color.Green, 0, originEnemyPoison, 2, SpriteEffects.None, 0);
             }
 
-            if (player.stats.CheckEffectTime(Effects.bleed) > 0)
+            if (combat.enemy.stats.CheckEffectTime(Effects.bleed) > 0)
             {
-                Vector2 textSizeEnemyBleed = textures.comicSans.MeasureString("" + player.stats.CheckEffectTime(Effects.bleed));
+                Vector2 textSizeEnemyBleed = textures.comicSans.MeasureString("" + combat.enemy.stats.CheckEffectTime(Effects.bleed));
                 Vector2 originEnemyBleed = new Vector2(textSizeEnemyBleed.X * 0.5f, 0);
-                spriteBatch.DrawString(textures.comicSans, "" + player.stats.CheckEffectTime(Effects.bleed),
+                spriteBatch.DrawString(textures.comicSans, "" + combat.enemy.stats.CheckEffectTime(Effects.bleed),
                     new Vector2(rightBarRect.X + (sideBarWidth / 2), sideBarWidth * 2 + (sideBarWidth / 2)),
                     Color.Red, 0, originEnemyBleed, 2, SpriteEffects.None, 0);
             }
 
-            if (player.stats.CheckEffectTime(Effects.confusion) > 0)
+            if (combat.enemy.stats.CheckEffectTime(Effects.confusion) > 0)
             {
-                Vector2 textSizeEnemyConfusion = textures.comicSans.MeasureString("" + player.stats.CheckEffectTime(Effects.confusion));
+                Vector2 textSizeEnemyConfusion = textures.comicSans.MeasureString("" + combat.enemy.stats.CheckEffectTime(Effects.confusion));
                 Vector2 originEnemyConfusion = new Vector2(textSizeEnemyConfusion.X * 0.5f, 0);
-                spriteBatch.DrawString(textures.comicSans, "" + player.stats.CheckEffectTime(Effects.confusion),
+                spriteBatch.DrawString(textures.comicSans, "" + combat.enemy.stats.CheckEffectTime(Effects.confusion),
                     new Vector2(rightBarRect.X + (sideBarWidth / 2), sideBarWidth * 3 + (sideBarWidth / 2)),
                     Color.Yellow, 0, originEnemyConfusion, 2, SpriteEffects.None, 0);
             }
