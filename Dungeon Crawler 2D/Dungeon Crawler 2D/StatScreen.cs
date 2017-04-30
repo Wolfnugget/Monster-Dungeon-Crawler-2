@@ -36,25 +36,66 @@ namespace Dungeon_Crawler_2D
                 screenHeight += textures.whiteSquare.Height;
                 for (int j = 0; j < 15; j++)
                 {
-                    spriteBatch.Draw(textures.whiteSquare, new Vector2(440 + textures.whiteSquare.Width * i, 240 + textures.whiteSquare.Height * j), Color.Gray);
+                    spriteBatch.Draw(textures.whiteSquare, new Vector2(440 + textures.whiteSquare.Width * i, 240 + textures.whiteSquare.Height * j), Color.Black);
                 }
             }
+
+            spriteBatch.Draw(textures.poisonIcon, new Rectangle(440 + (screenWidth / 4) * 1,
+                240 + ((screenHeight / 6) * 1),
+                textures.poisonIcon.Width * 3,
+                textures.poisonIcon.Height * 3),
+                null, Color.White, 0, new Vector2((textures.poisonIcon.Width) * 0.5f, 0), SpriteEffects.None, 0);
+
             spriteBatch.DrawString(textures.comicSans, player.stats.uppgrade.ToString(),
                     new Vector2(440 + (screenWidth / 4) * 1, 240 + (screenHeight / 3)), Color.Red,
                     0, origin, 2, SpriteEffects.None, 0);
+
+            spriteBatch.Draw(textures.poisonIcon, new Rectangle(440 + (screenWidth / 4) * 2,
+                240 + ((screenHeight / 6) * 1),
+                textures.poisonIcon.Width * 3,
+                textures.poisonIcon.Height * 3),
+                null, Color.White, 0, new Vector2((textures.poisonIcon.Width) * 0.5f, 0), SpriteEffects.None, 0);
+
             spriteBatch.DrawString(textures.comicSans, player.stats.CheckStat(Stat.strength).ToString(),
                     new Vector2(440 + (screenWidth / 4) * 2, 240 + (screenHeight / 3)), Color.Red,
                     0, origin, 2, SpriteEffects.None, 0);
+
+            spriteBatch.Draw(textures.poisonIcon, new Rectangle(440 + (screenWidth / 4) * 3,
+                240 + ((screenHeight / 6) * 1),
+                textures.poisonIcon.Width * 3,
+                textures.poisonIcon.Height * 3),
+                null, Color.White, 0, new Vector2((textures.poisonIcon.Width) * 0.5f, 0), SpriteEffects.None, 0);
+
             spriteBatch.DrawString(textures.comicSans, player.stats.CheckStat(Stat.dexterity).ToString(),
                     new Vector2(440 + (screenWidth / 4) * 3, 240 + (screenHeight / 3)), Color.Red,
                     0, origin, 2, SpriteEffects.None, 0);
 
+            spriteBatch.Draw(textures.poisonIcon, new Rectangle(440 + (screenWidth / 4) * 1,
+                240 + ((screenHeight / 6) * 3),
+                textures.poisonIcon.Width * 3,
+                textures.poisonIcon.Height * 3),
+                null, Color.White, 0, new Vector2((textures.poisonIcon.Width) * 0.5f, 0), SpriteEffects.None, 0);
+
             spriteBatch.DrawString(textures.comicSans, player.stats.CheckStat(Stat.speed).ToString(),
                 new Vector2(440 + (screenWidth / 4) * 1, 240 + (screenHeight / 6) * 4), Color.Red,
                 0, origin, 2, SpriteEffects.None, 0);
+
+            spriteBatch.Draw(textures.poisonIcon, new Rectangle(440 + (screenWidth / 4) * 2,
+                240 + ((screenHeight / 6) * 3),
+                textures.poisonIcon.Width * 3,
+                textures.poisonIcon.Height * 3),
+                null, Color.White, 0, new Vector2((textures.poisonIcon.Width) * 0.5f, 0), SpriteEffects.None, 0);
+
             spriteBatch.DrawString(textures.comicSans, player.stats.CheckStat(Stat.inteligence).ToString(),
                 new Vector2(440 + (screenWidth / 4) * 2, 240 + (screenHeight / 6) * 4), Color.Red,
                 0, origin, 2, SpriteEffects.None, 0);
+
+            spriteBatch.Draw(textures.poisonIcon, new Rectangle(440 + (screenWidth / 4) * 3,
+                240 + ((screenHeight / 6) * 3),
+                textures.poisonIcon.Width * 3,
+                textures.poisonIcon.Height * 3),
+                null, Color.White, 0, new Vector2((textures.poisonIcon.Width) * 0.5f, 0), SpriteEffects.None, 0);
+
             spriteBatch.DrawString(textures.comicSans, player.stats.CheckStat(Stat.luck).ToString(),
                 new Vector2(440 + (screenWidth / 4) * 3, 240 + (screenHeight / 6) * 4), Color.Red,
                 0, origin, 2, SpriteEffects.None, 0);
