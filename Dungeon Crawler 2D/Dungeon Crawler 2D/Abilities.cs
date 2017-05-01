@@ -217,6 +217,18 @@ namespace Dungeon_Crawler_2D
 
         }
 
+        public int CheckCost(UsedAbility ability)
+        {
+            switch (ability)
+            {
+                case UsedAbility.Magic:
+                    return 15;
+                case UsedAbility.PoisonHit:
+                    return 25;
+                default: return 0; //bör ej tillkomma
+            }
+        }
+
     }
 }
 
