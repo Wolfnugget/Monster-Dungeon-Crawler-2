@@ -79,7 +79,8 @@ namespace Dungeon_Crawler_2D
         public void Update(GameState gameState)
         {
             this.gameState = gameState;
-            
+
+            #region Test statIncrese / Decrese
             if (Keyboard.GetState().IsKeyDown(Keys.V))
             {
                 player.stats.AddEffect(1, Effects.poison, 1);
@@ -100,7 +101,9 @@ namespace Dungeon_Crawler_2D
                 player.stats.ChangeStat(Stat.mana, -1);
                 player.stats.ChangeStat(Stat.xp, -1);
             }
+            #endregion
 
+            #region Icon flash
             // making icons flash
             if (flashTimer <= 0)
             {
@@ -121,6 +124,9 @@ namespace Dungeon_Crawler_2D
             }
             flashAlpha = flashTimer * 0.05f;
 
+            #endregion 
+
+            #region Scale Text in info-box
             // making text scale up in info-box
             if (textScaleTimer < 20 && textScaleTimer > 0)
             {
@@ -146,20 +152,23 @@ namespace Dungeon_Crawler_2D
                     statScreen.Update();
                 }
             }
+            #endregion
         }
 
         public void DrawExplore(SpriteBatch spriteBatch)
         {
-            //side-bars där stats visas
+            #region Sidebar for stats
             spriteBatch.Draw(pixelTex, leftBarRect, Color.Black);
             spriteBatch.Draw(pixelTex, rightBarRect, Color.Black);
+            #endregion 
 
-            //linjer som separerar olika sektioner
+            #region lines to separate regions
             spriteBatch.Draw(pixelTex, new Rectangle(sideBarWidth, 0, statBarWidth / 20, windowHeight), Color.White);
             spriteBatch.Draw(pixelTex, new Rectangle(windowWidth - sideBarWidth - (statBarWidth / 20), 0, statBarWidth / 20, windowHeight), Color.White);
             spriteBatch.Draw(pixelTex, new Rectangle(0, statBarWidth * 8, sideBarWidth, statBarWidth / 20), Color.White);
+            #endregion
 
-            //health-bar
+            #region health bar
             spriteBatch.Draw(textures.barsSheet, new Rectangle(leftBarRect.X + (sideBarWidth / 4) - (statBarWidth / 2),
                 windowHeight - statBarWidth - (player.stats.CheckStat(Stat.maxHealth) * (statBarWidth / 20)),
                 statBarWidth,
@@ -171,8 +180,9 @@ namespace Dungeon_Crawler_2D
                 statBarWidth,
                 player.stats.CheckStat(Stat.health) * (statBarWidth / 20)),
                 new Rectangle(0, 0, 8, textures.barsSheet.Height), Color.White);
+            #endregion
 
-            //mana-bar
+            #region mana bar
             spriteBatch.Draw(textures.barsSheet, new Rectangle(leftBarRect.X + (sideBarWidth / 4) + (sideBarWidth / 2) - (statBarWidth / 2),
                 windowHeight - statBarWidth - (player.stats.CheckStat(Stat.maxMana) * (statBarWidth / 20)),
                 statBarWidth,
@@ -184,8 +194,9 @@ namespace Dungeon_Crawler_2D
                 statBarWidth,
                 player.stats.CheckStat(Stat.mana) * statBarWidth / 20),
                 new Rectangle(8, 0, 8, textures.barsSheet.Height), Color.White);
+            #endregion
 
-            //experience-bar
+            #region experience bar
             spriteBatch.Draw(textures.barsSheet, new Rectangle(rightBarRect.X + (sideBarWidth / 2) - (statBarWidth / 2),
                 sideBarWidth,
                 statBarWidth,
@@ -197,8 +208,9 @@ namespace Dungeon_Crawler_2D
                 statBarWidth,
                 (player.stats.CheckStat(Stat.xp) * (windowHeight - sideBarWidth - statBarWidth) / (player.stats.CheckStat(Stat.maxXp)))),
                 new Rectangle(16, 0, 8, textures.barsSheet.Height), Color.White);
+            #endregion
 
-            //effects-display
+            #region Effect display
             spriteBatch.Draw(textures.poisonIcon, new Rectangle(leftBarRect.X + (sideBarWidth / 2) - (statBarWidth / 2), statBarWidth, statBarWidth, statBarWidth), Color.White * 0.2f);
             spriteBatch.Draw(textures.bleedIcon, new Rectangle(leftBarRect.X + (sideBarWidth / 2) - (statBarWidth / 2), statBarWidth + (statBarWidth * 2), statBarWidth, statBarWidth), Color.White * 0.2f);
             spriteBatch.Draw(textures.confusionIcon, new Rectangle(leftBarRect.X + (sideBarWidth / 2) - (statBarWidth / 2), statBarWidth + (statBarWidth * 4), statBarWidth, statBarWidth), Color.White * 0.2f);
@@ -217,9 +229,10 @@ namespace Dungeon_Crawler_2D
             {
                 spriteBatch.Draw(textures.confusionIcon, new Rectangle(leftBarRect.X + (sideBarWidth / 2) - (statBarWidth / 2), statBarWidth + (statBarWidth * 4), statBarWidth, statBarWidth), Color.White * flashAlpha);
             }
+            #endregion
 
-            //text till bars
-            //HP
+            #region Text to bars
+            #region Hp
             Vector2 textSizeHPNr = textures.comicSans.MeasureString("" + player.stats.CheckStat(Stat.health));
             Vector2 originHPNr = new Vector2(textSizeHPNr.X * 0.5f, 0);
             spriteBatch.DrawString(textures.comicSans, "" + player.stats.CheckStat(Stat.health),
@@ -231,8 +244,9 @@ namespace Dungeon_Crawler_2D
             spriteBatch.DrawString(textures.comicSans, ("HP"),
                 new Vector2(leftBarRect.X + (sideBarWidth / 4), windowHeight - statBarWidth - (player.stats.CheckStat(Stat.maxHealth) * (statBarWidth / 20))),
                 Color.Red, 0, originHPTxt, 2, SpriteEffects.None, 0);
+            #endregion
 
-            //MP
+            #region Mana
             Vector2 textSizeMPNr = textures.comicSans.MeasureString("" + player.stats.CheckStat(Stat.mana));
             Vector2 originMPNr = new Vector2(textSizeMPNr.X * 0.5f, 0);
             spriteBatch.DrawString(textures.comicSans, "" + player.stats.CheckStat(Stat.mana),
@@ -244,15 +258,19 @@ namespace Dungeon_Crawler_2D
             spriteBatch.DrawString(textures.comicSans, ("MP"),
                 new Vector2(leftBarRect.X + (sideBarWidth / 4) + (sideBarWidth / 2), windowHeight - statBarWidth - (player.stats.CheckStat(Stat.maxMana) * (statBarWidth / 20))),
                 Color.Blue, 0, originMPTxt, 2, SpriteEffects.None, 0);
+            #endregion
 
-            //XP
+            #region experience
             Vector2 textSizeXPNr = textures.comicSans.MeasureString("XP: " + player.stats.CheckStat(Stat.xp));
             Vector2 originXPNr = new Vector2(textSizeXPNr.X * 0.5f, 0);
             spriteBatch.DrawString(textures.comicSans, "XP: " + player.stats.CheckStat(Stat.xp),
                 new Vector2(rightBarRect.X + (sideBarWidth / 2), windowHeight - statBarWidth),
                 Color.Green, 0, originXPNr, 2, SpriteEffects.None, 0);
+            #endregion
+            #endregion
 
-            //text till icons
+            #region Text to icons
+            #region poison
             if (player.stats.CheckEffectTime(Effects.poison) > 0)
             {
                 Vector2 textSizePoison = textures.comicSans.MeasureString("" + player.stats.CheckEffectTime(Effects.poison));
@@ -261,7 +279,9 @@ namespace Dungeon_Crawler_2D
                     new Vector2(leftBarRect.X + (sideBarWidth / 2), statBarWidth + statBarWidth),
                     Color.Green, 0, originPoison, 2, SpriteEffects.None, 0);
             }
+            #endregion
 
+            #region bleed
             if (player.stats.CheckEffectTime(Effects.bleed) > 0)
             {
                 Vector2 textSizeBleed = textures.comicSans.MeasureString("" + player.stats.CheckEffectTime(Effects.bleed));
@@ -270,7 +290,9 @@ namespace Dungeon_Crawler_2D
                     new Vector2(leftBarRect.X + (sideBarWidth / 2), statBarWidth + (statBarWidth * 3)),
                     Color.Red, 0, originBleed, 2, SpriteEffects.None, 0);
             }
+            #endregion
 
+            #region confusion
             if (player.stats.CheckEffectTime(Effects.confusion) > 0)
             {
                 Vector2 textSizeConfusion = textures.comicSans.MeasureString("" + player.stats.CheckEffectTime(Effects.confusion));
@@ -279,13 +301,17 @@ namespace Dungeon_Crawler_2D
                     new Vector2(leftBarRect.X + (sideBarWidth / 2), statBarWidth + (statBarWidth * 5)),
                     Color.Yellow, 0, originConfusion, 2, SpriteEffects.None, 0);
             }
+            #endregion
+            #endregion
 
-            //visar experience level
+            #region level
             Vector2 textSizeXpLevel = textures.comicSans.MeasureString("lvl " + player.stats.CheckStat(Stat.level));
             Vector2 originXpLevel = new Vector2(textSizeXpLevel.X * 0.5f, 0);
             spriteBatch.DrawString(textures.comicSans, "lvl " + player.stats.CheckStat(Stat.level),
                 new Vector2(rightBarRect.X + (sideBarWidth / 2),
                 statBarWidth), Color.GhostWhite, 0, originXpLevel, 3, SpriteEffects.None, 0);
+
+            #endregion
 
             //ritar ut statStcreen
             if (showStats == true)
@@ -296,22 +322,24 @@ namespace Dungeon_Crawler_2D
 
         public void DrawBattle(SpriteBatch spriteBatch, Combat combat)
         {
-            //sektioner där stats visas
+            #region stat bar
             spriteBatch.Draw(pixelTex, leftBarRect, Color.Black);
             spriteBatch.Draw(pixelTex, rightBarRect, Color.Black);
             spriteBatch.Draw(pixelTex, bottomBarRect, Color.Black);
             spriteBatch.Draw(pixelTex, topBarRect, Color.Black);
+            #endregion
 
-            //Linjer som separerar sektioner
+            #region lines to seperate sektions
             spriteBatch.Draw(pixelTex, new Rectangle(sideBarWidth, 0, statBarWidth / 20, windowHeight - bottomBarRect.Height), Color.White);
             spriteBatch.Draw(pixelTex, new Rectangle(windowWidth - sideBarWidth - (statBarWidth / 20), 0, statBarWidth / 20, windowHeight - bottomBarRect.Height), Color.White);
             spriteBatch.Draw(pixelTex, new Rectangle(sideBarWidth, topBarRect.Height, topBarRect.Width - (sideBarWidth * 2), statBarWidth / 20), Color.White);
             spriteBatch.Draw(pixelTex, new Rectangle(0, windowHeight - bottomBarRect.Height, windowWidth, statBarWidth / 20), Color.White);
             spriteBatch.Draw(pixelTex, new Rectangle(sideBarWidth * 2, windowHeight - bottomBarRect.Height, statBarWidth / 20, bottomBarRect.Height), Color.White);
             spriteBatch.Draw(pixelTex, new Rectangle(windowWidth - (sideBarWidth * 2) - (statBarWidth / 20), windowHeight - bottomBarRect.Height, statBarWidth / 20, bottomBarRect.Height), Color.White);
+            #endregion
 
-            //effects-display
-            //spelaren
+            #region effect display
+            #region player's
             spriteBatch.Draw(textures.poisonIcon, new Rectangle(leftBarRect.X + (sideBarWidth / 4), sideBarWidth, sideBarWidth / 2, sideBarWidth / 2), Color.White * 0.2f);
             spriteBatch.Draw(textures.bleedIcon, new Rectangle(leftBarRect.X + (sideBarWidth / 4), sideBarWidth * 2, sideBarWidth / 2, sideBarWidth / 2), Color.White * 0.2f);
             spriteBatch.Draw(textures.confusionIcon, new Rectangle(leftBarRect.X + (sideBarWidth / 4), sideBarWidth * 3, sideBarWidth / 2, sideBarWidth / 2), Color.White * 0.2f);
@@ -330,8 +358,9 @@ namespace Dungeon_Crawler_2D
             {
                 spriteBatch.Draw(textures.confusionIcon, new Rectangle(leftBarRect.X + (sideBarWidth / 4), sideBarWidth * 3, sideBarWidth / 2, sideBarWidth / 2), Color.White * flashAlpha);
             }
+            #endregion
 
-            //fienden
+            #region enemy's
             spriteBatch.Draw(textures.poisonIcon, new Rectangle(rightBarRect.X + (sideBarWidth / 4), sideBarWidth, sideBarWidth / 2, sideBarWidth / 2), Color.White * 0.3f);
             spriteBatch.Draw(textures.bleedIcon, new Rectangle(rightBarRect.X + (sideBarWidth / 4), sideBarWidth * 2, sideBarWidth / 2, sideBarWidth / 2), Color.White * 0.3f);
             spriteBatch.Draw(textures.confusionIcon, new Rectangle(rightBarRect.X + (sideBarWidth / 4), sideBarWidth * 3, sideBarWidth / 2, sideBarWidth / 2), Color.White * 0.3f);
@@ -350,9 +379,12 @@ namespace Dungeon_Crawler_2D
             {
                 spriteBatch.Draw(textures.confusionIcon, new Rectangle(rightBarRect.X + (sideBarWidth / 4), sideBarWidth * 3, sideBarWidth / 2, sideBarWidth / 2), Color.White * flashAlpha);
             }
+            #endregion
+            #endregion
 
-            //health-bars
-            //spelaren
+            #region bars
+            #region health
+            #region player's
             spriteBatch.Draw(textures.barsSheet, new Rectangle(leftBarRect.X + (sideBarWidth / 2) - (statBarWidth / 2),
                 windowHeight - bottomBarRect.Height + statBarWidth,
                 statBarWidth,
@@ -364,8 +396,9 @@ namespace Dungeon_Crawler_2D
                 statBarWidth,
                 (player.stats.CheckStat(Stat.health) * (bottomBarRect.Height - (statBarWidth * 2)) / (player.stats.CheckStat(Stat.maxHealth)))),
                 new Rectangle(0, 0, 8, textures.barsSheet.Height), Color.White);
+            #endregion
 
-            //fienden
+            #region enemy's
             spriteBatch.Draw(textures.barsSheet, new Rectangle(rightBarRect.X - sideBarWidth + (sideBarWidth / 2) - (statBarWidth / 2),
                 windowHeight - bottomBarRect.Height + statBarWidth,
                 statBarWidth,
@@ -377,9 +410,11 @@ namespace Dungeon_Crawler_2D
                 statBarWidth,
                 (combat.enemy.stats.CheckStat(Stat.health) * (bottomBarRect.Height - (statBarWidth * 2)) / (combat.enemy.stats.CheckStat(Stat.maxHealth)))),
                 new Rectangle(0, 0, 8, textures.barsSheet.Height), Color.White);
+            #endregion
+            #endregion
 
-            //mana-bars
-            //spelaren
+            #region mana
+            #region player's
             spriteBatch.Draw(textures.barsSheet, new Rectangle(leftBarRect.X + sideBarWidth + (sideBarWidth / 2) - (statBarWidth / 2),
                 windowHeight - bottomBarRect.Height + statBarWidth,
                 statBarWidth,
@@ -391,8 +426,9 @@ namespace Dungeon_Crawler_2D
                 statBarWidth,
                 (player.stats.CheckStat(Stat.mana) * (bottomBarRect.Height - (statBarWidth * 2)) / (player.stats.CheckStat(Stat.maxMana)))),
                 new Rectangle(8, 0, 8, textures.barsSheet.Height), Color.White);
+            #endregion 
 
-            //fienden
+            #region enemy's
             spriteBatch.Draw(textures.barsSheet, new Rectangle(rightBarRect.X + (sideBarWidth / 2) - (statBarWidth / 2),
                 windowHeight - bottomBarRect.Height + statBarWidth,
                 statBarWidth,
@@ -404,11 +440,13 @@ namespace Dungeon_Crawler_2D
                 statBarWidth,
                 (combat.enemy.stats.CheckStat(Stat.mana) * (bottomBarRect.Height - (statBarWidth * 2)) / (combat.enemy.stats.CheckStat(Stat.maxMana)))),
                 new Rectangle(8, 0, 8, textures.barsSheet.Height), Color.White);
+            #endregion
+            #endregion
+            #endregion
 
-
-            //text till bars
-            //spelaren
-            //HP
+            #region text to bars
+            #region player
+            #region hp
             Vector2 textSizePlayerHPNr = textures.comicSans.MeasureString("" + player.stats.CheckStat(Stat.health) + "/" + player.stats.CheckStat(Stat.maxHealth));
             Vector2 originPlayerHPNr = new Vector2(textSizePlayerHPNr.X * 0.5f, 0);
             spriteBatch.DrawString(textures.comicSans, ("" + player.stats.CheckStat(Stat.health) + "/" + player.stats.CheckStat(Stat.maxHealth)),
@@ -420,8 +458,9 @@ namespace Dungeon_Crawler_2D
             spriteBatch.DrawString(textures.comicSans, ("HP"),
                 new Vector2(leftBarRect.X + (sideBarWidth / 2), windowHeight - bottomBarRect.Height + statBarWidth),
                 Color.Red, 0, originPlayerHPTxt, 2, SpriteEffects.None, 0);
+            #endregion
 
-            //MP
+            #region mana
             Vector2 textSizePlayerMPNr = textures.comicSans.MeasureString("" + player.stats.CheckStat(Stat.mana) + "/" + player.stats.CheckStat(Stat.maxMana));
             Vector2 originPlayerMNr = new Vector2(textSizePlayerMPNr.X * 0.5f, 0);
             spriteBatch.DrawString(textures.comicSans, ("" + player.stats.CheckStat(Stat.mana) + "/" + player.stats.CheckStat(Stat.maxMana)),
@@ -433,9 +472,11 @@ namespace Dungeon_Crawler_2D
             spriteBatch.DrawString(textures.comicSans, ("MP"),
                 new Vector2(leftBarRect.X + sideBarWidth + (sideBarWidth / 2), windowHeight - bottomBarRect.Height + statBarWidth),
                 Color.Blue, 0, originPlayerMPTxt, 2, SpriteEffects.None, 0);
+            #endregion
+            #endregion
 
-            //fienden
-            //HP
+            #region enemy's
+            #region hp
             Vector2 textSizeEnemyHPNr = textures.comicSans.MeasureString("" + combat.enemy.stats.CheckStat(Stat.health) + "/" + combat.enemy.stats.CheckStat(Stat.maxHealth));
             Vector2 originEnemyHPNr = new Vector2(textSizeEnemyHPNr.X * 0.5f, 0);
             spriteBatch.DrawString(textures.comicSans, ("" + combat.enemy.stats.CheckStat(Stat.health) + "/" + combat.enemy.stats.CheckStat(Stat.maxHealth)),
@@ -447,8 +488,9 @@ namespace Dungeon_Crawler_2D
             spriteBatch.DrawString(textures.comicSans, ("HP"),
                 new Vector2(rightBarRect.X - sideBarWidth + (sideBarWidth / 2), windowHeight - bottomBarRect.Height + statBarWidth),
                 Color.Red, 0, originEnemyHPTxt, 2, SpriteEffects.None, 0);
+            #endregion
 
-            //MP
+            #region mana
             Vector2 textSizeEnemyMPNr = textures.comicSans.MeasureString("" + combat.enemy.stats.CheckStat(Stat.mana) + "/" + combat.enemy.stats.CheckStat(Stat.maxMana));
             Vector2 originEnemyMPNr = new Vector2(textSizeEnemyMPNr.X * 0.5f, 0);
             spriteBatch.DrawString(textures.comicSans, ("" + combat.enemy.stats.CheckStat(Stat.mana) + "/" + combat.enemy.stats.CheckStat(Stat.maxMana)),
@@ -460,9 +502,13 @@ namespace Dungeon_Crawler_2D
             spriteBatch.DrawString(textures.comicSans, ("MP"),
                 new Vector2(rightBarRect.X + (sideBarWidth / 2), windowHeight - bottomBarRect.Height + statBarWidth),
                 Color.Blue, 0, originEnemyMPTxt, 2, SpriteEffects.None, 0);
+            #endregion
+            #endregion
+            #endregion
 
-            //text till icons
-            //spelaren
+            #region text to icons
+            #region player's
+            #region poison
             if (player.stats.CheckEffectTime(Effects.poison) > 0)
             {
                 Vector2 textSizePlayerPoison = textures.comicSans.MeasureString("" + player.stats.CheckEffectTime(Effects.poison));
@@ -471,7 +517,9 @@ namespace Dungeon_Crawler_2D
                     new Vector2(leftBarRect.X + (sideBarWidth / 2), sideBarWidth + (sideBarWidth / 2)),
                     Color.Green, 0, originPlayerPoison, 2, SpriteEffects.None, 0);
             }
+            #endregion
 
+            #region bleed
             if (player.stats.CheckEffectTime(Effects.bleed) > 0)
             {
                 Vector2 textSizePlayerBleed = textures.comicSans.MeasureString("" + player.stats.CheckEffectTime(Effects.bleed));
@@ -480,7 +528,9 @@ namespace Dungeon_Crawler_2D
                     new Vector2(leftBarRect.X + (sideBarWidth / 2), sideBarWidth * 2 + (sideBarWidth / 2)),
                     Color.Red, 0, originPlayerBleed, 2, SpriteEffects.None, 0);
             }
+            #endregion
 
+            #region confusion
             if (player.stats.CheckEffectTime(Effects.confusion) > 0)
             {
                 Vector2 textSizePlayerConfusion = textures.comicSans.MeasureString("" + player.stats.CheckEffectTime(Effects.confusion));
@@ -489,8 +539,11 @@ namespace Dungeon_Crawler_2D
                     new Vector2(leftBarRect.X + (sideBarWidth / 2), sideBarWidth * 3 + (sideBarWidth / 2)),
                     Color.Yellow, 0, originPlayerConfusion, 2, SpriteEffects.None, 0);
             }
+            #endregion
+            #endregion
 
-            //fienden
+            #region enemy's
+            #region poison
             if (combat.enemy.stats.CheckEffectTime(Effects.poison) > 0)
             {
                 Vector2 textSizeEnemyPoison = textures.comicSans.MeasureString("" + combat.enemy.stats.CheckEffectTime(Effects.poison));
@@ -499,7 +552,9 @@ namespace Dungeon_Crawler_2D
                     new Vector2(rightBarRect.X + (sideBarWidth / 2), sideBarWidth + (sideBarWidth / 2)),
                     Color.Green, 0, originEnemyPoison, 2, SpriteEffects.None, 0);
             }
+            #endregion
 
+            #region bleed
             if (combat.enemy.stats.CheckEffectTime(Effects.bleed) > 0)
             {
                 Vector2 textSizeEnemyBleed = textures.comicSans.MeasureString("" + combat.enemy.stats.CheckEffectTime(Effects.bleed));
@@ -508,7 +563,9 @@ namespace Dungeon_Crawler_2D
                     new Vector2(rightBarRect.X + (sideBarWidth / 2), sideBarWidth * 2 + (sideBarWidth / 2)),
                     Color.Red, 0, originEnemyBleed, 2, SpriteEffects.None, 0);
             }
+            #endregion
 
+            #region confusion
             if (combat.enemy.stats.CheckEffectTime(Effects.confusion) > 0)
             {
                 Vector2 textSizeEnemyConfusion = textures.comicSans.MeasureString("" + combat.enemy.stats.CheckEffectTime(Effects.confusion));
@@ -517,8 +574,11 @@ namespace Dungeon_Crawler_2D
                     new Vector2(rightBarRect.X + (sideBarWidth / 2), sideBarWidth * 3 + (sideBarWidth / 2)),
                     Color.Yellow, 0, originEnemyConfusion, 2, SpriteEffects.None, 0);
             }
+            #endregion
+            #endregion
+            #endregion
 
-            //text för övre rutan
+            #region battleText
             if (turn == false)
             {
                 Vector2 textSizeInfo = textures.comicSans.MeasureString(turnEvents);
@@ -527,6 +587,7 @@ namespace Dungeon_Crawler_2D
                     new Vector2(topBarRect.Width / 2, topBarRect.Height / 2),
                     Color.Green, 0, originInfo, textScale, SpriteEffects.None, 0);
             }
+            #endregion
         }
 
         public void CombatText(int combatLine, Enemy enemy)
