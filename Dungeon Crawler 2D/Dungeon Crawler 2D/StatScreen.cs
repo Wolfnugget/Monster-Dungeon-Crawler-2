@@ -6,25 +6,35 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Dungeon_Crawler_2D
 {
     class StatScreen
     {
+        private KeyboardState previousState, currentState;
         private HUDManager hud;
         private TextureManager textures;
         private Rectangle statScreenRect;
+        private float colorChange;
+        private Vector2 selectionCoords;
 
         public StatScreen(HUDManager hud, TextureManager textures)
         {
             this.hud = hud; ;
             this.textures = textures;
+
+            statScreenRect = new Rectangle((hud.windowWidth / 2) - ((hud.sideBarWidth * 3) / 2),
+                (hud.windowHeight / 2) - (hud.sideBarWidth * 2), hud.sideBarWidth * 3, hud.sideBarWidth * 2);
+
+            selectionCoords = new Vector2(statScreenRect.X, statScreenRect.Y);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             statScreenRect = new Rectangle((hud.windowWidth / 2) - ((hud.sideBarWidth * 3) / 2),
                 (hud.windowHeight / 2) - (hud.sideBarWidth * 2), hud.sideBarWidth * 3, hud.sideBarWidth * 2);
+            colorChange = 1f;
 
             spriteBatch.Draw(hud.pixelTex, statScreenRect, Color.Black);
 
@@ -34,6 +44,7 @@ namespace Dungeon_Crawler_2D
             spriteBatch.Draw(hud.pixelTex, new Rectangle(statScreenRect.X + statScreenRect.Width - (statScreenRect.Width / 100), statScreenRect.Y, statScreenRect.Width / 100, statScreenRect.Height), Color.White);
 
             #region icons
+
             //icons
             //Upgrade
             spriteBatch.Draw(textures.whiteSquare, new Rectangle(statScreenRect.X + (statScreenRect.Width / 7), 
@@ -130,9 +141,24 @@ namespace Dungeon_Crawler_2D
 
             #endregion
 
+            spriteBatch.Draw(textures.whiteSquare, new Rectangle((int)selectionCoords.X, (int)selectionCoords.Y, 40, 40), Color.Orange);
+
+
             //Ritar ut små gröna plustecken när man kan uppgradera en stat
             if (hud.player.stats.upgrade > 0)
             {
+                previousState = currentState;
+                currentState = Keyboard.GetState();
+
+                if (new Rectangle(statScreenRect.X + ((statScreenRect.Width / 7) * 3),
+                statScreenRect.Y + (statScreenRect.Height / 10),
+                statScreenRect.Width / 7,
+                statScreenRect.Width / 7).Contains(selectionCoords.X, selectionCoords.Y) && currentState.IsKeyDown(Keys.Enter) && previousState.IsKeyUp(Keys.Enter))
+                {
+                    hud.player.stats.upgrade -= 1;
+                    hud.player.stats.ChangeStat(Stat.strength, 1);
+                }
+
                 for (int i = 0; i < 3; i++)
                 {
                     for (int j = 0; j < 2; j++)
