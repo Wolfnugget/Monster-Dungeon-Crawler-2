@@ -34,7 +34,7 @@ namespace Dungeon_Crawler_2D
         //Specialeffekt-relaterat
         private float flashTimer;
         private bool flashTimerToggle;
-        private float flashAlpha;
+        public float flashAlpha;
 
         private float textScale;
         private float textScaleTimer;
@@ -53,10 +53,7 @@ namespace Dungeon_Crawler_2D
             this.player = player;
             this.windowWidth = windowWidth;
             this.windowHeight = windowHeight;
-
-            statScreen = new StatScreen(this, textures);
-            showStats = false;
-
+            
             pixelTex = new Texture2D(graphicsDevice, 1, 1);
             pixelTex.SetData<Color>(new Color[] { Color.White });
 
@@ -74,6 +71,9 @@ namespace Dungeon_Crawler_2D
             rightBarRect = new Rectangle(windowWidth - sideBarWidth, 0, sideBarWidth, windowHeight);
             bottomBarRect = new Rectangle(leftBarRect.Width, windowHeight - (sideBarWidth * 2), windowWidth - (sideBarWidth * 2), sideBarWidth * 2);
             topBarRect = new Rectangle(0, 0, windowWidth, sideBarWidth);
+
+            statScreen = new StatScreen(this, textures);
+            showStats = false;
         }
 
         public void Update(GameState gameState)
@@ -140,6 +140,10 @@ namespace Dungeon_Crawler_2D
                 if (currentState.IsKeyDown(Keys.I) && previousState.IsKeyUp(Keys.I))
                 {
                     showStats = !showStats;
+                }
+                if (showStats == true)
+                {
+                    statScreen.Update();
                 }
             }
         }
@@ -282,6 +286,12 @@ namespace Dungeon_Crawler_2D
             spriteBatch.DrawString(textures.comicSans, "lvl " + player.stats.CheckStat(Stat.level),
                 new Vector2(rightBarRect.X + (sideBarWidth / 2),
                 statBarWidth), Color.GhostWhite, 0, originXpLevel, 3, SpriteEffects.None, 0);
+
+            //ritar ut statStcreen
+            if (showStats == true)
+            {
+                statScreen.Draw(spriteBatch);
+            }
         }
 
         public void DrawBattle(SpriteBatch spriteBatch, Combat combat)

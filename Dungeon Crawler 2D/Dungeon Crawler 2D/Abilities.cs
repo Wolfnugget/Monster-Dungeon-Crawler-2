@@ -37,7 +37,7 @@ namespace Dungeon_Crawler_2D
             {
                 if (usedBy == UsedBy.player)
                 {
-                    int accuracy = player.stats.CheckStat(Stat.dexterity) + 
+                    int accuracy = player.stats.CheckStat(Stat.accuracy) + 
                         (player.stats.CheckStat(Stat.luck) / 2) + rand.Next(0, 100);
                     if (accuracy >= 50)
                     {
@@ -57,7 +57,7 @@ namespace Dungeon_Crawler_2D
                 }
                 else
                 {
-                    int accuracy = enemy.stats.CheckStat(Stat.dexterity) + 
+                    int accuracy = enemy.stats.CheckStat(Stat.accuracy) + 
                         (enemy.stats.CheckStat(Stat.luck) / 2) + rand.Next(0, 100);
                     if (accuracy >= 50)
                     {
@@ -86,12 +86,12 @@ namespace Dungeon_Crawler_2D
                 if (usedBy == UsedBy.player)
                 {
                     usedAbility = UsedAbility.Defence;
-                    power = (player.stats.CheckStat(Stat.strength) / 2) + (player.stats.CheckStat(Stat.dexterity) / 2);
+                    power = (player.stats.CheckStat(Stat.strength) / 2) + (player.stats.CheckStat(Stat.accuracy) / 2);
                 }
                 else
                 {
                     usedAbility = UsedAbility.Defence;
-                    power = (enemy.stats.CheckStat(Stat.strength) / 2) + (enemy.stats.CheckStat(Stat.dexterity) / 2);
+                    power = (enemy.stats.CheckStat(Stat.strength) / 2) + (enemy.stats.CheckStat(Stat.accuracy) / 2);
                 }
             }
             #endregion
@@ -101,7 +101,7 @@ namespace Dungeon_Crawler_2D
             {
                 if (usedBy == UsedBy.player)
                 {
-                    int accuracy = player.stats.CheckStat(Stat.dexterity) + 
+                    int accuracy = player.stats.CheckStat(Stat.accuracy) + 
                         (player.stats.CheckStat(Stat.luck) / 2) + rand.Next(0, 80);
                     if (accuracy >= 50)
                     {
@@ -121,7 +121,7 @@ namespace Dungeon_Crawler_2D
                 }
                 else
                 {
-                    int accuracy = enemy.stats.CheckStat(Stat.dexterity) + 
+                    int accuracy = enemy.stats.CheckStat(Stat.accuracy) + 
                         (enemy.stats.CheckStat(Stat.luck) / 2) + rand.Next(0, 100);
                     if (accuracy >= 50)
                     {
@@ -148,7 +148,7 @@ namespace Dungeon_Crawler_2D
                 effect = Effects.none;
                 if (usedBy == UsedBy.player)
                 {
-                    int accuracy = player.stats.CheckStat(Stat.dexterity) + 
+                    int accuracy = player.stats.CheckStat(Stat.accuracy) + 
                         (player.stats.CheckStat(Stat.luck)) + rand.Next(0, 80);
                     if (accuracy >= 50)
                     {
@@ -158,7 +158,7 @@ namespace Dungeon_Crawler_2D
                 }
                 else
                 {
-                    int accuracy = enemy.stats.CheckStat(Stat.dexterity) + 
+                    int accuracy = enemy.stats.CheckStat(Stat.accuracy) + 
                         (enemy.stats.CheckStat(Stat.luck)) + rand.Next(0, 80);
                     if (accuracy >= 50)
                     {
@@ -174,7 +174,7 @@ namespace Dungeon_Crawler_2D
             {
                 if (usedBy == UsedBy.player)
                 {
-                    int accuracy = player.stats.CheckStat(Stat.dexterity) + 
+                    int accuracy = player.stats.CheckStat(Stat.accuracy) + 
                         (player.stats.CheckStat(Stat.luck) / 2) + rand.Next(0, 100);
                     if (accuracy >= 50)
                     {
@@ -194,7 +194,7 @@ namespace Dungeon_Crawler_2D
                 }
                 else
                 {
-                    int accuracy = enemy.stats.CheckStat(Stat.dexterity) + 
+                    int accuracy = enemy.stats.CheckStat(Stat.accuracy) + 
                         (enemy.stats.CheckStat(Stat.luck) / 2) + rand.Next(0, 100);
                     if (accuracy >= 50)
                     {

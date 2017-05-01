@@ -14,7 +14,9 @@ namespace Dungeon_Crawler_2D
         public Texture2D playerSpriteSheet, horizontalWall, vericalWall,
             wallTRightCorner, wallTLeftCorner, wallBRightCorner, wallBLeftCorner,
             northDoor, southDoor, eastDoor, westDoor, basicTile, whiteSquare,
-            poisonIcon, bleedIcon, confusionIcon, barsSheet, battleBackGround; //osv
+            poisonIcon, bleedIcon, confusionIcon, barsSheet, battleBackGround, 
+            statPointIcon, strengthIcon, accuracyIcon, speedIcon, intelligenceIcon, luckIcon; //osv
+
 
         public SpriteFont comicSans; //osv
 
@@ -46,6 +48,14 @@ namespace Dungeon_Crawler_2D
 
             //Sidebar-sheet
             barsSheet = content.Load<Texture2D>("Bars/BarsSheet");
+
+            //Stat icons
+            statPointIcon = content.Load<Texture2D>("StatIcons/StatPoints_Icon");
+            strengthIcon = content.Load<Texture2D>("StatIcons/Strength_Icon");
+            accuracyIcon = content.Load<Texture2D>("StatIcons/Accuracy_Icon");
+            speedIcon = content.Load<Texture2D>("StatIcons/Speed_Icon");
+            intelligenceIcon = content.Load<Texture2D>("StatIcons/Intelligence_Icon");
+            luckIcon = content.Load<Texture2D>("StatIcons/Luck_Icon");
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Dungeon_Crawler_2D
     }
     public enum Stat
     {
-        maxHealth, health, maxMana, mana, strength, intelligence, dexterity, luck, speed, maxXp, xp, level
+        maxHealth, health, maxMana, mana, strength, intelligence, accuracy, luck, speed, maxXp, xp, level
     }
     public enum EffectPoint
     {
@@ -22,13 +22,13 @@ namespace Dungeon_Crawler_2D
     class Stats
     {
         
-        private int maxHealth, health, maxMana, mana, strength, inteligence, dextarity, luck, speed, maxXp, xp, level;
+        private int maxHealth, health, maxMana, mana, strength, intelligence, accuracy, luck, speed, maxXp, xp, level;
         public int upgrade;
         private List<Effect> activeEffects;
         private TextureManager textures;
 
         public Stats(TextureManager textures, int maxHealth, int health, int maxMana, int mana, int strength, 
-            int inteligence, int dextarity, int luck, int speed, int maxXp, int xp, int level)
+            int intelligence, int accuracy, int luck, int speed, int maxXp, int xp, int level)
         {
             this.textures = textures;
             this.maxHealth = maxHealth;
@@ -36,8 +36,8 @@ namespace Dungeon_Crawler_2D
             this.maxMana = maxMana;
             this.mana = mana;
             this.strength = strength;
-            this.inteligence = inteligence;
-            this.dextarity = dextarity;
+            this.intelligence = intelligence;
+            this.accuracy = accuracy;
             this.luck = luck;
             this.speed = speed;
             this.maxXp = maxXp;
@@ -84,10 +84,10 @@ namespace Dungeon_Crawler_2D
                     strength += addition;
                     break;
                 case Stat.intelligence:
-                    inteligence += addition;
+                    intelligence += addition;
                     break;
-                case Stat.dexterity:
-                    dextarity += addition;
+                case Stat.accuracy:
+                    accuracy += addition;
                     break;
                 case Stat.luck:
                     luck += addition;
@@ -129,9 +129,9 @@ namespace Dungeon_Crawler_2D
                 case Stat.strength:
                     return strength;
                 case Stat.intelligence:
-                    return inteligence;
-                case Stat.dexterity:
-                    return dextarity;
+                    return intelligence;
+                case Stat.accuracy:
+                    return accuracy;
                 case Stat.luck:
                     return luck;
                 case Stat.speed:
@@ -248,7 +248,7 @@ namespace Dungeon_Crawler_2D
                         }
                     }
                     return 1;
-                case Stat.dexterity:
+                case Stat.accuracy:
                     foreach (Effect e in activeEffects)
                     {
                         if (e.effect == Effects.dexterityBuff || e.effect == Effects.confusion)

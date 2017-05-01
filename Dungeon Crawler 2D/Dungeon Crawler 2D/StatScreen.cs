@@ -19,6 +19,9 @@ namespace Dungeon_Crawler_2D
         private float colorChange;
         private Vector2 selectionCoords;
 
+        private int coordinateXMultiplier;
+        private int coordinateYMultiplier;
+
         public StatScreen(HUDManager hud, TextureManager textures)
         {
             this.hud = hud; ;
@@ -27,15 +30,97 @@ namespace Dungeon_Crawler_2D
             statScreenRect = new Rectangle((hud.windowWidth / 2) - ((hud.sideBarWidth * 3) / 2),
                 (hud.windowHeight / 2) - (hud.sideBarWidth * 2), hud.sideBarWidth * 3, hud.sideBarWidth * 2);
 
-            selectionCoords = new Vector2((hud.windowWidth / 2) - ((hud.sideBarWidth * 3) / 2), (hud.windowHeight / 2) - (hud.sideBarWidth * 2));
+            selectionCoords = new Vector2(statScreenRect.X + ((statScreenRect.Width / 7) * 3), statScreenRect.Y + (statScreenRect.Height / 10));
+            coordinateXMultiplier = 1;
+            coordinateYMultiplier = 10;
+        }
+
+        public void Update()
+        {
+            statScreenRect = new Rectangle((hud.windowWidth / 2) - ((hud.sideBarWidth * 3) / 2),
+                (hud.windowHeight / 2) - (hud.sideBarWidth * 2), hud.sideBarWidth * 3, hud.sideBarWidth * 2);
+
+            selectionCoords = new Vector2(statScreenRect.X + ((statScreenRect.Width / 7) * coordinateXMultiplier), 
+                statScreenRect.Y + (statScreenRect.Height / coordinateYMultiplier));
+            
+            //styr selectionCoordinates
+            previousState = currentState;
+            currentState = Keyboard.GetState();
+
+            if (coordinateYMultiplier == 10 && currentState.IsKeyDown(Keys.Down) && previousState.IsKeyUp(Keys.Down))
+            {
+                coordinateYMultiplier = 2;
+            }
+            if (coordinateYMultiplier == 2 && currentState.IsKeyDown(Keys.Up) && previousState.IsKeyUp(Keys.Up))
+            {
+                coordinateYMultiplier = 10;
+            }
+            if (coordinateXMultiplier > 1 && currentState.IsKeyDown(Keys.Left) && previousState.IsKeyUp(Keys.Left))
+            {
+                coordinateXMultiplier -= 2;
+            }
+            if (coordinateXMultiplier < 5 && currentState.IsKeyDown(Keys.Right) && previousState.IsKeyUp(Keys.Right))
+            {
+                coordinateXMultiplier += 2;
+            }
+            
+            //kollar om en stat ska uppgraderas
+            if (hud.player.stats.upgrade > 0)
+            {
+                //strength
+                if (new Rectangle(statScreenRect.X + ((statScreenRect.Width / 7) * 3),
+                statScreenRect.Y + (statScreenRect.Height / 10),
+                statScreenRect.Width / 7,
+                statScreenRect.Width / 7).Contains(selectionCoords.X, selectionCoords.Y) && currentState.IsKeyDown(Keys.Enter) && previousState.IsKeyUp(Keys.Enter))
+                {
+                    hud.player.stats.upgrade -= 1;
+                    hud.player.stats.ChangeStat(Stat.strength, 1);
+                }
+
+                //accuracy
+                if (new Rectangle(statScreenRect.X + ((statScreenRect.Width / 7) * 5),
+                statScreenRect.Y + (statScreenRect.Height / 10),
+                statScreenRect.Width / 7,
+                statScreenRect.Width / 7).Contains(selectionCoords.X, selectionCoords.Y) && currentState.IsKeyDown(Keys.Enter) && previousState.IsKeyUp(Keys.Enter))
+                {
+                    hud.player.stats.upgrade -= 1;
+                    hud.player.stats.ChangeStat(Stat.accuracy, 1);
+                }
+
+                //speed
+                if (new Rectangle(statScreenRect.X + (statScreenRect.Width / 7),
+                statScreenRect.Y + (statScreenRect.Height / 2),
+                statScreenRect.Width / 7,
+                statScreenRect.Width / 7).Contains(selectionCoords.X, selectionCoords.Y) && currentState.IsKeyDown(Keys.Enter) && previousState.IsKeyUp(Keys.Enter))
+                {
+                    hud.player.stats.upgrade -= 1;
+                    hud.player.stats.ChangeStat(Stat.speed, 1);
+                }
+
+                //intelligence
+                if (new Rectangle(statScreenRect.X + ((statScreenRect.Width / 7) * 3),
+                statScreenRect.Y + (statScreenRect.Height / 2),
+                statScreenRect.Width / 7,
+                statScreenRect.Width / 7).Contains(selectionCoords.X, selectionCoords.Y) && currentState.IsKeyDown(Keys.Enter) && previousState.IsKeyUp(Keys.Enter))
+                {
+                    hud.player.stats.upgrade -= 1;
+                    hud.player.stats.ChangeStat(Stat.intelligence, 1);
+                }
+
+                //luck
+                if (new Rectangle(statScreenRect.X + ((statScreenRect.Width / 7) * 5),
+                statScreenRect.Y + (statScreenRect.Height / 2),
+                statScreenRect.Width / 7,
+                statScreenRect.Width / 7).Contains(selectionCoords.X, selectionCoords.Y) && currentState.IsKeyDown(Keys.Enter) && previousState.IsKeyUp(Keys.Enter))
+                {
+                    hud.player.stats.upgrade -= 1;
+                    hud.player.stats.ChangeStat(Stat.luck, 1);
+                }
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            statScreenRect = new Rectangle((hud.windowWidth / 2) - ((hud.sideBarWidth * 3) / 2),
-                (hud.windowHeight / 2) - (hud.sideBarWidth * 2), hud.sideBarWidth * 3, hud.sideBarWidth * 2);
-            colorChange = 1f;
-
             spriteBatch.Draw(hud.pixelTex, statScreenRect, Color.Black);
 
             spriteBatch.Draw(hud.pixelTex, new Rectangle(statScreenRect.X, statScreenRect.Y, statScreenRect.Width, statScreenRect.Width / 100), Color.White);
@@ -47,46 +132,50 @@ namespace Dungeon_Crawler_2D
 
             //icons
             //Upgrade
-            spriteBatch.Draw(textures.whiteSquare, new Rectangle(statScreenRect.X + (statScreenRect.Width / 7), 
+            spriteBatch.Draw(textures.statPointIcon, new Rectangle(statScreenRect.X + (statScreenRect.Width / 7), 
                 statScreenRect.Y + (statScreenRect.Height / 10), 
                 statScreenRect.Width / 7, 
                 statScreenRect.Width / 7),
-                null, Color.Green, 0, Vector2.Zero, SpriteEffects.None, 0);
+                null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
 
             //Strength
-            spriteBatch.Draw(textures.whiteSquare, new Rectangle(statScreenRect.X + ((statScreenRect.Width / 7) * 3),
+            spriteBatch.Draw(textures.strengthIcon, new Rectangle(statScreenRect.X + ((statScreenRect.Width / 7) * 3),
                 statScreenRect.Y + (statScreenRect.Height / 10),
                 statScreenRect.Width / 7,
                 statScreenRect.Width / 7),
-                null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 0);
+                null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
 
-            //Dexterity
-            spriteBatch.Draw(textures.whiteSquare, new Rectangle(statScreenRect.X + ((statScreenRect.Width / 7) * 5),
+            //Accuracy
+            spriteBatch.Draw(textures.accuracyIcon, new Rectangle(statScreenRect.X + ((statScreenRect.Width / 7) * 5),
                 statScreenRect.Y + (statScreenRect.Height / 10),
                 statScreenRect.Width / 7,
                 statScreenRect.Width / 7),
                 null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
 
             //Speed
-            spriteBatch.Draw(textures.whiteSquare, new Rectangle(statScreenRect.X + (statScreenRect.Width / 7),
+            spriteBatch.Draw(textures.speedIcon, new Rectangle(statScreenRect.X + (statScreenRect.Width / 7),
                 statScreenRect.Y + (statScreenRect.Height / 2),
                 statScreenRect.Width / 7,
                 statScreenRect.Width / 7),
-                null, Color.LightBlue, 0, Vector2.Zero, SpriteEffects.None, 0);
+                null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
 
             //Intelligence
-            spriteBatch.Draw(textures.whiteSquare, new Rectangle(statScreenRect.X + ((statScreenRect.Width / 7) * 3),
+            spriteBatch.Draw(textures.intelligenceIcon, new Rectangle(statScreenRect.X + ((statScreenRect.Width / 7) * 3),
                 statScreenRect.Y + (statScreenRect.Height / 2),
                 statScreenRect.Width / 7,
                 statScreenRect.Width / 7),
-                null, Color.Yellow, 0, Vector2.Zero, SpriteEffects.None, 0);
+                null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
 
             //Luck
-            spriteBatch.Draw(textures.whiteSquare, new Rectangle(statScreenRect.X + ((statScreenRect.Width / 7) * 5),
+            spriteBatch.Draw(textures.luckIcon, new Rectangle(statScreenRect.X + ((statScreenRect.Width / 7) * 5),
                 statScreenRect.Y + (statScreenRect.Height / 2),
                 statScreenRect.Width / 7,
                 statScreenRect.Width / 7),
-                null, Color.LightGreen, 0, Vector2.Zero, SpriteEffects.None, 0);
+                null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+
+            //Marker icon
+            spriteBatch.Draw(textures.whiteSquare, new Rectangle((int)selectionCoords.X, (int)selectionCoords.Y, statScreenRect.Width / 7, statScreenRect.Width / 7), Color.White * hud.flashAlpha);
+
             #endregion
 
             #region value-text
@@ -107,11 +196,11 @@ namespace Dungeon_Crawler_2D
                     new Vector2(statScreenRect.X + ((statScreenRect.Width / 14) * 7), statScreenRect.Y + ((statScreenRect.Height / 10) * 3)), Color.Red,
                     0, originStrength, 2, SpriteEffects.None, 0);
 
-            //Dexterity
-            Vector2 textSizeDexterity = textures.comicSans.MeasureString(hud.player.stats.CheckStat(Stat.dexterity).ToString());
+            //Accuracy
+            Vector2 textSizeDexterity = textures.comicSans.MeasureString(hud.player.stats.CheckStat(Stat.accuracy).ToString());
             Vector2 originDexterity = new Vector2(textSizeDexterity.X * 0.5f, (textSizeDexterity.Y * 0.8f) - textSizeDexterity.Y);
 
-            spriteBatch.DrawString(textures.comicSans, hud.player.stats.CheckStat(Stat.dexterity).ToString(),
+            spriteBatch.DrawString(textures.comicSans, hud.player.stats.CheckStat(Stat.accuracy).ToString(),
                     new Vector2(statScreenRect.X + ((statScreenRect.Width / 14) * 11), statScreenRect.Y + ((statScreenRect.Height / 10) * 3)), Color.White,
                     0, originDexterity, 2, SpriteEffects.None, 0);
 
@@ -120,7 +209,7 @@ namespace Dungeon_Crawler_2D
             Vector2 originSpeed = new Vector2(textSizeSpeed.X * 0.5f, (textSizeSpeed.Y * 0.8f) - textSizeSpeed.Y);
 
             spriteBatch.DrawString(textures.comicSans, hud.player.stats.CheckStat(Stat.speed).ToString(),
-                    new Vector2(statScreenRect.X + ((statScreenRect.Width / 14) * 3), statScreenRect.Y + ((statScreenRect.Height / 10) * 7)), Color.LightBlue,
+                    new Vector2(statScreenRect.X + ((statScreenRect.Width / 14) * 3), statScreenRect.Y + ((statScreenRect.Height / 10) * 7)), Color.Blue,
                     0, originSpeed, 2, SpriteEffects.None, 0);
 
             //Intelligence
@@ -141,32 +230,24 @@ namespace Dungeon_Crawler_2D
 
             #endregion
 
-            spriteBatch.Draw(textures.whiteSquare, new Rectangle((int)selectionCoords.X, (int)selectionCoords.Y, 40, 40), Color.Orange);
-
-
             //Ritar ut små gröna plustecken när man kan uppgradera en stat
             if (hud.player.stats.upgrade > 0)
             {
-                previousState = currentState;
-                currentState = Keyboard.GetState();
-
-                if (new Rectangle(statScreenRect.X + ((statScreenRect.Width / 7) * 3),
-                statScreenRect.Y + (statScreenRect.Height / 10),
-                statScreenRect.Width / 7,
-                statScreenRect.Width / 7).Contains(selectionCoords.X, selectionCoords.Y) && currentState.IsKeyDown(Keys.Enter) && previousState.IsKeyUp(Keys.Enter))
-                {
-                    hud.player.stats.upgrade -= 1;
-                    hud.player.stats.ChangeStat(Stat.strength, 1);
-                }
-
                 for (int i = 0; i < 3; i++)
                 {
                     for (int j = 0; j < 2; j++)
                     {
-                        spriteBatch.DrawString(textures.comicSans, "+", 
-                            new Vector2(statScreenRect.X + (statScreenRect.Width / 4) + (((statScreenRect.Width / 7) * 2) * i), 
-                            statScreenRect.Y + (statScreenRect.Height / 5) + (((statScreenRect.Height / 10) * 4) * j)),
+                        if (i == 0 && j == 0)
+                        {
+                            //excluding the first stat icon (upgrade)
+                        }
+                        else
+                        {
+                            spriteBatch.DrawString(textures.comicSans, "+",
+                            new Vector2(statScreenRect.X + (statScreenRect.Width / 4) + (((statScreenRect.Width / 7) * 2) * i),
+                            statScreenRect.Y + (statScreenRect.Height / 20) + (((statScreenRect.Height / 10) * 4) * j)),
                             Color.Green, 0, Vector2.Zero, 3, SpriteEffects.None, 0);
+                        }
                     }
                 }
             }
