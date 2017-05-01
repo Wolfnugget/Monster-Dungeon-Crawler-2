@@ -170,6 +170,7 @@ C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawl
 C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\StatIcons\Speed_Icon.png
 C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\StatIcons\Strength_Icon.png
 C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\StatIcons\StatPoints_Icon.png
+<<<<<<< HEAD
 C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\StatIcons\Accuracy_Icon.png
 C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\StatIcons\intelligence_Icon.png
 C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\StatIcons\Luck_Icon.png
@@ -182,3 +183,15 @@ C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dun
 C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\StatIcons\Speed_Icon.xnb
 C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\StatIcons\StatPoints_Icon.xnb
 C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\StatIcons\Strength_Icon.xnb
+=======
+C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\StatIcons\Accuracy_Icon.xnb
+C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\StatIcons\intelligence_Icon.xnb
+C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\StatIcons\Luck_Icon.xnb
+C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\StatIcons\Speed_Icon.xnb
+C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\StatIcons\StatPoints_Icon.xnb
+C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\StatIcons\Strength_Icon.xnb
+C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Dungeon_WallpaperSmall.png
+C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Dungeon_WallpaperSmall.xnb
+C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Dungeon_WallpaperSmall2.png
+C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Dungeon_WallpaperSmall2.xnb
+>>>>>>> origin/master
