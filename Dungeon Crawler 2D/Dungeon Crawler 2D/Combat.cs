@@ -154,5 +154,13 @@ namespace Dungeon_Crawler_2D
             playerTurn = true;
             enemyTurn = true;
         }
+
+        public void BattleWon()
+        {
+            if (enemy.stats.CheckStat(Stat.health) <= 0)
+            {
+                // whatever you get from the encounter
+            }
+        }
     }
 }
