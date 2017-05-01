@@ -29,7 +29,7 @@ namespace Dungeon_Crawler_2D
         public int windowWidth;
         public int windowHeight;
         public int sideBarWidth;
-        private int statBarWidth;
+        public int statBarWidth;
         
         //Specialeffekt-relaterat
         private float flashTimer;
@@ -65,6 +65,15 @@ namespace Dungeon_Crawler_2D
 
             textScaleTimer = 0;
             turn = true;
+
+            //Sätter mått
+            sideBarWidth = windowWidth / 10;
+            statBarWidth = sideBarWidth / 3;
+
+            leftBarRect = new Rectangle(0, 0, sideBarWidth, windowHeight);
+            rightBarRect = new Rectangle(windowWidth - sideBarWidth, 0, sideBarWidth, windowHeight);
+            bottomBarRect = new Rectangle(leftBarRect.Width, windowHeight - (sideBarWidth * 2), windowWidth - (sideBarWidth * 2), sideBarWidth * 2);
+            topBarRect = new Rectangle(0, 0, windowWidth, sideBarWidth);
         }
 
         public void Update(GameState gameState)
@@ -91,16 +100,6 @@ namespace Dungeon_Crawler_2D
                 player.stats.ChangeStat(Stat.mana, -1);
                 player.stats.ChangeStat(Stat.xp, -1);
             }
-            if (gameState == GameState.Explore)
-            {
-                previousState = currentState;
-                currentState = Keyboard.GetState();
-                if (currentState.IsKeyDown(Keys.I) && previousState.IsKeyUp(Keys.I))
-                {
-                    showStats = !showStats;
-                }
-            }
-            
 
             // making icons flash
             if (flashTimer <= 0)
@@ -133,17 +132,20 @@ namespace Dungeon_Crawler_2D
             }
 
             textScale = textScaleTimer * 0.1f;
+            
+            if (gameState == GameState.Explore)
+            {
+                previousState = currentState;
+                currentState = Keyboard.GetState();
+                if (currentState.IsKeyDown(Keys.I) && previousState.IsKeyUp(Keys.I))
+                {
+                    showStats = !showStats;
+                }
+            }
         }
 
         public void DrawExplore(SpriteBatch spriteBatch)
         {
-            //Sätter mått
-            sideBarWidth = windowWidth / 10;
-            statBarWidth = sideBarWidth / 3;
-
-            leftBarRect = new Rectangle(0, 0, sideBarWidth, windowHeight);
-            rightBarRect = new Rectangle(windowWidth - sideBarWidth, 0, sideBarWidth, windowHeight);
-
             //side-bars där stats visas
             spriteBatch.Draw(pixelTex, leftBarRect, Color.Black);
             spriteBatch.Draw(pixelTex, rightBarRect, Color.Black);
@@ -284,15 +286,6 @@ namespace Dungeon_Crawler_2D
 
         public void DrawBattle(SpriteBatch spriteBatch, Combat combat)
         {
-            //Sätter mått
-            sideBarWidth = windowWidth / 10;
-            statBarWidth = sideBarWidth / 3;
-
-            leftBarRect = new Rectangle(0, 0, sideBarWidth, windowHeight);
-            rightBarRect = new Rectangle(windowWidth - sideBarWidth, 0, sideBarWidth, windowHeight);
-            bottomBarRect = new Rectangle(leftBarRect.Width, windowHeight - (sideBarWidth * 2), windowWidth - (sideBarWidth * 2), sideBarWidth * 2);
-            topBarRect = new Rectangle(0, 0, windowWidth, sideBarWidth);
-
             //sektioner där stats visas
             spriteBatch.Draw(pixelTex, leftBarRect, Color.Black);
             spriteBatch.Draw(pixelTex, rightBarRect, Color.Black);

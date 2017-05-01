@@ -27,7 +27,7 @@ namespace Dungeon_Crawler_2D
             statScreenRect = new Rectangle((hud.windowWidth / 2) - ((hud.sideBarWidth * 3) / 2),
                 (hud.windowHeight / 2) - (hud.sideBarWidth * 2), hud.sideBarWidth * 3, hud.sideBarWidth * 2);
 
-            selectionCoords = new Vector2(statScreenRect.X, statScreenRect.Y);
+            selectionCoords = new Vector2((hud.windowWidth / 2) - ((hud.sideBarWidth * 3) / 2), (hud.windowHeight / 2) - (hud.sideBarWidth * 2));
         }
 
         public void Draw(SpriteBatch spriteBatch)
