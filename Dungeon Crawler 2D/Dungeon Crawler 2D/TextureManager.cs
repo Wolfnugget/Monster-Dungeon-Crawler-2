@@ -14,8 +14,8 @@ namespace Dungeon_Crawler_2D
         public Texture2D playerSpriteSheet, horizontalWall, vericalWall,
             wallTRightCorner, wallTLeftCorner, wallBRightCorner, wallBLeftCorner,
             northDoor, southDoor, eastDoor, westDoor, basicTile, whiteSquare,
-            poisonIcon, bleedIcon, confusionIcon, barsSheet, battleBackGround, 
-            statPointIcon, strengthIcon, accuracyIcon, speedIcon, intelligenceIcon, luckIcon; //osv
+            poisonIcon, bleedIcon, confusionIcon, barsSheet, battleBackGround, battleBackGround2, 
+            battleBackGround3, statPointIcon, strengthIcon, accuracyIcon, speedIcon, intelligenceIcon, luckIcon; //osv
 
 
         public SpriteFont comicSans; //osv
@@ -38,6 +38,8 @@ namespace Dungeon_Crawler_2D
             wallBLeftCorner = content.Load<Texture2D>("Textures/Dungeon/WallBLeftCorner");
             whiteSquare = content.Load<Texture2D>("Example");
             battleBackGround = content.Load<Texture2D>("Battle/Dungeon_Wallpaper");
+            battleBackGround2 = content.Load<Texture2D>("Battle/Dungeon_WallpaperSmall");
+            battleBackGround3 = content.Load<Texture2D>("Battle/Dungeon_WallpaperSmall2");
 
             comicSans = content.Load<SpriteFont>("textFont1");
             

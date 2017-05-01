@@ -80,7 +80,7 @@ namespace Dungeon_Crawler_2D
         {
             this.gameState = gameState;
 
-            #region Test statIncrese / Decrese
+            #region Test statIncrese / Decrease
             if (Keyboard.GetState().IsKeyDown(Keys.V))
             {
                 player.stats.AddEffect(1, Effects.poison, 1);
@@ -138,12 +138,14 @@ namespace Dungeon_Crawler_2D
             }
 
             textScale = textScaleTimer * 0.1f;
-            
+
+            #endregion
+
             if (gameState == GameState.Explore)
             {
                 previousState = currentState;
                 currentState = Keyboard.GetState();
-                if (currentState.IsKeyDown(Keys.I) && previousState.IsKeyUp(Keys.I))
+                if (currentState.IsKeyDown(Keys.E) && previousState.IsKeyUp(Keys.E))
                 {
                     showStats = !showStats;
                 }
@@ -152,7 +154,6 @@ namespace Dungeon_Crawler_2D
                     statScreen.Update();
                 }
             }
-            #endregion
         }
 
         public void DrawExplore(SpriteBatch spriteBatch)
@@ -322,6 +323,24 @@ namespace Dungeon_Crawler_2D
 
         public void DrawBattle(SpriteBatch spriteBatch, Combat combat)
         {
+            //spriteBatch.Draw(textures.battleBackGround, new Rectangle(leftBarRect.X + leftBarRect.Width,
+            //    topBarRect.Y + topBarRect.Height,
+            //    windowWidth - (sideBarWidth * 2),
+            //    windowHeight - topBarRect.Height - bottomBarRect.Height),
+            //    Color.White);
+
+            //spriteBatch.Draw(textures.battleBackGround2, new Rectangle(leftBarRect.X + leftBarRect.Width,
+            //    topBarRect.Y + topBarRect.Height,
+            //    windowWidth - (sideBarWidth * 2),
+            //    windowHeight - topBarRect.Height - bottomBarRect.Height),
+            //    Color.White);
+
+            spriteBatch.Draw(textures.battleBackGround3, new Rectangle(leftBarRect.X + leftBarRect.Width,
+                topBarRect.Y + topBarRect.Height,
+                windowWidth - (sideBarWidth * 2),
+                windowHeight - topBarRect.Height - bottomBarRect.Height),
+                Color.White);
+
             #region stat bar
             spriteBatch.Draw(pixelTex, leftBarRect, Color.Black);
             spriteBatch.Draw(pixelTex, rightBarRect, Color.Black);
