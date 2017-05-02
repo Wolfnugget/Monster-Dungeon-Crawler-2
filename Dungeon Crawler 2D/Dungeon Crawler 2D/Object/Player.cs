@@ -90,8 +90,11 @@ namespace Dungeon_Crawler_2D.Object
             }
             else if (currentState.IsKeyDown(Keys.W) && previousState.IsKeyUp(Keys.W))
             {
-                abilities.Ability(enemy, this, playerAbilities[1]);
-                stats.ChangeStat(Stat.mana, -abilities.CheckCost(UsedAbility.Magic));
+                if (abilities.CheckCost(UsedAbility.Magic) <= stats.CheckStat(Stat.mana))
+                {
+                    abilities.Ability(enemy, this, playerAbilities[1]);
+                    stats.ChangeStat(Stat.mana, -abilities.CheckCost(UsedAbility.Magic));
+                }
                 return false;
             }
             else if (currentState.IsKeyDown(Keys.E) && previousState.IsKeyUp(Keys.E))
@@ -101,8 +104,11 @@ namespace Dungeon_Crawler_2D.Object
             }
             else if (currentState.IsKeyDown(Keys.R) && previousState.IsKeyUp(Keys.R))
             {
-                abilities.Ability(enemy, this, playerAbilities[3]);
-                stats.ChangeStat(Stat.mana, -abilities.CheckCost(UsedAbility.PoisonHit));
+                if (abilities.CheckCost(UsedAbility.PoisonHit) <= stats.CheckStat(Stat.mana))
+                {
+                    abilities.Ability(enemy, this, playerAbilities[3]);
+                    stats.ChangeStat(Stat.mana, -abilities.CheckCost(UsedAbility.PoisonHit));
+                }
                 return false;
             }
             else return true;
