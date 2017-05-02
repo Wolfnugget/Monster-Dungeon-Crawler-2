@@ -17,6 +17,8 @@ namespace Dungeon_Crawler_2D
         public TextureManager textures;
         public Enemy enemy;
         private HUDManager hud;
+        protected Point startingFrame, frame, frames, frameSize;
+        float frameTime, frameDuration;
 
         bool playerTurn, enemyTurn;
 
@@ -27,8 +29,11 @@ namespace Dungeon_Crawler_2D
             this.hud = hud;
             playerTurn = true;
             enemyTurn = true;
+        }
 
-            enemy = new Enemy(textures, EnemyType.zombie, player);
+        public void StartCombat(EnemyType type)
+        {
+            enemy = new Enemy(textures, type, player);
         }
 
         public void Update()
@@ -105,7 +110,7 @@ namespace Dungeon_Crawler_2D
                     if (enemy.stats.CheckStat(Stat.health) <= 0)
                     {
                         hud.CombatText(5, enemy);
-                        //ends encounter
+                        BattleResult();
                     }
                     enemy.stats.AddEffect(2, player.abilities.effect, 1);
                     player.stats.ChangeStat(Stat.health, -enemy.ability.power);
@@ -118,7 +123,7 @@ namespace Dungeon_Crawler_2D
                     if (player.stats.CheckStat(Stat.health) <= 0)
                     {
                         hud.CombatText(7, enemy);
-                        //game over
+                        BattleResult();
                     }
                     player.stats.AddEffect(2, enemy.ability.effect, 1);
                     enemy.stats.ChangeStat(Stat.health, -player.abilities.power);
@@ -131,11 +136,11 @@ namespace Dungeon_Crawler_2D
 
                 if (player.stats.CheckStat(Stat.health) <= 0)
                 {
-                    //gameover
+                    BattleResult();
                 }
                 if (enemy.stats.CheckStat(Stat.health) <= 0)
                 {
-                    //ends encounter
+                    BattleResult();
                 }
 
                 NextTurn();
@@ -155,11 +160,55 @@ namespace Dungeon_Crawler_2D
             enemyTurn = true;
         }
 
-        public void BattleWon()
+        public void BattleResult()
         {
+            BattleEvensArgs args = new BattleEvensArgs(); ;
+
             if (enemy.stats.CheckStat(Stat.health) <= 0)
             {
-                // whatever you get from the encounter
+                args.result = EndCombat.Won;
+            }
+            else if (player.stats.CheckStat(Stat.health) <= 0)
+            {
+                args.result = EndCombat.Lost;
+            }
+            OnCombatEnd(args);
+        }
+
+        public event CombatEventHandler Event;
+
+        public void OnCombatEnd(BattleEvensArgs e)
+        {
+            Event.Invoke(this, e);
+        }
+
+        public void BattleAnimation(GameTime gameTime, UsedBy by, UsedAbility ability)
+        {
+            frameDuration -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (frame.Y < startingFrame.Y || frame.Y > startingFrame.Y + frames.Y)
+            {
+                frame.Y = startingFrame.Y;
+            }
+            if (frame.X < startingFrame.X || frame.X > startingFrame.X + frames.X)
+            {
+                frame.X = startingFrame.X;
+            }
+            if (frameDuration <= 0)
+            {
+                frameDuration = frameTime;
+                if (frame.X < startingFrame.X + frames.X)
+                {
+                    frame.X++;
+                }
+                else if (frame.Y < startingFrame.Y + frames.Y)
+                {
+                    frame.X = startingFrame.X;
+                    frame.Y++;
+                }
+                else
+                {
+                    frame = startingFrame;
+                }
             }
         }
     }

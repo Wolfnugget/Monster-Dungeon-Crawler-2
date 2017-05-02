@@ -11,7 +11,8 @@ namespace Dungeon_Crawler_2D
     public enum MapEventType
     {
         ChangeRoom,
-        Move
+        Move,
+        StartCombat
     }
 
     public enum PlayerEventType
@@ -20,9 +21,17 @@ namespace Dungeon_Crawler_2D
         EnterTile
     }
 
+    public enum EndCombat
+    {
+        Won, 
+        Lost
+    }
+
     public delegate void ActorEventHandler(object Object, ActorEventArgs args);
 
     public delegate void MapEventHandler(object Object, MapEventArgs args);
+
+    public delegate void CombatEventHandler(object Object, BattleEvensArgs args);
 
     /// <summary>
     /// All information som kan skickas från spelaren eller annan actor via events.
@@ -46,10 +55,24 @@ namespace Dungeon_Crawler_2D
     {
         public Vector2 Position { get; set; }
         public MapEventType EventType;
+        public EnemyType enemy;
+
 
         public MapEventArgs(MapEventType EventType)
         {
             this.EventType = EventType;
+        }
+    }
+
+    public class BattleEvensArgs : EventArgs
+    {
+        public EndCombat result;
+        public int xp;
+        public Dictionary<Stat, int> statReward;
+
+        public BattleEvensArgs()
+        {
+            statReward = new Dictionary<Stat, int>();
         }
     }
 }

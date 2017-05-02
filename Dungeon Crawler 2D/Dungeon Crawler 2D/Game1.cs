@@ -58,8 +58,8 @@ namespace Dungeon_Crawler_2D
 
             ScreenManager.Instance.LoadContent(Content);
             
-            //map = new World.GeneratedMap(textures, 20, 4);
-            map = new World.RandomGeneratedMap(textures);
+            map = new World.GeneratedMap(textures, 20, 4);
+            //map = new World.RandomGeneratedMap(textures);
             
             map.Event += HandleEvents;
             player = new Object.Player(textures.playerSpriteSheet, textures, map.GetPlayerStart(), 100, new Point(16, 16), new Point(2, 0), 0.1f);
@@ -71,12 +71,14 @@ namespace Dungeon_Crawler_2D
             windowHeight = graphics.PreferredBackBufferHeight = 800;
             graphics.ApplyChanges();
 
+
             gameState = GameState.Explore; //Vilken gamestate spelet startas i.
 
             hud = new HUDManager(gameState, textures, GraphicsDevice, Content, player, windowWidth, windowHeight);
             cam = new Camera2D(hud, view, windowWidth, windowHeight, map, zoom);
 
-            
+            combat = new Combat(player, textures, hud);
+            combat.Event += HandleEvents;
         }
         protected override void Update(GameTime gameTime)
         {
@@ -87,7 +89,7 @@ namespace Dungeon_Crawler_2D
             if (Keyboard.GetState().IsKeyDown(Keys.G))
             {
                 gameState = GameState.Battle;
-                combat = new Combat(player, textures, hud);
+                combat.StartCombat(EnemyType.zombie);
             }
 
             if (gameState == GameState.Menu)
@@ -179,6 +181,10 @@ namespace Dungeon_Crawler_2D
             {
                 HandleMap((MapEventArgs)args);
             }
+            else if (Object is Combat)
+            {
+                HandleCombat((BattleEvensArgs)args);
+            }
         }
 
         /// <summary>
@@ -211,11 +217,17 @@ namespace Dungeon_Crawler_2D
             {
                 player.SetPosition(args.Position);
             }
+            else if(args.EventType == MapEventType.StartCombat)
+            {
+                gameState = GameState.Battle;
+                combat.StartCombat(args.enemy);
+            }
         }
 
-        public void ChangeGameState()
+        private void HandleCombat(BattleEvensArgs args)
         {
-
+            Console.WriteLine("Batttree");
+            gameState = GameState.Explore;
         }
     }
 }

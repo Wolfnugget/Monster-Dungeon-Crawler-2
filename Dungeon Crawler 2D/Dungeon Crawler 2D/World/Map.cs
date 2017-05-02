@@ -35,6 +35,7 @@ namespace Dungeon_Crawler_2D.World
         public List<Area> rooms;
         public int currentRoom;
         protected TextureManager textures;
+        protected Random rand = new Random();
 
         public Map(TextureManager textures)
         {
@@ -101,6 +102,15 @@ namespace Dungeon_Crawler_2D.World
             else if (type == TileType.WestExit)
             {
                 ChangeRoom(new Point(-1, 0), TileType.EastExit);
+            }
+            else if (type == TileType.MonsterTile)
+            {
+                if (rand.Next(0,100) <= 10)
+                {
+                    MapEventArgs args = new MapEventArgs(MapEventType.StartCombat);
+                    args.enemy = EnemyType.zombie;
+                    OnEvent(args);
+                }
             }
         }
 

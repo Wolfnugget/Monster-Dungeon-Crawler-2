@@ -15,7 +15,7 @@ namespace Dungeon_Crawler_2D
             wallTRightCorner, wallTLeftCorner, wallBRightCorner, wallBLeftCorner,
             northDoor, southDoor, eastDoor, westDoor, basicTile, whiteSquare,
             poisonIcon, bleedIcon, confusionIcon, barsSheet, battleBackGround, battleBackGround2, 
-            battleBackGround3, statPointIcon, strengthIcon, accuracyIcon, speedIcon, intelligenceIcon, luckIcon; //osv
+            battleBackGround3, statPointIcon, strengthIcon, accuracyIcon, speedIcon, intelligenceIcon, luckIcon, potion; //osv
 
 
         public SpriteFont comicSans; //osv
@@ -58,6 +58,7 @@ namespace Dungeon_Crawler_2D
             speedIcon = content.Load<Texture2D>("StatIcons/Speed_Icon");
             intelligenceIcon = content.Load<Texture2D>("StatIcons/Intelligence_Icon");
             luckIcon = content.Load<Texture2D>("StatIcons/Luck_Icon");
+            
         }
     }
 }
