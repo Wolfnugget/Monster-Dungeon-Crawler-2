@@ -10,7 +10,7 @@ namespace Dungeon_Crawler_2D.World
 {
     public class GeneratedDungeon: Area
     {
-        byte[,] tileNumBP;
+        byte[,] dungeonBP;
 
         List<int> roomRegions, mazeRegions;
 
@@ -36,7 +36,7 @@ namespace Dungeon_Crawler_2D.World
 
             rand = new Random();
 
-            tileNumBP = new byte[dimensions.Y, dimensions.X];
+            dungeonBP = new byte[dimensions.Y, dimensions.X];
             GenerateDungeon();
         }
 
@@ -62,7 +62,7 @@ namespace Dungeon_Crawler_2D.World
             int failedTries, maxFailedTries;
 
             failedTries = 0;
-            maxFailedTries = 100;
+            maxFailedTries = 500;
 
             int x, y, height, width, maxRooms;
 
@@ -111,7 +111,7 @@ namespace Dungeon_Crawler_2D.World
             {
                 for (int y = room.Y + 1; y < (room.Y + room.Height) - 1; y++)
                 {
-                    tileNumBP[y, x] = (byte)region;
+                    dungeonBP[y, x] = (byte)region;
                 }
             }
         }
@@ -122,7 +122,7 @@ namespace Dungeon_Crawler_2D.World
             for (int y = 1; y < tiles.GetLength(0) - 1; y += 2)
                 for (int x = 1; x < tiles.GetLength(1) - 1; x += 2)
                 {
-                    if (tileNumBP[y, x] == 0 &&
+                    if (dungeonBP[y, x] == 0 &&
                         !SampleAdjacentNumericalTiles(new Point(x, y)))
                     {;
                         if (GenerateMaze(new Point(x, y), (byte)mazeRegion))
@@ -138,7 +138,7 @@ namespace Dungeon_Crawler_2D.World
         {
             List<Point> floodList = new List<Point>();
             floodList.Clear();
-            tileNumBP[start.Y, start.X] = region;
+            dungeonBP[start.Y, start.X] = region;
             floodList.Add(start);
 
             HashSet<int> exludePaths = new HashSet<int>();
@@ -163,7 +163,7 @@ namespace Dungeon_Crawler_2D.World
                         {
                             if (SampleDirectionReturnFalseIfNotSameNumber(floodList[index], new Point(0, -1), 0, 2))
                             {
-                                tileNumBP[floodList[index].Y - 1, floodList[index].X] = region;
+                                dungeonBP[floodList[index].Y - 1, floodList[index].X] = region;
                                 floodList.Add(floodList[index] + new Point(0, -1));
                                 tileAdded = true;
                                 connections++;
@@ -177,7 +177,7 @@ namespace Dungeon_Crawler_2D.World
                         {
                             if (SampleDirectionReturnFalseIfNotSameNumber(floodList[index], new Point(1, 0), 0, 2))
                             {
-                                tileNumBP[floodList[index].Y, floodList[index].X + 1] = region;
+                                dungeonBP[floodList[index].Y, floodList[index].X + 1] = region;
                                 floodList.Add(floodList[index] + new Point(1, 0));
                                 tileAdded = true;
                                 connections++;
@@ -191,7 +191,7 @@ namespace Dungeon_Crawler_2D.World
                         {
                             if (SampleDirectionReturnFalseIfNotSameNumber(floodList[index], new Point(0, 1), 0, 2))
                             {
-                                tileNumBP[floodList[index].Y + 1, floodList[index].X] = region;
+                                dungeonBP[floodList[index].Y + 1, floodList[index].X] = region;
                                 floodList.Add(floodList[index] + new Point(0, 1));
                                 tileAdded = true;
                                 connections++;
@@ -205,7 +205,7 @@ namespace Dungeon_Crawler_2D.World
                         {
                             if (SampleDirectionReturnFalseIfNotSameNumber(floodList[index], new Point(-1, 0), 0, 2))
                             {
-                                tileNumBP[floodList[index].Y, floodList[index].X - 1] = region;
+                                dungeonBP[floodList[index].Y, floodList[index].X - 1] = region;
                                 floodList.Add(floodList[index] + new Point(-1, 0));
                                 tileAdded = true;
                                 connections++;
@@ -222,7 +222,7 @@ namespace Dungeon_Crawler_2D.World
 
             if (connections == 0)
             {
-                tileNumBP[start.Y, start.X] = 0;
+                dungeonBP[start.Y, start.X] = 0;
                 return false;
             }
             return true;
@@ -237,7 +237,7 @@ namespace Dungeon_Crawler_2D.World
                 {
                     for (int t = -1; t < 2; t++)
                     {
-                        if (tileNumBP[tile.Y + step, tile.X + t] != testFor)
+                        if (dungeonBP[tile.Y + step, tile.X + t] != testFor)
                         {
                             return false;
                         }
@@ -252,7 +252,7 @@ namespace Dungeon_Crawler_2D.World
                 {
                     for (int t = -1; t < 2; t++)
                     {
-                        if (tileNumBP[tile.Y + t, tile.X + step] != testFor)
+                        if (dungeonBP[tile.Y + t, tile.X + step] != testFor)
                         {
                             return false;
                         }
@@ -268,7 +268,7 @@ namespace Dungeon_Crawler_2D.World
             for (int x = -1; x < 2; x++)
                 for (int y = -1; y < 2; y++)
                 {
-                    if (tileNumBP[tile.Y + y, tile.X + x] != 0)
+                    if (dungeonBP[tile.Y + y, tile.X + x] != 0)
                     {
                         return true;
                     }
@@ -283,11 +283,11 @@ namespace Dungeon_Crawler_2D.World
 
             List<Connector> connections = new List<Connector>();
 
-            for (int y = 1; y < tileNumBP.GetLength(0) - 1; y++)
+            for (int y = 1; y < dungeonBP.GetLength(0) - 1; y++)
             {
-                for (int x = 1; x < tileNumBP.GetLength(1) - 1; x++)
+                for (int x = 1; x < dungeonBP.GetLength(1) - 1; x++)
                 {
-                    if (tileNumBP[y, x] == 0 && ConnectionCheck(x, y,out r1,out r2))
+                    if (dungeonBP[y, x] == 0 && ConnectionCheck(x, y,out r1,out r2))
                     {
                         connections.Add(new Connector(x, y, r1, r2));
                     }
@@ -320,7 +320,7 @@ namespace Dungeon_Crawler_2D.World
                 if (possibleConnections.Count > 0)
                 {
                     index = rand.Next(0, possibleConnections.Count - 1);
-                    tileNumBP[connections[possibleConnections[index]].Y, connections[possibleConnections[index]].X] = (byte)(totalRegions + 1);
+                    dungeonBP[connections[possibleConnections[index]].Y, connections[possibleConnections[index]].X] = (byte)(totalRegions + 1);
                     if (connectingTo == connections[possibleConnections[index]].Region1)
                     {
                         connectedRegions.Add(connections[possibleConnections[index]].Region2);
@@ -349,7 +349,7 @@ namespace Dungeon_Crawler_2D.World
             {
                 if (rand.Next(0, 100) < extraConnectorPercentage)
                 {
-                    tileNumBP[connections[i].Y, connections[i].X] = (byte)(totalRegions + 1);
+                    dungeonBP[connections[i].Y, connections[i].X] = (byte)(totalRegions + 1);
                 }
             }
 
@@ -358,20 +358,20 @@ namespace Dungeon_Crawler_2D.World
 
         private bool ConnectionCheck(int x, int y, out byte r1, out byte r2)
         {
-            if (tileNumBP[y - 1, x] != tileNumBP[y + 1, x] &&
-                tileNumBP[y - 1, x] != 0 &&
-                tileNumBP[y + 1, x] != 0)
+            if (dungeonBP[y - 1, x] != dungeonBP[y + 1, x] &&
+                dungeonBP[y - 1, x] != 0 &&
+                dungeonBP[y + 1, x] != 0)
             {
-                r1 = tileNumBP[y - 1, x];
-                r2 = tileNumBP[y + 1, x];
+                r1 = dungeonBP[y - 1, x];
+                r2 = dungeonBP[y + 1, x];
                 return true;
             }
-            else if (tileNumBP[y, x - 1] != tileNumBP[y, x + 1] &&
-                tileNumBP[y, x - 1] != 0 &&
-                tileNumBP[y, x + 1] != 0)
+            else if (dungeonBP[y, x - 1] != dungeonBP[y, x + 1] &&
+                dungeonBP[y, x - 1] != 0 &&
+                dungeonBP[y, x + 1] != 0)
             {
-                r1 = tileNumBP[y, x - 1];
-                r2 = tileNumBP[y, x + 1];
+                r1 = dungeonBP[y, x - 1];
+                r2 = dungeonBP[y, x + 1];
                 return true;
             }
 
@@ -401,12 +401,12 @@ namespace Dungeon_Crawler_2D.World
             while (foundDeadEnd)
             {
                 foundDeadEnd = false;
-                for (int y = 1; y < tileNumBP.GetLength(0) - 1; y++)
-                    for (int x = 1; x < tileNumBP.GetLength(1) - 1; x++)
+                for (int y = 1; y < dungeonBP.GetLength(0) - 1; y++)
+                    for (int x = 1; x < dungeonBP.GetLength(1) - 1; x++)
                     {
-                        if (tileNumBP[y, x] != 0 && numberOfAdjacentWalls(x, y) > 2)
+                        if (dungeonBP[y, x] != 0 && numberOfAdjacentWalls(x, y) > 2)
                         {
-                            tileNumBP[y, x] = 0;
+                            dungeonBP[y, x] = 0;
                             foundDeadEnd = true;
                         }
                     }
@@ -417,19 +417,19 @@ namespace Dungeon_Crawler_2D.World
         {
             int count = 0;
 
-            if (tileNumBP[y - 1, x] == 0)
+            if (dungeonBP[y - 1, x] == 0)
             {
                 count++;
             }
-            if (tileNumBP[y + 1, x] == 0)
+            if (dungeonBP[y + 1, x] == 0)
             {
                 count++;
             }
-            if (tileNumBP[y, x - 1] == 0)
+            if (dungeonBP[y, x - 1] == 0)
             {
                 count++;
             }
-            if (tileNumBP[y, x + 1] == 0)
+            if (dungeonBP[y, x + 1] == 0)
             {
                 count++;
             }
@@ -450,17 +450,17 @@ namespace Dungeon_Crawler_2D.World
             bool pasable;
             TileType tileType;
 
-            for (int y = 0; y < tileNumBP.GetLength(0); y++)
-                for (int x = 0; x < tileNumBP.GetLength(1); x++)
+            for (int y = 0; y < dungeonBP.GetLength(0); y++)
+                for (int x = 0; x < dungeonBP.GetLength(1); x++)
                 {
                     tileType = TilePicker(x, y, out pasable);
                     if (pasable)
                     {
-                        if (tileNumBP[y, x] == 1)
+                        if (dungeonBP[y, x] == 1)
                         {
                             possibleStartTiles.Add(new Point(x, y));
                         }
-                        else if (monsterRegions.Contains(tileNumBP[y, x]))
+                        else if (monsterRegions.Contains(dungeonBP[y, x]))
                         {
                             tileType = TileType.MonsterTile;
                         }
@@ -475,7 +475,7 @@ namespace Dungeon_Crawler_2D.World
 
         private TileType TilePicker(int x, int y, out bool pasable)
         {
-            if (tileNumBP[y, x] == 0)
+            if (dungeonBP[y, x] == 0)
             {
                 if (y == 0)
                 {
@@ -484,7 +484,7 @@ namespace Dungeon_Crawler_2D.World
                         pasable = false;
                         return TileType.TopLeftCorner;
                     }
-                    else if (x == tileNumBP.GetLength(1) - 1)
+                    else if (x == dungeonBP.GetLength(1) - 1)
                     {
                         pasable = false;
                         return TileType.BottomLeftCorner;
@@ -495,14 +495,14 @@ namespace Dungeon_Crawler_2D.World
                         return TileType.VerticalWall;
                     }
                 }
-                else if (y == tileNumBP.GetLength(0) - 1)
+                else if (y == dungeonBP.GetLength(0) - 1)
                 {
                     if (x == 0)
                     {
                         pasable = false;
                         return TileType.TopRightCorner;
                     }
-                    else if (x == tileNumBP.GetLength(1) - 1)
+                    else if (x == dungeonBP.GetLength(1) - 1)
                     {
                         pasable = false;
                         return TileType.BottomRightCorner;
@@ -513,39 +513,39 @@ namespace Dungeon_Crawler_2D.World
                         return TileType.VerticalWall;
                     }
                 }
-                else if (x == 0 || x == tileNumBP.GetLength(1) - 1)
+                else if (x == 0 || x == dungeonBP.GetLength(1) - 1)
                 {
                     pasable = false;
                     return TileType.HorizontalWall;
                 }
                 else
                 {
-                    if (tileNumBP[y - 1, x] == 0 && tileNumBP[y + 1, x] == 0)
+                    if (dungeonBP[y - 1, x] == 0 && dungeonBP[y + 1, x] == 0)
                     {
                         pasable = false;
                         return TileType.VerticalWall;
                     }
-                    else if (tileNumBP[y, x - 1] == 0 && tileNumBP[y, x + 1] == 0)
+                    else if (dungeonBP[y, x - 1] == 0 && dungeonBP[y, x + 1] == 0)
                     {
                         pasable = false;
                         return TileType.HorizontalWall;
                     }
-                    else if (tileNumBP[y, x + 1] == 0 && tileNumBP[y + 1, x] == 0)
+                    else if (dungeonBP[y, x + 1] == 0 && dungeonBP[y + 1, x] == 0)
                     {
                         pasable = false;
                         return TileType.TopLeftCorner;
                     }
-                    else if (tileNumBP[y, x - 1] == 0 && tileNumBP[y + 1, x] == 0)
+                    else if (dungeonBP[y, x - 1] == 0 && dungeonBP[y + 1, x] == 0)
                     {
                         pasable = false;
                         return TileType.TopRightCorner;
                     }
-                    else if (tileNumBP[y - 1, x] == 0 && tileNumBP[y, x + 1] == 0)
+                    else if (dungeonBP[y - 1, x] == 0 && dungeonBP[y, x + 1] == 0)
                     {
                         pasable = false;
                         return TileType.BottomLeftCorner;
                     }
-                    else if (tileNumBP[y - 1, x] == 0 && tileNumBP[y, x - 1] == 0)
+                    else if (dungeonBP[y - 1, x] == 0 && dungeonBP[y, x - 1] == 0)
                     {
                         pasable = false;
                         return TileType.BottomRightCorner;
@@ -574,10 +574,10 @@ namespace Dungeon_Crawler_2D.World
             for (int i = 1; i < roomRegions.Count; i++)
             {
                 tilesInRegion.Clear();
-                for (int y = 0; y < tileNumBP.GetLength(0); y++)
-                    for (int x = 0; x < tileNumBP.GetLength(1); x++)
+                for (int y = 0; y < dungeonBP.GetLength(0); y++)
+                    for (int x = 0; x < dungeonBP.GetLength(1); x++)
                     {
-                        if (tileNumBP[y, x] == roomRegions[i])
+                        if (dungeonBP[y, x] == roomRegions[i])
                         {
                             tilesInRegion.Add(new Point(x, y));
                         }
@@ -637,19 +637,19 @@ namespace Dungeon_Crawler_2D.World
         {
             List<Point> possible = new List<Point>();
 
-            if (from.Y < tileNumBP.GetLength(0) - 2 && tileNumBP[from.Y + 1, from.X] != 0)
+            if (from.Y < dungeonBP.GetLength(0) - 2 && dungeonBP[from.Y + 1, from.X] != 0)
             {
                 possible.Add(new Point(from.X, from.Y + 1));
             }
-            if (from.Y > 1 && tileNumBP[from.Y - 1, from.X] != 0)
+            if (from.Y > 1 && dungeonBP[from.Y - 1, from.X] != 0)
             {
                 possible.Add(new Point(from.X, from.Y - 1));
             }
-            if (from.X < tileNumBP.GetLength(1) - 2 && tileNumBP[from.Y, from.X + 1] != 0)
+            if (from.X < dungeonBP.GetLength(1) - 2 && dungeonBP[from.Y, from.X + 1] != 0)
             {
                 possible.Add(new Point(from.X + 1, from.Y));
             }
-            if (from.X > 1 && tileNumBP[from.Y, from.X - 1] != 0)
+            if (from.X > 1 && dungeonBP[from.Y, from.X - 1] != 0)
             {
                 possible.Add(new Point(from.X - 1, from.Y));
             }
@@ -682,9 +682,9 @@ namespace Dungeon_Crawler_2D.World
             for (int y = 1; y < tiles.GetLength(0); y++)
                 for (int x = 1; x < tiles.GetLength(1); x++)
                 {
-                    if (tileNumBP[y, x] > 1)
+                    if (dungeonBP[y, x] > 1)
                     {
-                        if (mazeRegions.Contains(tileNumBP[y, x]))
+                        if (mazeRegions.Contains(dungeonBP[y, x]))
                         {
                             if (rand.Next(0, 100) > enemyPercentageInMaze)
                             {
@@ -695,7 +695,7 @@ namespace Dungeon_Crawler_2D.World
                                 tiles[y, x].type = TileType.MonsterTile;
                             }
                         }
-                        else if (tileNumBP[y, x] == bossRoom)
+                        else if (dungeonBP[y, x] == bossRoom)
                         {
 
                         }
@@ -724,31 +724,31 @@ namespace Dungeon_Crawler_2D.World
         private void DebugNumericalTileArray()
         {
 
-            for (int y = 0; y < tileNumBP.GetLength(0); y++)
+            for (int y = 0; y < dungeonBP.GetLength(0); y++)
             {
-                for (int x = 0; x < tileNumBP.GetLength(1); x++)
+                for (int x = 0; x < dungeonBP.GetLength(1); x++)
                 {
-                    if (tileNumBP[y, x] == 0)
+                    if (dungeonBP[y, x] == 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write("0");
                     }
-                    else if (tileNumBP[y, x] == 1)
+                    else if (dungeonBP[y, x] == 1)
                     {
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.Write("1");
                     }
-                    else if (tileNumBP[y, x] == bossRoom)
+                    else if (dungeonBP[y, x] == bossRoom)
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write("B");
                     }
-                    else if (roomRegions.Contains(tileNumBP[y, x]))
+                    else if (roomRegions.Contains(dungeonBP[y, x]))
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write("1");
                     }
-                    else if (mazeRegions.Contains(tileNumBP[y, x]))
+                    else if (mazeRegions.Contains(dungeonBP[y, x]))
                     {
                         Console.ForegroundColor = ConsoleColor.Blue;
                         Console.Write("1");
@@ -767,21 +767,21 @@ namespace Dungeon_Crawler_2D.World
         private void DebugNumericalTileArrayContainedInList(List<int> list)
         {
 
-            for (int y = 0; y < tileNumBP.GetLength(0); y++)
+            for (int y = 0; y < dungeonBP.GetLength(0); y++)
             {
-                for (int x = 0; x < tileNumBP.GetLength(1); x++)
+                for (int x = 0; x < dungeonBP.GetLength(1); x++)
                 {
-                    if (tileNumBP[y, x] == 0)
+                    if (dungeonBP[y, x] == 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write("0");
                     }
-                    else if (list.Contains(tileNumBP[y, x]))
+                    else if (list.Contains(dungeonBP[y, x]))
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write("1");
                     }
-                    else if (roomRegions.Contains(tileNumBP[y, x]))
+                    else if (roomRegions.Contains(dungeonBP[y, x]))
                     {
                         Console.ForegroundColor = ConsoleColor.Blue;
                         Console.Write("1");
