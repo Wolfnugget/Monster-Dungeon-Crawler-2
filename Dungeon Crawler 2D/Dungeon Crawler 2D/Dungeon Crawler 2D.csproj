@@ -59,6 +59,7 @@
     <Compile Include="Menus\SplashScreen.cs" />
     <Compile Include="Menus\TitleScreen.cs" />
     <Compile Include="Object\Actor.cs" />
+    <Compile Include="Object\Animated.cs" />
     <Compile Include="Object\Monster.cs" />
     <Compile Include="Object\Object.cs" />
     <Compile Include="Object\Player.cs" />
@@ -70,11 +71,11 @@
     <Compile Include="StatScreen.cs" />
     <Compile Include="TextureManager.cs" />
     <Compile Include="World\Area.cs" />
+    <Compile Include="World\GameWorld.cs" />
     <Compile Include="World\GeneratedDungeon.cs" />
     <Compile Include="World\GeneratorUtility.cs" />
     <Compile Include="World\Map.cs" />
     <Compile Include="World\PreMadeArea.cs" />
-    <Compile Include="World\GeneratedMap.cs" />
     <Compile Include="World\Tile.cs" />
     <Compile Include="World\TileSet.cs" />
   </ItemGroup>

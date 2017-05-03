@@ -22,5 +22,10 @@ namespace Dungeon_Crawler_2D.Object
         public abstract void Update(GameTime gameTime);
 
         public abstract void Draw(SpriteBatch spriteBatch);
+
+        public virtual void Funktion()
+        {
+
+        }
     }
 }

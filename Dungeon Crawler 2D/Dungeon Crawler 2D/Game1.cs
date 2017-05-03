@@ -19,7 +19,7 @@ namespace Dungeon_Crawler_2D
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         
-        private World.Map dungeon, overworld;
+        private World.Map world;
         private Object.Player player;
 
         private Camera2D cam;
@@ -56,10 +56,10 @@ namespace Dungeon_Crawler_2D
 
             ScreenManager.Instance.LoadContent(Content);
             
-            dungeon = new World.GeneratedMap(textures, Content);
+            world = new World.GameWorld(textures, Content);
 
-            dungeon.Event += HandleEvents;
-            player = new Object.Player(textures.playerSpriteSheet, textures, dungeon.GetPlayerStart(), 100, new Point(16, 16), new Point(2, 0), 0.1f);
+            world.Event += HandleEvents;
+            player = new Object.Player(textures.playerSpriteSheet, textures, world.GetPlayerStart(), 100, new Point(16, 16), new Point(2, 0), 0.1f);
             player.Action += HandleEvents;
             
             Viewport view = GraphicsDevice.Viewport;
@@ -72,7 +72,7 @@ namespace Dungeon_Crawler_2D
             gameState = GameState.Explore; //Vilken gamestate spelet startas i.
 
             hud = new HUDManager(gameState, textures, GraphicsDevice, Content, player, windowWidth, windowHeight);
-            cam = new Camera2D(hud, view, windowWidth, windowHeight, dungeon, zoom);
+            cam = new Camera2D(hud, view, windowWidth, windowHeight, world, zoom);
 
             combat = new Combat(player, textures, hud);
             combat.Event += HandleEvents;
@@ -102,7 +102,7 @@ namespace Dungeon_Crawler_2D
             else if (gameState == GameState.Explore)
             {
                 player.Update(gameTime);
-                dungeon.Update(gameTime, player.position);
+                world.Update(gameTime, player.position);
                 hud.Update(gameState);
                 cam.SetPosition(player.position);
             }
@@ -149,7 +149,7 @@ namespace Dungeon_Crawler_2D
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.GetTransform());
 
                 //OBS!! Skriv bara här om ni vill att det som ritas ut ska vara beroende av kameran (allt utom tex healthbars eller poäng)
-                dungeon.Draw(spriteBatch);
+                world.Draw(spriteBatch);
                 player.Draw(spriteBatch);
 
                 spriteBatch.End();
@@ -202,11 +202,11 @@ namespace Dungeon_Crawler_2D
         {
             if (args.EventType == PlayerEventType.CheckDirection) //spelaren försöker gå i en viss riktning.
             {
-                dungeon.PlayerEvent(args);
+                world.PlayerEvent(args);
             }
             else if (args.EventType == PlayerEventType.EnterTile) //spelaren är framme på en tile.
             {
-                dungeon.PlayerEvent(args);
+                world.PlayerEvent(args);
             }
         }
 

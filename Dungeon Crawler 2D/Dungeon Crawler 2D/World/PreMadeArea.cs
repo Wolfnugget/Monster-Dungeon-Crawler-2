@@ -15,7 +15,7 @@ namespace Dungeon_Crawler_2D.World
         public PreMadeArea(string roomPath, TextureManager textures, ContentManager content)
             : base(textures, content)
         {
-            List<string>  roomBluePrint = new List<string>();
+            List<string> roomBluePrint = new List<string>();
 
             StreamReader sr = new StreamReader(roomPath);
             while (!sr.EndOfStream)

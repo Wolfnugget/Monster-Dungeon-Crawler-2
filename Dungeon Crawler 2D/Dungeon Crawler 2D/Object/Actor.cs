@@ -8,40 +8,18 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Dungeon_Crawler_2D.Object
 {
-    public abstract class Actor: Object
+    public abstract class Actor: Animated
     {
         protected float speed;
         protected Vector2 destination;
 
-        protected Point startingFrame, frame, frames, frameSize;
-        float frameTime, frameDuration;
-        Vector2 origin;
-        protected SpriteEffects effect;
-
         protected bool moving;
 
-        private Rectangle srcRec
-        {
-            get
-            {
-                return new Rectangle(frame.X * frameSize.Y,
-                    frame.Y * frameSize.Y,
-                    frameSize.X, frameSize.Y);
-            }
-        }
-
         public Actor(Texture2D texture, Vector2 position, float speed, Point frameSize, Point frames, float frameTime)
-            : base(texture, position)
+            : base(texture, position, frameSize, frames, frameTime)
         {
-            this.position = position;
             this.speed = speed;
-            this.frameSize = frameSize;
-            this.frameTime = frameTime;
-            frame = startingFrame;
-            this.frames = frames;
             moving = false;
-
-            origin = new Vector2(frameSize.X / 2, frameSize.Y / 2);
         }
 
         public override void Update(GameTime gameTime)
@@ -50,36 +28,6 @@ namespace Dungeon_Crawler_2D.Object
             {
                 Animate(gameTime);
                 Move(gameTime);
-            }
-        }
-
-        protected void Animate(GameTime gameTime)
-        {
-            frameDuration -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (frame.Y < startingFrame.Y || frame.Y > startingFrame.Y + frames.Y)
-            {
-                frame.Y = startingFrame.Y;
-            }
-            if (frame.X < startingFrame.X || frame.X > startingFrame.X + frames.X)
-            {
-                frame.X = startingFrame.X;
-            }
-            if (frameDuration <= 0)
-            {
-                frameDuration = frameTime;
-                if (frame.X < startingFrame.X + frames.X)
-                {
-                    frame.X++;
-                }
-                else if (frame.Y < startingFrame.Y + frames.Y)
-                {
-                    frame.X = startingFrame.X;
-                    frame.Y++;
-                }
-                else
-                {
-                    frame = startingFrame;
-                }
             }
         }
 
@@ -120,11 +68,6 @@ namespace Dungeon_Crawler_2D.Object
                 args.Position = position;
                 OnAction(args);
             }
-        }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(texture, position, srcRec,  Color.White, 0, origin, 1, effect, 1);
         }
 
         public ActorEventHandler Action;

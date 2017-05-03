@@ -38,7 +38,7 @@ namespace Dungeon_Crawler_2D.World
         public Location currentLocation;
         protected TextureManager textures;
         protected Random rand = new Random();
-        ContentManager content;
+        protected ContentManager content;
 
         protected int randomEncounterChance;
 
@@ -47,6 +47,7 @@ namespace Dungeon_Crawler_2D.World
             this.textures = textures;
             this.content = content;
             rooms = new Dictionary<Location, Area>();
+
             randomEncounterChance = 5;
         }
 
@@ -94,21 +95,13 @@ namespace Dungeon_Crawler_2D.World
         {
             TileType type = rooms[currentLocation].GetTileType(position); //hämtar tile typen från room.
 
-            if (type == TileType.NorthExit)
+            if (type == TileType.Portal)
             {
-                ChangeArea(new Point(0, -1), TileType.SouthExit);
+                ChangeArea(TileType.Portal);
             }
-            else if (type == TileType.SouthExit)
+            else if (type == TileType.ExitPortal)
             {
-                ChangeArea(new Point(0, 1), TileType.NorthExit);
-            }
-            else if (type == TileType.EastExit)
-            {
-                ChangeArea(new Point(1, 0), TileType.WestExit);
-            }
-            else if (type == TileType.WestExit)
-            {
-                ChangeArea(new Point(-1, 0), TileType.EastExit);
+                ChangeArea(TileType.Portal);
             }
             else if (type == TileType.MonsterTile)
             {
@@ -132,7 +125,7 @@ namespace Dungeon_Crawler_2D.World
         /// </summary>
         /// <param name="RoomDirection"></param>
         /// <param name="entrance"></param>
-        protected abstract void ChangeArea(Point RoomDirection, TileType entrance);
+        protected abstract void ChangeArea(TileType entrance);
 
         public MapEventHandler Event;
 

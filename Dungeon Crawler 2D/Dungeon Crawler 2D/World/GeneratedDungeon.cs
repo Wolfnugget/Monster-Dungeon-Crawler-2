@@ -77,7 +77,6 @@ namespace Dungeon_Crawler_2D.World
             RemoveDeadEnds();
             ConvertBPToTiles();
             AddEnemies();
-            DebugNumericalTileArray();
         }
 
         private void GenerateNumericalRooms(Point maxRoomDimensions, Point minRoomDimensions)
@@ -555,6 +554,7 @@ namespace Dungeon_Crawler_2D.World
                 }
 
             tiles[startTile.Y, startTile.X].type = TileType.Portal;
+            gameObjects.Add(new Point(startTile.X, startTile.Y), new Object.Portal(textures.portal, playerStart, true));
         }
 
         private TileTexture TilePicker(int x, int y)
