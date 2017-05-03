@@ -14,6 +14,12 @@ namespace Dungeon_Crawler_2D
         Battle
     }
 
+    public enum Map
+    {
+        OverWorld,
+        Dungeon
+    }
+
     public class Game1 : Game
     {
         private GraphicsDeviceManager graphics;
@@ -29,8 +35,6 @@ namespace Dungeon_Crawler_2D
 
         private int windowHeight;
         private int windowWidth;
-
-        World.GeneratedDungeon genTest;
 
         GameState gameState;
 
@@ -80,6 +84,7 @@ namespace Dungeon_Crawler_2D
             combat = new Combat(player, textures, hud);
             combat.Event += HandleEvents;
         }
+
         protected override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.F))
@@ -226,7 +231,6 @@ namespace Dungeon_Crawler_2D
 
         private void HandleCombat(BattleEvensArgs args)
         {
-            Console.WriteLine("Batttree");
             gameState = GameState.Explore;
         }
     }

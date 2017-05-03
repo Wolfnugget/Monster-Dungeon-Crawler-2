@@ -448,6 +448,11 @@ namespace Dungeon_Crawler_2D.World
 
             monsterRegions = GeneratorUtility.GetRandomListofIntFromList(rand, roomRegions, minMonsterRooms, maxMonsterRooms);
 
+            if (monsterRegions.Contains(1))
+            {
+                monsterRegions.Remove(1);
+            }
+
             TileTexture textureType;
 
             Point startTile = GetStartTile();
@@ -683,7 +688,6 @@ namespace Dungeon_Crawler_2D.World
                 this.movesTo = movesTo;
             }
         }
-
 
         private void AddEnemies(TextureManager textures)
         {

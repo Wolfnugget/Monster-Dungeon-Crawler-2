@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-<<<<<<< HEAD
   <SourceFile>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Attack_Icon.png</SourceFile>
   <SourceTime>2017-04-25T16:56:33.2134567+02:00</SourceTime>
   <DestFile>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Battle/Icons/Attack_Icon.xnb</DestFile>
-  <DestTime>2017-05-02T17:28:00.0017679+02:00</DestTime>
-=======
-  <SourceFile>C:/Users/Marcus/Desktop/Monster-Dungeon-Crawler REPOSITORY/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Attack_Icon.png</SourceFile>
-  <SourceTime>2017-04-30T17:05:36.8362412+02:00</SourceTime>
-  <DestFile>C:/Users/Marcus/Desktop/Monster-Dungeon-Crawler REPOSITORY/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Battle/Icons/Attack_Icon.xnb</DestFile>
-  <DestTime>2017-05-02T18:11:49.2087792+02:00</DestTime>
->>>>>>> origin/master
+  <DestTime>2017-05-03T13:01:40.7601683+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

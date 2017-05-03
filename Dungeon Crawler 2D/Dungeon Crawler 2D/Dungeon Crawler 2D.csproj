@@ -160,7 +160,10 @@
     <Content Include="Content\Textures\Monsters\Demon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TileSet\Castle\Enemy_Tile.png">
+    <Content Include="Content\Textures\TileSet\Castle\Enemy_Tile_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Castle\Enemy_Tile_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\TileSet\Castle\Floor_Boss_Tile.png">
