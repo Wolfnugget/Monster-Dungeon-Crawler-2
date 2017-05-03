@@ -49,8 +49,6 @@ namespace Dungeon_Crawler_2D.World
                 }
             }
 
-            Console.WriteLine("Tile set picker Starting");
-
             int index = rand.Next(0, tileSetsList.Count);
             tileSet = new TileSet(content, tileSetsList[index]);
         }
