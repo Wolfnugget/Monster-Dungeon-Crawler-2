@@ -20,6 +20,9 @@ namespace Dungeon_Crawler_2D
 
         public StatScreen statScreen;
         public bool showStats;
+        public bool showSummary;
+        public bool battleWon;
+        private int gainedXp;
 
         private Rectangle leftBarRect;
         private Rectangle rightBarRect;
@@ -76,6 +79,7 @@ namespace Dungeon_Crawler_2D
 
             statScreen = new StatScreen(this, textures);
             showStats = false;
+            showSummary = false;
         }
 
         public void Update(GameState gameState)
@@ -324,6 +328,14 @@ namespace Dungeon_Crawler_2D
             if (showStats == true)
             {
                 statScreen.Draw(spriteBatch);
+            }
+
+            if (showSummary == true && Keyboard.GetState().IsKeyDown(Keys.Enter))
+            {
+                if (battleWon == true)
+                {
+                    showSummary = false;
+                }
             }
         }
 
@@ -745,8 +757,46 @@ namespace Dungeon_Crawler_2D
                         " damage, using " + player.abilities.usedAbility;
                     break;
             }
-
         }
 
+        public void HandleCombatSummary(bool result, int xp)
+        {
+            this.battleWon = result;
+            this.gainedXp = xp;
+        }
+
+        public void DrawCombatSummary(SpriteBatch spriteBatch)
+        {
+            Rectangle whiteBox = new Rectangle((windowWidth / 2) - ((sideBarWidth * 3) / 2), (windowHeight / 2) - (sideBarWidth * 2), sideBarWidth * 3, sideBarWidth * 2);
+            Rectangle blackBox = new Rectangle(whiteBox.X + (statBarWidth / 20), whiteBox.Y + (statBarWidth / 20), whiteBox.Width - (statBarWidth / 10), whiteBox.Height - (statBarWidth / 10));
+
+            Vector2 textSizeSummary;
+            Vector2 originSummaryText;
+
+            spriteBatch.Draw(textures.whiteSquare, whiteBox, Color.White);
+            spriteBatch.Draw(textures.whiteSquare, blackBox, Color.Black);
+
+            if (battleWon == true)
+            {
+                textSizeSummary = textures.comicSans.MeasureString("BATTLE WON!!");
+                originSummaryText = textSizeSummary * 0.5f;
+                spriteBatch.DrawString(textures.comicSans, "BATTLE WON!!", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + (whiteBox.Height / 3)), Color.Yellow, 0, originSummaryText, 3, SpriteEffects.None, 0);
+
+                textSizeSummary = textures.comicSans.MeasureString("Experience gained: " + gainedXp);
+                originSummaryText = textSizeSummary * 0.5f;
+                spriteBatch.DrawString(textures.comicSans, "Experience gained: " + gainedXp, new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 3) * 2)), Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
+            }
+
+            else
+            {
+                textSizeSummary = textures.comicSans.MeasureString("BATTLE LOST...");
+                originSummaryText = textSizeSummary * 0.5f;
+                spriteBatch.DrawString(textures.comicSans, "BATTLE LOST...", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + (whiteBox.Height / 3)), Color.Yellow, 0, originSummaryText, 3, SpriteEffects.None, 0);
+
+                textSizeSummary = textures.comicSans.MeasureString("This screen is now stuck");
+                originSummaryText = textSizeSummary * 0.5f;
+                spriteBatch.DrawString(textures.comicSans, "This screen is now stuck", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 3) * 2)), Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
+            }
+        }
     }
 }
