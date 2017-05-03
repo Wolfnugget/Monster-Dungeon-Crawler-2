@@ -69,11 +69,10 @@
     <Compile Include="TextureManager.cs" />
     <Compile Include="World\Area.cs" />
     <Compile Include="World\GeneratedDungeon.cs" />
-    <Compile Include="World\GeneratedMap.cs" />
     <Compile Include="World\GeneratorUtility.cs" />
     <Compile Include="World\Map.cs" />
     <Compile Include="World\PreMadeArea.cs" />
-    <Compile Include="World\RandomGeneratedMap.cs" />
+    <Compile Include="World\GeneratedMap.cs" />
     <Compile Include="World\Tile.cs" />
     <Compile Include="World\TileSet.cs" />
   </ItemGroup>
@@ -205,10 +204,10 @@
     <Content Include="Content\Textures\TileSet\Dungeon\Door_West_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TileSet\Dungeon\Enemy_Tile.png">
+    <Content Include="Content\Textures\TileSet\Dungeon\Enemy_Tile_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TileSet\Dungeon\Floor_Boss_Tile.png">
+    <Content Include="Content\Textures\TileSet\Dungeon\Floor_Boss_Tile_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\TileSet\Dungeon\Floor_Tile_1.png">

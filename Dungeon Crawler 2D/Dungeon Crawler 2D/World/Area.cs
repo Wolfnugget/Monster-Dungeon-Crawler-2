@@ -15,8 +15,9 @@ namespace Dungeon_Crawler_2D.World
         protected Point tileSize = new Point(16, 16);
         public Vector2 playerStart;
         TextureManager textures;
-        public bool[] doors;
         public Point areaCoords;
+
+        protected Random rand;
 
         protected TileSet tileSet;
 
@@ -32,10 +33,13 @@ namespace Dungeon_Crawler_2D.World
             renderDistanceX = 20;
             renderDistanceY = 20;
 
-            gameObjects = new Dictionary<Point, Object.Object>();
+            rand = new Random();
 
-            tileSet = new TileSet(content);
+            gameObjects = new Dictionary<Point, Object.Object>();
+            PickTileSet(content);
         }
+
+        protected abstract void PickTileSet(ContentManager content);
 
         public void Update(GameTime gameTime, Vector2 cameraCenter)
         {

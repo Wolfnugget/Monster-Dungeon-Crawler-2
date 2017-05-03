@@ -49,5 +49,25 @@ namespace Dungeon_Crawler_2D.World
 
             return randomList;
         }
+
+        public static List<int> ConvertByteListToIntList(List<byte> toConvert)
+        {
+            List<int> converted = new List<int>();
+            for (int i = 0; i < toConvert.Count; i++)
+            {
+                converted.Add(toConvert[i]);
+            }
+            return converted;
+        }
+
+        public static List<byte> ConvertIntListToByteList(List<int> toConvert)
+        {
+            List<byte> converted = new List<byte>();
+            for (int i = 0; i < toConvert.Count; i++)
+            {
+                converted.Add((byte)toConvert[i]);
+            }
+            return converted;
+        }
     }
 }

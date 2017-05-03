@@ -13,11 +13,9 @@ namespace Dungeon_Crawler_2D.World
     {
         byte[,] dungeonBP;
 
-        List<int> roomRegions, mazeRegions, monsterRegions, wallRegions;
+        List<byte> roomRegions, mazeRegions, monsterRegions, wallRegions;
 
         int bossRoom;
-
-        Random rand;
 
         int totalRegions { get { return roomRegions.Count + mazeRegions.Count; } }
 
@@ -35,18 +33,34 @@ namespace Dungeon_Crawler_2D.World
 
             tiles = new Tile[dimensions.Y, dimensions.X];
 
-            rand = new Random();
-
             dungeonBP = new byte[dimensions.Y, dimensions.X];
             GenerateDungeon(textures);
+        }
+
+        protected override void PickTileSet(ContentManager content)
+        {
+            List<TileSets> tileSetsList = new List<TileSets>();
+
+            foreach (TileSets tS in Enum.GetValues(typeof(TileSets)))
+            {
+                if (tS != TileSets.Overworld)
+                {
+                    tileSetsList.Add(tS);
+                }
+            }
+
+            Console.WriteLine("Tile set picker Starting");
+
+            int index = rand.Next(0, tileSetsList.Count);
+            tileSet = new TileSet(content, tileSetsList[index]);
         }
 
         private void GenerateDungeon(TextureManager textures)
         {
             Point maxRoomDimensions = new Point(12, 12), minRoomDimensions = new Point(8, 8);
-            roomRegions = new List<int>();
-            mazeRegions = new List<int>();
-            wallRegions = new List<int>();
+            roomRegions = new List<byte>();
+            mazeRegions = new List<byte>();
+            wallRegions = new List<byte>();
             wallRegions.Add(0);
 
             GenerateNumericalRooms(maxRoomDimensions, minRoomDimensions);
@@ -102,7 +116,7 @@ namespace Dungeon_Crawler_2D.World
                 }
             }
 
-            for (int i = 1; i <= roomsToMake.Count; i++)
+            for (byte i = 1; i <= roomsToMake.Count; i++)
             {
                 GenerateNumericalRoom(roomsToMake[i - 1], i);
                 roomRegions.Add(i);
@@ -131,7 +145,7 @@ namespace Dungeon_Crawler_2D.World
                     {;
                         if (GenerateMaze(new Point(x, y), (byte)mazeRegion))
                         {
-                            mazeRegions.Add(mazeRegion);
+                            mazeRegions.Add((byte)mazeRegion);
                             mazeRegion++;
                         }
                     }
@@ -298,6 +312,8 @@ namespace Dungeon_Crawler_2D.World
                 }
             }
 
+            RemoveUnconnectableRegions(connections);
+
             List<byte> connectedRegions = new List<byte>();
 
             byte connectingTo = 1;
@@ -312,6 +328,7 @@ namespace Dungeon_Crawler_2D.World
             {
                 index = GeneratorUtility.GetRandomNumberExcluding(rand, exlude, 0, connectedRegions.Count - 1);
                 connectingTo = connectedRegions[index];
+
                 possibleConnections.Clear();
                 for (int i = 0; i < connections.Count; i++)
                 {
@@ -398,6 +415,50 @@ namespace Dungeon_Crawler_2D.World
             }
         }
 
+        private void RemoveUnconnectableRegions(List<Connector> connectors)
+        {
+            List<byte> regionsWithoutConnector = new List<byte>();
+
+            regionsWithoutConnector.AddRange(mazeRegions);
+
+            for (byte i = 1; i < totalRegions; i++)
+            {
+                regionsWithoutConnector.Add(i);
+            }
+            for (int i = 0; i < connectors.Count; i++)
+            {
+                if (regionsWithoutConnector.Contains(connectors[i].Region1))
+                {
+                    regionsWithoutConnector.Remove(connectors[i].Region1);
+                }
+                else if (regionsWithoutConnector.Contains(connectors[i].Region2))
+                {
+                    regionsWithoutConnector.Remove(connectors[i].Region2);
+                }
+            }
+
+            for (int y = 1; y < dungeonBP.GetLength(0); y++)
+                for (int x = 1; x < dungeonBP.GetLength(1); x++)
+                {
+                    if (regionsWithoutConnector.Contains(dungeonBP[y, x]))
+                    {
+                        dungeonBP[y, x] = 0;
+                    }
+                }
+
+            for (int i = 0; i < regionsWithoutConnector.Count; i++)
+            {
+                if (mazeRegions.Contains(regionsWithoutConnector[i]))
+                {
+                    mazeRegions.Remove(regionsWithoutConnector[i]);
+                }
+                else if (roomRegions.Contains(regionsWithoutConnector[i]))
+                {
+                    roomRegions.Remove(regionsWithoutConnector[i]);
+                }
+            }
+        }
+
         private void RemoveDeadEnds()
         {
             bool foundDeadEnd = true;
@@ -446,11 +507,19 @@ namespace Dungeon_Crawler_2D.World
             int minMonsterRooms = roomRegions.Count / 4;
             int maxMonsterRooms = (int)(roomRegions.Count / 1.5f);
 
-            monsterRegions = GeneratorUtility.GetRandomListofIntFromList(rand, roomRegions, minMonsterRooms, maxMonsterRooms);
+            List<int> temp = GeneratorUtility.ConvertByteListToIntList(roomRegions);
 
-            if (monsterRegions.Contains(1))
+            monsterRegions = GeneratorUtility.ConvertIntListToByteList(
+                GeneratorUtility.GetRandomListofIntFromList
+                (rand, temp, minMonsterRooms, maxMonsterRooms));
+
+            for (int i = 0; i < monsterRegions.Count; i++)
             {
-                monsterRegions.Remove(1);
+                if (monsterRegions[i] == 1)
+                {
+                    monsterRegions.RemoveAt(i);
+                    break;
+                }
             }
 
             TileTexture textureType;

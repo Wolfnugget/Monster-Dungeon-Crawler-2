@@ -23,15 +23,22 @@ namespace Dungeon_Crawler_2D.World
         Wall_Horizontal
     }
 
+    public enum TileSets
+    {
+        Castle,
+        Dungeon,
+        Overworld
+    }
+
     public class TileSet
     {
         Dictionary<TileTexture, List<Texture2D>> textureSet;
 
         Texture2D nullTex;
 
-        public TileSet(ContentManager content)
+        public TileSet(ContentManager content, TileSets tileSet)
         {
-            string path = "Textures/TileSet/Castle";
+            string path = "Textures/TileSet/" + tileSet.ToString();
             LoadTextures(content, path);
 
             nullTex = content.Load<Texture2D>("Example");

@@ -16,7 +16,7 @@ namespace Dungeon_Crawler_2D.World
             : base(textures, content)
         {
             List<string>  roomBluePrint = new List<string>();
-            doors = new bool[4] { false, false, false, false};
+
             StreamReader sr = new StreamReader(roomPath);
             while (!sr.EndOfStream)
             {
@@ -38,6 +38,11 @@ namespace Dungeon_Crawler_2D.World
                     }
                 }
             }
+        }
+
+        protected override void PickTileSet(ContentManager content)
+        {
+            throw new NotImplementedException();
         }
     }
 }
