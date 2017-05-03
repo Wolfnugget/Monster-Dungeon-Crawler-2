@@ -110,6 +110,12 @@ namespace Dungeon_Crawler_2D.World
                     OnEvent(args);
                 }
             }
+            else if (type == TileType.ExitPortal)
+            {
+                MapEventArgs args = new MapEventArgs(MapEventType.StartCombat);
+                args.enemy = EnemyType.boss;
+                OnEvent(args);
+            }
         }
 
         /// <summary>

@@ -95,6 +95,11 @@ namespace Dungeon_Crawler_2D
                 gameState = GameState.Battle;
                 combat.StartCombat(EnemyType.zombie);
             }
+            if (Keyboard.GetState().IsKeyDown(Keys.H))
+            {
+                gameState = GameState.Battle;
+                combat.StartCombat(EnemyType.boss);
+            }
 
             if (gameState == GameState.Menu)
             {

@@ -12,7 +12,7 @@ namespace Dungeon_Crawler_2D
 {
     public enum EnemyType
     {
-        zombie
+        zombie, boss
     }
 
     class Enemy
@@ -35,6 +35,7 @@ namespace Dungeon_Crawler_2D
 
         public bool Update()
         {
+            #region Zombie
             if (theEnemy == EnemyType.zombie)
             {
                 if (stats.CheckStat(Stat.mana) >= ability.CheckCost(UsedAbility.PoisonHit))
@@ -66,6 +67,61 @@ namespace Dungeon_Crawler_2D
                     }
                 }
             }
+            #endregion
+
+            #region Boss
+            if (theEnemy == EnemyType.boss)
+            {
+                if (stats.CheckStat(Stat.mana) >= ability.CheckCost(UsedAbility.PoisonHit))
+                {
+                    switch (rand.Next(0, 6))
+                    {
+                        case 0:
+                            ability.Ability(this, player, UsedAbility.Hit);
+                            break;
+                        case 1:
+                            ability.Ability(this, player, UsedAbility.PoisonHit);
+                            stats.ChangeStat(Stat.mana, -ability.CheckCost(UsedAbility.PoisonHit));
+                            break;
+                        case 2:
+                            ability.Ability(this, player, UsedAbility.Magic);
+                            stats.ChangeStat(Stat.mana, -ability.CheckCost(UsedAbility.Magic));
+                            break;
+                        default:
+                            ability.Ability(this, player, UsedAbility.Defence);
+                            break;
+                    }
+                }
+                else if (stats.CheckStat(Stat.mana) >= ability.CheckCost(UsedAbility.Magic)) 
+                {
+                    switch (rand.Next(0, 4))
+                    {
+                        case 0:
+                            ability.Ability(this, player, UsedAbility.Hit);
+                            break;
+                        case 1:
+                            ability.Ability(this, player, UsedAbility.Magic);
+                            stats.ChangeStat(Stat.mana, -ability.CheckCost(UsedAbility.Magic));
+                            break;
+                        default:
+                            ability.Ability(this, player, UsedAbility.Defence);
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (rand.Next(0, 3))
+                    {
+                        case 0:
+                            ability.Ability(this, player, UsedAbility.Hit);
+                            break;
+                        default:
+                            ability.Ability(this, player, UsedAbility.Defence);
+                            break;
+                    }
+                }
+            }
+            #endregion
 
             return false;
         }
@@ -77,6 +133,7 @@ namespace Dungeon_Crawler_2D
 
         public void GiveStats()
         {
+            #region Zombie
             if (theEnemy == EnemyType.zombie)
             {
                 if (player.stats.CheckStat(Stat.level) <= 5)
@@ -88,7 +145,7 @@ namespace Dungeon_Crawler_2D
                     int inteligence = 0;
                     int dextarity = rand.Next(3, 8) + player.stats.CheckStat(Stat.level);
                     int luck = 0;
-                    int speed = rand.Next(6, 15) + player.stats.CheckStat(Stat.level);
+                    int speed = rand.Next(6, 15) + player.stats.CheckStat(Stat.level) / 2;
                     int xp = rand.Next(20, 40) + 2 * player.stats.CheckStat(Stat.level);
                     stats = new Stats(textures, health, health, mana, mana, strenght, inteligence, dextarity, luck, speed, 0, xp, 0);
                 }
@@ -101,22 +158,41 @@ namespace Dungeon_Crawler_2D
                     int inteligence = 0;
                     int dextarity = 7 + rand.Next(1, 9) + player.stats.CheckStat(Stat.level);
                     int luck = rand.Next(5, 10);
-                    int speed = 7 + rand.Next(1, 6) + player.stats.CheckStat(Stat.level);
-                    stats = new Stats(textures, health, health, mana, mana, strenght, inteligence, dextarity, luck, speed, 0, 0, 0);
+                    int speed = 7 + rand.Next(1, 6) + player.stats.CheckStat(Stat.level) / 2;
+                    int xp = rand.Next(60, 100) + 2 * player.stats.CheckStat(Stat.level);
+                    stats = new Stats(textures, health, health, mana, mana, strenght, inteligence, dextarity, luck, speed, 0, xp, 0);
                 }
                 else
                 {
-                    int health = 150 + rand.Next(0, 50) + 2 * player.stats.CheckStat(Stat.level);
+                    int health = 150 + rand.Next(0, 50) + 2 * player.stats.CheckStat(Stat.level);  
                     int mana = 100 + rand.Next(20, 70) + player.stats.CheckStat(Stat.level);
 
                     int strenght = 20 + rand.Next(1, 7) + player.stats.CheckStat(Stat.level);
                     int inteligence = 0;
                     int dextarity = rand.Next(5, 10) + player.stats.CheckStat(Stat.level);
                     int luck = rand.Next(5, 20);
-                    int speed = rand.Next(10, 20) + player.stats.CheckStat(Stat.level);
-                    stats = new Stats(textures, health, health, mana, mana, strenght, inteligence, dextarity, luck, speed, 0, 0, 0);
+                    int speed = rand.Next(10, 20) + player.stats.CheckStat(Stat.level) / 2;
+                    int xp = rand.Next(120, 200) + 2 * player.stats.CheckStat(Stat.level);
+                    stats = new Stats(textures, health, health, mana, mana, strenght, inteligence, dextarity, luck, speed, 0, xp, 0);
                 }
             }
+            #endregion
+
+            #region Boss
+            if (theEnemy == EnemyType.boss)
+            {
+                int health = 250;
+                int mana = 200;
+
+                int strenght = 33;
+                int inteligence = 36;
+                int dextarity = 30;
+                int luck = 18;
+                int speed = 20;
+                int xp = 300;
+                stats = new Stats(textures, health, health, mana, mana, strenght, inteligence, dextarity, luck, speed, 0, xp, 0);
+            }
+            #endregion
         }
     }
 }
