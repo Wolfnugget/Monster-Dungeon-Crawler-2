@@ -29,13 +29,13 @@ namespace Dungeon_Crawler_2D
             this.windowHeight = windowHeight;
 
             screenCenter = new Vector2(windowWidth / (2 * zoom), windowHeight / (2 * zoom));
-            roomSize = new Vector2(map.rooms[map.currentRoom].tiles.GetLength(1) * 16, map.rooms[map.currentRoom].tiles.GetLength(0) * 16);
+            roomSize = new Vector2(map.rooms[map.currentLocation].tiles.GetLength(1) * 16, map.rooms[map.currentLocation].tiles.GetLength(0) * 16);
             zoomVector = new Vector3(zoom, zoom, 0);
         }
 
         public void SetPosition(Vector2 pos)
         {
-            roomSize = new Vector2(map.rooms[map.currentRoom].tiles.GetLength(1) * 16, map.rooms[map.currentRoom].tiles.GetLength(0) * 16);
+            roomSize = new Vector2(map.rooms[map.currentLocation].tiles.GetLength(1) * 16, map.rooms[map.currentLocation].tiles.GetLength(0) * 16);
             cameraPos = pos;
 
             //Is the room bigger than the screen? (both X, and Y)

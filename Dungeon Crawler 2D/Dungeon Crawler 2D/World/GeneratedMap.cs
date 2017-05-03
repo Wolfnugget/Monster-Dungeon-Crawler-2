@@ -17,8 +17,8 @@ namespace Dungeon_Crawler_2D.World
             Random rand = new Random();
             Point dimensions = new Point(rand.Next(80, 120), rand.Next(80, 120));
 
-            rooms.Add(new GeneratedDungeon(dimensions , textures, content));
-            currentRoom = 0;
+            rooms.Add(Location.Dungeon, new GeneratedDungeon(dimensions , textures, content));
+            currentLocation = Location.Dungeon;
         }
 
         protected override void ChangeArea(Point RoomDirection, TileType entrance)

@@ -14,12 +14,6 @@ namespace Dungeon_Crawler_2D
         Battle
     }
 
-    public enum Map
-    {
-        OverWorld,
-        Dungeon
-    }
-
     public class Game1 : Game
     {
         private GraphicsDeviceManager graphics;

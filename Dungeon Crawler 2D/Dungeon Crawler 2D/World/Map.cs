@@ -26,10 +26,16 @@ namespace Dungeon_Crawler_2D.World
         boss
     }
 
+    public enum Location
+    {
+        Overworld,
+        Dungeon
+    }
+
     public abstract class Map
     {
-        public List<Area> rooms;
-        public int currentRoom;
+        public Dictionary<Location, Area> rooms;
+        public Location currentLocation;
         protected TextureManager textures;
         protected Random rand = new Random();
         ContentManager content;
@@ -40,18 +46,18 @@ namespace Dungeon_Crawler_2D.World
         {
             this.textures = textures;
             this.content = content;
-            rooms = new List<Area>();
+            rooms = new Dictionary<Location, Area>();
             randomEncounterChance = 5;
         }
 
         public virtual void Update(GameTime gameTime, Vector2 cameraCenter)
         {
-            rooms[currentRoom].Update(gameTime, cameraCenter);
+            rooms[currentLocation].Update(gameTime, cameraCenter);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            rooms[currentRoom].Draw(spriteBatch);
+            rooms[currentLocation].Draw(spriteBatch);
         }
 
         /// <summary>
@@ -60,7 +66,7 @@ namespace Dungeon_Crawler_2D.World
         /// <returns></returns>
         public Vector2 GetPlayerStart()
         {
-            return rooms[currentRoom].playerStart;
+            return rooms[currentLocation].playerStart;
         }
 
         /// <summary>
@@ -70,7 +76,7 @@ namespace Dungeon_Crawler_2D.World
         /// <param name="direction"></param>
         protected void CheckMovement(Vector2 position, Point direction)
         {
-            Vector2 targetPosition = rooms[currentRoom].GetTargetTileCenter(position, direction);
+            Vector2 targetPosition = rooms[currentLocation].GetTargetTileCenter(position, direction);
 
             if (targetPosition != position)
             {
@@ -86,7 +92,7 @@ namespace Dungeon_Crawler_2D.World
         /// <param name="position"></param>
         private void TileCheck(Vector2 position)
         {
-            TileType type = rooms[currentRoom].GetTileType(position); //hämtar tile typen från room.
+            TileType type = rooms[currentLocation].GetTileType(position); //hämtar tile typen från room.
 
             if (type == TileType.NorthExit)
             {
