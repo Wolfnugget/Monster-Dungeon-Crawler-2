@@ -8,11 +8,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Dungeon_Crawler_2D.Object
 {
-    abstract class Actor
+    public abstract class Actor: Object
     {
-        Texture2D texture;
         protected float speed;
-        public Vector2 position;
         protected Vector2 destination;
 
         protected Point startingFrame, frame, frames, frameSize;
@@ -33,8 +31,8 @@ namespace Dungeon_Crawler_2D.Object
         }
 
         public Actor(Texture2D texture, Vector2 position, float speed, Point frameSize, Point frames, float frameTime)
+            : base(texture, position)
         {
-            this.texture = texture;
             this.position = position;
             this.speed = speed;
             this.frameSize = frameSize;
@@ -46,7 +44,7 @@ namespace Dungeon_Crawler_2D.Object
             origin = new Vector2(frameSize.X / 2, frameSize.Y / 2);
         }
 
-        public virtual void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             if (moving)
             {
@@ -124,7 +122,7 @@ namespace Dungeon_Crawler_2D.Object
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position, srcRec,  Color.White, 0, origin, 1, effect, 1);
         }

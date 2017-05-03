@@ -15,7 +15,8 @@ namespace Dungeon_Crawler_2D
             wallTRightCorner, wallTLeftCorner, wallBRightCorner, wallBLeftCorner,
             northDoor, southDoor, eastDoor, westDoor, basicTile, whiteSquare,
             poisonIcon, bleedIcon, confusionIcon, barsSheet, battleBackGround, battleBackGround2, 
-            battleBackGround3, statPointIcon, strengthIcon, accuracyIcon, speedIcon, intelligenceIcon, luckIcon, potion; //osv
+            battleBackGround3, statPointIcon, strengthIcon, accuracyIcon, speedIcon, intelligenceIcon, luckIcon, potion,
+            demon; //osv
 
 
         public SpriteFont comicSans; //osv
@@ -25,17 +26,6 @@ namespace Dungeon_Crawler_2D
         public TextureManager(ContentManager content)
         {
             playerSpriteSheet = content.Load<Texture2D>("PlayerSpriteSheet");
-            basicTile = content.Load<Texture2D>("Textures/Dungeon/SmallTiles");
-            horizontalWall = content.Load<Texture2D>("Textures/Dungeon/HorizontalWall");
-            vericalWall = content.Load<Texture2D>("Textures/Dungeon/VerticalWall");
-            northDoor = content.Load<Texture2D>("Textures/Dungeon/NorthDoor");
-            southDoor = content.Load<Texture2D>("Textures/Dungeon/SouthDoor");
-            eastDoor = content.Load<Texture2D>("Textures/Dungeon/EastDoor");
-            westDoor =  content.Load<Texture2D>("Textures/Dungeon/WestDoor");
-            wallTRightCorner = content.Load<Texture2D>("Textures/Dungeon/WallTRightCorner");
-            wallTLeftCorner = content.Load<Texture2D>("Textures/Dungeon/WallTLeftCorner");
-            wallBRightCorner = content.Load<Texture2D>("Textures/Dungeon/WallBRightCorner");
-            wallBLeftCorner = content.Load<Texture2D>("Textures/Dungeon/WallBLeftCorner");
             whiteSquare = content.Load<Texture2D>("Example");
             battleBackGround = content.Load<Texture2D>("Battle/Dungeon_Wallpaper");
             battleBackGround2 = content.Load<Texture2D>("Battle/Dungeon_WallpaperSmall");
@@ -58,6 +48,9 @@ namespace Dungeon_Crawler_2D
             speedIcon = content.Load<Texture2D>("StatIcons/Speed_Icon");
             intelligenceIcon = content.Load<Texture2D>("StatIcons/Intelligence_Icon");
             luckIcon = content.Load<Texture2D>("StatIcons/Luck_Icon");
+
+            //Monster
+            demon = content.Load<Texture2D>("Textures/Monsters/Demon");
             
         }
     }

@@ -58,9 +58,9 @@ namespace Dungeon_Crawler_2D
 
             ScreenManager.Instance.LoadContent(Content);
             
-            map = new World.GeneratedMap(textures, 20, 4);
-            //map = new World.RandomGeneratedMap(textures);
-            
+            //map = new World.GeneratedMap(textures, 20, 4);
+            map = new World.RandomGeneratedMap(textures, Content);
+
             map.Event += HandleEvents;
             player = new Object.Player(textures.playerSpriteSheet, textures, map.GetPlayerStart(), 100, new Point(16, 16), new Point(2, 0), 0.1f);
             player.Action += HandleEvents;

@@ -13,11 +13,23 @@ namespace Dungeon_Crawler_2D.World
     {
         public TileType type;
         public bool pasable;
+        Texture2D texture;
 
-        public Tile(TileType type, bool pasable)
+        public Tile(TileType type, Texture2D texture, bool pasable)
         {
             this.type = type;
+            this.texture = texture;
             this.pasable = pasable;
+        }
+
+        public void Draw(Rectangle rectangle, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(texture, rectangle, Color.White);
+        }
+
+        public void ChangeTexture(Texture2D texture)
+        {
+            this.texture = texture;
         }
     }
 }

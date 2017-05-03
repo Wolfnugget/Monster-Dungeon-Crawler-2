@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 
@@ -13,11 +14,11 @@ namespace Dungeon_Crawler_2D.World
     {
         Random rand;
 
-        public GeneratedMap(TextureManager textures ,int minNumberOfRooms, int maxNumberOfRoomsOffset = 0)
-            : base(textures)
+        public GeneratedMap(TextureManager textures, ContentManager content, int minNumberOfRooms, int maxNumberOfRoomsOffset = 0)
+            : base(textures, content)
         {
             rand = new Random();
-            GenerateMap(rand.Next(minNumberOfRooms, minNumberOfRooms + maxNumberOfRoomsOffset), textures);
+            GenerateMap(rand.Next(minNumberOfRooms, minNumberOfRooms + maxNumberOfRoomsOffset), textures, content);
         }
 
         /// <summary>
@@ -25,9 +26,9 @@ namespace Dungeon_Crawler_2D.World
         /// </summary>
         /// <param name="numberOfRooms"></param>
         /// <param name="textures"></param>
-        void GenerateMap(int numberOfRooms, TextureManager textures)
+        void GenerateMap(int numberOfRooms, TextureManager textures, ContentManager content)
         {
-            rooms.Add(new PreMadeArea(GetRandomRoomPath("Maps/StartRoom"), new Point(0, 0), textures));
+            rooms.Add(new PreMadeArea(GetRandomRoomPath("Maps/StartRoom"), new Point(0, 0), textures, content));
 
             HashSet<int> excludeRoom = new HashSet<int>(); //Rum vars dörrar har genererats.
             excludeRoom.Clear();
@@ -83,28 +84,28 @@ namespace Dungeon_Crawler_2D.World
                     if (r == 0)
                     {
                         base.rooms.Add(new PreMadeArea(GetRandomRoomPath("Maps/South"),
-                            base.rooms[addingExitsTo].areaCoords + new Point(0, -1), textures));
+                            base.rooms[addingExitsTo].areaCoords + new Point(0, -1), textures, content));
                         excludeExit.Add(0);
                         exitsToAdd--;
                     }
                     else if (r == 1)
                     {
                         base.rooms.Add(new PreMadeArea(GetRandomRoomPath("Maps/West"),
-                            base.rooms[addingExitsTo].areaCoords + new Point(1, 0), textures));
+                            base.rooms[addingExitsTo].areaCoords + new Point(1, 0), textures, content));
                         excludeExit.Add(1);
                         exitsToAdd--;
                     }
                     else if (r == 2)
                     {
                         base.rooms.Add(new PreMadeArea(GetRandomRoomPath("Maps/North"),
-                            base.rooms[addingExitsTo].areaCoords + new Point(0, 1), textures));
+                            base.rooms[addingExitsTo].areaCoords + new Point(0, 1), textures, content));
                         excludeExit.Add(2);
                         exitsToAdd--;
                     }
                     else if (r == 3)
                     {
                         base.rooms.Add(new PreMadeArea(GetRandomRoomPath("Maps/East"),
-                            base.rooms[addingExitsTo].areaCoords + new Point(-1, 0), textures));
+                            base.rooms[addingExitsTo].areaCoords + new Point(-1, 0), textures, content));
                         excludeExit.Add(3);
                         exitsToAdd--;
                     }

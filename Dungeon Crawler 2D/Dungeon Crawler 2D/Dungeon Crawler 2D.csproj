@@ -59,8 +59,9 @@
     <Compile Include="Menus\SplashScreen.cs" />
     <Compile Include="Menus\TitleScreen.cs" />
     <Compile Include="Object\Actor.cs" />
+    <Compile Include="Object\Monster.cs" />
+    <Compile Include="Object\Object.cs" />
     <Compile Include="Object\Player.cs" />
-    <Compile Include="Potion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stats.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="World\PreMadeArea.cs" />
     <Compile Include="World\RandomGeneratedMap.cs" />
     <Compile Include="World\Tile.cs" />
+    <Compile Include="World\TileSet.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -155,37 +157,76 @@
     <Content Include="Content\StatIcons\Strength_Icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Dungeon\EastDoor.png">
+    <Content Include="Content\Textures\Monsters\Demon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Dungeon\HorizontalWall.png">
+    <Content Include="Content\Textures\TileSet\Castle\Enemy_Tile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Dungeon\NorthDoor.png">
+    <Content Include="Content\Textures\TileSet\Castle\Floor_Boss_Tile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Dungeon\SmallTiles.png">
+    <Content Include="Content\Textures\TileSet\Castle\Floor_Tile_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Dungeon\SouthDoor.png">
+    <Content Include="Content\Textures\TileSet\Castle\Floor_Tile_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Dungeon\VerticalWall.png">
+    <Content Include="Content\Textures\TileSet\Castle\Wall_Horizontal_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Dungeon\WallBLeftCorner.png">
+    <Content Include="Content\Textures\TileSet\Castle\Wall_NorthEast_Corner_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Dungeon\WallBRightCorner.png">
+    <Content Include="Content\Textures\TileSet\Castle\Wall_NorthWest_Corner_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Dungeon\WallTLeftCorner.png">
+    <Content Include="Content\Textures\TileSet\Castle\Wall_SouthEast_Corner_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Dungeon\WallTRightCorner.png">
+    <Content Include="Content\Textures\TileSet\Castle\Wall_SouthWest_Corner_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Dungeon\WestDoor.png">
+    <Content Include="Content\Textures\TileSet\Castle\Wall_Vertical_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Door_East_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Door_North_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Door_South_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Door_West_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Enemy_Tile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Floor_Boss_Tile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Floor_Tile_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Wall_Horizontal_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Wall_NorthEast_Corner_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Wall_NorthWest_Corner_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Wall_SouthEast_Corner_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Wall_SouthWest_Corner_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Wall_Vertical_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />

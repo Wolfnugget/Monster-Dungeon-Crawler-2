@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 
@@ -13,16 +14,10 @@ namespace Dungeon_Crawler_2D.World
     {
         None,
         Wall,
-        VerticalWall,
-        HorizontalWall,
         basic,
         Stairs,
         Portal,
         ExitPortal,
-        TopRightCorner,
-        TopLeftCorner,
-        BottomRightCorner,
-        BottomLeftCorner,
         MonsterTile,
         NorthExit,
         SouthExit,
@@ -37,10 +32,13 @@ namespace Dungeon_Crawler_2D.World
         protected TextureManager textures;
         protected Random rand = new Random();
 
-        public Map(TextureManager textures)
+        protected int randomEncounterChance;
+
+        public Map(TextureManager textures, ContentManager content)
         {
             this.textures = textures;
             rooms = new List<Area>();
+            randomEncounterChance = 5;
         }
 
         public virtual void Update(GameTime gameTime, Vector2 cameraCenter)
@@ -105,7 +103,7 @@ namespace Dungeon_Crawler_2D.World
             }
             else if (type == TileType.MonsterTile)
             {
-                if (rand.Next(0,100) <= 10)
+                if (rand.Next(0,100) < randomEncounterChance)
                 {
                     MapEventArgs args = new MapEventArgs(MapEventType.StartCombat);
                     args.enemy = EnemyType.zombie;

@@ -4,44 +4,57 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Player.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Example.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/textFont1.spritefont</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/Dungeon/EastDoor.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/Dungeon/HorizontalWall.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/Dungeon/NorthDoor.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/Dungeon/SmallTiles.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/Dungeon/SouthDoor.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/Dungeon/VerticalWall.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/Dungeon/WestDoor.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/Dungeon/WallBLeftCorner.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/Dungeon/WallBRightCorner.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/Dungeon/WallTLeftCorner.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/Dungeon/WallTRightCorner.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Font1.spritefont</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/PlayerSpriteSheet.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Attack_Icon.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Blood_Loss.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Confusion_Icon.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Magic_Icon.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Poison.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Shield_Icon.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/SuperAttack_Icon.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Player_Battle.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Zombie_Enemy.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Player_Animation/Walking_Down.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Player_Animation/Walking_Left.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Player_Animation/Walking_Right.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Player_Animation/Walking_Up.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Bars/BarsSheet.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Dungeon_Wallpaper.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/StatIcons/Accuracy_Icon.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/StatIcons/intelligence_Icon.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/StatIcons/Luck_Icon.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/StatIcons/Speed_Icon.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/StatIcons/StatPoints_Icon.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/StatIcons/Strength_Icon.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Dungeon_WallpaperSmall.png</File>
-    <File>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Dungeon_WallpaperSmall2.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Player.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Example.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/textFont1.spritefont</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Font1.spritefont</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/PlayerSpriteSheet.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Attack_Icon.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Blood_Loss.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Confusion_Icon.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Magic_Icon.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Poison.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Shield_Icon.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/SuperAttack_Icon.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Player_Battle.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Zombie_Enemy.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Player_Animation/Walking_Down.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Player_Animation/Walking_Left.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Player_Animation/Walking_Right.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Player_Animation/Walking_Up.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Bars/BarsSheet.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Dungeon_Wallpaper.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/StatIcons/Accuracy_Icon.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/StatIcons/intelligence_Icon.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/StatIcons/Luck_Icon.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/StatIcons/Speed_Icon.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/StatIcons/StatPoints_Icon.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/StatIcons/Strength_Icon.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Dungeon_WallpaperSmall.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Dungeon_WallpaperSmall2.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/Monsters/Demon.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Castle/Enemy_Tile.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Castle/Floor_Boss_Tile.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Castle/Floor_Tile_1.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Castle/Floor_Tile_2.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Castle/Wall_Horizontal_1.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Castle/Wall_NorthEast_Corner_1.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Castle/Wall_NorthWest_Corner_1.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Castle/Wall_SouthEast_Corner_1.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Castle/Wall_SouthWest_Corner_1.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Castle/Wall_Vertical_1.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Dungeon/Door_East_1.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Dungeon/Door_North_1.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Dungeon/Door_South_1.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Dungeon/Door_West_1.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Dungeon/Enemy_Tile.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Dungeon/Floor_Boss_Tile.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Dungeon/Floor_Tile_1.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Dungeon/Wall_Horizontal_1.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Dungeon/Wall_NorthEast_Corner_1.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Dungeon/Wall_NorthWest_Corner_1.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Dungeon/Wall_SouthEast_Corner_1.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Dungeon/Wall_SouthWest_Corner_1.png</File>
+    <File>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Dungeon/Wall_Vertical_1.png</File>
   </SourceFiles>
 </SourceFileCollection>

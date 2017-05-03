@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Poison.png</SourceFile>
-  <SourceTime>2017-04-25T15:18:27.4998184+02:00</SourceTime>
-  <DestFile>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Battle/Icons/Poison.xnb</DestFile>
-  <DestTime>2017-05-02T15:15:45.4015452+02:00</DestTime>
+  <SourceFile>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Poison.png</SourceFile>
+  <SourceTime>2017-04-25T16:56:33.2181544+02:00</SourceTime>
+  <DestFile>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Battle/Icons/Poison.xnb</DestFile>
+  <DestTime>2017-05-02T17:28:00.0067811+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

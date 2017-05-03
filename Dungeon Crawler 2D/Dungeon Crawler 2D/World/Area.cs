@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Dungeon_Crawler_2D.World
@@ -17,64 +18,59 @@ namespace Dungeon_Crawler_2D.World
         public bool[] doors;
         public Point areaCoords;
 
-        private int renderDistanceX, renderDistanceY, screenCenterX, screenCenterY;
+        protected TileSet tileSet;
 
-        public Area(TextureManager textures)
+        protected Dictionary<Point, Object.Object> gameObjects;
+
+        private int renderDistanceX, renderDistanceY, screenCenterX, screenCenterY,
+            yStart, xStart, yMax, xMax;
+
+        public Area(TextureManager textures, ContentManager content)
         {
             this.textures = textures;
 
             renderDistanceX = 20;
             renderDistanceY = 20;
+
+            gameObjects = new Dictionary<Point, Object.Object>();
+
+            tileSet = new TileSet(content);
         }
 
         public void Update(GameTime gameTime, Vector2 cameraCenter)
         {
             GetTileAtPosition(cameraCenter, out screenCenterX, out screenCenterY);
-        }
-
-        public virtual void Draw(SpriteBatch spriteBatch)
-        {
-            int yStart = Math.Max(0, screenCenterY - renderDistanceY);
-            int xStart = Math.Max(0, screenCenterX - renderDistanceX);
-            int yMax = Math.Min(tiles.GetLength(0), screenCenterY + renderDistanceY);
-            int xMax = Math.Min(tiles.GetLength(1), screenCenterX + renderDistanceX);
+            UpdateAndRenderRange();
 
             for (int y = yStart; y < yMax; y++)
                 for (int x = xStart; x < xMax; x++)
                 {
-                    spriteBatch.Draw(TextureByType(tiles[y, x].type), GetTileRectangle(x, y), Color.White);
+                    if (gameObjects.ContainsKey(new Point(x, y)))
+                    {
+                        gameObjects[new Point(x, y)].Update(gameTime); ;
+                    }
                 }
         }
 
-        private Texture2D TextureByType(TileType type)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
-            switch (type)
-            {
-                case TileType.BottomLeftCorner:
-                    return textures.wallBLeftCorner;
-                case TileType.BottomRightCorner:
-                    return textures.wallBRightCorner;
-                case TileType.TopLeftCorner:
-                    return textures.wallTLeftCorner;
-                case TileType.TopRightCorner:
-                    return textures.wallTRightCorner;
-                case TileType.Wall:
-                    return textures.horizontalWall;
-                case TileType.VerticalWall:
-                    return textures.vericalWall;
-                case TileType.HorizontalWall:
-                    return textures.horizontalWall;
-                case TileType.NorthExit:
-                    return textures.northDoor;
-                case TileType.EastExit:
-                    return textures.eastDoor;
-                case TileType.SouthExit:
-                    return textures.southDoor;
-                case TileType.WestExit:
-                    return textures.westDoor;
-                default:
-                    return textures.basicTile;
-            }
+            for (int y = yStart; y < yMax; y++)
+                for (int x = xStart; x < xMax; x++)
+                {
+                    tiles[y, x].Draw(GetTileRectangle(x, y), spriteBatch);
+                    if (gameObjects.ContainsKey(new Point(x, y)))
+                    {
+                        gameObjects[new Point(x, y)].Draw(spriteBatch);
+                    }
+                }
+        }
+
+        private void UpdateAndRenderRange()
+        {
+            yStart = Math.Max(0, screenCenterY - renderDistanceY);
+            xStart = Math.Max(0, screenCenterX - renderDistanceX);
+            yMax = Math.Min(tiles.GetLength(0), screenCenterY + renderDistanceY);
+            xMax = Math.Min(tiles.GetLength(1), screenCenterX + renderDistanceX);
         }
 
         /// <summary>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Dungeon_Crawler_2D.World
@@ -12,7 +13,7 @@ namespace Dungeon_Crawler_2D.World
     {
         byte[,] dungeonBP;
 
-        List<int> roomRegions, mazeRegions;
+        List<int> roomRegions, mazeRegions, monsterRegions, wallRegions;
 
         int bossRoom;
 
@@ -20,8 +21,8 @@ namespace Dungeon_Crawler_2D.World
 
         int totalRegions { get { return roomRegions.Count + mazeRegions.Count; } }
 
-        public GeneratedDungeon(Point dimensions, TextureManager textures)
-            : base(textures)
+        public GeneratedDungeon(Point dimensions, TextureManager textures, ContentManager content)
+            : base(textures, content)
         {
             if (dimensions.X % 2 == 0)
             {
@@ -37,14 +38,16 @@ namespace Dungeon_Crawler_2D.World
             rand = new Random();
 
             dungeonBP = new byte[dimensions.Y, dimensions.X];
-            GenerateDungeon();
+            GenerateDungeon(textures);
         }
 
-        private void GenerateDungeon()
+        private void GenerateDungeon(TextureManager textures)
         {
             Point maxRoomDimensions = new Point(12, 12), minRoomDimensions = new Point(8, 8);
             roomRegions = new List<int>();
             mazeRegions = new List<int>();
+            wallRegions = new List<int>();
+            wallRegions.Add(0);
 
             GenerateNumericalRooms(maxRoomDimensions, minRoomDimensions);
 
@@ -52,6 +55,7 @@ namespace Dungeon_Crawler_2D.World
             ConnectRegions();
             RemoveDeadEnds();
             ConvertBPToTiles();
+            AddEnemies(textures);
             DebugNumericalTileArray();
         }
 
@@ -320,7 +324,7 @@ namespace Dungeon_Crawler_2D.World
                 if (possibleConnections.Count > 0)
                 {
                     index = rand.Next(0, possibleConnections.Count - 1);
-                    dungeonBP[connections[possibleConnections[index]].Y, connections[possibleConnections[index]].X] = (byte)(totalRegions + 1);
+                    dungeonBP[connections[possibleConnections[index]].Y, connections[possibleConnections[index]].X] = connections[possibleConnections[index]].Region1;
                     if (connectingTo == connections[possibleConnections[index]].Region1)
                     {
                         connectedRegions.Add(connections[possibleConnections[index]].Region2);
@@ -349,7 +353,7 @@ namespace Dungeon_Crawler_2D.World
             {
                 if (rand.Next(0, 100) < extraConnectorPercentage)
                 {
-                    dungeonBP[connections[i].Y, connections[i].X] = (byte)(totalRegions + 1);
+                    dungeonBP[connections[i].Y, connections[i].X] = connections[i].Region1;
                 }
             }
 
@@ -439,41 +443,43 @@ namespace Dungeon_Crawler_2D.World
 
         private void ConvertBPToTiles()
         {
-            List<int> monsterRegions = new List<int>();
-            List<Point> possibleStartTiles = new List<Point>();
-
             int minMonsterRooms = roomRegions.Count / 4;
             int maxMonsterRooms = (int)(roomRegions.Count / 1.5f);
 
             monsterRegions = GeneratorUtility.GetRandomListofIntFromList(rand, roomRegions, minMonsterRooms, maxMonsterRooms);
 
-            bool pasable;
-            TileType tileType;
+            TileTexture textureType;
+
+            Point startTile = GetStartTile();
+            playerStart = GetTileCenter(startTile.X, startTile.Y);
+
+            bossRoom = FindRoomFurthestFromStar(startTile.X, startTile.Y);
 
             for (int y = 0; y < dungeonBP.GetLength(0); y++)
                 for (int x = 0; x < dungeonBP.GetLength(1); x++)
                 {
-                    tileType = TilePicker(x, y, out pasable);
-                    if (pasable)
+                    textureType = TilePicker(x, y);
+                    if (dungeonBP[y, x] == 0)
                     {
-                        if (dungeonBP[y, x] == 1)
+                        tiles[y, x] = new Tile(TileType.Wall, tileSet.GetTexture(TilePicker(x, y), dungeonBP[y, x]), false);
+                    }
+                    else
+                    {
+                        if (monsterRegions.Contains(dungeonBP[y, x]))
                         {
-                            possibleStartTiles.Add(new Point(x, y));
+                            tiles[y, x] = new Tile(TileType.MonsterTile, tileSet.GetTexture(TilePicker(x, y), dungeonBP[y, x]), true);
                         }
-                        else if (monsterRegions.Contains(dungeonBP[y, x]))
+                        else
                         {
-                            tileType = TileType.MonsterTile;
+                            tiles[y, x] = new Tile(TileType.basic, tileSet.GetTexture(TilePicker(x, y), dungeonBP[y, x]), true);
                         }
                     }
-                    tiles[y, x] = new Tile(tileType, pasable);
                 }
 
-            Point startTile = possibleStartTiles[rand.Next(0, possibleStartTiles.Count - 1)];
-            playerStart = GetTileCenter(startTile.X, startTile.Y);
-            bossRoom = FindRoomFurthestFromStar(startTile.X, startTile.Y);
+            tiles[startTile.Y, startTile.X].type = TileType.Portal;
         }
 
-        private TileType TilePicker(int x, int y, out bool pasable)
+        private TileTexture TilePicker(int x, int y)
         {
             if (dungeonBP[y, x] == 0)
             {
@@ -481,88 +487,95 @@ namespace Dungeon_Crawler_2D.World
                 {
                     if (x == 0)
                     {
-                        pasable = false;
-                        return TileType.TopLeftCorner;
+                        return TileTexture.Wall_NorthWest_Corner;
                     }
                     else if (x == dungeonBP.GetLength(1) - 1)
                     {
-                        pasable = false;
-                        return TileType.BottomLeftCorner;
+                        return TileTexture.Wall_SouthWest_Corner;
                     }
                     else
                     {
-                        pasable = false;
-                        return TileType.VerticalWall;
+                        return TileTexture.Wall_Vertical;
                     }
                 }
                 else if (y == dungeonBP.GetLength(0) - 1)
                 {
                     if (x == 0)
                     {
-                        pasable = false;
-                        return TileType.TopRightCorner;
+                        return TileTexture.Wall_NorthEast_Corner;
                     }
                     else if (x == dungeonBP.GetLength(1) - 1)
                     {
-                        pasable = false;
-                        return TileType.BottomRightCorner;
+                        return TileTexture.Wall_SouthEast_Corner;
                     }
                     else
                     {
-                        pasable = false;
-                        return TileType.VerticalWall;
+                        return TileTexture.Wall_Vertical;
                     }
                 }
                 else if (x == 0 || x == dungeonBP.GetLength(1) - 1)
                 {
-                    pasable = false;
-                    return TileType.HorizontalWall;
+                    return TileTexture.Wall_Horizontal;
                 }
                 else
                 {
-                    if (dungeonBP[y - 1, x] == 0 && dungeonBP[y + 1, x] == 0)
+                    if (wallRegions.Contains(dungeonBP[y - 1, x] ) && wallRegions.Contains(dungeonBP[y + 1, x]))
                     {
-                        pasable = false;
-                        return TileType.VerticalWall;
+                        return TileTexture.Wall_Vertical;
                     }
-                    else if (dungeonBP[y, x - 1] == 0 && dungeonBP[y, x + 1] == 0)
+                    else if (wallRegions.Contains(dungeonBP[y, x - 1]) && wallRegions.Contains(dungeonBP[y, x + 1]))
                     {
-                        pasable = false;
-                        return TileType.HorizontalWall;
+                        return TileTexture.Wall_Horizontal;
                     }
-                    else if (dungeonBP[y, x + 1] == 0 && dungeonBP[y + 1, x] == 0)
+                    else if (wallRegions.Contains(dungeonBP[y, x + 1]) && wallRegions.Contains(dungeonBP[y + 1, x]))
                     {
-                        pasable = false;
-                        return TileType.TopLeftCorner;
+                        return TileTexture.Wall_NorthWest_Corner;
                     }
-                    else if (dungeonBP[y, x - 1] == 0 && dungeonBP[y + 1, x] == 0)
+                    else if (wallRegions.Contains(dungeonBP[y, x - 1]) && wallRegions.Contains(dungeonBP[y + 1, x]))
                     {
-                        pasable = false;
-                        return TileType.TopRightCorner;
+                        return TileTexture.Wall_NorthEast_Corner;
                     }
-                    else if (dungeonBP[y - 1, x] == 0 && dungeonBP[y, x + 1] == 0)
+                    else if (wallRegions.Contains(dungeonBP[y - 1, x]) && wallRegions.Contains(dungeonBP[y, x + 1]))
                     {
-                        pasable = false;
-                        return TileType.BottomLeftCorner;
+                        return TileTexture.Wall_SouthWest_Corner;
                     }
-                    else if (dungeonBP[y - 1, x] == 0 && dungeonBP[y, x - 1] == 0)
+                    else if (wallRegions.Contains(dungeonBP[y - 1, x])&& wallRegions.Contains(dungeonBP[y, x - 1]))
                     {
-                        pasable = false;
-                        return TileType.BottomRightCorner;
+                        return TileTexture.Wall_SouthEast_Corner;
                     }
                     else
                     {
-                        pasable = false;
-                        return TileType.Wall;
+                        return TileTexture.Wall_Horizontal;
                     }
                 }
 
             }
             else
             {
-                pasable = true;
-                return TileType.basic;
+                if (dungeonBP[y, x] == bossRoom)
+                {
+                    return TileTexture.Floor_Boss_Tile;
+                }
+                else if (monsterRegions.Contains(dungeonBP[y, x]))
+                {
+                    return TileTexture.Enemy_Tile;
+                }
+                return TileTexture.Floor_Tile;
             }
+        }
+
+        private Point GetStartTile()
+        {
+            List<Point> possibleStartTiles = new List<Point>();
+
+            for (int y = 0; y < dungeonBP.GetLength(0); y++)
+                for (int x = 0; x < dungeonBP.GetLength(1); x++)
+                {
+                    if (dungeonBP[y, x] == 1)
+                        possibleStartTiles.Add(new Point(x, y));
+                }
+
+            return possibleStartTiles[rand.Next(0, possibleStartTiles.Count - 1)];
         }
 
         private int FindRoomFurthestFromStar(int startX, int startY)
@@ -672,12 +685,16 @@ namespace Dungeon_Crawler_2D.World
         }
 
 
-        private void AddEnemies()
+        private void AddEnemies(TextureManager textures)
         {
             int enemyPercentageInMaze = 1;
             int monsterTilePercentageInMaze = 2;
             int enemyPercentageNormalRooms = 2;
             int enemyPercentageInMonsterRooms = 5;
+
+            int index;
+
+            List<Point> potentialBossTiles = new List<Point>();
 
             for (int y = 1; y < tiles.GetLength(0); y++)
                 for (int x = 1; x < tiles.GetLength(1); x++)
@@ -686,29 +703,30 @@ namespace Dungeon_Crawler_2D.World
                     {
                         if (mazeRegions.Contains(dungeonBP[y, x]))
                         {
-                            if (rand.Next(0, 100) > enemyPercentageInMaze)
+                            if (rand.Next(0, 100) < enemyPercentageInMaze)
                             {
 
                             }
-                            if (rand.Next(0, 100) > monsterTilePercentageInMaze)
+                            if (rand.Next(0, 100) < monsterTilePercentageInMaze)
                             {
                                 tiles[y, x].type = TileType.MonsterTile;
+                                tiles[y, x].ChangeTexture(tileSet.GetTexture(TileTexture.Enemy_Tile, dungeonBP[y, x]));
                             }
                         }
                         else if (dungeonBP[y, x] == bossRoom)
                         {
-
+                            potentialBossTiles.Add(new Point(x, y));
                         }
                         else if (tiles[y, x].type == TileType.MonsterTile)
                         {
-                            if (rand.Next(0, 100) > enemyPercentageInMonsterRooms)
+                            if (rand.Next(0, 100) < enemyPercentageInMonsterRooms)
                             {
 
                             }
                         }
                         else
                         {
-                            if (rand.Next(0, 100) > enemyPercentageNormalRooms)
+                            if (rand.Next(0, 100) < enemyPercentageNormalRooms)
                             {
 
                             }
@@ -716,8 +734,13 @@ namespace Dungeon_Crawler_2D.World
                     }
                 }
 
+            index = rand.Next(0, potentialBossTiles.Count - 1);
+            gameObjects.Add(potentialBossTiles[index],
+                new Object.Monster(textures.demon, GetTileCenter(potentialBossTiles[index].X, potentialBossTiles[index].Y),
+                0, tileSize, new Point(2, 0), 0.4f, true));
 
-
+            index = rand.Next(0, potentialBossTiles.Count - 1);
+            tiles[potentialBossTiles[index].Y, potentialBossTiles[index].X].type = TileType.ExitPortal;
         }
 
         #region Debug

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/Dungeon/WallBRightCorner.png</SourceFile>
-  <SourceTime>2017-04-25T12:20:13.464745+02:00</SourceTime>
-  <DestFile>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Textures/Dungeon/WallBRightCorner.xnb</DestFile>
-  <DestTime>2017-05-02T15:15:45.2140564+02:00</DestTime>
+  <SourceFile>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/Dungeon/WallBRightCorner.png</SourceFile>
+  <SourceTime>2017-04-13T11:00:27.7503313+02:00</SourceTime>
+  <DestFile>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Textures/Dungeon/WallBRightCorner.xnb</DestFile>
+  <DestTime>2017-05-02T17:27:59.9812134+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
