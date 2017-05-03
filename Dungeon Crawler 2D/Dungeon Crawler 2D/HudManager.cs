@@ -20,30 +20,30 @@ namespace Dungeon_Crawler_2D
 
         public StatScreen statScreen;
         public bool showStats;
-        
+
         private Rectangle leftBarRect;
         private Rectangle rightBarRect;
         private Rectangle bottomBarRect;
         private Rectangle topBarRect;
-        
+        private Rectangle bottomMiddleBarRect;
+
         public int windowWidth;
         public int windowHeight;
         public int sideBarWidth;
         public int statBarWidth;
-        
+
         //Specialeffekt-relaterat
         private float flashTimer;
         private bool flashTimerToggle;
         public float flashAlpha;
+        private float abilityButtonAlpha;
 
         private float textScale;
         private float textScaleTimer;
 
-        //TEMP!! Data som kommer att hämtas från player/enemy-klassen
         private KeyboardState currentState, previousState;
-        private bool turn;
-        private string turnEvents;
-        
+        public string turnEvents;
+
         public Object.Player player;
 
         public HUDManager(GameState gameState, TextureManager textures, GraphicsDevice graphicsDevice, ContentManager content, Object.Player player, int windowWidth, int windowHeight)
@@ -53,15 +53,16 @@ namespace Dungeon_Crawler_2D
             this.player = player;
             this.windowWidth = windowWidth;
             this.windowHeight = windowHeight;
-            
+
             pixelTex = new Texture2D(graphicsDevice, 1, 1);
             pixelTex.SetData<Color>(new Color[] { Color.White });
 
             flashTimer = 0;
             flashTimerToggle = false;
+            abilityButtonAlpha = 1f;
 
-            textScaleTimer = 0;
-            turn = true;
+            turnEvents = "Plan your move...";
+            textScaleTimer = 10;
 
             //Sätter mått
             sideBarWidth = windowWidth / 10;
@@ -71,6 +72,7 @@ namespace Dungeon_Crawler_2D
             rightBarRect = new Rectangle(windowWidth - sideBarWidth, 0, sideBarWidth, windowHeight);
             bottomBarRect = new Rectangle(leftBarRect.Width, windowHeight - (sideBarWidth * 2), windowWidth - (sideBarWidth * 2), sideBarWidth * 2);
             topBarRect = new Rectangle(leftBarRect.Width, 0, windowWidth - (leftBarRect.Width * 2), sideBarWidth);
+            bottomMiddleBarRect = new Rectangle(leftBarRect.Width * 2, windowHeight - bottomBarRect.Height, windowWidth - (leftBarRect.Width * 4), bottomBarRect.Height);
 
             statScreen = new StatScreen(this, textures);
             showStats = false;
@@ -143,6 +145,8 @@ namespace Dungeon_Crawler_2D
 
             if (gameState == GameState.Explore)
             {
+                #region open inventory
+
                 previousState = currentState;
                 currentState = Keyboard.GetState();
                 if (currentState.IsKeyDown(Keys.E) && previousState.IsKeyUp(Keys.E))
@@ -153,6 +157,8 @@ namespace Dungeon_Crawler_2D
                 {
                     statScreen.Update();
                 }
+
+                #endregion
             }
         }
 
@@ -323,18 +329,6 @@ namespace Dungeon_Crawler_2D
 
         public void DrawBattle(SpriteBatch spriteBatch, Combat combat)
         {
-            //spriteBatch.Draw(textures.battleBackGround, new Rectangle(leftBarRect.X + leftBarRect.Width,
-            //    topBarRect.Y + topBarRect.Height,
-            //    windowWidth - (sideBarWidth * 2),
-            //    windowHeight - topBarRect.Height - bottomBarRect.Height),
-            //    Color.White);
-
-            //spriteBatch.Draw(textures.battleBackGround2, new Rectangle(leftBarRect.X + leftBarRect.Width,
-            //    topBarRect.Y + topBarRect.Height,
-            //    windowWidth - (sideBarWidth * 2),
-            //    windowHeight - topBarRect.Height - bottomBarRect.Height),
-            //    Color.White);
-
             spriteBatch.Draw(textures.battleBackGround3, new Rectangle(leftBarRect.X + leftBarRect.Width,
                 topBarRect.Y + topBarRect.Height,
                 windowWidth - (sideBarWidth * 2),
@@ -597,57 +591,113 @@ namespace Dungeon_Crawler_2D
             #endregion
             #endregion
 
-            #region battleText
-            if (turn == false)
+            #region ability buttons
+
+            Vector2 buttonSize = new Vector2(sideBarWidth * 2, sideBarWidth / 2);
+            Rectangle qAbility = new Rectangle(bottomMiddleBarRect.X + (sideBarWidth / 2), bottomMiddleBarRect.Y + (sideBarWidth / 4), (int)buttonSize.X, (int)buttonSize.Y);
+            Rectangle wAbility = new Rectangle(bottomMiddleBarRect.X + bottomMiddleBarRect.Width - (sideBarWidth / 2) - (int)buttonSize.X, bottomMiddleBarRect.Y + (sideBarWidth / 4), (int)buttonSize.X, (int)buttonSize.Y);
+            Rectangle eAbility = new Rectangle(bottomMiddleBarRect.X + (sideBarWidth / 2), bottomMiddleBarRect.Y + bottomMiddleBarRect.Height - ((int)buttonSize.Y) - (sideBarWidth / 4), (int)buttonSize.X, (int)buttonSize.Y);
+            Rectangle rAbility = new Rectangle(bottomMiddleBarRect.X + bottomMiddleBarRect.Width - (sideBarWidth / 2) - (int)buttonSize.X, bottomMiddleBarRect.Y + bottomMiddleBarRect.Height - (int)buttonSize.Y - (sideBarWidth / 4), (int)buttonSize.X, (int)buttonSize.Y);
+
+            //outlines
+            spriteBatch.Draw(textures.whiteSquare, qAbility, Color.White);
+            spriteBatch.Draw(textures.whiteSquare, wAbility, Color.White);
+            spriteBatch.Draw(textures.whiteSquare, eAbility, Color.White);
+            spriteBatch.Draw(textures.whiteSquare, rAbility, Color.White);
+
+            //inner box
+            spriteBatch.Draw(textures.whiteSquare, new Rectangle(qAbility.X + (statBarWidth / 20), qAbility.Y + (statBarWidth / 20), qAbility.Width - (statBarWidth / 10), qAbility.Height - (statBarWidth / 10)), Color.Black);
+            spriteBatch.Draw(textures.whiteSquare, new Rectangle(wAbility.X + (statBarWidth / 20), wAbility.Y + (statBarWidth / 20), wAbility.Width - (statBarWidth / 10), wAbility.Height - (statBarWidth / 10)), Color.Black);
+            spriteBatch.Draw(textures.whiteSquare, new Rectangle(eAbility.X + (statBarWidth / 20), eAbility.Y + (statBarWidth / 20), eAbility.Width - (statBarWidth / 10), eAbility.Height - (statBarWidth / 10)), Color.Black);
+            spriteBatch.Draw(textures.whiteSquare, new Rectangle(rAbility.X + (statBarWidth / 20), rAbility.Y + (statBarWidth / 20), rAbility.Width - (statBarWidth / 10), rAbility.Height - (statBarWidth / 10)), Color.Black);
+
+            //text
+            Vector2 textSizeAbility;
+            Vector2 originTextAbility;
+
+            textSizeAbility = (textures.comicSans.MeasureString("Q: Hit attack"));
+            originTextAbility = textSizeAbility * 0.5f;
+            spriteBatch.DrawString(textures.comicSans, "Q: Hit attack", new Vector2(qAbility.X + (qAbility.Width / 2), qAbility.Y + (qAbility.Height / 2)),
+                Color.Yellow, 0, originTextAbility, 2, SpriteEffects.None, 0);
+
+            if (player.abilities.CheckCost(UsedAbility.Magic) > player.stats.CheckStat(Stat.mana))
             {
-                //får texten plats i rutan?
-                if (textures.comicSans.MeasureString(turnEvents).X * 2 <= topBarRect.Width - statBarWidth)
+                abilityButtonAlpha = 0.2f;
+            }
+            textSizeAbility = (textures.comicSans.MeasureString("W: Magic attack"));
+            originTextAbility = textSizeAbility * 0.5f;
+            spriteBatch.DrawString(textures.comicSans, "W: Magic attack", new Vector2(wAbility.X + (wAbility.Width / 2), wAbility.Y + (wAbility.Height / 2)),
+                Color.Yellow * abilityButtonAlpha, 0, originTextAbility, 2, SpriteEffects.None, 0);
+            abilityButtonAlpha = 1f;
+
+            textSizeAbility = (textures.comicSans.MeasureString("E: Dodge"));
+            originTextAbility = textSizeAbility * 0.5f;
+            spriteBatch.DrawString(textures.comicSans, "E: Dodge", new Vector2(eAbility.X + (eAbility.Width / 2), eAbility.Y + (eAbility.Height / 2)),
+                Color.Yellow, 0, originTextAbility, 2, SpriteEffects.None, 0);
+
+            if (player.abilities.CheckCost(UsedAbility.PoisonHit) > player.stats.CheckStat(Stat.mana))
+            {
+                abilityButtonAlpha = 0.2f;
+            }
+            textSizeAbility = (textures.comicSans.MeasureString("R: Poison Hit"));
+            originTextAbility = textSizeAbility * 0.5f;
+            spriteBatch.DrawString(textures.comicSans, "R: Poison Hit", new Vector2(rAbility.X + (rAbility.Width / 2), rAbility.Y + (rAbility.Height / 2)),
+                Color.Yellow * abilityButtonAlpha, 0, originTextAbility, 2, SpriteEffects.None, 0);
+            abilityButtonAlpha = 1f;
+
+            #endregion
+
+            #region battleText
+
+            //får texten plats i rutan?
+            if (textures.comicSans.MeasureString(turnEvents).X * 2 <= topBarRect.Width - statBarWidth)
+            {
+                Vector2 textSizeInfo = textures.comicSans.MeasureString(turnEvents);
+                Vector2 originInfo = new Vector2(textSizeInfo.X * 0.5f, textSizeInfo.Y * 0.5f);
+                spriteBatch.DrawString(textures.comicSans, turnEvents,
+                    new Vector2(topBarRect.X + (topBarRect.Width / 2), topBarRect.Height / 2),
+                    Color.Yellow, 0, originInfo, textScale, SpriteEffects.None, 0);
+            }
+            //annars... dela upp strängen efter 70 karaktärer, minus hur långt bak det sista "mellanslaget" fanns i strängen.
+            else
+            {
+                int chunksize = 70;
+                int iDivision = chunksize;
+                int lastSpace = 0;
+                int stringLength = turnEvents.Length;
+                Vector2 textSizeInfo;
+                Vector2 originInfo;
+                for (int i = 0; i < stringLength; i += chunksize)
                 {
-                    Vector2 textSizeInfo = textures.comicSans.MeasureString(turnEvents);
-                    Vector2 originInfo = new Vector2(textSizeInfo.X * 0.5f, textSizeInfo.Y * 0.5f);
-                    spriteBatch.DrawString(textures.comicSans, turnEvents,
-                        new Vector2(topBarRect.X + (topBarRect.Width / 2), topBarRect.Height / 2),
-                        Color.Yellow, 0, originInfo, textScale, SpriteEffects.None, 0);
-                }
-                //annars...
-                else
-                {
-                    int chunksize = 70;
-                    int iDivision = chunksize;
-                    int lastSpace = 0;
-                    int stringLength = turnEvents.Length;
-                    for (int i = 0; i < stringLength; i += chunksize)
+                    if (i + chunksize > stringLength)
                     {
-                        if (i + chunksize > stringLength)
-                        {
-                            chunksize = stringLength - i;
-                        }
-                        lastSpace = chunksize - turnEvents.Substring(i, chunksize).LastIndexOf(' ');
-                        if (lastSpace > chunksize)
-                        {
-                            lastSpace = chunksize;
-                        }
-                        if (i - lastSpace >= 0)
-                        {
-                            i = i - lastSpace;
-                        }
-                        else if (i - lastSpace < 0)
-                        {
-                            i = 0;
-                        }
+                        chunksize = stringLength - i;
+                    }
+                    lastSpace = chunksize - turnEvents.Substring(i, chunksize).LastIndexOf(' ');
 
-                        Console.WriteLine(turnEvents.Substring(i, chunksize));
+                    if (i >= lastSpace)
+                    {
+                        textSizeInfo = textures.comicSans.MeasureString(turnEvents.Substring(i, chunksize));
+                        originInfo = new Vector2(textSizeInfo.X * 0.5f, textSizeInfo.Y * 0.5f);
 
-                        Vector2 textSizeInfo = textures.comicSans.MeasureString(turnEvents.Substring(i, chunksize - lastSpace));
-                        Vector2 originInfo = new Vector2(textSizeInfo.X * 0.5f, textSizeInfo.Y * 0.5f);
+                        spriteBatch.DrawString(textures.comicSans, turnEvents.Substring(i, chunksize),
+                            new Vector2(topBarRect.X + (topBarRect.Width / 2), (topBarRect.Height / 3) + ((topBarRect.Height / 3) * ((i + lastSpace) / iDivision))),
+                            Color.Yellow, 0, originInfo, textScale, SpriteEffects.None, 0);
+                    }
+                    else
+                    {
+                        textSizeInfo = textures.comicSans.MeasureString(turnEvents.Substring(i, chunksize - lastSpace));
+                        originInfo = new Vector2(textSizeInfo.X * 0.5f, textSizeInfo.Y * 0.5f);
 
                         spriteBatch.DrawString(textures.comicSans, turnEvents.Substring(i, chunksize - lastSpace),
                             new Vector2(topBarRect.X + (topBarRect.Width / 2), (topBarRect.Height / 3) + ((topBarRect.Height / 3) * (i / iDivision))),
                             Color.Yellow, 0, originInfo, textScale, SpriteEffects.None, 0);
+                        i -= lastSpace;
                     }
                 }
             }
             #endregion
+
         }
 
         public void CombatText(int combatLine, Enemy enemy)
@@ -657,54 +707,45 @@ namespace Dungeon_Crawler_2D
             {
                 case 0:
                     turnEvents = "And nothing happened that round";
-                    turn = false;
                     break;
                 case 1:
-                    turnEvents = "Viking defends against " + enemy.theEnemy + "'s " + 
-                        enemy.ability.usedAbility + ", blocking " + player.abilities.power 
+                    turnEvents = "Viking defends against " + enemy.theEnemy + "'s " +
+                        enemy.ability.usedAbility + ", blocking " + player.abilities.power
                         + " out of " + enemy.ability.power + " damage!";
-                    turn = false;
                     break;
                 case 2:
-                    turnEvents = enemy.theEnemy + " defends against the Viking's " + 
-                        player.abilities.usedAbility + ", blocking " + enemy.ability.power 
+                    turnEvents = enemy.theEnemy + " defends against the Viking's " +
+                        player.abilities.usedAbility + ", blocking " + enemy.ability.power
                         + " out of " + player.abilities.power + " damage!";
-                    turn = false;
                     break;
                 case 3:
-                    turnEvents = "The Viking misses but the " + enemy.theEnemy + " attacks using " + 
+                    turnEvents = "The Viking misses but the " + enemy.theEnemy + " attacks using " +
                         enemy.ability.usedAbility + ", dealing " + enemy.ability.power + " damage!";
-                    turn = false;
                     break;
                 case 4:
                     turnEvents = enemy.theEnemy + " misses but the Viking attacks using " +
                         player.abilities.usedAbility + ", dealing " + player.abilities.power + " damage!";
-                    turn = false;
                     break;
                 case 5:
                     turnEvents = "The Viking kills the " + enemy.theEnemy + " before it can attack!";
-                    turn = false;
                     break;
                 case 6:
-                    turnEvents = "The Viking attacks the " + enemy.theEnemy + " using " + 
-                        player.abilities.usedAbility + " for " + player.abilities.power + 
-                        " damage! While " + enemy.theEnemy + " attacks for " + enemy.ability.power + 
+                    turnEvents = "The Viking attacks the " + enemy.theEnemy + " using " +
+                        player.abilities.usedAbility + " for " + player.abilities.power +
+                        " damage! While " + enemy.theEnemy + " attacks for " + enemy.ability.power +
                         " damage, using " + enemy.ability.usedAbility;
-                    turn = false;
                     break;
                 case 7:
                     turnEvents = enemy.theEnemy + " kills the Viking before he can even attack!";
-                    turn = false;
                     break;
                 case 8:
-                    turnEvents = enemy.theEnemy +" attacks the Viking using " +
+                    turnEvents = enemy.theEnemy + " attacks the Viking using " +
                         enemy.ability.usedAbility + " for " + enemy.ability.power +
                         " damage! While the Viking attacks for " + player.abilities.power +
                         " damage, using " + player.abilities.usedAbility;
-                    turn = false;
                     break;
             }
-            
+
         }
 
     }

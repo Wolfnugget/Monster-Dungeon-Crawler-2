@@ -33,6 +33,7 @@ namespace Dungeon_Crawler_2D
 
         public void StartCombat(EnemyType type)
         {
+            hud.turnEvents = "Plan your move...";
             enemy = new Enemy(textures, type, player);
         }
 
