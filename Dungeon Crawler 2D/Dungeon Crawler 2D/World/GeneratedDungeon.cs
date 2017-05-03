@@ -418,11 +418,8 @@ namespace Dungeon_Crawler_2D.World
             List<byte> regionsWithoutConnector = new List<byte>();
 
             regionsWithoutConnector.AddRange(mazeRegions);
+            regionsWithoutConnector.AddRange(roomRegions);
 
-            for (byte i = 1; i < totalRegions; i++)
-            {
-                regionsWithoutConnector.Add(i);
-            }
             for (int i = 0; i < connectors.Count; i++)
             {
                 if (regionsWithoutConnector.Contains(connectors[i].Region1))
