@@ -12,7 +12,7 @@ namespace Dungeon_Crawler_2D.World
 {
     public class PreMadeArea: Area
     {
-        public PreMadeArea(string roomPath, Point areaCoords, TextureManager textures, ContentManager content)
+        public PreMadeArea(string roomPath, TextureManager textures, ContentManager content)
             : base(textures, content)
         {
             List<string>  roomBluePrint = new List<string>();
@@ -23,18 +23,35 @@ namespace Dungeon_Crawler_2D.World
                 roomBluePrint.Add(sr.ReadLine());
             }
 
-            int x = (roomBluePrint.Aggregate("", (max, cur) => max.Length > cur.Length ? max : cur)).Length;
-            this.areaCoords = areaCoords;
+            int length = (roomBluePrint.Aggregate("", (max, cur) => max.Length > cur.Length ? max : cur)).Length;
 
-            tiles = new Tile[roomBluePrint.Count, x];
+            tiles = new Tile[roomBluePrint.Count, length];
 
-            for (int i = 0; i < tiles.GetLength(0); i++)
+            for (int y = 0; y < tiles.GetLength(0); y++)
             {
-                for (int j = 0; j < tiles.GetLength(1); j++)
+                for (int x = 0; x < tiles.GetLength(1); x++)
                 {
-                    switch (roomBluePrint[i][j])
+                    switch (roomBluePrint[y][x])
                     {
-                        
+                        case ('G'):
+                            tiles[y, x] = new Tile(TileType.basic, tileSet.GetTexture(TileTexture.Grass_Tile, 0), true);
+                            break;
+                        case ('R'):
+                            tiles[y, x] = new Tile(TileType.Wall, tileSet.GetTexture(TileTexture.Wall_NorthEast_Corner, 0), false);
+                            break;
+                        case ('r'):
+                            tiles[y, x] = new Tile(TileType.Wall, tileSet.GetTexture(TileTexture.Wall_SouthEast_Corner, 0), false);
+                            break;
+                        case ('L'):
+                            tiles[y, x] = new Tile(TileType.Wall, tileSet.GetTexture(TileTexture.Wall_NorthWest_Corner, 0), false);
+                            break;
+                        case ('l'):
+                            tiles[y, x] = new Tile(TileType.Wall, tileSet.GetTexture(TileTexture.Wall_SouthWest_Corner, 0), false);
+                            break;
+                        case ('P'):
+                            tiles[y, x] = new Tile(TileType.Portal, tileSet.GetTexture(TileTexture.Grass_Tile, 0), false);
+                            gameObjects.Add(new Point(x, y), new Object.Portal(textures.portal, GetTileCenter(x, y), true));
+                            break;
                     }
                 }
             }
@@ -42,7 +59,7 @@ namespace Dungeon_Crawler_2D.World
 
         protected override void PickTileSet(ContentManager content)
         {
-            throw new NotImplementedException();
+            tileSet = new TileSet(content, TileSets.Overworld);
         }
     }
 }

@@ -15,7 +15,6 @@ namespace Dungeon_Crawler_2D.World
         protected Point tileSize = new Point(16, 16);
         public Vector2 playerStart;
         protected TextureManager textures;
-        public Point areaCoords;
 
         protected Random rand;
 

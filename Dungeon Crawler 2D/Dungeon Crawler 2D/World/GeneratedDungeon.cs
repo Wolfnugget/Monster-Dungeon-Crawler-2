@@ -22,6 +22,11 @@ namespace Dungeon_Crawler_2D.World
         public GeneratedDungeon(Point dimensions, TextureManager textures, ContentManager content)
             : base(textures, content)
         {
+            NewDungeon(dimensions, content);
+        }
+
+        public void NewDungeon(Point dimensions, ContentManager content)
+        {
             if (dimensions.X % 2 == 0)
             {
                 dimensions.X++;
@@ -806,6 +811,8 @@ namespace Dungeon_Crawler_2D.World
             gameObjects.Add(potentialBossTiles[index],
                 new Object.Monster(textures.demon, GetTileCenter(potentialBossTiles[index].X, potentialBossTiles[index].Y),
                 0, tileSize, new Point(2, 0), 0.4f, true));
+
+            tiles[potentialBossTiles[index].Y, potentialBossTiles[index].X].type = TileType.boss;
 
             index = rand.Next(0, potentialBossTiles.Count - 1);
             tiles[potentialBossTiles[index].Y, potentialBossTiles[index].X].type = TileType.ExitPortal;

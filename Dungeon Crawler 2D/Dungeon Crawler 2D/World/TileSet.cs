@@ -20,7 +20,8 @@ namespace Dungeon_Crawler_2D.World
         Wall_SouthEast_Corner,
         Wall_SouthWest_Corner,
         Wall_Vertical,
-        Wall_Horizontal
+        Wall_Horizontal,
+        Grass_Tile
     }
 
     public enum TileSets

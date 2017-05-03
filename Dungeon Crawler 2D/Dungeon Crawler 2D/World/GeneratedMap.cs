@@ -21,7 +21,7 @@ namespace Dungeon_Crawler_2D.World
             currentRoom = 0;
         }
 
-        protected override void ChangeRoom(Point RoomDirection, TileType entrance)
+        protected override void ChangeArea(Point RoomDirection, TileType entrance)
         {
             throw new NotImplementedException();
         }

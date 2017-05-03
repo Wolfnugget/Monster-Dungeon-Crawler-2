@@ -22,7 +22,8 @@ namespace Dungeon_Crawler_2D.World
         NorthExit,
         SouthExit,
         WestExit,
-        EastExit
+        EastExit,
+        boss
     }
 
     public abstract class Map
@@ -31,12 +32,14 @@ namespace Dungeon_Crawler_2D.World
         public int currentRoom;
         protected TextureManager textures;
         protected Random rand = new Random();
+        ContentManager content;
 
         protected int randomEncounterChance;
 
         public Map(TextureManager textures, ContentManager content)
         {
             this.textures = textures;
+            this.content = content;
             rooms = new List<Area>();
             randomEncounterChance = 5;
         }
@@ -87,19 +90,19 @@ namespace Dungeon_Crawler_2D.World
 
             if (type == TileType.NorthExit)
             {
-                ChangeRoom(new Point(0, -1), TileType.SouthExit);
+                ChangeArea(new Point(0, -1), TileType.SouthExit);
             }
             else if (type == TileType.SouthExit)
             {
-                ChangeRoom(new Point(0, 1), TileType.NorthExit);
+                ChangeArea(new Point(0, 1), TileType.NorthExit);
             }
             else if (type == TileType.EastExit)
             {
-                ChangeRoom(new Point(1, 0), TileType.WestExit);
+                ChangeArea(new Point(1, 0), TileType.WestExit);
             }
             else if (type == TileType.WestExit)
             {
-                ChangeRoom(new Point(-1, 0), TileType.EastExit);
+                ChangeArea(new Point(-1, 0), TileType.EastExit);
             }
             else if (type == TileType.MonsterTile)
             {
@@ -123,7 +126,7 @@ namespace Dungeon_Crawler_2D.World
         /// </summary>
         /// <param name="RoomDirection"></param>
         /// <param name="entrance"></param>
-        protected abstract void ChangeRoom(Point RoomDirection, TileType entrance);
+        protected abstract void ChangeArea(Point RoomDirection, TileType entrance);
 
         public MapEventHandler Event;
 

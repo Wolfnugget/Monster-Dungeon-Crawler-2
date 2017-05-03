@@ -62,6 +62,7 @@
     <Compile Include="Object\Monster.cs" />
     <Compile Include="Object\Object.cs" />
     <Compile Include="Object\Player.cs" />
+    <Compile Include="Object\Portal.cs" />
     <Compile Include="Potion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

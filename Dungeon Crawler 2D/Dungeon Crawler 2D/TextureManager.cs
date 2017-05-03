@@ -11,12 +11,10 @@ namespace Dungeon_Crawler_2D
 {
     public class TextureManager
     {
-        public Texture2D playerSpriteSheet, horizontalWall, vericalWall,
-            wallTRightCorner, wallTLeftCorner, wallBRightCorner, wallBLeftCorner,
-            northDoor, southDoor, eastDoor, westDoor, basicTile, whiteSquare,
+        public Texture2D playerSpriteSheet, whiteSquare,
             poisonIcon, bleedIcon, confusionIcon, barsSheet, battleBackGround, battleBackGround2, 
             battleBackGround3, statPointIcon, strengthIcon, accuracyIcon, speedIcon, intelligenceIcon, luckIcon, potion,
-            demon; //osv
+            demon, portal; //osv
 
 
         public SpriteFont comicSans; //osv
@@ -51,7 +49,9 @@ namespace Dungeon_Crawler_2D
 
             //Monster
             demon = content.Load<Texture2D>("Textures/Monsters/Demon");
-            
+
+            //Object
+            portal = content.Load<Texture2D>("Textures/Object/Portal");
         }
     }
 }
