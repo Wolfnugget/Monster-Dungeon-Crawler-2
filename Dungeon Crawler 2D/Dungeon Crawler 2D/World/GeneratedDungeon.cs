@@ -34,7 +34,7 @@ namespace Dungeon_Crawler_2D.World
             tiles = new Tile[dimensions.Y, dimensions.X];
 
             dungeonBP = new byte[dimensions.Y, dimensions.X];
-            GenerateDungeon(textures);
+            GenerateDungeon();
         }
 
         protected override void PickTileSet(ContentManager content)
@@ -53,7 +53,7 @@ namespace Dungeon_Crawler_2D.World
             tileSet = new TileSet(content, tileSetsList[index]);
         }
 
-        private void GenerateDungeon(TextureManager textures)
+        private void GenerateDungeon()
         {
             Point maxRoomDimensions = new Point(12, 12), minRoomDimensions = new Point(8, 8);
             roomRegions = new List<byte>();
@@ -67,7 +67,7 @@ namespace Dungeon_Crawler_2D.World
             ConnectRegions();
             RemoveDeadEnds();
             ConvertBPToTiles();
-            AddEnemies(textures);
+            AddEnemies();
             DebugNumericalTileArray();
         }
 
@@ -753,7 +753,7 @@ namespace Dungeon_Crawler_2D.World
             }
         }
 
-        private void AddEnemies(TextureManager textures)
+        private void AddEnemies()
         {
             int enemyPercentageInMaze = 1;
             int monsterTilePercentageInMaze = 2;
