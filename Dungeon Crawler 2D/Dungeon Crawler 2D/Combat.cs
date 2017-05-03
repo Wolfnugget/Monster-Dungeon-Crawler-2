@@ -27,14 +27,14 @@ namespace Dungeon_Crawler_2D
             this.player = player;
             this.textures = textures;
             this.hud = hud;
-            playerTurn = true;
-            enemyTurn = true;
         }
 
         public void StartCombat(EnemyType type)
         {
             hud.turnEvents = "Plan your move...";
             enemy = new Enemy(textures, type, player);
+            playerTurn = true;
+            enemyTurn = true;
         }
 
         public void Update()
@@ -167,6 +167,7 @@ namespace Dungeon_Crawler_2D
 
             if (enemy.stats.CheckStat(Stat.health) <= 0)
             {
+                player.stats.ChangeStat(Stat.xp, enemy.stats.CheckStat(Stat.xp));
                 args.result = EndCombat.Won;
             }
             else if (player.stats.CheckStat(Stat.health) <= 0)

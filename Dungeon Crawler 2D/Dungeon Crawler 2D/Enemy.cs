@@ -89,7 +89,8 @@ namespace Dungeon_Crawler_2D
                     int dextarity = rand.Next(3, 8) + player.stats.CheckStat(Stat.level);
                     int luck = 0;
                     int speed = rand.Next(6, 15) + player.stats.CheckStat(Stat.level);
-                    stats = new Stats(textures, health, health, mana, mana, strenght, inteligence, dextarity, luck, speed, 0, 0, 0);
+                    int xp = rand.Next(20, 40) + 2 * player.stats.CheckStat(Stat.level);
+                    stats = new Stats(textures, health, health, mana, mana, strenght, inteligence, dextarity, luck, speed, 0, xp, 0);
                 }
                 else if (player.stats.CheckStat(Stat.level) <= 10)
                 {
