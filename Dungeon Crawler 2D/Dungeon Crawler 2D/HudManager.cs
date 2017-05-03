@@ -70,7 +70,7 @@ namespace Dungeon_Crawler_2D
             leftBarRect = new Rectangle(0, 0, sideBarWidth, windowHeight);
             rightBarRect = new Rectangle(windowWidth - sideBarWidth, 0, sideBarWidth, windowHeight);
             bottomBarRect = new Rectangle(leftBarRect.Width, windowHeight - (sideBarWidth * 2), windowWidth - (sideBarWidth * 2), sideBarWidth * 2);
-            topBarRect = new Rectangle(0, 0, windowWidth, sideBarWidth);
+            topBarRect = new Rectangle(leftBarRect.Width, 0, windowWidth - (leftBarRect.Width * 2), sideBarWidth);
 
             statScreen = new StatScreen(this, textures);
             showStats = false;
@@ -171,29 +171,29 @@ namespace Dungeon_Crawler_2D
 
             #region health bar
             spriteBatch.Draw(textures.barsSheet, new Rectangle(leftBarRect.X + (sideBarWidth / 4) - (statBarWidth / 2),
-                windowHeight - statBarWidth - (player.stats.CheckStat(Stat.maxHealth) * (statBarWidth / 20)),
+                (windowHeight / 2) - statBarWidth,
                 statBarWidth,
-                player.stats.CheckStat(Stat.maxHealth) * (statBarWidth / 20)),
+                (windowHeight / 2)),
                 new Rectangle(24, 0, 8, textures.barsSheet.Height), Color.White);
 
             spriteBatch.Draw(textures.barsSheet, new Rectangle(leftBarRect.X + (sideBarWidth / 4) - (statBarWidth / 2),
-                windowHeight - statBarWidth - (player.stats.CheckStat(Stat.health) * (statBarWidth / 20)),
+                windowHeight - statBarWidth - (player.stats.CheckStat(Stat.health) * (windowHeight / 2) / (player.stats.CheckStat(Stat.maxHealth))),
                 statBarWidth,
-                player.stats.CheckStat(Stat.health) * (statBarWidth / 20)),
+                (player.stats.CheckStat(Stat.health) * (windowHeight / 2) / player.stats.CheckStat(Stat.maxHealth))),
                 new Rectangle(0, 0, 8, textures.barsSheet.Height), Color.White);
             #endregion
 
             #region mana bar
             spriteBatch.Draw(textures.barsSheet, new Rectangle(leftBarRect.X + (sideBarWidth / 4) + (sideBarWidth / 2) - (statBarWidth / 2),
-                windowHeight - statBarWidth - (player.stats.CheckStat(Stat.maxMana) * (statBarWidth / 20)),
+                (windowHeight / 2) - statBarWidth,
                 statBarWidth,
-                player.stats.CheckStat(Stat.maxMana) * (statBarWidth / 20)),
+                (windowHeight / 2)),
                 new Rectangle(24, 0, 8, textures.barsSheet.Height), Color.White);
 
             spriteBatch.Draw(textures.barsSheet, new Rectangle(leftBarRect.X + (sideBarWidth / 4) + (sideBarWidth / 2) - (statBarWidth / 2),
-                windowHeight - statBarWidth - (player.stats.CheckStat(Stat.mana) * (statBarWidth / 20)),
+                windowHeight - statBarWidth - (player.stats.CheckStat(Stat.mana) * (windowHeight / 2) / (player.stats.CheckStat(Stat.maxMana))),
                 statBarWidth,
-                player.stats.CheckStat(Stat.mana) * statBarWidth / 20),
+                (player.stats.CheckStat(Stat.mana) * (windowHeight / 2) / player.stats.CheckStat(Stat.maxMana))),
                 new Rectangle(8, 0, 8, textures.barsSheet.Height), Color.White);
             #endregion
 
@@ -243,7 +243,7 @@ namespace Dungeon_Crawler_2D
             Vector2 textSizeHPTxt = textures.comicSans.MeasureString("HP");
             Vector2 originHPTxt = new Vector2(textSizeHPTxt.X * 0.5f, textSizeHPTxt.Y * 0.8f);
             spriteBatch.DrawString(textures.comicSans, ("HP"),
-                new Vector2(leftBarRect.X + (sideBarWidth / 4), windowHeight - statBarWidth - (player.stats.CheckStat(Stat.maxHealth) * (statBarWidth / 20))),
+                new Vector2(leftBarRect.X + (sideBarWidth / 4), (windowHeight / 2) - statBarWidth),
                 Color.Red, 0, originHPTxt, 2, SpriteEffects.None, 0);
             #endregion
 
@@ -257,7 +257,7 @@ namespace Dungeon_Crawler_2D
             Vector2 textSizeMPTxt = textures.comicSans.MeasureString("MP");
             Vector2 originMPTxt = new Vector2(textSizeMPTxt.X * 0.5f, textSizeMPTxt.Y * 0.8f);
             spriteBatch.DrawString(textures.comicSans, ("MP"),
-                new Vector2(leftBarRect.X + (sideBarWidth / 4) + (sideBarWidth / 2), windowHeight - statBarWidth - (player.stats.CheckStat(Stat.maxMana) * (statBarWidth / 20))),
+                new Vector2(leftBarRect.X + (sideBarWidth / 4) + (sideBarWidth / 2), (windowHeight / 2) - statBarWidth),
                 Color.Blue, 0, originMPTxt, 2, SpriteEffects.None, 0);
             #endregion
 
@@ -351,7 +351,7 @@ namespace Dungeon_Crawler_2D
             #region lines to seperate sektions
             spriteBatch.Draw(pixelTex, new Rectangle(sideBarWidth, 0, statBarWidth / 20, windowHeight - bottomBarRect.Height), Color.White);
             spriteBatch.Draw(pixelTex, new Rectangle(windowWidth - sideBarWidth - (statBarWidth / 20), 0, statBarWidth / 20, windowHeight - bottomBarRect.Height), Color.White);
-            spriteBatch.Draw(pixelTex, new Rectangle(sideBarWidth, topBarRect.Height, topBarRect.Width - (sideBarWidth * 2), statBarWidth / 20), Color.White);
+            spriteBatch.Draw(pixelTex, new Rectangle(sideBarWidth, topBarRect.Height, topBarRect.Width, statBarWidth / 20), Color.White);
             spriteBatch.Draw(pixelTex, new Rectangle(0, windowHeight - bottomBarRect.Height, windowWidth, statBarWidth / 20), Color.White);
             spriteBatch.Draw(pixelTex, new Rectangle(sideBarWidth * 2, windowHeight - bottomBarRect.Height, statBarWidth / 20, bottomBarRect.Height), Color.White);
             spriteBatch.Draw(pixelTex, new Rectangle(windowWidth - (sideBarWidth * 2) - (statBarWidth / 20), windowHeight - bottomBarRect.Height, statBarWidth / 20, bottomBarRect.Height), Color.White);
@@ -600,11 +600,52 @@ namespace Dungeon_Crawler_2D
             #region battleText
             if (turn == false)
             {
-                Vector2 textSizeInfo = textures.comicSans.MeasureString(turnEvents);
-                Vector2 originInfo = new Vector2(textSizeInfo.X * 0.5f, textSizeInfo.Y * 0.5f);
-                spriteBatch.DrawString(textures.comicSans, turnEvents,
-                    new Vector2(topBarRect.Width / 2, topBarRect.Height / 2),
-                    Color.Green, 0, originInfo, textScale, SpriteEffects.None, 0);
+                //får texten plats i rutan?
+                if (textures.comicSans.MeasureString(turnEvents).X * 2 <= topBarRect.Width - statBarWidth)
+                {
+                    Vector2 textSizeInfo = textures.comicSans.MeasureString(turnEvents);
+                    Vector2 originInfo = new Vector2(textSizeInfo.X * 0.5f, textSizeInfo.Y * 0.5f);
+                    spriteBatch.DrawString(textures.comicSans, turnEvents,
+                        new Vector2(topBarRect.X + (topBarRect.Width / 2), topBarRect.Height / 2),
+                        Color.Yellow, 0, originInfo, textScale, SpriteEffects.None, 0);
+                }
+                //annars...
+                else
+                {
+                    int chunksize = 70;
+                    int iDivision = chunksize;
+                    int lastSpace = 0;
+                    int stringLength = turnEvents.Length;
+                    for (int i = 0; i < stringLength; i += chunksize)
+                    {
+                        if (i + chunksize > stringLength)
+                        {
+                            chunksize = stringLength - i;
+                        }
+                        lastSpace = chunksize - turnEvents.Substring(i, chunksize).LastIndexOf(' ');
+                        if (lastSpace > chunksize)
+                        {
+                            lastSpace = chunksize;
+                        }
+                        if (i - lastSpace >= 0)
+                        {
+                            i = i - lastSpace;
+                        }
+                        else if (i - lastSpace < 0)
+                        {
+                            i = 0;
+                        }
+
+                        Console.WriteLine(turnEvents.Substring(i, chunksize));
+
+                        Vector2 textSizeInfo = textures.comicSans.MeasureString(turnEvents.Substring(i, chunksize - lastSpace));
+                        Vector2 originInfo = new Vector2(textSizeInfo.X * 0.5f, textSizeInfo.Y * 0.5f);
+
+                        spriteBatch.DrawString(textures.comicSans, turnEvents.Substring(i, chunksize - lastSpace),
+                            new Vector2(topBarRect.X + (topBarRect.Width / 2), (topBarRect.Height / 3) + ((topBarRect.Height / 3) * (i / iDivision))),
+                            Color.Yellow, 0, originInfo, textScale, SpriteEffects.None, 0);
+                    }
+                }
             }
             #endregion
         }
@@ -620,24 +661,24 @@ namespace Dungeon_Crawler_2D
                     break;
                 case 1:
                     turnEvents = "Viking defends against " + enemy.theEnemy + "'s " + 
-                        enemy.ability.usedAbility + " blocking " + player.abilities.power 
+                        enemy.ability.usedAbility + ", blocking " + player.abilities.power 
                         + " out of " + enemy.ability.power + " damage!";
                     turn = false;
                     break;
                 case 2:
                     turnEvents = enemy.theEnemy + " defends against the Viking's " + 
-                        player.abilities.usedAbility + " blocking " + enemy.ability.power 
+                        player.abilities.usedAbility + ", blocking " + enemy.ability.power 
                         + " out of " + player.abilities.power + " damage!";
                     turn = false;
                     break;
                 case 3:
-                    turnEvents = "The Viking Misses but the " + enemy.theEnemy + " attacks using " + 
-                        enemy.ability.usedAbility + " dealing " + enemy.ability.power + " damage!";
+                    turnEvents = "The Viking misses but the " + enemy.theEnemy + " attacks using " + 
+                        enemy.ability.usedAbility + ", dealing " + enemy.ability.power + " damage!";
                     turn = false;
                     break;
                 case 4:
                     turnEvents = enemy.theEnemy + " misses but the Viking attacks using " +
-                        player.abilities.usedAbility + " dealing " + player.abilities.power + " damage!";
+                        player.abilities.usedAbility + ", dealing " + player.abilities.power + " damage!";
                     turn = false;
                     break;
                 case 5:
@@ -648,7 +689,7 @@ namespace Dungeon_Crawler_2D
                     turnEvents = "The Viking attacks the " + enemy.theEnemy + " using " + 
                         player.abilities.usedAbility + " for " + player.abilities.power + 
                         " damage! While " + enemy.theEnemy + " attacks for " + enemy.ability.power + 
-                        " damage using " + enemy.ability.usedAbility;
+                        " damage, using " + enemy.ability.usedAbility;
                     turn = false;
                     break;
                 case 7:
@@ -659,7 +700,7 @@ namespace Dungeon_Crawler_2D
                     turnEvents = enemy.theEnemy +" attacks the Viking using " +
                         enemy.ability.usedAbility + " for " + enemy.ability.power +
                         " damage! While the Viking attacks for " + player.abilities.power +
-                        " damage using " + player.abilities.usedAbility;
+                        " damage, using " + player.abilities.usedAbility;
                     turn = false;
                     break;
             }
