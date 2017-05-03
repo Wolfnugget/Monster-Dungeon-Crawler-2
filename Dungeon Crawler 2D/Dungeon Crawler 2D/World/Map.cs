@@ -23,7 +23,7 @@ namespace Dungeon_Crawler_2D.World
         SouthExit,
         WestExit,
         EastExit,
-        boss
+        Boss
     }
 
     public enum Location
@@ -119,7 +119,7 @@ namespace Dungeon_Crawler_2D.World
                     OnEvent(args);
                 }
             }
-            else if (type == TileType.boss)
+            else if (type == TileType.Boss)
             {
                 MapEventArgs args = new MapEventArgs(MapEventType.StartCombat);
                 args.enemy = EnemyType.boss;

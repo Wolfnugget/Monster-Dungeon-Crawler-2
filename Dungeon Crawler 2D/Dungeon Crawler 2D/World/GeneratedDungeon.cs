@@ -22,10 +22,10 @@ namespace Dungeon_Crawler_2D.World
         public GeneratedDungeon(Point dimensions, TextureManager textures, ContentManager content)
             : base(textures, content)
         {
-            NewDungeon(dimensions, content);
+            NewDungeon(dimensions, content, false);
         }
 
-        public void NewDungeon(Point dimensions, ContentManager content)
+        public void NewDungeon(Point dimensions, ContentManager content, bool repickTileSet)
         {
             if (dimensions.X % 2 == 0)
             {
@@ -34,6 +34,10 @@ namespace Dungeon_Crawler_2D.World
             if (dimensions.Y % 2 == 0)
             {
                 dimensions.Y++;
+            }
+            if (repickTileSet)
+            {
+                PickTileSet(content);
             }
 
             tiles = new Tile[dimensions.Y, dimensions.X];
@@ -812,7 +816,7 @@ namespace Dungeon_Crawler_2D.World
                 new Object.Monster(textures.demon, GetTileCenter(potentialBossTiles[index].X, potentialBossTiles[index].Y),
                 0, tileSize, new Point(2, 0), 0.4f, true));
 
-            tiles[potentialBossTiles[index].Y, potentialBossTiles[index].X].type = TileType.boss;
+            tiles[potentialBossTiles[index].Y, potentialBossTiles[index].X].type = TileType.Boss;
 
             index = rand.Next(0, potentialBossTiles.Count - 1);
             tiles[potentialBossTiles[index].Y, potentialBossTiles[index].X].type = TileType.ExitPortal;

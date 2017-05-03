@@ -36,6 +36,12 @@ namespace Dungeon_Crawler_2D.World
                         case ('G'):
                             tiles[y, x] = new Tile(TileType.basic, tileSet.GetTexture(TileTexture.Grass_Tile, 0), true);
                             break;
+                        case ('V'):
+                            tiles[y, x] = new Tile(TileType.Wall, tileSet.GetTexture(TileTexture.Wall_Vertical, 0), false);
+                            break;
+                        case ('H'):
+                            tiles[y, x] = new Tile(TileType.Wall, tileSet.GetTexture(TileTexture.Wall_Horizontal, 0), false);
+                            break;
                         case ('R'):
                             tiles[y, x] = new Tile(TileType.Wall, tileSet.GetTexture(TileTexture.Wall_NorthEast_Corner, 0), false);
                             break;
@@ -49,8 +55,12 @@ namespace Dungeon_Crawler_2D.World
                             tiles[y, x] = new Tile(TileType.Wall, tileSet.GetTexture(TileTexture.Wall_SouthWest_Corner, 0), false);
                             break;
                         case ('P'):
-                            tiles[y, x] = new Tile(TileType.Portal, tileSet.GetTexture(TileTexture.Grass_Tile, 0), false);
+                            tiles[y, x] = new Tile(TileType.Portal, tileSet.GetTexture(TileTexture.Grass_Tile, 0), true);
                             gameObjects.Add(new Point(x, y), new Object.Portal(textures.portal, GetTileCenter(x, y), true));
+                            break;
+                        case ('S'):
+                            tiles[y, x] = new Tile(TileType.basic, tileSet.GetTexture(TileTexture.Grass_Tile, 0), true);
+                            playerStart = GetTileCenter(x, y);
                             break;
                     }
                 }
