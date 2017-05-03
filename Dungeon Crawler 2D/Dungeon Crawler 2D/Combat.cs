@@ -169,10 +169,12 @@ namespace Dungeon_Crawler_2D
             {
                 player.stats.ChangeStat(Stat.xp, enemy.stats.CheckStat(Stat.xp));
                 args.result = EndCombat.Won;
+                hud.HandleCombatSummary(true, enemy.stats.CheckStat(Stat.xp));
             }
             else if (player.stats.CheckStat(Stat.health) <= 0)
             {
                 args.result = EndCombat.Lost;
+                hud.HandleCombatSummary(false, 0);
             }
             OnCombatEnd(args);
         }

@@ -162,6 +162,10 @@ namespace Dungeon_Crawler_2D
                 {
                     hud.statScreen.Draw(spriteBatch);
                 }
+                if (hud.showSummary == true)
+                {
+                    hud.DrawCombatSummary(spriteBatch);
+                }
                 
                 spriteBatch.End();
             }
@@ -229,6 +233,7 @@ namespace Dungeon_Crawler_2D
 
         private void HandleCombat(BattleEvensArgs args)
         {
+            hud.showSummary = true;
             gameState = GameState.Explore;
         }
     }
