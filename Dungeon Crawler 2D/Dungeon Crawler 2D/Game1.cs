@@ -236,7 +236,7 @@ namespace Dungeon_Crawler_2D
             }
             else if (args.EventType == MapEventType.PotionPickup)
             {
-                player.stats.ChangeStat.
+                //Potions HÄÄÄÄÄÄÄÄÄÅ!!!
             }
         }
 
