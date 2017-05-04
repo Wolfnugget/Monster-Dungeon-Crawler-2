@@ -11,10 +11,12 @@ namespace Dungeon_Crawler_2D.Object
     class Potion: Object
     {
         Vector2 origin;
+        public TypeOfPotion potionType;
 
-        public Potion(Texture2D texture, Vector2 position)
+        public Potion(Texture2D texture, Vector2 position, TypeOfPotion potionType)
             : base(texture, position)
         {
+            this.potionType = potionType;
             origin = new Vector2(texture.Width / 2, texture.Height / 2);
         }
 

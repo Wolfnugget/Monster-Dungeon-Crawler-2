@@ -52,6 +52,7 @@ namespace Dungeon_Crawler_2D
 
             //Object
             portal = content.Load<Texture2D>("Textures/Object/Portal");
+            potion = content.Load<Texture2D>("Example");
         }
     }
 }

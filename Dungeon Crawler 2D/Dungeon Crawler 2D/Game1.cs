@@ -234,6 +234,10 @@ namespace Dungeon_Crawler_2D
                 gameState = GameState.Battle;
                 combat.StartCombat(args.enemy);
             }
+            else if (args.EventType == MapEventType.PotionPickup)
+            {
+                player.stats.ChangeStat.
+            }
         }
 
         private void HandleCombat(BattleEvensArgs args)

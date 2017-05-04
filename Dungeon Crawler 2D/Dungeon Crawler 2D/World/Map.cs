@@ -98,8 +98,21 @@ namespace Dungeon_Crawler_2D.World
         /// <param name="position"></param>
         private void TileCheck(Vector2 position)
         {
+            Object.Object objOnPosition;
+
             int x, y;
             rooms[currentLocation].GetTileAtPosition(position, out x, out y); //hämtar tile typen från room.
+
+            if (rooms[currentLocation].CheckIfTileContainsObject(x, y, out objOnPosition))
+            {
+                if (objOnPosition is Object.Potion)
+                {
+                    Object.Potion potion = (Object.Potion)objOnPosition;
+                    MapEventArgs args = new MapEventArgs(MapEventType.PotionPickup);
+                    args.potionType = potion.potionType;
+                    OnEvent(args);
+                }
+            }
 
             if (rooms[currentLocation].tiles[y, x].type == TileType.Portal)
             {
@@ -120,7 +133,7 @@ namespace Dungeon_Crawler_2D.World
                 }
             }
             else if (rooms[currentLocation].tiles[y, x].type == TileType.Boss &&
-                rooms[currentLocation].CheckIfTileContainsObject(x, y))
+                rooms[currentLocation].CheckIfTileContainsObject(x, y, out objOnPosition))
             {
                 MapEventArgs args = new MapEventArgs(MapEventType.StartCombat);
                 args.enemy = EnemyType.boss;

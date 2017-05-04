@@ -769,10 +769,18 @@ namespace Dungeon_Crawler_2D.World
             int monsterTilePercentageInMaze = 2;
             int enemyPercentageNormalRooms = 2;
             int enemyPercentageInMonsterRooms = 5;
+            int potionPercentageInNormalRooms = 1;
+            int potionPercentageInMonsterRooms = 2;
 
             int index;
 
             List<Point> potentialBossTiles = new List<Point>();
+            List<TypeOfPotion> potionTypeList = new List<TypeOfPotion>();
+
+            foreach (TypeOfPotion tP in Enum.GetValues(typeof(TypeOfPotion)))
+            {
+                potionTypeList.Add(tP);
+            }
 
             for (int y = 1; y < tiles.GetLength(0); y++)
                 for (int x = 1; x < tiles.GetLength(1); x++)
@@ -801,12 +809,22 @@ namespace Dungeon_Crawler_2D.World
                             {
 
                             }
+                            if (rand.Next(0, 100) < potionPercentageInMonsterRooms)
+                            {
+                                index = rand.Next(0, potionTypeList.Count);
+                                gameObjects.Add(new Point(x, y), new Object.Potion(textures.potion, GetTileCenter(x, y), potionTypeList[index]));
+                            }
                         }
                         else
                         {
                             if (rand.Next(0, 100) < enemyPercentageNormalRooms)
                             {
 
+                            }
+                            if (rand.Next(0, 100) < potionPercentageInNormalRooms)
+                            {
+                                index = rand.Next(0, potionTypeList.Count);
+                                gameObjects.Add(new Point(x, y), new Object.Potion(textures.potion, GetTileCenter(x, y), potionTypeList[index]));
                             }
                         }
                     }

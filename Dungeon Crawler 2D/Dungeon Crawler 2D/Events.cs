@@ -12,7 +12,8 @@ namespace Dungeon_Crawler_2D
     {
         ChangeRoom,
         Move,
-        StartCombat
+        StartCombat,
+        PotionPickup
     }
 
     public enum PlayerEventType
@@ -56,6 +57,7 @@ namespace Dungeon_Crawler_2D
         public Vector2 Position { get; set; }
         public MapEventType EventType;
         public EnemyType enemy;
+        public TypeOfPotion potionType;
 
 
         public MapEventArgs(MapEventType EventType)

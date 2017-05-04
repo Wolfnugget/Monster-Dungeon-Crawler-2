@@ -183,10 +183,14 @@ namespace Dungeon_Crawler_2D.World
             ExitPortalOpen = true;
         }
 
-        public bool CheckIfTileContainsObject(int x, int y)
+        public bool CheckIfTileContainsObject(int x, int y, out Object.Object obj)
         {
-            if (gameObjects.ContainsKey(new Point(x, y)))
+            if (gameObjects.TryGetValue(new Point(x, y), out obj))
             {
+                if (obj is Object.Potion)
+                {
+                    gameObjects.Remove(new Point(x, y));
+                }
                 return true;
             }
             else
