@@ -32,6 +32,11 @@ namespace Dungeon_Crawler_2D.World
         Dungeon
     }
 
+    public enum WorldTrigger
+    {
+        BossDied
+    }
+
     public abstract class Map
     {
         public Dictionary<Location, Area> rooms;
@@ -93,17 +98,19 @@ namespace Dungeon_Crawler_2D.World
         /// <param name="position"></param>
         private void TileCheck(Vector2 position)
         {
-            TileType type = rooms[currentLocation].GetTileType(position); //hämtar tile typen från room.
+            int x, y;
+            rooms[currentLocation].GetTileAtPosition(position, out x, out y); //hämtar tile typen från room.
 
-            if (type == TileType.Portal)
+            if (rooms[currentLocation].tiles[y, x].type == TileType.Portal)
             {
                 ChangeArea(TileType.Portal);
             }
-            else if (type == TileType.ExitPortal)
+            else if (rooms[currentLocation].tiles[y, x].type == TileType.ExitPortal
+                && rooms[currentLocation].ExitPortalOpen)
             {
                 ChangeArea(TileType.Portal);
             }
-            else if (type == TileType.MonsterTile)
+            else if (rooms[currentLocation].tiles[y, x].type == TileType.MonsterTile)
             {
                 if (rand.Next(0,100) < randomEncounterChance)
                 {
@@ -112,7 +119,8 @@ namespace Dungeon_Crawler_2D.World
                     OnEvent(args);
                 }
             }
-            else if (type == TileType.Boss)
+            else if (rooms[currentLocation].tiles[y, x].type == TileType.Boss &&
+                rooms[currentLocation].CheckIfTileContainsObject(x, y))
             {
                 MapEventArgs args = new MapEventArgs(MapEventType.StartCombat);
                 args.enemy = EnemyType.boss;
@@ -156,5 +164,15 @@ namespace Dungeon_Crawler_2D.World
             }
         }
 
+        public void WorldAction(WorldTrigger trigger, Vector2 playerPosition)
+        {
+            int x, y;
+            rooms[currentLocation].GetTileAtPosition(playerPosition, out x, out y);
+
+            if (trigger == WorldTrigger.BossDied)
+            {
+                rooms[currentLocation].BossDies(x, y);
+            }
+        }
     }
 }

@@ -23,6 +23,7 @@ namespace Dungeon_Crawler_2D.World
             : base(textures, content)
         {
             NewDungeon(dimensions, content, false);
+            ExitPortalOpen = false;
         }
 
         public void NewDungeon(Point dimensions, ContentManager content, bool repickTileSet)

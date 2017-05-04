@@ -22,6 +22,8 @@ namespace Dungeon_Crawler_2D.World
 
         protected Dictionary<Point, Object.Object> gameObjects;
 
+        public bool ExitPortalOpen;
+
         private int renderDistanceX, renderDistanceY, screenCenterX, screenCenterY,
             yStart, xStart, yMax, xMax;
 
@@ -99,7 +101,7 @@ namespace Dungeon_Crawler_2D.World
             }
         }
 
-        protected void GetTileAtPosition(Vector2 position, out int tileX, out int tileY)
+        public void GetTileAtPosition(Vector2 position, out int tileX, out int tileY)
         {
             for (int y = 0; y < tiles.GetLength(0); y++)
             {
@@ -139,24 +141,6 @@ namespace Dungeon_Crawler_2D.World
             return new Vector2(0, 0);
         }
 
-        /// <summary>
-        /// Stänger en dörr.
-        /// </summary>
-        /// <param name="typeOfExit"></param>
-        public void RemoveExit(TileType typeOfExit)
-        {
-            for (int y = 0; y < tiles.GetLength(0); y++)
-            {
-                for (int x = 0; x < tiles.GetLength(1); x++)
-                {
-                    if (tiles[y, x].type == typeOfExit)
-                    {
-                        tiles[y, x].pasable = false;
-                    }
-                }
-            }
-        }
-
         public TileType GetTileType(Vector2 position)
         {
             for (int y = 0; y < tiles.GetLength(0); y++)
@@ -182,6 +166,33 @@ namespace Dungeon_Crawler_2D.World
             Rectangle tileRectangle = GetTileRectangle(x, y);
 
             return new Vector2(tileRectangle.X + (tileSize.X / 2), tileRectangle.Y + (tileSize.Y / 2));
+        }
+
+        public void BossDies(int bX, int bY)
+        {
+            for (int y = 1; y < tiles.GetLength(0); y++)
+                for (int x = 1; x < tiles.GetLength(1); x++)
+                {
+                    if (tiles[y, x].type == TileType.ExitPortal)
+                    {
+                        gameObjects[new Point(x, y)].Funktion();
+                    }
+                }
+
+            gameObjects.Remove(new Point(bX, bY));
+            ExitPortalOpen = true;
+        }
+
+        public bool CheckIfTileContainsObject(int x, int y)
+        {
+            if (gameObjects.ContainsKey(new Point(x, y)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

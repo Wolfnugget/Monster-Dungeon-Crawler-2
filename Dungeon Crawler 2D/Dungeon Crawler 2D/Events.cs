@@ -69,6 +69,7 @@ namespace Dungeon_Crawler_2D
         public EndCombat result;
         public int xp;
         public Dictionary<Stat, int> statReward;
+        public EnemyType enemyType;
 
         public BattleEvensArgs()
         {

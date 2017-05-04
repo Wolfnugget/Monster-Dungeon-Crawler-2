@@ -170,6 +170,7 @@ namespace Dungeon_Crawler_2D
                 player.stats.ChangeStat(Stat.xp, enemy.stats.CheckStat(Stat.xp));
                 args.result = EndCombat.Won;
                 hud.HandleCombatSummary(true, enemy.stats.CheckStat(Stat.xp));
+                args.enemyType = enemy.theEnemy;
             }
             else if (player.stats.CheckStat(Stat.health) <= 0)
             {

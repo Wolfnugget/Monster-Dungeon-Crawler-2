@@ -235,6 +235,11 @@ namespace Dungeon_Crawler_2D
         {
             hud.showSummary = true;
             gameState = GameState.Explore;
+
+            if (args.enemyType == EnemyType.boss)
+            {
+                world.WorldAction(World.WorldTrigger.BossDied, player.position);
+            }
         }
     }
 }
