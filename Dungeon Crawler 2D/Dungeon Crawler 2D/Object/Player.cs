@@ -122,5 +122,45 @@ namespace Dungeon_Crawler_2D.Object
             playerAbilities.Add(UsedAbility.Dodge);
             playerAbilities.Add(UsedAbility.PoisonHit);
         }
+
+        public void UsePotion(TypeOfPotion potionType)
+        {
+            switch (potionType)
+            {
+                case TypeOfPotion.health:
+                    stats.ChangeStat(Stat.health, 50 + 15 * stats.CheckStat(Stat.level));
+                    break;
+                case TypeOfPotion.mana:
+                    stats.ChangeStat(Stat.mana, 30 + 15 * stats.CheckStat(Stat.level));
+                    break;
+                case TypeOfPotion.maxHealth:
+                    stats.ChangeStat(Stat.maxHealth, 20);
+                    break;
+                case TypeOfPotion.maxMana:
+                    stats.ChangeStat(Stat.maxMana, 15);
+                    break;
+                case TypeOfPotion.strength:
+                    stats.ChangeStat(Stat.strength, 1);
+                    break;
+                case TypeOfPotion.intelligence:
+                    stats.ChangeStat(Stat.intelligence, 1);
+                    break;
+                case TypeOfPotion.accuracy:
+                    stats.ChangeStat(Stat.accuracy, 1);
+                    break;
+                case TypeOfPotion.luck:
+                    stats.ChangeStat(Stat.luck, 1);
+                    break;
+                case TypeOfPotion.speed:
+                    stats.ChangeStat(Stat.speed, 1);
+                    break;
+                case TypeOfPotion.xp:
+                    stats.ChangeStat(Stat.xp, 20);
+                    break;
+                case TypeOfPotion.level:
+                    stats.ChangeStat(Stat.level, 1);
+                    break;
+            }
+        }
     }
 }
