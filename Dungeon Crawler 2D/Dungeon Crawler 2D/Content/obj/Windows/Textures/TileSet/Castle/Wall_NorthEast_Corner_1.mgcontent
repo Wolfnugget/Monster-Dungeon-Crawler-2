@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Alfred Bengtsson/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Castle/Wall_NorthEast_Corner_1.png</SourceFile>
-  <SourceTime>2017-05-04T14:37:27.8018043+02:00</SourceTime>
-  <DestFile>C:/Users/Alfred Bengtsson/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Textures/TileSet/Castle/Wall_NorthEast_Corner_1.xnb</DestFile>
-  <DestTime>2017-05-04T14:44:17.6896458+02:00</DestTime>
+  <SourceFile>C:/Users/Datorlabbet/Desktop/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Castle/Wall_NorthEast_Corner_1.png</SourceFile>
+  <SourceTime>2017-05-04T13:31:32.6491875+02:00</SourceTime>
+  <DestFile>C:/Users/Datorlabbet/Desktop/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Textures/TileSet/Castle/Wall_NorthEast_Corner_1.xnb</DestFile>
+  <DestTime>2017-05-04T14:59:48.4994478+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
