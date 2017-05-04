@@ -18,7 +18,7 @@ namespace Dungeon_Crawler_2D
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        
+
         private World.Map world;
         private Object.Player player;
 
@@ -55,13 +55,13 @@ namespace Dungeon_Crawler_2D
             textures = new TextureManager(Content);
 
             ScreenManager.Instance.LoadContent(Content);
-            
+
             world = new World.GameWorld(textures, Content);
 
             world.Event += HandleEvents;
             player = new Object.Player(textures.playerSpriteSheet, textures, world.GetPlayerStart(), 100, new Point(16, 16), new Point(2, 0), 0.1f);
             player.Action += HandleEvents;
-            
+
             Viewport view = GraphicsDevice.Viewport;
             float zoom = 6f;
             windowWidth = graphics.PreferredBackBufferWidth = 1200;
@@ -98,6 +98,7 @@ namespace Dungeon_Crawler_2D
             if (gameState == GameState.Menu)
             {
                 ScreenManager.Instance.Update(gameTime);
+                hud.Update(gameState);
             }
             else if (gameState == GameState.Explore)
             {
@@ -111,20 +112,24 @@ namespace Dungeon_Crawler_2D
                 hud.Update(gameState);
                 combat.Update();
             }
-            
+
             base.Update(gameTime);
-            
+
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            
+
             if (gameState == GameState.Menu)
             {
-                spriteBatch.Begin();
+                spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null);
                 ScreenManager.Instance.Draw(spriteBatch);
 
+                if (hud.showSummary == true)
+                {
+                    hud.DrawCombatSummary(spriteBatch);
+                }
 
                 spriteBatch.End();
             }
@@ -166,7 +171,7 @@ namespace Dungeon_Crawler_2D
                 {
                     hud.DrawCombatSummary(spriteBatch);
                 }
-                
+
                 spriteBatch.End();
             }
 
@@ -224,7 +229,7 @@ namespace Dungeon_Crawler_2D
             {
                 player.SetPosition(args.Position);
             }
-            else if(args.EventType == MapEventType.StartCombat)
+            else if (args.EventType == MapEventType.StartCombat)
             {
                 gameState = GameState.Battle;
                 combat.StartCombat(args.enemy);
@@ -234,7 +239,14 @@ namespace Dungeon_Crawler_2D
         private void HandleCombat(BattleEvensArgs args)
         {
             hud.showSummary = true;
-            gameState = GameState.Explore;
+            if (hud.battleWon == true)
+            {
+                gameState = GameState.Explore;
+            }
+            else
+            {
+                gameState = GameState.Menu;
+            }
 
             if (args.enemyType == EnemyType.boss)
             {

@@ -164,6 +164,11 @@ namespace Dungeon_Crawler_2D
 
                 #endregion
             }
+
+            if (showSummary == true && Keyboard.GetState().IsKeyDown(Keys.Enter))
+            {
+                showSummary = false;
+            }
         }
 
         public void DrawExplore(SpriteBatch spriteBatch)
@@ -328,14 +333,6 @@ namespace Dungeon_Crawler_2D
             if (showStats == true)
             {
                 statScreen.Draw(spriteBatch);
-            }
-
-            if (showSummary == true && Keyboard.GetState().IsKeyDown(Keys.Enter))
-            {
-                if (battleWon == true)
-                {
-                    showSummary = false;
-                }
             }
         }
 
@@ -785,6 +782,10 @@ namespace Dungeon_Crawler_2D
                 textSizeSummary = textures.comicSans.MeasureString("Experience gained: " + gainedXp);
                 originSummaryText = textSizeSummary * 0.5f;
                 spriteBatch.DrawString(textures.comicSans, "Experience gained: " + gainedXp, new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 3) * 2)), Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
+
+                textSizeSummary = textures.comicSans.MeasureString("Press Enter");
+                originSummaryText = textSizeSummary * 0.5f;
+                spriteBatch.DrawString(textures.comicSans, "Press Enter", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 5) * 4)), Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
             }
 
             else
@@ -793,9 +794,13 @@ namespace Dungeon_Crawler_2D
                 originSummaryText = textSizeSummary * 0.5f;
                 spriteBatch.DrawString(textures.comicSans, "BATTLE LOST...", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + (whiteBox.Height / 3)), Color.Yellow, 0, originSummaryText, 3, SpriteEffects.None, 0);
 
-                textSizeSummary = textures.comicSans.MeasureString("This screen is now stuck");
+                textSizeSummary = textures.comicSans.MeasureString("Play New Game?");
                 originSummaryText = textSizeSummary * 0.5f;
-                spriteBatch.DrawString(textures.comicSans, "This screen is now stuck", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 3) * 2)), Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
+                spriteBatch.DrawString(textures.comicSans, "Play New Game?", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 3) * 2)), Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
+
+                textSizeSummary = textures.comicSans.MeasureString("Press Enter");
+                originSummaryText = textSizeSummary * 0.5f;
+                spriteBatch.DrawString(textures.comicSans, "Press Enter", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 5) * 4)), Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
             }
         }
     }
