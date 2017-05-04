@@ -54,7 +54,10 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Menus\Animation.cs" />
     <Compile Include="Menus\FadeAnimation.cs" />
+    <Compile Include="Menus\FileManager.cs" />
     <Compile Include="Menus\GameScreen.cs" />
+    <Compile Include="Menus\InputManager.cs" />
+    <Compile Include="Menus\MenuManager.cs" />
     <Compile Include="Menus\ScreenManager.cs" />
     <Compile Include="Menus\SplashScreen.cs" />
     <Compile Include="Menus\TitleScreen.cs" />
@@ -160,6 +163,15 @@
     <Content Include="Content\StatIcons\Strength_Icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\Menu\FadeTexture.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Menu\nullTexture.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Menu\TitleScreenCredits.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\Monsters\Demon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -260,6 +272,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />
+    <Content Include="Menus\Load\CreditSplash.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Menus\Load\MenuText.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />

@@ -13,31 +13,33 @@ namespace Dungeon_Crawler_2D.Menus
 {
     public class TitleScreen : GameScreen
     {
-        KeyboardState keyState;
         SpriteFont font;
+        MenuManager menu;
 
-        public override void LoadContent(ContentManager Content)
+        public override void LoadContent(ContentManager Content, InputManager inputManager)
         {
-            base.LoadContent(Content);
+            base.LoadContent(Content, inputManager);
             if (font == null)
-                font = content.Load<SpriteFont>("Font1");
+                font = this.content.Load<SpriteFont>("MenuFont");
+            menu = new MenuManager();
+            menu.LoadContent(content, "Title");
         }
 
         public override void UnloadContent()
         {
             base.UnloadContent();
+            menu.UnloadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
-            keyState = Keyboard.GetState();
-            if (keyState.IsKeyDown(Keys.Enter))
-                ScreenManager.Instance.AddScreen(new SplashScreen());
+            inputManager.Update();
+            menu.Update(gameTime, inputManager);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(font, "TitleScreen", new Vector2(100, 100), Color.Red);
+            menu.Draw(spriteBatch);
         }
     }
 }
