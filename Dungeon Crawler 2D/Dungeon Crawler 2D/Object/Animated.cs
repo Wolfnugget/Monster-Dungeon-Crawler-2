@@ -13,7 +13,7 @@ namespace Dungeon_Crawler_2D.Object
 
         protected Point startingFrame, frame, frames, frameSize;
         float frameTime, frameDuration;
-        Vector2 origin;
+        protected Vector2 origin;
         protected SpriteEffects effect;
 
         private Rectangle srcRec

@@ -22,6 +22,8 @@ namespace Dungeon_Crawler_2D.World
 
         protected Dictionary<Point, Object.Object> gameObjects;
 
+        List<Point> ObjectsToRender;
+
         public bool ExitPortalOpen;
 
         private int renderDistanceX, renderDistanceY, screenCenterX, screenCenterY,
@@ -38,6 +40,8 @@ namespace Dungeon_Crawler_2D.World
 
             gameObjects = new Dictionary<Point, Object.Object>();
             PickTileSet(content);
+
+            ObjectsToRender = new List<Point>();
         }
 
         protected abstract void PickTileSet(ContentManager content);
@@ -59,15 +63,22 @@ namespace Dungeon_Crawler_2D.World
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+            ObjectsToRender.Clear();
+
             for (int y = yStart; y < yMax; y++)
                 for (int x = xStart; x < xMax; x++)
                 {
                     tiles[y, x].Draw(GetTileRectangle(x, y), spriteBatch);
                     if (gameObjects.ContainsKey(new Point(x, y)))
                     {
-                        gameObjects[new Point(x, y)].Draw(spriteBatch);
+                        ObjectsToRender.Add(new Point(x, y));
                     }
                 }
+
+            for (int i = 0; i < ObjectsToRender.Count; i++)
+            {
+                gameObjects[ObjectsToRender[i]].Draw(spriteBatch);
+            }
         }
 
         private void UpdateAndRenderRange()
