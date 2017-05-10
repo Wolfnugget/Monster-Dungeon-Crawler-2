@@ -22,7 +22,7 @@ namespace Dungeon_Crawler_2D.Object
         {
             this.textures = textures;
             stats = new Stats(textures, 100, 100, 100, 100, 10, 10, 10, 10, 10, 50, 0, 1);
-            abilities = new Abilities(UsedBy.player);
+            abilities = new Abilities(UsedBy.player, textures);
             playerAbilities = new List<UsedAbility>(4);
             GetAbilities();
         }
@@ -94,8 +94,9 @@ namespace Dungeon_Crawler_2D.Object
                 {
                     abilities.Ability(enemy, this, playerAbilities[1]);
                     stats.ChangeStat(Stat.mana, -abilities.CheckCost(UsedAbility.Magic));
+                    return false;
                 }
-                return false;
+                return true;
             }
             else if (currentState.IsKeyDown(Keys.E) && previousState.IsKeyUp(Keys.E))
             {
@@ -108,8 +109,9 @@ namespace Dungeon_Crawler_2D.Object
                 {
                     abilities.Ability(enemy, this, playerAbilities[3]);
                     stats.ChangeStat(Stat.mana, -abilities.CheckCost(UsedAbility.PoisonHit));
+                    return false;
                 }
-                return false;
+                return true;
             }
             else return true;
         }
@@ -135,9 +137,11 @@ namespace Dungeon_Crawler_2D.Object
                     break;
                 case TypeOfPotion.maxHealth:
                     stats.ChangeStat(Stat.maxHealth, 20);
+                    stats.ChangeStat(Stat.health, 20);
                     break;
                 case TypeOfPotion.maxMana:
                     stats.ChangeStat(Stat.maxMana, 15);
+                    stats.ChangeStat(Stat.mana, 15);
                     break;
                 case TypeOfPotion.strength:
                     stats.ChangeStat(Stat.strength, 1);

@@ -29,7 +29,7 @@ namespace Dungeon_Crawler_2D
             this.textures = textures;
             this.theEnemy = theEnemy;
             this.player = player;
-            ability = new Abilities(UsedBy.enemy);
+            ability = new Abilities(UsedBy.enemy, textures);
             GiveStats();
         }
 

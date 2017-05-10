@@ -69,7 +69,7 @@ namespace Dungeon_Crawler_2D
             graphics.ApplyChanges();
 
 
-            gameState = GameState.Menu; //Vilken gamestate spelet startas i.
+            gameState = GameState.Explore; //Vilken gamestate spelet startas i.
 
             hud = new HUDManager(gameState, textures, GraphicsDevice, Content, player, windowWidth, windowHeight);
             cam = new Camera2D(hud, view, windowWidth, windowHeight, world, zoom);

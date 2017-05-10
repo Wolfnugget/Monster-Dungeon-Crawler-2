@@ -13,8 +13,8 @@ namespace Dungeon_Crawler_2D
     {
         public Texture2D playerSpriteSheet, whiteSquare,
             poisonIcon, bleedIcon, confusionIcon, barsSheet, battleBackGround, battleBackGround2, 
-            battleBackGround3, statPointIcon, strengthIcon, accuracyIcon, speedIcon, intelligenceIcon, luckIcon, potion,
-            demon, portal; //osv
+            battleBackGround3, statPointIcon, strengthIcon, accuracyIcon, speedIcon, intelligenceIcon, 
+            luckIcon, potion, demon, portal; //osv
 
 
         public SpriteFont comicSans; //osv

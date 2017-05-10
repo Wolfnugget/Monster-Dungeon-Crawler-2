@@ -96,9 +96,11 @@ namespace Dungeon_Crawler_2D
                     break;
                 case TypeOfPotion.maxHealth:
                     player.stats.ChangeStat(Stat.maxHealth, 20);
+                    player.stats.ChangeStat(Stat.health, 20);
                     break;
                 case TypeOfPotion.maxMana:
                     player.stats.ChangeStat(Stat.maxMana, 15);
+                    player.stats.ChangeStat(Stat.mana, 15);
                     break;
                 case TypeOfPotion.strength:
                     player.stats.ChangeStat(Stat.strength, 1);

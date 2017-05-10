@@ -17,8 +17,10 @@ namespace Dungeon_Crawler_2D
         public TextureManager textures;
         public Enemy enemy;
         private HUDManager hud;
-        protected Point startingFrame, frame, frames, frameSize;
-        float frameTime, frameDuration;
+        protected int startingFrame, frame, frames, frameSize;
+        SpriteEffects spriteFx;
+        double frameTimer, frameInterval;
+        protected Rectangle srcRec = new Rectangle(0, 0, 16, 16);
 
         bool playerTurn, enemyTurn;
 
@@ -27,6 +29,9 @@ namespace Dungeon_Crawler_2D
             this.player = player;
             this.textures = textures;
             this.hud = hud;
+            frameTimer = 100;
+            frameInterval = 100;
+            
         }
 
         public void StartCombat(EnemyType type)
@@ -187,34 +192,26 @@ namespace Dungeon_Crawler_2D
             Event.Invoke(this, e);
         }
 
-        public void BattleAnimation(GameTime gameTime, UsedBy by, UsedAbility ability)
+        public void BattleAnimation(SpriteBatch spriteBatch, GameTime gameTime, UsedBy by, UsedAbility ability)
         {
-            frameDuration -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (frame.Y < startingFrame.Y || frame.Y > startingFrame.Y + frames.Y)
+            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
+            
+            if (by == UsedBy.enemy)
             {
-                frame.Y = startingFrame.Y;
+                spriteFx = SpriteEffects.FlipHorizontally;
             }
-            if (frame.X < startingFrame.X || frame.X > startingFrame.X + frames.X)
+            else { spriteFx = SpriteEffects.None; }
+
+            if (frameTimer<= 0)
             {
-                frame.X = startingFrame.X;
+                frameTimer = frameInterval;
+                frame++;
+                srcRec.X = (frame % 3) * 16;
             }
-            if (frameDuration <= 0)
-            {
-                frameDuration = frameTime;
-                if (frame.X < startingFrame.X + frames.X)
-                {
-                    frame.X++;
-                }
-                else if (frame.Y < startingFrame.Y + frames.Y)
-                {
-                    frame.X = startingFrame.X;
-                    frame.Y++;
-                }
-                else
-                {
-                    frame = startingFrame;
-                }
-            }
+
+
+            spriteBatch.Draw(textures.playerSpriteSheet, Vector2.Zero, srcRec, Color.White, 0, 
+                new Vector2(), 1, spriteFx, 1);
         }
     }
 }
