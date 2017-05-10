@@ -846,36 +846,36 @@ namespace Dungeon_Crawler_2D.World
 
         }
 
-        private Object.Potion CreatePotion(int roomTier)
-        {
-            Object.Potion potion;
+        //private Object.Potion CreatePotion(int roomTier)
+        //{
+        //    Object.Potion potion;
 
-            Dictionary<TypeOfPotion, int> potionTypeWeighted = new Dictionary<TypeOfPotion, int>();
+        //    Dictionary<TypeOfPotion, int> potionTypeWeighted = new Dictionary<TypeOfPotion, int>();
 
-            potionTypeWeighted.Add(TypeOfPotion.health, 30);
-            potionTypeWeighted.Add(TypeOfPotion.mana, 30);
-            potionTypeWeighted.Add(TypeOfPotion.xp, 15);
-            potionTypeWeighted.Add(TypeOfPotion.strength, 10);
-            potionTypeWeighted.Add(TypeOfPotion.accuracy, 10);
-            potionTypeWeighted.Add(TypeOfPotion.luck, 10);
-            potionTypeWeighted.Add(TypeOfPotion.intelligence, 10);
-            potionTypeWeighted.Add(TypeOfPotion.speed, 10);
-            potionTypeWeighted.Add(TypeOfPotion.maxHealth, 10);
-            potionTypeWeighted.Add(TypeOfPotion.maxMana, 10);
-            potionTypeWeighted.Add(TypeOfPotion.level, 5);
+        //    potionTypeWeighted.Add(TypeOfPotion.health, 30);
+        //    potionTypeWeighted.Add(TypeOfPotion.mana, 30);
+        //    potionTypeWeighted.Add(TypeOfPotion.xp, 15);
+        //    potionTypeWeighted.Add(TypeOfPotion.strength, 10);
+        //    potionTypeWeighted.Add(TypeOfPotion.accuracy, 10);
+        //    potionTypeWeighted.Add(TypeOfPotion.luck, 10);
+        //    potionTypeWeighted.Add(TypeOfPotion.intelligence, 10);
+        //    potionTypeWeighted.Add(TypeOfPotion.speed, 10);
+        //    potionTypeWeighted.Add(TypeOfPotion.maxHealth, 10);
+        //    potionTypeWeighted.Add(TypeOfPotion.maxMana, 10);
+        //    potionTypeWeighted.Add(TypeOfPotion.level, 5);
 
-            int defaultWeight, weightToAdd;
+        //    int defaultWeight, weightToAdd;
 
-            foreach (TypeOfPotion tP in Enum.GetValues(typeof(TypeOfPotion)))
-            {
-                defaultWeight = potionTypeWeighted[tP];
-                weightToAdd = defaultWeight + 2
+        //    foreach (TypeOfPotion tP in Enum.GetValues(typeof(TypeOfPotion)))
+        //    {
+        //        defaultWeight = potionTypeWeighted[tP];
+        //        weightToAdd = defaultWeight + 2
 
-                potionTypeWeighted[tP] = 
-            }
+        //        potionTypeWeighted[tP] = 
+        //    }
 
-            return potion;
-        }
+        //    return potion;
+        //}
 
         private Dictionary<int, List<byte>> GetTieredRoomDictionaryBasedOnLengthFromStart(int tierCount)
         {
