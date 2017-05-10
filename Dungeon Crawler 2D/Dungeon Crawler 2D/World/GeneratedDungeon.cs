@@ -15,6 +15,8 @@ namespace Dungeon_Crawler_2D.World
 
         List<byte> roomRegions, mazeRegions, monsterRegions, wallRegions;
 
+        Dictionary<byte, int> roomLengthFromStart; 
+
         int bossRoom;
 
         int totalRegions { get { return roomRegions.Count + mazeRegions.Count; } }
@@ -23,7 +25,6 @@ namespace Dungeon_Crawler_2D.World
             : base(textures, content)
         {
             NewDungeon(dimensions, content, false);
-            ExitPortalOpen = false;
         }
 
         public void NewDungeon(Point dimensions, ContentManager content, bool repickTileSet)
@@ -45,6 +46,7 @@ namespace Dungeon_Crawler_2D.World
 
             dungeonBP = new byte[dimensions.Y, dimensions.X];
             GenerateDungeon();
+            ExitPortalOpen = false;
         }
 
         protected override void PickTileSet(ContentManager content)
@@ -511,20 +513,12 @@ namespace Dungeon_Crawler_2D.World
             int minMonsterRooms = roomRegions.Count / 4;
             int maxMonsterRooms = (int)(roomRegions.Count / 1.5f);
 
-            List<int> temp = GeneratorUtility.ConvertByteListToIntList(roomRegions);
+            List<byte> temp = roomRegions;
 
-            monsterRegions = GeneratorUtility.ConvertIntListToByteList(
-                GeneratorUtility.GetRandomListofIntFromList
-                (rand, temp, minMonsterRooms, maxMonsterRooms));
+            temp.RemoveAt(0);
 
-            for (int i = 0; i < monsterRegions.Count; i++)
-            {
-                if (monsterRegions[i] == 1)
-                {
-                    monsterRegions.RemoveAt(i);
-                    break;
-                }
-            }
+            monsterRegions = GeneratorUtility.GetRandomListofByteFromList
+                (rand, temp, minMonsterRooms, maxMonsterRooms);
 
             TileTexture textureType;
 
@@ -663,6 +657,8 @@ namespace Dungeon_Crawler_2D.World
             int index, currentMatchLength = 0, processingLength;
             List<Point> tilesInRegion = new List<Point>();
 
+            roomLengthFromStart = new Dictionary<byte, int>();
+
             for (int i = 1; i < roomRegions.Count; i++)
             {
                 tilesInRegion.Clear();
@@ -677,6 +673,8 @@ namespace Dungeon_Crawler_2D.World
 
                 index = rand.Next(0, tilesInRegion.Count - 1);
                 processingLength = FindShortestPath(startX, startY, tilesInRegion[index].X, tilesInRegion[index].Y);
+
+                roomLengthFromStart.Add(roomRegions[i], processingLength);
 
                 if (currentMatch == 0)
                 {
@@ -705,7 +703,7 @@ namespace Dungeon_Crawler_2D.World
 
             while (processing.Count > 0)
             {
-                visitedTiles.TryGetValue(processing.Dequeue(), out processingNode);
+                processingNode = visitedTiles[processing.Dequeue()];
                 if (processingNode.tile.X == destX && processingNode.tile.Y == destY)
                 {
                     return processingNode.movesTo;
@@ -771,8 +769,11 @@ namespace Dungeon_Crawler_2D.World
             int enemyPercentageInMonsterRooms = 5;
             int potionPercentageInNormalRooms = 1;
             int potionPercentageInMonsterRooms = 2;
+            int tierCount = 5;
 
             int index;
+
+            Dictionary<int, List<byte>> tieredRoomDictionary = GetTieredRoomDictionaryBasedOnLengthFromStart(tierCount);
 
             List<Point> potentialBossTiles = new List<Point>();
             List<TypeOfPotion> potionTypeList = new List<TypeOfPotion>();
@@ -839,6 +840,69 @@ namespace Dungeon_Crawler_2D.World
 
             index = rand.Next(0, potentialBossTiles.Count - 1);
             tiles[potentialBossTiles[index].Y, potentialBossTiles[index].X].type = TileType.ExitPortal;
+
+            gameObjects.Add(potentialBossTiles[index],
+                new Object.Portal(textures.portal, GetTileCenter(potentialBossTiles[index].X, potentialBossTiles[index].Y), false));
+
+        }
+
+        private Object.Potion CreatePotion(int roomTier)
+        {
+            Object.Potion potion;
+
+            Dictionary<TypeOfPotion, int> potionTypeWeighted = new Dictionary<TypeOfPotion, int>();
+
+            potionTypeWeighted.Add(TypeOfPotion.health, 30);
+            potionTypeWeighted.Add(TypeOfPotion.mana, 30);
+            potionTypeWeighted.Add(TypeOfPotion.xp, 15);
+            potionTypeWeighted.Add(TypeOfPotion.strength, 10);
+            potionTypeWeighted.Add(TypeOfPotion.accuracy, 10);
+            potionTypeWeighted.Add(TypeOfPotion.luck, 10);
+            potionTypeWeighted.Add(TypeOfPotion.intelligence, 10);
+            potionTypeWeighted.Add(TypeOfPotion.speed, 10);
+            potionTypeWeighted.Add(TypeOfPotion.maxHealth, 10);
+            potionTypeWeighted.Add(TypeOfPotion.maxMana, 10);
+            potionTypeWeighted.Add(TypeOfPotion.level, 5);
+
+            int defaultWeight, weightToAdd;
+
+            foreach (TypeOfPotion tP in Enum.GetValues(typeof(TypeOfPotion)))
+            {
+                defaultWeight = potionTypeWeighted[tP];
+                weightToAdd = defaultWeight + 2
+
+                potionTypeWeighted[tP] = 
+            }
+
+            return potion;
+        }
+
+        private Dictionary<int, List<byte>> GetTieredRoomDictionaryBasedOnLengthFromStart(int tierCount)
+        {
+            List<int> tileCountToSort = new List<int>();
+
+            for (int i = 1; i < roomRegions.Count; i++)
+            {
+                tileCountToSort.Add(roomLengthFromStart[roomRegions[i]]);
+            }
+
+            tileCountToSort.Sort();
+
+            List<List<int>> tileCountSortedDividedIntoLists =
+                GeneratorUtility.DivideIntListIntoListOfIntList(tileCountToSort, tierCount);
+
+            Dictionary<int, List<byte>> dictionaryToReturn = new Dictionary<int, List<byte>>();
+
+            for (int i = 0; i < tileCountSortedDividedIntoLists.Count; i++)
+            {
+                dictionaryToReturn[i + 1] = new List<byte>();
+                for (int y = 0; y < tileCountSortedDividedIntoLists[i].Count; y++)
+                {
+                    dictionaryToReturn[i + 1].Add((byte)tileCountSortedDividedIntoLists[i][y]);
+                }
+            }
+
+            return dictionaryToReturn;
         }
 
         #region Debug
