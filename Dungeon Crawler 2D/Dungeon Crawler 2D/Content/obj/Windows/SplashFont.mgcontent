@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/SplashFont.spritefont</SourceFile>
-  <SourceTime>2017-05-04T14:51:49.8948758+02:00</SourceTime>
-  <DestFile>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/SplashFont.xnb</DestFile>
-  <DestTime>2017-05-04T17:11:41.2925874+02:00</DestTime>
+  <SourceFile>C:/Users/heden/OneDrive/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/SplashFont.spritefont</SourceFile>
+  <SourceTime>2017-05-10T13:18:20.1807673+02:00</SourceTime>
+  <DestFile>C:/Users/heden/OneDrive/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/SplashFont.xnb</DestFile>
+  <DestTime>2017-05-10T13:54:58.8842654+02:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
-  <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
+  <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
-  <ProcessorTime>2016-03-30T08:36:08+02:00</ProcessorTime>
+  <ProcessorTime>2017-03-01T16:05:36+01:00</ProcessorTime>
   <Parameters>
     <Key>TextureFormat</Key>
     <Value>Compressed</Value>
