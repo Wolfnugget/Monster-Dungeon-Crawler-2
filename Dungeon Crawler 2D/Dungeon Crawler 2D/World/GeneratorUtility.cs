@@ -50,6 +50,22 @@ namespace Dungeon_Crawler_2D.World
             return randomList;
         }
 
+        public static List<byte> GetRandomListofByteFromList(Random random, List<byte> list, int min, int max)
+        {
+            List<byte> randomList = new List<byte>();
+
+            int number = random.Next(min, max);
+            int index;
+
+            while (randomList.Count < number)
+            {
+                index = random.Next(0, list.Count - 1);
+                randomList.Add(list[index]);
+            }
+
+            return randomList;
+        }
+
         public static List<int> ConvertByteListToIntList(List<byte> toConvert)
         {
             List<int> converted = new List<int>();
@@ -68,6 +84,24 @@ namespace Dungeon_Crawler_2D.World
                 converted.Add((byte)toConvert[i]);
             }
             return converted;
+        }
+
+        public static List<List<int>> DivideIntListIntoListOfIntList(List<int> listToDivide, int numberOfLists)
+        {
+            List<List<int>> listOfListsToReturn = new List<List<int>>();
+
+            for (int i = 1; i <= numberOfLists; i++)
+            {
+                List<int> tempList = new List<int>();
+
+                for (int y = 0; y < (listToDivide.Count / numberOfLists) * i; y++)
+                {
+                    tempList.Add(listToDivide[y]);
+                }
+                listOfListsToReturn.Add(tempList);
+            }
+
+            return listOfListsToReturn;
         }
     }
 }
