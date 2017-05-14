@@ -602,23 +602,23 @@ namespace Dungeon_Crawler_2D.World
                     }
                     else if (wallRegions.Contains(dungeonBP[y, x + 1]) && wallRegions.Contains(dungeonBP[y + 1, x]))
                     {
-                        return TileTexture.Wall_NorthWest_Corner;
+                        return TileTexture.Wall_Corner_Top_Left;
                     }
                     else if (wallRegions.Contains(dungeonBP[y, x - 1]) && wallRegions.Contains(dungeonBP[y + 1, x]))
                     {
-                        return TileTexture.Wall_NorthEast_Corner;
+                        return TileTexture.Wall_Corner_Top_Right;
                     }
                     else if (wallRegions.Contains(dungeonBP[y - 1, x]) && wallRegions.Contains(dungeonBP[y, x + 1]))
                     {
-                        return TileTexture.Wall_SouthWest_Corner;
+                        return TileTexture.Wall_Corner_Bottom_Left;
                     }
                     else if (wallRegions.Contains(dungeonBP[y - 1, x])&& wallRegions.Contains(dungeonBP[y, x - 1]))
                     {
-                        return TileTexture.Wall_SouthEast_Corner;
+                        return TileTexture.Wall_Corner_Bottom_Right;
                     }
                     else
                     {
-                        return TileTexture.Wall_Horizontal;
+                        return TileTexture.Single_Corner;
                     }
                 }
 

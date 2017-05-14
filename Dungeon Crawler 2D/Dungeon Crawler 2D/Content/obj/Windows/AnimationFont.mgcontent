@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-<<<<<<< HEAD
-  <SourceFile>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/AnimationFont.spritefont</SourceFile>
-  <SourceTime>2017-05-10T13:36:43.1960589+02:00</SourceTime>
-  <DestFile>C:/Users/Datorlabbet/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/AnimationFont.xnb</DestFile>
-  <DestTime>2017-05-10T13:41:14.7741483+02:00</DestTime>
-=======
-  <SourceFile>C:/Users/heden/OneDrive/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/AnimationFont.spritefont</SourceFile>
-  <SourceTime>2017-05-10T13:18:20.1637222+02:00</SourceTime>
-  <DestFile>C:/Users/heden/OneDrive/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/AnimationFont.xnb</DestFile>
-  <DestTime>2017-05-10T13:54:58.8496731+02:00</DestTime>
->>>>>>> origin/master
+  <SourceFile>C:/Users/Robin Hedenvang/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/AnimationFont.spritefont</SourceFile>
+  <SourceTime>2017-05-05T16:08:20.0439944+02:00</SourceTime>
+  <DestFile>C:/Users/Robin Hedenvang/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/AnimationFont.xnb</DestFile>
+  <DestTime>2017-05-14T15:22:32.9454233+02:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
-  <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
+  <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
-  <ProcessorTime>2017-03-01T16:05:36+01:00</ProcessorTime>
+  <ProcessorTime>2016-03-30T08:36:08+02:00</ProcessorTime>
   <Parameters>
     <Key>TextureFormat</Key>
     <Value>Compressed</Value>

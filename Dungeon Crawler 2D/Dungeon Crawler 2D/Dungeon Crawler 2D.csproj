@@ -196,22 +196,28 @@
     <Content Include="Content\Textures\TileSet\Castle\Floor_Tile_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TileSet\Castle\Wall_Horizontal_1.png">
+    <Content Include="Content\Textures\TileSet\Castle\Single_Corner.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TileSet\Castle\Wall_NorthEast_Corner_1.png">
+    <Content Include="Content\Textures\TileSet\Castle\Tex_Between_Walls.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TileSet\Castle\Wall_NorthWest_Corner_1.png">
+    <Content Include="Content\Textures\TileSet\Castle\Wall_Corner_Bottom_Left.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TileSet\Castle\Wall_SouthEast_Corner_1.png">
+    <Content Include="Content\Textures\TileSet\Castle\Wall_Corner_Bottom_Right.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TileSet\Castle\Wall_SouthWest_Corner_1.png">
+    <Content Include="Content\Textures\TileSet\Castle\Wall_Corner_Top_Left.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TileSet\Castle\Wall_Vertical_1.png">
+    <Content Include="Content\Textures\TileSet\Castle\Wall_Corner_Top_Right.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Castle\Wall_Horizontal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Castle\Wall_Vertical.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\TileSet\Dungeon\Door_East_1.png">
