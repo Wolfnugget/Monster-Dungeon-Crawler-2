@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/StatIcons/Strength_Icon.png</SourceFile>
-  <SourceTime>2017-05-03T22:01:43.2118236+02:00</SourceTime>
-  <DestFile>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/StatIcons/Strength_Icon.xnb</DestFile>
-  <DestTime>2017-05-15T11:41:51.1912166+02:00</DestTime>
+  <SourceFile>C:/Users/Robin Hedenvang/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/StatIcons/Strength_Icon.png</SourceFile>
+  <SourceTime>2017-05-01T23:14:23.4027648+02:00</SourceTime>
+  <DestFile>C:/Users/Robin Hedenvang/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/StatIcons/Strength_Icon.xnb</DestFile>
+  <DestTime>2017-05-15T12:49:37.3928299+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

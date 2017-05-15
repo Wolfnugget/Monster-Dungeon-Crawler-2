@@ -181,43 +181,40 @@
     <Content Include="Content\Textures\Object\Portal.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TileSet\Castle\Enemy_Tile_1.png">
+    <Content Include="Content\Textures\TileSet\Castle\Boss_Tile_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\TileSet\Castle\Enemy_Tile_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TileSet\Castle\Floor_Boss_Tile.png">
+    <Content Include="Content\Textures\TileSet\Castle\Floor_Tile_3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TileSet\Castle\Floor_Tile_1.png">
+    <Content Include="Content\Textures\TileSet\Castle\Floor_Tile_4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TileSet\Castle\Floor_Tile_2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Textures\TileSet\Castle\Single_Corner.png">
+    <Content Include="Content\Textures\TileSet\Castle\Single_Corner_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\TileSet\Castle\Tex_Between_Walls.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TileSet\Castle\Wall_Corner_Bottom_Left.png">
+    <Content Include="Content\Textures\TileSet\Castle\Wall_Corner_Bottom_Left_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TileSet\Castle\Wall_Corner_Bottom_Right.png">
+    <Content Include="Content\Textures\TileSet\Castle\Wall_Corner_Bottom_Right_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TileSet\Castle\Wall_Corner_Top_Left.png">
+    <Content Include="Content\Textures\TileSet\Castle\Wall_Corner_Top_Left_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TileSet\Castle\Wall_Corner_Top_Right.png">
+    <Content Include="Content\Textures\TileSet\Castle\Wall_Corner_Top_Right_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TileSet\Castle\Wall_Horizontal.png">
+    <Content Include="Content\Textures\TileSet\Castle\Wall_Horizontal_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TileSet\Castle\Wall_Vertical.png">
+    <Content Include="Content\Textures\TileSet\Castle\Wall_Vertical_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\TileSet\Dungeon\Door_East_1.png">
@@ -235,10 +232,40 @@
     <Content Include="Content\Textures\TileSet\Dungeon\Enemy_Tile_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Enemy_Tile_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Floor_Boss_Tile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\TileSet\Dungeon\Floor_Boss_Tile_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\TileSet\Dungeon\Floor_Tile_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Floor_Tile_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Single_Corner.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Tex_Between_Walls.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Wall_Corner_Bottom_Left.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Wall_Corner_Bottom_Right.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Wall_Corner_Top_Left.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Wall_Corner_Top_Right.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Wall_Horizontal.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\TileSet\Dungeon\Wall_Horizontal_1.png">
@@ -254,6 +281,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\TileSet\Dungeon\Wall_SouthWest_Corner_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Wall_Vertical.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\TileSet\Dungeon\Wall_Vertical_1.png">

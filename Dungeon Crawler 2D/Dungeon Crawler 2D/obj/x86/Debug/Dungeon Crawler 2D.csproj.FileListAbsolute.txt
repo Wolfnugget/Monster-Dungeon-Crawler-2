@@ -27,18 +27,8 @@ C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Craw
 C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\Monsters\Demon.png
 C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\Object\Items.png
 C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\Object\Portal.png
-C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Enemy_Tile_1.png
 C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Enemy_Tile_2.png
-C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Floor_Boss_Tile.png
-C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Floor_Tile_1.png
-C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Floor_Tile_2.png
 C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Tex_Between_Walls.png
-C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Wall_Corner_Bottom_Left.png
-C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Wall_Corner_Bottom_Right.png
-C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Wall_Corner_Top_Left.png
-C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Wall_Corner_Top_Right.png
-C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Wall_Horizontal.png
-C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Wall_Vertical.png
 C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Door_East_1.png
 C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Door_North_1.png
 C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Door_South_1.png
@@ -174,7 +164,6 @@ C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Craw
 C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.exe
 C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.pdb
-C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Single_Corner.png
 C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Single_Corner.xnb
 E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.exe
 E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.pdb
@@ -355,3 +344,46 @@ E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dunge
 E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\SharpDX.RawInput.xml
 E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.csprojResolveAssemblyReference.cache
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Boss_Tile_2.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Floor_Tile_3.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Floor_Tile_4.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Single_Corner_2.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Wall_Corner_Bottom_Left_2.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Wall_Corner_Bottom_Right_2.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Wall_Corner_Top_Left_2.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Wall_Corner_Top_Right_2.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Wall_Horizontal_2.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Wall_Vertical_2.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Enemy_Tile_2.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Floor_Boss_Tile.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Floor_Tile_2.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Single_Corner.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Tex_Between_Walls.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Wall_Corner_Bottom_Left.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Wall_Corner_Bottom_Right.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Wall_Corner_Top_Left.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Wall_Corner_Top_Right.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Wall_Horizontal.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Wall_Vertical.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Boss_Tile_2.xnb
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Floor_Tile_3.xnb
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Floor_Tile_4.xnb
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Single_Corner_2.xnb
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Wall_Corner_Bottom_Left_2.xnb
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Wall_Corner_Bottom_Right_2.xnb
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Wall_Corner_Top_Left_2.xnb
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Wall_Corner_Top_Right_2.xnb
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Wall_Horizontal_2.xnb
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Wall_Vertical_2.xnb
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Enemy_Tile_2.xnb
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Floor_Boss_Tile.xnb
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Floor_Tile_2.xnb
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Single_Corner.xnb
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Tex_Between_Walls.xnb
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Wall_Corner_Bottom_Left.xnb
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Wall_Corner_Bottom_Right.xnb
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Wall_Corner_Top_Left.xnb
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Wall_Corner_Top_Right.xnb
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Wall_Horizontal.xnb
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Wall_Vertical.xnb
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.csprojResolveAssemblyReference.cache

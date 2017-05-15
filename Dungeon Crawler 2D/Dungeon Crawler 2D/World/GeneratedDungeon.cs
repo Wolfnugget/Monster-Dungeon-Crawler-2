@@ -627,7 +627,7 @@ namespace Dungeon_Crawler_2D.World
             {
                 if (dungeonBP[y, x] == bossRoom)
                 {
-                    return TileTexture.Floor_Boss_Tile;
+                    return TileTexture.Boss_Tile;
                 }
                 else if (monsterRegions.Contains(dungeonBP[y, x]))
                 {
