@@ -62,7 +62,7 @@ namespace Dungeon_Crawler_2D.World
             }
 
             int index = rand.Next(0, tileSetsList.Count);
-            tileSet = new TileSet(content, tileSetsList[index]);
+            tileSet = new TileSet(content, TileSets.Castle);//tileSetsList[index]
         }
 
         private void GenerateDungeon()
