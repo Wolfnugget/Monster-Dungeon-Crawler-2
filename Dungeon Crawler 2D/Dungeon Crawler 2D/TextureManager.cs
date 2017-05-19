@@ -14,7 +14,7 @@ namespace Dungeon_Crawler_2D
         public Texture2D playerSpriteSheet, whiteSquare,
             poisonIcon, bleedIcon, confusionIcon, barsSheet, battleBackGround, battleBackGround2, 
             battleBackGround3, statPointIcon, strengthIcon, accuracyIcon, speedIcon, intelligenceIcon, 
-            luckIcon, potion, demon, zombie, portal; //osv
+            luckIcon, potion, demon, zombie, warlock, portal; //osv
 
 
         public SpriteFont comicSans; //osv
@@ -49,7 +49,8 @@ namespace Dungeon_Crawler_2D
 
             //Monster
             demon = content.Load<Texture2D>("Textures/Monsters/Demon");
-            zombie = content.Load<Texture2D>("Textures/Monsters/zombie spritesheet");
+            zombie = content.Load<Texture2D>("Textures/Monsters/zombie_spritesheet");
+            warlock = content.Load<Texture2D>("Textures/Monsters/warlock_spritesheet");
 
             //Object
             portal = content.Load<Texture2D>("Textures/Object/Portal");

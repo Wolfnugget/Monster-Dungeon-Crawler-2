@@ -128,7 +128,8 @@ namespace Dungeon_Crawler_2D.World
                 if (rand.Next(0,100) < randomEncounterChance)
                 {
                     MapEventArgs args = new MapEventArgs(MapEventType.StartCombat);
-                    args.enemy = EnemyType.zombie;
+                    if (rand.Next(0,100)< 50) { args.enemy = EnemyType.zombie; }
+                    else { args.enemy = EnemyType.warlock; }
                     OnEvent(args);
                 }
             }
