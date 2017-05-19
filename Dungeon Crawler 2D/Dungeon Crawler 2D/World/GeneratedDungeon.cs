@@ -618,7 +618,7 @@ namespace Dungeon_Crawler_2D.World
                     }
                     else
                     {
-                        return TileTexture.Single_Corner;
+                        return TileTexture.Single_Corner_Top;
                     }
                 }
 
