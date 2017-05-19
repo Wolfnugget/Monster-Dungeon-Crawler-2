@@ -29,7 +29,10 @@ namespace Dungeon_Crawler_2D.World
         Wall_Horizontal,
         Grass_Tile,
         Tex_Between_Walls,
-        Single_Corner,
+        Single_Corner_Top,
+        Single_Corner_Bottom,
+        Single_Corner_Left,
+        Single_Corner_Right,
         Boss_Tile
     }
 
