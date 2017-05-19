@@ -62,7 +62,7 @@ namespace Dungeon_Crawler_2D.World
             }
 
             int index = rand.Next(0, tileSetsList.Count);
-            tileSet = new TileSet(content, TileSets.Castle);//tileSetsList[index]
+            tileSet = new TileSet(content, tileSetsList[index]);
         }
 
         private void GenerateDungeon()
@@ -831,12 +831,15 @@ namespace Dungeon_Crawler_2D.World
                     }
                 }
 
+
             index = rand.Next(0, potentialBossTiles.Count - 1);
             gameObjects.Add(potentialBossTiles[index],
                 new Object.Monster(textures.demon, GetTileCenter(potentialBossTiles[index].X, potentialBossTiles[index].Y),
                 0, tileSize, new Point(2, 0), 0.4f, true));
 
             tiles[potentialBossTiles[index].Y, potentialBossTiles[index].X].type = TileType.Boss;
+
+            potentialBossTiles.RemoveAt(index);
 
             index = rand.Next(0, potentialBossTiles.Count - 1);
             tiles[potentialBossTiles[index].Y, potentialBossTiles[index].X].type = TileType.ExitPortal;
@@ -845,37 +848,6 @@ namespace Dungeon_Crawler_2D.World
                 new Object.Portal(textures.portal, GetTileCenter(potentialBossTiles[index].X, potentialBossTiles[index].Y), false));
 
         }
-
-        //private Object.Potion CreatePotion(int roomTier)
-        //{
-        //    Object.Potion potion;
-
-        //    Dictionary<TypeOfPotion, int> potionTypeWeighted = new Dictionary<TypeOfPotion, int>();
-
-        //    potionTypeWeighted.Add(TypeOfPotion.health, 30);
-        //    potionTypeWeighted.Add(TypeOfPotion.mana, 30);
-        //    potionTypeWeighted.Add(TypeOfPotion.xp, 15);
-        //    potionTypeWeighted.Add(TypeOfPotion.strength, 10);
-        //    potionTypeWeighted.Add(TypeOfPotion.accuracy, 10);
-        //    potionTypeWeighted.Add(TypeOfPotion.luck, 10);
-        //    potionTypeWeighted.Add(TypeOfPotion.intelligence, 10);
-        //    potionTypeWeighted.Add(TypeOfPotion.speed, 10);
-        //    potionTypeWeighted.Add(TypeOfPotion.maxHealth, 10);
-        //    potionTypeWeighted.Add(TypeOfPotion.maxMana, 10);
-        //    potionTypeWeighted.Add(TypeOfPotion.level, 5);
-
-        //    int defaultWeight, weightToAdd;
-
-        //    foreach (TypeOfPotion tP in Enum.GetValues(typeof(TypeOfPotion)))
-        //    {
-        //        defaultWeight = potionTypeWeighted[tP];
-        //        weightToAdd = defaultWeight + 2
-
-        //        potionTypeWeighted[tP] = 
-        //    }
-
-        //    return potion;
-        //}
 
         private Dictionary<int, List<byte>> GetTieredRoomDictionaryBasedOnLengthFromStart(int tierCount)
         {
@@ -904,6 +876,17 @@ namespace Dungeon_Crawler_2D.World
 
             return dictionaryToReturn;
         }
+
+        private struct PotionsWeighted
+        {
+            TypeOfPotion PotionType { get; set; }
+            int Weight { get; set; }
+        }
+
+        //private Object.Potion CreatePotion(int roomTier)
+        //{
+            
+        //}
 
         #region Debug
         private void DebugNumericalTileArray()
