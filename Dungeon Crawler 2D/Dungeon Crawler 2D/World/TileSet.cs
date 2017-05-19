@@ -13,8 +13,6 @@ namespace Dungeon_Crawler_2D.World
     public enum TileTexture
     {
         Floor_Tile,
-        Floor_Tile_1,
-        Floor_Tile_2,
         Floor_Boss_Tile,
         Enemy_Tile,
         Wall_NorthEast_Corner,
@@ -27,12 +25,12 @@ namespace Dungeon_Crawler_2D.World
         Wall_Corner_Top_Right,
         Wall_Vertical,
         Wall_Horizontal,
+        Wall_Top_Edge,
+        Wall_Bottom_Edge,
+        Wall_Right_Edge,
+        Wall_Left_Edge,
         Grass_Tile,
         Tex_Between_Walls,
-        Single_Corner_Top,
-        Single_Corner_Bottom,
-        Single_Corner_Left,
-        Single_Corner_Right,
         Boss_Tile
     }
 

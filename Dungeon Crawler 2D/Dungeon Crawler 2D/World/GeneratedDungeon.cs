@@ -592,36 +592,86 @@ namespace Dungeon_Crawler_2D.World
                 }
                 else
                 {
-                    if (wallRegions.Contains(dungeonBP[y - 1, x] ) && wallRegions.Contains(dungeonBP[y + 1, x]))
+                    if (wallRegions.Contains(dungeonBP[y - 1, x]))
                     {
-                        return TileTexture.Wall_Vertical;
+                        if (wallRegions.Contains(dungeonBP[y, x + 1]))
+                        {
+                            if (wallRegions.Contains(dungeonBP[y + 1, x]))
+                            {
+                                if (wallRegions.Contains(dungeonBP[y, x - 1]))
+                                {
+                                    return TileTexture.Tex_Between_Walls;
+
+                                    //Mer If Satser Här behövs.
+                                }
+                                else
+                                {
+                                    return TileTexture.Wall_Vertical;
+                                }
+                            }
+                            else
+                            {
+                                if (wallRegions.Contains(dungeonBP[y, x - 1]))
+                                {
+                                    return TileTexture.Wall_Horizontal;
+                                }
+                                else
+                                {
+                                    return TileTexture.Wall_Corner_Bottom_Left;
+                                }
+                            }
+                        }
+                        else if (wallRegions.Contains(dungeonBP[y + 1, x]))
+                        {
+                            return TileTexture.Wall_Vertical;
+                        }
+                        else if (wallRegions.Contains(dungeonBP[y, x - 1]))
+                        {
+                            return TileTexture.Wall_Corner_Bottom_Right;
+                        }
+                        else
+                        {
+                            return TileTexture.Wall_Bottom_Edge;
+                        }
                     }
-                    else if (wallRegions.Contains(dungeonBP[y, x - 1]) && wallRegions.Contains(dungeonBP[y, x + 1]))
+                    else if (wallRegions.Contains(dungeonBP[y, x + 1]))
                     {
-                        return TileTexture.Wall_Horizontal;
+                        if (wallRegions.Contains(dungeonBP[y + 1, x]))
+                        {
+                            if (wallRegions.Contains(dungeonBP[y, x - 1]))
+                            {
+                                return TileTexture.Wall_Horizontal;
+                            }
+                            else
+                            {
+                                return TileTexture.Wall_Corner_Top_Left;
+                            }
+                        }
+                        else if (wallRegions.Contains(dungeonBP[y, x - 1]))
+                        {
+                            return TileTexture.Wall_Horizontal;
+                        }
+                        else
+                        {
+                            return TileTexture.Wall_Left_Edge;
+                        }
                     }
-                    else if (wallRegions.Contains(dungeonBP[y, x + 1]) && wallRegions.Contains(dungeonBP[y + 1, x]))
+                    else if (wallRegions.Contains(dungeonBP[y + 1, x]))
                     {
-                        return TileTexture.Wall_Corner_Top_Left;
-                    }
-                    else if (wallRegions.Contains(dungeonBP[y, x - 1]) && wallRegions.Contains(dungeonBP[y + 1, x]))
-                    {
-                        return TileTexture.Wall_Corner_Top_Right;
-                    }
-                    else if (wallRegions.Contains(dungeonBP[y - 1, x]) && wallRegions.Contains(dungeonBP[y, x + 1]))
-                    {
-                        return TileTexture.Wall_Corner_Bottom_Left;
-                    }
-                    else if (wallRegions.Contains(dungeonBP[y - 1, x])&& wallRegions.Contains(dungeonBP[y, x - 1]))
-                    {
-                        return TileTexture.Wall_Corner_Bottom_Right;
+                        if (wallRegions.Contains(dungeonBP[y, x - 1]))
+                        {
+                            return TileTexture.Wall_Corner_Top_Right;
+                        }
+                        else
+                        {
+                            return TileTexture.Wall_Top_Edge;
+                        }
                     }
                     else
                     {
-                        return TileTexture.Single_Corner_Top;
+                        return TileTexture.Wall_Right_Edge;
                     }
                 }
-
             }
             else
             {
@@ -877,16 +927,78 @@ namespace Dungeon_Crawler_2D.World
             return dictionaryToReturn;
         }
 
-        private struct PotionsWeighted
-        {
-            TypeOfPotion PotionType { get; set; }
-            int Weight { get; set; }
-        }
-
         //private Object.Potion CreatePotion(int roomTier)
         //{
+        //    Dictionary<TypeOfPotion, int> weightedPotionsDictionary = new Dictionary<TypeOfPotion, int>;
+
+        //    int roomTierMulti = 3, maxWeight = 30, minWeight = 10;
+
+        //    //Health, Mana
+        //    int attributeWeight = 30;
+        //    weightedPotionsDictionary.Add(TypeOfPotion.health, attributeWeight);
+        //    weightedPotionsDictionary.Add(TypeOfPotion.mana, attributeWeight);
+
+        //    //MaxStat
+        //    int maxStatWeight = 2;
+        //    weightedPotionsDictionary.Add(TypeOfPotion.maxHealth, maxStatWeight);
+        //    weightedPotionsDictionary.Add(TypeOfPotion.maxMana, maxStatWeight);
+
+        //    //Stats
+        //    int StatWeight = 3;
+        //    weightedPotionsDictionary.Add(TypeOfPotion.accuracy, StatWeight);
+        //    weightedPotionsDictionary.Add(TypeOfPotion.intelligence, StatWeight);
+        //    weightedPotionsDictionary.Add(TypeOfPotion.luck, StatWeight);
+        //    weightedPotionsDictionary.Add(TypeOfPotion.speed, StatWeight);
+        //    weightedPotionsDictionary.Add(TypeOfPotion.strength, StatWeight);
+
+        //    //Level, Xp
+        //    weightedPotionsDictionary.Add(TypeOfPotion.xp, 6);
+        //    weightedPotionsDictionary.Add(TypeOfPotion.level, 1);
+
+        //    int currentTotalWeight = 0;
+
+        //    List<WeightedPotion> weightedPotions = new List<WeightedPotion>();
+
+        //    foreach (TypeOfPotion tp in Enum.GetValues(typeof(TypeOfPotion)))
+        //    {
+        //        if (weightedPotionsDictionary.ContainsKey(tp))
+        //        {
+        //            weightedPotionsDictionary[tp] += roomTier * roomTierMulti;
+
+        //            if (weightedPotionsDictionary[tp] > maxWeight)
+        //            {
+        //                weightedPotionsDictionary[tp] = maxWeight;
+        //            }
+
+        //            if (weightedPotionsDictionary[tp] >= minWeight)
+        //            {
+        //                currentTotalWeight += weightedPotionsDictionary[tp];
+        //                weightedPotions.Add(new WeightedPotion(tp, currentTotalWeight));
+        //            }
+        //        }
+        //    }
+
+        //    int rNum = rand.Next(0, currentTotalWeight);
+        //    for (int i = 0; i < weightedPotions.Count; i++)
+        //    {
+        //        if (rNum <= weightedPotions[i].Weight)
+        //            return weightedPotions[i].PotionType;
+        //    }
             
         //}
+
+        private struct WeightedPotion
+        {
+            public TypeOfPotion PotionType { get; set; }
+
+            public int Weight { get; set; }
+
+            public WeightedPotion(TypeOfPotion potionType, int weight)
+            {
+                PotionType = potionType;
+                Weight = weight;
+            }
+        }
 
         #region Debug
         private void DebugNumericalTileArray()
