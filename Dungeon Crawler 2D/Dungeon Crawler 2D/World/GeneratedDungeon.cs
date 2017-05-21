@@ -993,11 +993,11 @@ namespace Dungeon_Crawler_2D.World
 
             public int Weight { get; set; }
 
-            public WeightedPotion(TypeOfPotion potionType, int weight)
-            {
-                PotionType = potionType;
-                Weight = weight;
-            }
+            //public WeightedPotion(TypeOfPotion potionType, int weight)
+            //{
+            //    PotionType = potionType;
+            //    Weight = weight;
+            //}
         }
 
         #region Debug

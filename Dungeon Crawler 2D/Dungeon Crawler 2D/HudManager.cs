@@ -753,6 +753,35 @@ namespace Dungeon_Crawler_2D
                         " damage! While the Viking attacks for " + player.abilities.power +
                         " damage, using " + player.abilities.usedAbility;
                     break;
+                case 9:
+                    turnEvents = "The viking attacks itself in confusion";
+                    break;
+                case 10:
+                    turnEvents = enemy.theEnemy + " attacks itself in confusion";
+                    break;
+                case 11:
+                    turnEvents = "The Viking kills itself in confusion";
+                    break;
+                case 12:
+                    turnEvents = enemy.theEnemy + " kills itself in confusion";
+                    break;
+                case 13:
+                    turnEvents = "The Viking defended against all damage done by " + 
+                        enemy.theEnemy + "'s " + enemy.ability.usedAbility;
+                    break;
+                case 14:
+                    turnEvents = enemy.theEnemy + " defended against all damage done by the viking's " 
+                        + player.abilities.usedAbility;
+                    break;
+                case 15:
+                    turnEvents = "something";
+                    break;
+                case 16:
+                    turnEvents = "something";
+                    break;
+                case 17:
+                    turnEvents = "something";
+                    break;
             }
         }
 

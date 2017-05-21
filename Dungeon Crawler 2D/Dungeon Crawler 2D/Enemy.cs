@@ -91,7 +91,7 @@ namespace Dungeon_Crawler_2D
                     switch (rand.Next(0, 3))
                     {
                         case 0:
-                            ability.Ability(this, player, UsedAbility.Hit);
+                            ability.Ability(this, player, UsedAbility.Miss);
                             break;
                         default:
                             ability.Ability(this, player, UsedAbility.Defence);

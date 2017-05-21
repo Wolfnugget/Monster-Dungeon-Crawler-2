@@ -40,7 +40,6 @@ namespace Dungeon_Crawler_2D
 
         public void Ability(Enemy enemy, Object.Player player, UsedAbility ability)
         {
-
             #region Hit
             if (ability == UsedAbility.Hit)
             {
@@ -224,6 +223,16 @@ namespace Dungeon_Crawler_2D
             }
             #endregion
 
+            #region Auto-Miss
+
+            if (ability == UsedAbility.Miss)
+            {
+                usedAbility = UsedAbility.Miss; 
+                power = 0; 
+                effect = Effects.none; 
+            }
+
+            #endregion
         }
 
         public int CheckCost(UsedAbility ability)
