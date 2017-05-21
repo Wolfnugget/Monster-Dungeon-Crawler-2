@@ -81,7 +81,7 @@ namespace Dungeon_Crawler_2D
                     if (damage > 0)
                     {
                         player.stats.ChangeStat(Stat.health, -damage);
-                        player.stats.AddEffect(2, enemy.ability.effect, 1);
+                        AddEffect(enemy.ability.effect, UsedBy.enemy);
                         hud.CombatText(1, enemy);
                     }
                     else{ hud.CombatText(10000, enemy);  }
@@ -92,7 +92,7 @@ namespace Dungeon_Crawler_2D
                     if (damage > 0)
                     {
                         enemy.stats.ChangeStat(Stat.health, -damage);
-                        enemy.stats.AddEffect(2, player.abilities.effect, 1);
+                        AddEffect(player.abilities.effect, UsedBy.player);
                         hud.CombatText(2, enemy);
                     }
                     else { hud.CombatText(10001, enemy); }
@@ -101,13 +101,13 @@ namespace Dungeon_Crawler_2D
                 else if (player.abilities.usedAbility == UsedAbility.Miss)
                 {
                     player.stats.ChangeStat(Stat.health, -enemy.ability.power);
-                    player.stats.AddEffect(2, enemy.ability.effect, 1);
+                    AddEffect(enemy.ability.effect, UsedBy.enemy);
                     hud.CombatText(3, enemy);
                 }
                 else if (enemy.ability.usedAbility == UsedAbility.Miss)
                 {
                     enemy.stats.ChangeStat(Stat.health, -player.abilities.power);
-                    enemy.stats.AddEffect(2, player.abilities.effect, 1);
+                    AddEffect(player.abilities.effect, UsedBy.player);
                     hud.CombatText(4, enemy);
                 }
                 else if (player.stats.CheckStat(Stat.speed) >= enemy.stats.CheckStat(Stat.speed))
@@ -118,9 +118,9 @@ namespace Dungeon_Crawler_2D
                         hud.CombatText(5, enemy);
                         BattleResult();
                     }
-                    enemy.stats.AddEffect(2, player.abilities.effect, 1);
+                    AddEffect(player.abilities.effect, UsedBy.player);
                     player.stats.ChangeStat(Stat.health, -enemy.ability.power);
-                    player.stats.AddEffect(2, enemy.ability.effect, 1);
+                    AddEffect(enemy.ability.effect, UsedBy.enemy);
                     hud.CombatText(6, enemy);
                 }
                 else
@@ -131,9 +131,9 @@ namespace Dungeon_Crawler_2D
                         hud.CombatText(7, enemy);
                         BattleResult();
                     }
-                    player.stats.AddEffect(2, enemy.ability.effect, 1);
+                    AddEffect(enemy.ability.effect, UsedBy.enemy);
                     enemy.stats.ChangeStat(Stat.health, -player.abilities.power);
-                    enemy.stats.AddEffect(2, player.abilities.effect, 1);
+                    AddEffect(player.abilities.effect, UsedBy.player);
                     hud.CombatText(8, enemy);
                 }
 
@@ -212,6 +212,51 @@ namespace Dungeon_Crawler_2D
 
             spriteBatch.Draw(textures.playerSpriteSheet, Vector2.Zero, srcRec, Color.White, 0, 
                 new Vector2(), 1, spriteFx, 1);
+        }
+
+        public void AddEffect(Effects effect, UsedBy user)
+        {
+            if (user == UsedBy.player)
+            {
+                if (effect == Effects.bleed)
+                {
+                    enemy.stats.AddEffect(player.stats.CheckStat(Stat.strength) / 
+                        player.stats.CheckStat(Stat.accuracy) / 2, player.abilities.effect, 
+                        player.stats.CheckStat(Stat.level) + player.stats.CheckStat(Stat.strength) / 2);
+
+                }
+                else if (effect == Effects.poison)
+                {
+                    enemy.stats.AddEffect(player.stats.CheckStat(Stat.luck) / 3, 
+                        player.abilities.effect, player.stats.CheckStat(Stat.level));
+                }
+                else if (effect == Effects.confusion)
+                {
+                    enemy.stats.AddEffect(player.stats.CheckStat(Stat.intelligence) / 4, 
+                        player.abilities.effect, player.stats.CheckStat(Stat.intelligence));
+                }
+            }
+            else
+            {
+                if (effect == Effects.bleed)
+                {
+                    player.stats.AddEffect(enemy.stats.CheckStat(Stat.strength) / 
+                        enemy.stats.CheckStat(Stat.accuracy) / 2, enemy.ability.effect,
+                        enemy.stats.CheckStat(Stat.level) + enemy.stats.CheckStat(Stat.strength) / 2);
+
+                }
+                else if (effect == Effects.poison)
+                {
+                    player.stats.AddEffect(enemy.stats.CheckStat(Stat.luck) / 3, 
+                        enemy.ability.effect, enemy.stats.CheckStat(Stat.level));
+
+                }
+                else if (effect == Effects.confusion)
+                {
+                    player.stats.AddEffect(enemy.stats.CheckStat(Stat.intelligence) / 4, 
+                        enemy.ability.effect, enemy.stats.CheckStat(Stat.intelligence));
+                }
+            }
         }
     }
 }

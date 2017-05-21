@@ -8,15 +8,11 @@ namespace Dungeon_Crawler_2D
 {
     public enum Effects
     {
-        poison, bleed, confusion, strenghtBuff, intelligenceBuff, dexterityBuff, luckBuff, none
+        poison, bleed, confusion, none
     }
     public enum Stat
     {
         maxHealth, health, maxMana, mana, strength, intelligence, accuracy, luck, speed, maxXp, xp, level
-    }
-    public enum EffectPoint
-    {
-        attack, endPhase, startPhase
     }
 
     class Stats
@@ -243,49 +239,5 @@ namespace Dungeon_Crawler_2D
             return 0;
         }
 
-        public int CheckBuff(Stat stat) //needs to be changed
-        {
-            switch (stat)
-            {
-                case Stat.strength:
-                    foreach (Effect e in activeEffects)
-                    {   
-                        if (e.effect == Effects.strenghtBuff)
-                        {
-                            return e.power;
-                        }
-                    }
-                    return 1;
-                case Stat.intelligence:
-                    foreach (Effect e in activeEffects)
-                    {
-                        if (e.effect == Effects.intelligenceBuff)
-                        {
-                            return e.power;
-                        }
-                    }
-                    return 1;
-                case Stat.accuracy:
-                    foreach (Effect e in activeEffects)
-                    {
-                        if (e.effect == Effects.dexterityBuff || e.effect == Effects.confusion)
-                        {
-                            return e.power;
-                        }
-                    }
-                    return 1;
-                case Stat.luck:
-                    foreach (Effect e in activeEffects)
-                    {
-                        if (e.effect == Effects.luckBuff)
-                        {
-                            return e.power;
-                        }
-                    }
-                    return 1;
-                default :
-                    return 0; //should never happen. just there bc it needs to be
-            }
-        }
     }
 }

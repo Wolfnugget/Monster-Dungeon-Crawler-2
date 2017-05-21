@@ -216,3 +216,6 @@ E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dunge
 E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.csprojResolveAssemblyReference.cache
 E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.exe
 E:\Skola\Spelutveckling\V2017\Systemutveckling och project\Projekt\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.pdb
+C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.exe
+C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.pdb
+C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.csprojResolveAssemblyReference.cache

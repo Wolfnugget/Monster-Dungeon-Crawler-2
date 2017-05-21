@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Dungeon/Floor_Tile_1.png</SourceFile>
-  <SourceTime>2017-05-03T12:55:34.8056455+02:00</SourceTime>
-  <DestFile>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Textures/TileSet/Dungeon/Floor_Tile_1.xnb</DestFile>
-  <DestTime>2017-05-19T17:12:55.6760461+02:00</DestTime>
+  <SourceFile>C:/Users/anton/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Dungeon/Floor_Tile_1.png</SourceFile>
+  <SourceTime>2017-05-03T13:21:32.9717251+02:00</SourceTime>
+  <DestFile>C:/Users/anton/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Textures/TileSet/Dungeon/Floor_Tile_1.xnb</DestFile>
+  <DestTime>2017-05-21T11:40:50.6944359+02:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
+  <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2016-03-30T08:36:08+02:00</ProcessorTime>
+  <ProcessorTime>2017-03-01T16:05:36+01:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>
