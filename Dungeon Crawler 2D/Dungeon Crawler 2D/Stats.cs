@@ -214,7 +214,7 @@ namespace Dungeon_Crawler_2D
         {
             foreach(Effect e in activeEffects)
             {
-                if (e.effect == effect)
+                if (e.effect == effect && e.timer > 0)
                 {
                     return true;
                 }
@@ -231,7 +231,6 @@ namespace Dungeon_Crawler_2D
                     if (e.timer <= 0)
                     {
                         e.timer = 0;
-                        
                     }
                     return e.timer;                   
                 }

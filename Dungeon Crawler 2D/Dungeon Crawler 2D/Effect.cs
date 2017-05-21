@@ -43,7 +43,10 @@ namespace Dungeon_Crawler_2D
                         stats.ChangeStat(Stat.health, -power);
                     }
                 }
-                
+                if (effect == Effects.confusion)
+                {
+                    timer--;
+                }
             }
         }
         

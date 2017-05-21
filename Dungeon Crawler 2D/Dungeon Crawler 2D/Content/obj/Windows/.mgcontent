@@ -15,8 +15,6 @@
     <File>C:/Users/anton/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Poison.png</File>
     <File>C:/Users/anton/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Shield_Icon.png</File>
     <File>C:/Users/anton/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/SuperAttack_Icon.png</File>
-    <File>C:/Users/anton/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Player_Battle.png</File>
-    <File>C:/Users/anton/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Zombie_Enemy.png</File>
     <File>C:/Users/anton/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Player_Animation/Walking_Down.png</File>
     <File>C:/Users/anton/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Player_Animation/Walking_Left.png</File>
     <File>C:/Users/anton/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Player_Animation/Walking_Right.png</File>
@@ -83,5 +81,8 @@
     <File>C:/Users/anton/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Castle/Wall_Vertical.png</File>
     <File>C:/Users/anton/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Castle/Enemy_Tile_1.png</File>
     <File>C:/Users/anton/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Castle/Enemy_Tile_2.png</File>
+    <File>C:/Users/anton/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Animations/Attack_Animation.png</File>
+    <File>C:/Users/anton/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Animations/Confusion_Animation.png</File>
+    <File>C:/Users/anton/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Animations/Shield_Animation.png</File>
   </SourceFiles>
 </SourceFileCollection>

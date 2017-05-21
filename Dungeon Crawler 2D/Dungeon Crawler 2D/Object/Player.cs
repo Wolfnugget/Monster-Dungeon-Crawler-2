@@ -79,14 +79,14 @@ namespace Dungeon_Crawler_2D.Object
 
         }
 
-        public bool ChoseAbility(Enemy enemy)
+        public TurnOrder ChoseAbility(Enemy enemy)
         {
             previousState = currentState;
             currentState = Keyboard.GetState();
             if (currentState.IsKeyDown(Keys.Q) && previousState.IsKeyUp(Keys.Q))
             {
                 abilities.Ability(enemy, this, playerAbilities[0]);
-                return false;
+                return TurnOrder.enemy;
             }
             else if (currentState.IsKeyDown(Keys.W) && previousState.IsKeyUp(Keys.W))
             {
@@ -94,14 +94,14 @@ namespace Dungeon_Crawler_2D.Object
                 {
                     abilities.Ability(enemy, this, playerAbilities[1]);
                     stats.ChangeStat(Stat.mana, -abilities.CheckCost(UsedAbility.Magic));
-                    return false;
+                    return TurnOrder.enemy;
                 }
-                return true;
+                return TurnOrder.player;
             }
             else if (currentState.IsKeyDown(Keys.E) && previousState.IsKeyUp(Keys.E))
             {
                 abilities.Ability(enemy, this, playerAbilities[2]);
-                return false;
+                return TurnOrder.enemy;
             }
             else if (currentState.IsKeyDown(Keys.R) && previousState.IsKeyUp(Keys.R))
             {
@@ -109,11 +109,11 @@ namespace Dungeon_Crawler_2D.Object
                 {
                     abilities.Ability(enemy, this, playerAbilities[3]);
                     stats.ChangeStat(Stat.mana, -abilities.CheckCost(UsedAbility.PoisonHit));
-                    return false;
+                    return TurnOrder.enemy;
                 }
-                return true;
+                return TurnOrder.player;
             }
-            else return true;
+            else return TurnOrder.player;
         }
 
 

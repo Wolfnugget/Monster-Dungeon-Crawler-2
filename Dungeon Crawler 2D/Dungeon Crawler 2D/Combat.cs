@@ -11,6 +11,11 @@ using Microsoft.Xna.Framework.Content;
 
 namespace Dungeon_Crawler_2D
 {
+    public enum TurnOrder
+    {
+        player, enemy, function, animation, conclusion
+    }
+
     class Combat
     {
         public Object.Player player;
@@ -21,8 +26,9 @@ namespace Dungeon_Crawler_2D
         SpriteEffects spriteFx;
         double frameTimer, frameInterval;
         protected Rectangle srcRec = new Rectangle(0, 0, 16, 16);
-
-        bool playerTurn, enemyTurn;
+        TurnOrder currentTurn;
+        Random rand = new Random();
+        
 
         public Combat(Object.Player player, TextureManager textures, HUDManager hud)
         {
@@ -38,23 +44,56 @@ namespace Dungeon_Crawler_2D
         {
             hud.turnEvents = "Plan your move...";
             enemy = new Enemy(textures, type, player);
-            playerTurn = true;
-            enemyTurn = true;
+            currentTurn = TurnOrder.player;
         }
 
         public void Update()
         {
-            if (playerTurn == true)
+            if (currentTurn == TurnOrder.player)
             {
-                playerTurn = player.ChoseAbility(enemy);
+                currentTurn = player.ChoseAbility(enemy);
             }
-            else if (enemyTurn == true && playerTurn == false)
+            
+            if (currentTurn == TurnOrder.enemy)
             {
                 enemy.Update();
-                enemyTurn = false;
+                currentTurn = TurnOrder.function;
             }
-            else
+            if (currentTurn == TurnOrder.function)
             {
+
+                #region Confusion
+                if (player.stats.CheckEffects(Effects.confusion) == true)
+                {
+                    if (rand.Next(0, 100) <= 70 - player.stats.CheckStat(Stat.luck))
+                    {
+                        player.stats.ChangeStat(Stat.health, -player.abilities.power);
+                        if (player.stats.CheckStat(Stat.health) <= 0)
+                        {
+                            hud.CombatText(7, enemy);
+                            BattleResult();
+                        }
+                        player.abilities.usedAbility = UsedAbility.Miss;
+                        hud.CombatText(1000101010, enemy);
+                    }
+                }
+                if (enemy.stats.CheckEffects(Effects.confusion) == true)
+                {
+                    if (rand.Next(0, 100) <= 70 - enemy.stats.CheckStat(Stat.luck))
+                    {
+                        enemy.stats.ChangeStat(Stat.health, -enemy.ability.power);
+                        if (enemy.stats.CheckStat(Stat.health) <= 0)
+                        {
+                            hud.CombatText(5, enemy);
+                            BattleResult();
+                        }
+                        enemy.ability.usedAbility = UsedAbility.Miss;
+                        hud.CombatText(100010010, enemy);
+                    }
+                }
+                #endregion
+
+                #region nothingHappens
                 if (player.abilities.usedAbility == UsedAbility.Dodge || enemy.ability.usedAbility == UsedAbility.Dodge)
                 {
                     hud.CombatText(0, enemy);
@@ -75,6 +114,9 @@ namespace Dungeon_Crawler_2D
                 {
                     hud.CombatText(0, enemy);
                 }
+                #endregion
+
+                #region someone Defends
                 else if (player.abilities.usedAbility == UsedAbility.Defence && enemy.ability.usedAbility != UsedAbility.Miss)
                 {
                     int damage = enemy.ability.power - player.abilities.power;
@@ -96,8 +138,10 @@ namespace Dungeon_Crawler_2D
                         hud.CombatText(2, enemy);
                     }
                     else { hud.CombatText(10001, enemy); }
-
                 }
+                #endregion
+
+                #region Only One Attacks
                 else if (player.abilities.usedAbility == UsedAbility.Miss)
                 {
                     player.stats.ChangeStat(Stat.health, -enemy.ability.power);
@@ -110,6 +154,9 @@ namespace Dungeon_Crawler_2D
                     AddEffect(player.abilities.effect, UsedBy.player);
                     hud.CombatText(4, enemy);
                 }
+                #endregion
+
+                #region Both Attack
                 else if (player.stats.CheckStat(Stat.speed) >= enemy.stats.CheckStat(Stat.speed))
                 {
                     enemy.stats.ChangeStat(Stat.health, -player.abilities.power);
@@ -136,10 +183,19 @@ namespace Dungeon_Crawler_2D
                     AddEffect(player.abilities.effect, UsedBy.player);
                     hud.CombatText(8, enemy);
                 }
+                #endregion
 
                 player.stats.UpdateEffects();
                 enemy.stats.UpdateEffects();
+            }
 
+            if (currentTurn == TurnOrder.animation)
+            {
+
+            }
+
+            if (currentTurn == TurnOrder.conclusion)
+            {
                 if (player.stats.CheckStat(Stat.health) <= 0)
                 {
                     BattleResult();
@@ -162,8 +218,7 @@ namespace Dungeon_Crawler_2D
 
         public void NextTurn()
         {
-            playerTurn = true;
-            enemyTurn = true;
+            currentTurn = TurnOrder.player;
         }
 
         public void BattleResult()
