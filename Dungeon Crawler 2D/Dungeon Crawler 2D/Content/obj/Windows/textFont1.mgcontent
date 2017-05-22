@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-<<<<<<< HEAD
   <SourceFile>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/textFont1.spritefont</SourceFile>
   <SourceTime>2017-05-03T22:01:43.2880284+02:00</SourceTime>
   <DestFile>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/textFont1.xnb</DestFile>
-  <DestTime>2017-05-22T22:16:42.8753349+02:00</DestTime>
-=======
-  <SourceFile>C:/Users/Robin Hedenvang/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/textFont1.spritefont</SourceFile>
-  <SourceTime>2017-05-22T10:44:11.2873754+02:00</SourceTime>
-  <DestFile>C:/Users/Robin Hedenvang/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/textFont1.xnb</DestFile>
-  <DestTime>2017-05-22T21:28:35.6335109+02:00</DestTime>
->>>>>>> origin/master
+  <DestTime>2017-05-22T22:31:01.2581192+02:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
