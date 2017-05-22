@@ -631,7 +631,7 @@ namespace Dungeon_Crawler_2D.World
                         }
                         else
                         {
-                            return TileTexture.Wall_Bottom_Edge;
+                            return TileTexture.Single_Corner_Bottom;
                         }
                     }
                     else if (wallRegions.Contains(dungeonBP[y, x + 1]))
@@ -653,7 +653,7 @@ namespace Dungeon_Crawler_2D.World
                         }
                         else
                         {
-                            return TileTexture.Wall_Left_Edge;
+                            return TileTexture.Single_Corner_Left;
                         }
                     }
                     else if (wallRegions.Contains(dungeonBP[y + 1, x]))
@@ -664,12 +664,12 @@ namespace Dungeon_Crawler_2D.World
                         }
                         else
                         {
-                            return TileTexture.Wall_Top_Edge;
+                            return TileTexture.Single_Corner_Top;
                         }
                     }
                     else
                     {
-                        return TileTexture.Wall_Right_Edge;
+                        return TileTexture.Single_Corner_Right;
                     }
                 }
             }

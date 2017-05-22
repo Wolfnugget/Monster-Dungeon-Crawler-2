@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Alfred Bengtsson/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Confusion_Icon.png</SourceFile>
-  <SourceTime>2017-05-22T14:25:34.2769648+02:00</SourceTime>
-  <DestFile>C:/Users/Alfred Bengtsson/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Battle/Icons/Confusion_Icon.xnb</DestFile>
-  <DestTime>2017-05-22T14:33:25.7926691+02:00</DestTime>
+  <SourceFile>C:/Users/Robin Hedenvang/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Confusion_Icon.png</SourceFile>
+  <SourceTime>2017-05-22T10:44:10.1648651+02:00</SourceTime>
+  <DestFile>C:/Users/Robin Hedenvang/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Battle/Icons/Confusion_Icon.xnb</DestFile>
+  <DestTime>2017-05-22T14:57:30.9004078+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
