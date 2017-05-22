@@ -55,7 +55,7 @@ namespace Dungeon_Crawler_2D.Object
         {
             active = true;
             activationStage = 0;
-            startingFrame.Y = 0;
+            startingFrame.Y = 2;
             activationTimer = 0.3f;
         }
 

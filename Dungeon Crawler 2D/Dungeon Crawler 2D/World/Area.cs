@@ -33,8 +33,8 @@ namespace Dungeon_Crawler_2D.World
         {
             this.textures = textures;
 
-            renderDistanceX = 20;
-            renderDistanceY = 15;
+            renderDistanceX = 10;
+            renderDistanceY = 10;
 
             rand = new Random();
 
