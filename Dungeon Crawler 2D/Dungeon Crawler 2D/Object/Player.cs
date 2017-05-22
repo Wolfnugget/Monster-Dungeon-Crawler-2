@@ -74,11 +74,6 @@ namespace Dungeon_Crawler_2D.Object
             }
         }
 
-        public void CombatDraw(SpriteBatch spriteBatch)
-        {
-
-        }
-
         public TurnOrder ChoseAbility(Enemy enemy)
         {
             previousState = currentState;
@@ -115,7 +110,6 @@ namespace Dungeon_Crawler_2D.Object
             }
             else return TurnOrder.player;
         }
-
 
         public void GetAbilities()
         {

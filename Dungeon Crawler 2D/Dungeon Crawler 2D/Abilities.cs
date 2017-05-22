@@ -26,11 +26,12 @@ namespace Dungeon_Crawler_2D
         public Effects effect;
         public int power;
         private Random rand = new Random();
-        protected int startingFrame, frame, frames, frameSize;
+        protected int frame;
         SpriteEffects spriteFx;
-        double frameTimer, frameInterval;
         protected Rectangle srcRec = new Rectangle(0, 0, 16, 16);
         protected TextureManager textures;
+        Texture2D texture;
+        Vector2 position;
 
         public Abilities(UsedBy usedBy, TextureManager textures)
         {
@@ -247,28 +248,50 @@ namespace Dungeon_Crawler_2D
             }
         }
 
-        public void BattleAnimation(SpriteBatch spriteBatch, GameTime gameTime, UsedBy by, UsedAbility ability)
+        public void BattleAnimation(GameTime gameTime)
         {
-            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
+            srcRec.X = (frame % 4) * 16;
+            frame++;
+        }
 
+        public void Draw(SpriteBatch spriteBatch, UsedBy by)
+        {
             if (by == UsedBy.enemy)
             {
                 spriteFx = SpriteEffects.FlipHorizontally;
+                position = new Vector2(700, 300);
             }
-            else { spriteFx = SpriteEffects.None; }
+            else { position = new Vector2(325, 300); spriteFx = SpriteEffects.None; }
 
-            if (frameTimer <= 0)
+            switch (usedAbility)
             {
-                frameTimer = frameInterval;
-                frame++;
-                srcRec.X = (frame % 3) * 16;
+                case UsedAbility.Hit:
+                    texture = textures.hitAnimation;
+                    break;
+                case UsedAbility.Magic:
+                    texture = textures.magicAnimation;
+                    break;
+                case UsedAbility.Defence:
+                    texture = textures.defenceAnimation;
+                    spriteFx = SpriteEffects.None;
+                    break;
+                case UsedAbility.Dodge:
+                    texture = textures.dodgeAnimation;
+                    break;
+                case UsedAbility.PoisonHit:
+                    texture = textures.poisonHitAnimation;
+                    break;
+                case UsedAbility.Miss:
+                    texture = textures.missAnimation;
+                    break;
             }
-        }
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(textures.playerSpriteSheet, Vector2.Zero, srcRec, Color.White, 0,
-                new Vector2(), 1, spriteFx, 1);
+            try
+            {
+                spriteBatch.Draw(texture, position, srcRec, Color.White, 0,
+                    new Vector2(), 10, spriteFx, 1);
+            }
+            catch { }
         }
     }
 }

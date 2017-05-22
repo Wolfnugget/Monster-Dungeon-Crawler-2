@@ -23,6 +23,9 @@ namespace Dungeon_Crawler_2D
         public Abilities ability;
         Object.Player player;
         public EnemyType theEnemy;
+        protected int frame;
+        protected Rectangle srcRec = new Rectangle(0, 0, 16, 16);
+        Texture2D texture;
 
         public Enemy(TextureManager textures, EnemyType theEnemy, Object.Player player)
         {
@@ -161,7 +164,28 @@ namespace Dungeon_Crawler_2D
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            switch (theEnemy)
+            {
+                case EnemyType.zombie:
+                    texture = textures.zombie;
+                    break;
+                case EnemyType.warlock:
+                    texture = textures.warlock;
+                    break;
+                case EnemyType.boss:
+                    texture = textures.demon;
+                    break;
+            }
+            spriteBatch.Draw(texture, new Vector2(800, 250), srcRec, Color.White, 0,
+                new Vector2(), 16, SpriteEffects.None, 1);
+        }
 
+        public void BattleAnimation(GameTime gameTime)
+        {
+            frame++;
+            srcRec.X = (frame % 4) * 16;
+
+            ability.BattleAnimation(gameTime);
         }
 
         public void GiveStats()

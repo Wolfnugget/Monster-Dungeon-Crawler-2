@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Dungeon_Crawler_2D
 {
@@ -236,6 +239,28 @@ namespace Dungeon_Crawler_2D
                 }
             }
             return 0;
+        }
+
+        public void AnimateEffect(Effects effect)
+        {
+            foreach (Effect e in activeEffects)
+            {
+                if (e.effect == effect)
+                {
+                    e.Animation();
+                }
+            }
+        }
+
+        public void DrawEffect(SpriteBatch spriteBatch, Effects effect, UsedBy on)
+        {
+            foreach (Effect e in activeEffects)
+            {
+                if (e.effect == effect)
+                {
+                    e.Draw(spriteBatch, on);
+                }
+            }
         }
 
     }

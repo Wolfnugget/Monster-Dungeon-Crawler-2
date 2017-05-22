@@ -12,9 +12,13 @@ namespace Dungeon_Crawler_2D
     class Effect
     {
         TextureManager textures;
+        Texture2D texture;
         Stats stats;
         public Effects effect;
         public int timer, power;
+        protected int frame;
+        protected Rectangle srcRec = new Rectangle(0, 0, 16, 16);
+        
         
         public Effect(TextureManager textures, Effects effect, int timer, Stats stats, int power)
         {
@@ -51,9 +55,43 @@ namespace Dungeon_Crawler_2D
         }
         
         // if there is a animation for the effect it will happen here
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, UsedBy on)
         {
+            Vector2 position;
+            if (on == UsedBy.enemy)
+            {
+                position = new Vector2(800, 150);
+            }
+            else { position = new Vector2(325, 200); }
 
+            switch (effect)
+            {
+                case Effects.poison:
+                    texture = textures.poison;
+                    break;
+                case Effects.bleed:
+                    texture = textures.bleed;
+                    break;
+                case Effects.confusion:
+                    texture = textures.confusion;
+                    break;
+                case Effects.none:
+                    texture = null;
+                    break;
+            }
+
+            try
+            {
+                spriteBatch.Draw(texture, position, srcRec, Color.White, 0,
+                new Vector2(), 8, SpriteEffects.None, 1);
+            }
+            catch   {  }
+        }
+
+        public void Animation()
+        {
+            frame++;
+            srcRec.X = (frame % 4) * 16;
         }
     }
 }

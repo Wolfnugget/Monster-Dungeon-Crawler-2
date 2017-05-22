@@ -110,11 +110,10 @@ namespace Dungeon_Crawler_2D
             else if (gameState == GameState.Battle)
             {
                 hud.Update(gameState);
-                combat.Update();
+                combat.Update(gameTime);
             }
 
             base.Update(gameTime);
-
         }
 
         protected override void Draw(GameTime gameTime)
@@ -145,7 +144,7 @@ namespace Dungeon_Crawler_2D
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null);
 
                 //OBS!! Skriv bara här om ni vill att det som ritas ut ska vara oberoende av kameran (tex healthbars eller poäng)
-                combat.Draw(spriteBatch);
+                combat.Draw(spriteBatch, gameTime);
 
                 spriteBatch.End();
             }

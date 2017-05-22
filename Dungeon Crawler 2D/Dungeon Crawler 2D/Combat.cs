@@ -22,22 +22,21 @@ namespace Dungeon_Crawler_2D
         public TextureManager textures;
         public Enemy enemy;
         private HUDManager hud;
-        protected int startingFrame, frame, frames, frameSize;
-        SpriteEffects spriteFx;
-        double frameTimer, frameInterval;
+        protected int frame;
         protected Rectangle srcRec = new Rectangle(0, 0, 16, 16);
         TurnOrder currentTurn;
+        bool confusedPlayer, confusedEnemy;
+        Effects effectPlayer, effectEnemy;
         Random rand = new Random();
-        int animationTimer;
+        int animationTimer, animationTimer2;
 
         public Combat(Object.Player player, TextureManager textures, HUDManager hud)
         {
             this.player = player;
             this.textures = textures;
             this.hud = hud;
-            frameTimer = 100;
-            frameInterval = 100;
             animationTimer = 0;
+            animationTimer2 = 0;
         }
 
         public void StartCombat(EnemyType type)
@@ -45,9 +44,11 @@ namespace Dungeon_Crawler_2D
             hud.turnEvents = "Plan your move...";
             enemy = new Enemy(textures, type, player);
             currentTurn = TurnOrder.player;
+            confusedPlayer = false;
+            confusedEnemy = false;
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             if (currentTurn == TurnOrder.player)
             {
@@ -74,6 +75,7 @@ namespace Dungeon_Crawler_2D
                             BattleResult();
                         }
                         player.abilities.usedAbility = UsedAbility.Miss;
+                        confusedPlayer = true;
                         hud.CombatText(9, enemy);
                     }
                 }
@@ -88,6 +90,7 @@ namespace Dungeon_Crawler_2D
                             BattleResult();
                         }
                         enemy.ability.usedAbility = UsedAbility.Miss;
+                        confusedEnemy = true;
                         hud.CombatText(10, enemy);
                     }
                 }
@@ -124,6 +127,7 @@ namespace Dungeon_Crawler_2D
                     {
                         player.stats.ChangeStat(Stat.health, -damage);
                         AddEffect(enemy.ability.effect, UsedBy.enemy);
+                        effectPlayer = enemy.ability.effect;
                         hud.CombatText(1, enemy);
                     }
                     else{ hud.CombatText(13, enemy);  }
@@ -135,6 +139,7 @@ namespace Dungeon_Crawler_2D
                     {
                         enemy.stats.ChangeStat(Stat.health, -damage);
                         AddEffect(player.abilities.effect, UsedBy.player);
+                        effectEnemy = player.abilities.effect;
                         hud.CombatText(2, enemy);
                     }
                     else { hud.CombatText(14, enemy); }
@@ -146,12 +151,14 @@ namespace Dungeon_Crawler_2D
                 {
                     player.stats.ChangeStat(Stat.health, -enemy.ability.power);
                     AddEffect(enemy.ability.effect, UsedBy.enemy);
+                    effectPlayer = enemy.ability.effect;
                     hud.CombatText(3, enemy);
                 }
                 else if (enemy.ability.usedAbility == UsedAbility.Miss)
                 {
                     enemy.stats.ChangeStat(Stat.health, -player.abilities.power);
                     AddEffect(player.abilities.effect, UsedBy.player);
+                    effectEnemy = player.abilities.effect;
                     hud.CombatText(4, enemy);
                 }
                 #endregion
@@ -166,8 +173,10 @@ namespace Dungeon_Crawler_2D
                         BattleResult();
                     }
                     AddEffect(player.abilities.effect, UsedBy.player);
+                    effectEnemy = player.abilities.effect;
                     player.stats.ChangeStat(Stat.health, -enemy.ability.power);
                     AddEffect(enemy.ability.effect, UsedBy.enemy);
+                    effectPlayer = enemy.ability.effect;
                     hud.CombatText(6, enemy);
                 }
                 else
@@ -179,8 +188,10 @@ namespace Dungeon_Crawler_2D
                         BattleResult();
                     }
                     AddEffect(enemy.ability.effect, UsedBy.enemy);
+                    effectPlayer = enemy.ability.effect;
                     enemy.stats.ChangeStat(Stat.health, -player.abilities.power);
                     AddEffect(player.abilities.effect, UsedBy.player);
+                    effectEnemy = player.abilities.effect;
                     hud.CombatText(8, enemy);
                 }
                 #endregion
@@ -193,10 +204,19 @@ namespace Dungeon_Crawler_2D
 
             if (currentTurn == TurnOrder.animation)
             {
-                if (animationTimer == 100)
+                if (animationTimer == 10)
                 {
-                    currentTurn = TurnOrder.conclusion;
+                    enemy.stats.AnimateEffect(effectEnemy);
+                    player.stats.AnimateEffect(effectPlayer);
+                    enemy.BattleAnimation(gameTime);
+                    PlayerAnimation(gameTime);
+                    if (animationTimer2 == 4)
+                    {
+                        currentTurn = TurnOrder.conclusion;
+                        animationTimer2 = 0;
+                    }
                     animationTimer = 0;
+                    animationTimer2++;
                 }
                 animationTimer++;
             }
@@ -216,11 +236,19 @@ namespace Dungeon_Crawler_2D
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             hud.DrawBattle(spriteBatch, this);
             enemy.Draw(spriteBatch);
-            player.CombatDraw(spriteBatch);
+            spriteBatch.Draw(textures.playerBattleAnimations, new Vector2(125, 250), srcRec, Color.White, 0,
+                new Vector2(), 16, SpriteEffects.None, 1);
+            if (currentTurn == TurnOrder.animation)
+            {
+                player.abilities.Draw(spriteBatch, UsedBy.player);
+                player.stats.DrawEffect(spriteBatch, effectPlayer, UsedBy.player);
+                enemy.ability.Draw(spriteBatch, UsedBy.enemy);
+                enemy.stats.DrawEffect(spriteBatch, effectEnemy, UsedBy.enemy);
+            }
         }
 
         public void NextTurn()
@@ -254,26 +282,11 @@ namespace Dungeon_Crawler_2D
             Event.Invoke(this, e);
         }
 
-        public void BattleAnimation(SpriteBatch spriteBatch, GameTime gameTime, UsedBy by, UsedAbility ability)
+        public void PlayerAnimation(GameTime gameTime)
         {
-            frameTimer -= gameTime.ElapsedGameTime.TotalMilliseconds;
-            
-            if (by == UsedBy.enemy)
-            {
-                spriteFx = SpriteEffects.FlipHorizontally;
-            }
-            else { spriteFx = SpriteEffects.None; }
-
-            if (frameTimer<= 0)
-            {
-                frameTimer = frameInterval;
-                frame++;
-                srcRec.X = (frame % 3) * 16;
-            }
-
-
-            spriteBatch.Draw(textures.playerSpriteSheet, Vector2.Zero, srcRec, Color.White, 0, 
-                new Vector2(), 1, spriteFx, 1);
+            frame++;
+            srcRec.X = (frame % 4) * 16;
+            player.abilities.BattleAnimation(gameTime);
         }
 
         public void AddEffect(Effects effect, UsedBy user)
