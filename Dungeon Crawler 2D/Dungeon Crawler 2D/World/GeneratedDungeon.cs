@@ -600,12 +600,82 @@ namespace Dungeon_Crawler_2D.World
                             {
                                 if (wallRegions.Contains(dungeonBP[y, x - 1]))
                                 {
-                                    if (wallRegions.Contains(dungeonBP[y - 1, x - 1])
-                                        && wallRegions.Contains(dungeonBP[y + 1, x - 1])
-                                        && wallRegions.Contains(dungeonBP[y + 1, x + 1])
-                                        && wallRegions.Contains(dungeonBP[y - 1, x + 1]))
+                                    if (wallRegions.Contains(dungeonBP[y - 1, x - 1]))
                                     {
-                                        return TileTexture.Tex_Between_Walls;
+                                        if (wallRegions.Contains(dungeonBP[y - 1, x + 1]))
+                                        {
+                                            if (wallRegions.Contains(dungeonBP[y + 1, x + 1]))
+                                            {
+                                                if (wallRegions.Contains(dungeonBP[y + 1, x - 1]))
+                                                {
+                                                    return TileTexture.Tex_Between_Walls;
+                                                }
+                                                else
+                                                {
+                                                    return TileTexture.Wall_Corner_Top_Right;
+                                                }
+                                            }
+                                            else if (wallRegions.Contains(dungeonBP[y + 1, x - 1]))
+                                            {
+                                                return TileTexture.Wall_Corner_Top_Left;
+                                            }
+                                            else
+                                            {
+                                                return TileTexture.Wall_Horizontal;
+                                            }
+                                        }
+                                        else if (wallRegions.Contains(dungeonBP[y + 1, x + 1]))
+                                        {
+                                            if (wallRegions.Contains(dungeonBP[y + 1, x - 1]))
+                                            {
+                                                return TileTexture.Wall_Corner_Bottom_Left;
+                                            }
+                                            else
+                                            {
+                                                return TileTexture.Cross_Wall;
+                                            }
+                                        }
+                                        else if (wallRegions.Contains(dungeonBP[y + 1, x - 1]))
+                                        {
+                                            return TileTexture.Wall_Vertical;
+                                        }
+                                        else
+                                        {
+                                            return TileTexture.Wall_Corner_Bottom_Right;
+                                        }
+                                    }
+                                    else if (wallRegions.Contains(dungeonBP[y - 1, x + 1]))
+                                    {
+                                        if (wallRegions.Contains(dungeonBP[y + 1, x + 1]))
+                                        {
+                                            if (wallRegions.Contains(dungeonBP[y + 1, x - 1]))
+                                            {
+                                                return TileTexture.Wall_Corner_Bottom_Right;
+                                            }
+                                            else
+                                            {
+                                                return TileTexture.Wall_Vertical;
+                                            }
+                                        }
+                                        else if (wallRegions.Contains(dungeonBP[y + 1, x - 1]))
+                                        {
+                                            return TileTexture.Cross_Wall;
+                                        }
+                                        else
+                                        {
+                                            return TileTexture.Cross_Wall;
+                                        }
+                                    }
+                                    else if (wallRegions.Contains(dungeonBP[y + 1, x + 1]))
+                                    {
+                                        if (wallRegions.Contains(dungeonBP[y + 1, x - 1]))
+                                        {
+                                            return TileTexture.Wall_Horizontal;
+                                        }
+                                        else
+                                        {
+                                            return TileTexture.Cross_Wall;
+                                        }
                                     }
                                     else
                                     {
