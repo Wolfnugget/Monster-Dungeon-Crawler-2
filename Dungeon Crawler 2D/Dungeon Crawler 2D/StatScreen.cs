@@ -46,23 +46,23 @@ namespace Dungeon_Crawler_2D
             if (showSummary == true && Keyboard.GetState().IsKeyDown(Keys.Space))
             {
                 showSummary = false;
-                GameSettings.gameState = GameSettings.GameState.Explore;
+                GameSettings.gameState = GameState.Explore;
             }
 
             //Inventory-knappen
             if (currentState.IsKeyDown(Keys.Q) && previousState.IsKeyUp(Keys.Q) && showSummary == false)
             {
-                if (GameSettings.gameState == GameSettings.GameState.Explore)
+                if (GameSettings.gameState == GameState.Explore)
                 {
-                    GameSettings.gameState = GameSettings.GameState.Inventory;
+                    GameSettings.gameState = GameState.Inventory;
                 }
-                else if (GameSettings.gameState == GameSettings.GameState.Inventory)
+                else if (GameSettings.gameState == GameState.Inventory)
                 {
-                    GameSettings.gameState = GameSettings.GameState.Explore;
+                    GameSettings.gameState = GameState.Explore;
                 }
             }
 
-            if (GameSettings.gameState == GameSettings.GameState.Inventory && showSummary == false)
+            if (GameSettings.gameState == GameState.Inventory && showSummary == false)
             {
                 statScreenRect = new Rectangle((hud.windowWidth / 2) - ((hud.sideBarWidth * 3) / 2),
                 (hud.windowHeight / 2) - (hud.sideBarWidth * 2), hud.sideBarWidth * 3, hud.sideBarWidth * 2);

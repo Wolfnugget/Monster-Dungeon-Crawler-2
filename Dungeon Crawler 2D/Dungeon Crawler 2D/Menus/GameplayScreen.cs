@@ -61,7 +61,7 @@ namespace Dungeon_Crawler_2D.Menus
         {
             base.Update(gameTime);
 
-            if (GameSettings.gameState == GameSettings.GameState.Explore)
+            if (GameSettings.gameState == GameState.Explore)
             {
                 player.Update(gameTime);
                 world.Update(gameTime, player.position);
@@ -69,12 +69,12 @@ namespace Dungeon_Crawler_2D.Menus
                 hud.statScreen.Update();
                 cam.SetPosition(player.position);
             }
-            else if (GameSettings.gameState == GameSettings.GameState.Battle)
+            else if (GameSettings.gameState == GameState.Battle)
             {
                 hud.Update();
                 combat.Update(gameTime);
             }
-            else if (GameSettings.gameState == GameSettings.GameState.Inventory)
+            else if (GameSettings.gameState == GameState.Inventory)
             {
                 hud.Update();
                 hud.statScreen.Update();
@@ -84,7 +84,7 @@ namespace Dungeon_Crawler_2D.Menus
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
 
-            if (GameSettings.gameState == GameSettings.GameState.Explore)
+            if (GameSettings.gameState == GameState.Explore)
             {
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.GetTransform());
 
@@ -102,7 +102,7 @@ namespace Dungeon_Crawler_2D.Menus
                 spriteBatch.End();
             }
 
-            else if (GameSettings.gameState == GameSettings.GameState.Battle)
+            else if (GameSettings.gameState == GameState.Battle)
             {
 
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.GetTransform());
@@ -119,7 +119,7 @@ namespace Dungeon_Crawler_2D.Menus
                 spriteBatch.End();
             }
 
-            else if (GameSettings.gameState == GameSettings.GameState.Inventory)
+            else if (GameSettings.gameState == GameState.Inventory)
             {
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.GetTransform());
 
@@ -198,7 +198,7 @@ namespace Dungeon_Crawler_2D.Menus
             }
             else if (args.EventType == MapEventType.StartCombat)
             {
-                GameSettings.gameState = GameSettings.GameState.Battle;
+                GameSettings.gameState = GameState.Battle;
                 combat.StartCombat(args.enemy);
             }
             else if (args.EventType == MapEventType.PotionPickup)
@@ -210,9 +210,13 @@ namespace Dungeon_Crawler_2D.Menus
         private void HandleCombat(BattleEvensArgs args)
         {
             hud.statScreen.showSummary = true;
-            if (hud.battleWon == true)
+            if (args.result == EndCombat.Won)
             {
-                GameSettings.gameState = GameSettings.GameState.Inventory;
+                GameSettings.gameState = GameState.Inventory;
+            }
+            else if (args.result == EndCombat.Lost)
+            {
+
             }
 
             if (args.enemyType == EnemyType.boss)

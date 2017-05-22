@@ -299,7 +299,7 @@ namespace Dungeon_Crawler_2D
             #endregion
 
             #region StatpointsPopup
-            if (player.stats.upgrade > 0 && GameSettings.gameState == GameSettings.GameState.Explore)
+            if (player.stats.upgrade > 0 && GameSettings.gameState == GameState.Explore)
             { 
                 
                 Vector2 textSizeUpgradeNotification = textures.comicSans.MeasureString("Q: Statpoints ready for usage!");
@@ -310,7 +310,7 @@ namespace Dungeon_Crawler_2D
                         0, originUpgradeNotification, 3, SpriteEffects.None, 0);
             }
 
-            if (GameSettings.gameState == GameSettings.GameState.Inventory && statScreen.showSummary == false)
+            if (GameSettings.gameState == GameState.Inventory && statScreen.showSummary == false)
             {
 
                 Vector2 textSizeUpgradeNotification = textures.comicSans.MeasureString("E: Apply Statpoints to selected Stat!");

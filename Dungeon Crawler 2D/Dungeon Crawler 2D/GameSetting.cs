@@ -8,17 +8,17 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Dungeon_Crawler_2D
 {
+    public enum GameState
+    {
+        Explore,
+        Battle,
+        Inventory
+    }
+
     public static class GameSettings
     {
         public static int windowHeight;
         public static int windowWidth;
-
-        public enum GameState
-        {
-            Explore,
-            Battle,
-            Inventory
-        }
 
         public static GameState gameState;
 
