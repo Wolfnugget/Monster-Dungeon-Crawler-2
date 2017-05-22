@@ -607,30 +607,6 @@
 /processorParam:TextureFormat=Color
 /build:Textures/TileSet/Castle/Boss_Tile.png
 
-#begin Textures/TileSet/Castle/Floor_Tile_1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Textures/TileSet/Castle/Floor_Tile_1.png
-
-#begin Textures/TileSet/Castle/Floor_Tile_2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Textures/TileSet/Castle/Floor_Tile_2.png
-
 #begin Textures/TileSet/Castle/Single_Corner.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -883,6 +859,18 @@
 /processorParam:TextureFormat=Color
 /build:Textures/TileSet/Dungeon/Wall_Corner_Top_Right.png
 
+#begin Textures/TileSet/Castle/Enemy_Tile.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/TileSet/Castle/Enemy_Tile.png
+
 #begin Textures/TileSet/Castle/Enemy_Tile_1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -895,7 +883,7 @@
 /processorParam:TextureFormat=Color
 /build:Textures/TileSet/Castle/Enemy_Tile_1.png
 
-#begin Textures/TileSet/Castle/Enemy_Tile_2.png
+#begin Textures/TileSet/Castle/Floor_Tile.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -905,5 +893,17 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Textures/TileSet/Castle/Enemy_Tile_2.png
+/build:Textures/TileSet/Castle/Floor_Tile.png
+
+#begin Textures/TileSet/Castle/Floor_Tile_1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Textures/TileSet/Castle/Floor_Tile_1.png
 
