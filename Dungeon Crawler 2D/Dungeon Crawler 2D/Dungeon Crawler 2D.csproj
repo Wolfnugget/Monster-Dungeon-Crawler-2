@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Combat.cs" />
+    <Compile Include="GameSetting.cs" />
     <Compile Include="HUDManager.cs" />
     <Compile Include="Abilities.cs" />
     <Compile Include="Camera2D.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Menus\Animation.cs" />
     <Compile Include="Menus\FadeAnimation.cs" />
     <Compile Include="Menus\FileManager.cs" />
+    <Compile Include="Menus\GameplayScreen.cs" />
     <Compile Include="Menus\GameScreen.cs" />
     <Compile Include="Menus\InputManager.cs" />
     <Compile Include="Menus\MenuManager.cs" />

@@ -90,6 +90,7 @@ namespace Dungeon_Crawler_2D.Menus
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Begin();
             if (image != null)
             {
                 origin = new Vector2(sourceRect.Width / 2, sourceRect.Height / 2);
@@ -100,6 +101,7 @@ namespace Dungeon_Crawler_2D.Menus
                 origin = new Vector2(font.MeasureString(text).X / 2, font.MeasureString(text).Y / 2);
                 spriteBatch.DrawString(font, text, position + origin, color * alpha, rotation, origin, scale, SpriteEffects.None, 0.0f);
             }
+            spriteBatch.End();
         }
     }
 }

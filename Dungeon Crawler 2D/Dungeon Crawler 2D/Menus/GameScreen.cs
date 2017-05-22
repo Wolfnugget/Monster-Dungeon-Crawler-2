@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+
 namespace Dungeon_Crawler_2D.Menus
 {
     public class GameScreen
@@ -18,7 +19,7 @@ namespace Dungeon_Crawler_2D.Menus
 
 
 
-        public virtual void LoadContent(ContentManager Content, InputManager inputManager)
+        public virtual void LoadContent(ContentManager Content, InputManager inputManager, GraphicsDevice graphicsDevice)
         {
             content = new ContentManager(Content.ServiceProvider, "Content");
             attributes = new List<List<string>>();
@@ -33,9 +34,15 @@ namespace Dungeon_Crawler_2D.Menus
             attributes.Clear();
             contents.Clear();
         }
-        public virtual void Update(GameTime gameTime) { }
+        public virtual void Update(GameTime gameTime)
+        {
 
-        public virtual void Draw(SpriteBatch spriteBatch) { }
+        }
+
+        public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+
+        }
 
     }
 }

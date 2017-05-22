@@ -21,9 +21,9 @@ namespace Dungeon_Crawler_2D.Menus
         FileManager fileManager;
         int imageNumber;
 
-        public override void LoadContent(ContentManager Content, InputManager inputManager)
+        public override void LoadContent(ContentManager Content, InputManager inputManager, GraphicsDevice graphicsDevice)
         {
-            base.LoadContent(Content, inputManager);
+            base.LoadContent(Content, inputManager, graphicsDevice);
             if (font == null)
                 font = this.content.Load<SpriteFont>("SplashFont");
 
@@ -80,7 +80,7 @@ namespace Dungeon_Crawler_2D.Menus
 
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
             fade[imageNumber].Draw(spriteBatch);
         }
