@@ -671,8 +671,8 @@ namespace Dungeon_Crawler_2D
             else
             {
                 int chunksize = 70;
-                int iDivision = chunksize;
                 int lastSpace = 0;
+                int rowNumber = 0;
                 int stringLength = turnEvents.Length;
                 Vector2 textSizeInfo;
                 Vector2 originInfo;
@@ -690,8 +690,9 @@ namespace Dungeon_Crawler_2D
                         originInfo = new Vector2(textSizeInfo.X * 0.5f, textSizeInfo.Y * 0.5f);
 
                         spriteBatch.DrawString(textures.comicSans, turnEvents.Substring(i, chunksize),
-                            new Vector2(topBarRect.X + (topBarRect.Width / 2), (topBarRect.Height / 3) + ((topBarRect.Height / 3) * ((i + lastSpace) / iDivision))),
+                            new Vector2(topBarRect.X + (topBarRect.Width / 2), (topBarRect.Height / 3) + ((topBarRect.Height / 3) * rowNumber)),
                             Color.Yellow, 0, originInfo, textScale, SpriteEffects.None, 0);
+                        rowNumber += 1;
                     }
                     else
                     {
@@ -699,9 +700,10 @@ namespace Dungeon_Crawler_2D
                         originInfo = new Vector2(textSizeInfo.X * 0.5f, textSizeInfo.Y * 0.5f);
 
                         spriteBatch.DrawString(textures.comicSans, turnEvents.Substring(i, chunksize - lastSpace),
-                            new Vector2(topBarRect.X + (topBarRect.Width / 2), (topBarRect.Height / 3) + ((topBarRect.Height / 3) * (i / iDivision))),
+                            new Vector2(topBarRect.X + (topBarRect.Width / 2), (topBarRect.Height / 3) + ((topBarRect.Height / 3) * rowNumber)),
                             Color.Yellow, 0, originInfo, textScale, SpriteEffects.None, 0);
                         i -= lastSpace;
+                        rowNumber += 1;
                     }
                 }
             }
