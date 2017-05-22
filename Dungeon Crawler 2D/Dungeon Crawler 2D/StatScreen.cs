@@ -105,7 +105,7 @@ namespace Dungeon_Crawler_2D
                     if (new Rectangle(statScreenRect.X + ((statScreenRect.Width / 7) * 5),
                     statScreenRect.Y + (statScreenRect.Height / 10),
                     statScreenRect.Width / 7,
-                    statScreenRect.Width / 7).Contains(selectionCoords.X, selectionCoords.Y) && currentState.IsKeyDown(Keys.E) && previousState.IsKeyUp(Keys.R))
+                    statScreenRect.Width / 7).Contains(selectionCoords.X, selectionCoords.Y) && currentState.IsKeyDown(Keys.E) && previousState.IsKeyUp(Keys.E))
                     {
                         hud.player.stats.upgrade -= 1;
                         hud.player.stats.ChangeStat(Stat.accuracy, 1);
@@ -135,7 +135,7 @@ namespace Dungeon_Crawler_2D
                     if (new Rectangle(statScreenRect.X + ((statScreenRect.Width / 7) * 5),
                     statScreenRect.Y + (statScreenRect.Height / 2),
                     statScreenRect.Width / 7,
-                    statScreenRect.Width / 7).Contains(selectionCoords.X, selectionCoords.Y) && currentState.IsKeyDown(Keys.R) && previousState.IsKeyUp(Keys.E))
+                    statScreenRect.Width / 7).Contains(selectionCoords.X, selectionCoords.Y) && currentState.IsKeyDown(Keys.E) && previousState.IsKeyUp(Keys.E))
                     {
                         hud.player.stats.upgrade -= 1;
                         hud.player.stats.ChangeStat(Stat.luck, 1);

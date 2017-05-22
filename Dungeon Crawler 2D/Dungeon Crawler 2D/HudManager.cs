@@ -297,6 +297,30 @@ namespace Dungeon_Crawler_2D
                 statBarWidth), Color.GhostWhite, 0, originXpLevel, 3, SpriteEffects.None, 0);
 
             #endregion
+
+            #region StatpointsPopup
+            if (player.stats.upgrade > 0 && GameSettings.gameState == GameSettings.GameState.Explore)
+            { 
+                
+                Vector2 textSizeUpgradeNotification = textures.comicSans.MeasureString("Q: StatPoints ready for upgrading!");
+                Vector2 originUpgradeNotification = new Vector2(textSizeUpgradeNotification.X * 0.5f, 0);
+
+                spriteBatch.DrawString(textures.comicSans, "Q: StatPoints ready for upgrading!",
+                        new Vector2(windowWidth / 2, windowHeight - (statBarWidth * 2)), Color.Yellow * flashAlpha,
+                        0, originUpgradeNotification, 3, SpriteEffects.None, 0);
+            }
+
+            if (GameSettings.gameState == GameSettings.GameState.Inventory && statScreen.showSummary == false)
+            {
+
+                Vector2 textSizeUpgradeNotification = textures.comicSans.MeasureString("E: Apply Statpoints to selected Stat!");
+                Vector2 originUpgradeNotification = new Vector2(textSizeUpgradeNotification.X * 0.5f, 0);
+
+                spriteBatch.DrawString(textures.comicSans, "E: Apply Statpoints to selected Stat!",
+                        new Vector2(windowWidth / 2, windowHeight - (statBarWidth * 2)), Color.Yellow * flashAlpha,
+                        0, originUpgradeNotification, 3, SpriteEffects.None, 0);
+            }
+            #endregion
         }
 
         public void DrawInventory(SpriteBatch spriteBatch)
