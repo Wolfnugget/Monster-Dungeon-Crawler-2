@@ -20,6 +20,7 @@ namespace Dungeon_Crawler_2D
         public StatScreen statScreen;
         public bool battleWon;
         public int gainedXp;
+        public int overallXp;
 
         private Rectangle leftBarRect;
         private Rectangle rightBarRect;

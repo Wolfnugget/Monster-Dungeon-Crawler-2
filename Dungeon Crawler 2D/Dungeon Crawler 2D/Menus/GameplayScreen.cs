@@ -32,6 +32,8 @@ namespace Dungeon_Crawler_2D.Menus
 
             GameSettings.SetDefault();
 
+            GameSettings.gameState = GameState.Explore;
+
             textures = new TextureManager(Content);
 
             world = new World.GameWorld(textures, Content);
@@ -48,7 +50,6 @@ namespace Dungeon_Crawler_2D.Menus
 
             combat = new Combat(player, textures, hud);
             combat.Event += HandleEvents;
-
         }
 
         public override void UnloadContent()
@@ -218,7 +219,6 @@ namespace Dungeon_Crawler_2D.Menus
             {
                 hud.statScreen.showSummary = true;
                 GameSettings.gameState = GameState.Inventory;
-                ScreenManager.Instance.AddScreen(new TitleScreen(), inputManager);
             }
 
             if (args.enemyType == EnemyType.boss)

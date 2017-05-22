@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Alfred Bengtsson/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/StatIcons/StatPoints_Icon.png</SourceFile>
-  <SourceTime>2017-05-22T23:34:20.0307812+02:00</SourceTime>
-  <DestFile>C:/Users/Alfred Bengtsson/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/StatIcons/StatPoints_Icon.xnb</DestFile>
-  <DestTime>2017-05-22T23:39:24.7081304+02:00</DestTime>
+  <SourceFile>C:/Users/Marcus/Desktop/Monster-Dungeon-Crawler REPOSITORY/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/StatIcons/StatPoints_Icon.png</SourceFile>
+  <SourceTime>2017-05-22T10:07:44.8585729+02:00</SourceTime>
+  <DestFile>C:/Users/Marcus/Desktop/Monster-Dungeon-Crawler REPOSITORY/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/StatIcons/StatPoints_Icon.xnb</DestFile>
+  <DestTime>2017-05-23T00:17:33.6204844+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -54,9 +54,8 @@ namespace Dungeon_Crawler_2D
                     showSummary = false;
                     GameSettings.gameState = GameState.Explore;
                 }
-                else
+                else if (hud.battleWon == false)
                 {
-                    showSummary = false;
                     ScreenManager.Instance.AddScreen(new TitleScreen(), inputManager);
                     // HÄR SKA DU SKRIVA! :D
                 }
@@ -326,13 +325,13 @@ namespace Dungeon_Crawler_2D
                 originSummaryText = textSizeSummary * 0.5f;
                 spriteBatch.DrawString(textures.comicSans, "BATTLE LOST...", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + (whiteBox.Height / 3)), Color.Yellow, 0, originSummaryText, 3, SpriteEffects.None, 0);
 
-                textSizeSummary = textures.comicSans.MeasureString("Play New Game?");
+                textSizeSummary = textures.comicSans.MeasureString("Reached Level " + (hud.player.stats.CheckStat(Stat.level)));
                 originSummaryText = textSizeSummary * 0.5f;
-                spriteBatch.DrawString(textures.comicSans, "Play New Game?", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 3) * 2)), Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
+                spriteBatch.DrawString(textures.comicSans, "Reached Level " + (hud.player.stats.CheckStat(Stat.level)), new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 3) * 2)), Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
 
-                textSizeSummary = textures.comicSans.MeasureString("Press Space");
+                textSizeSummary = textures.comicSans.MeasureString("Press Space for New Game");
                 originSummaryText = textSizeSummary * 0.5f;
-                spriteBatch.DrawString(textures.comicSans, "Press Space", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 5) * 4)), Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
+                spriteBatch.DrawString(textures.comicSans, "Press Space for New Game", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 5) * 4)), Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
             }
         }
     }
