@@ -89,10 +89,10 @@ namespace Dungeon_Crawler_2D.Menus
             fade.IsActive = true;
             fade.Alpha = 0.0f;
             fade.ActivateValue = 1.0f;
-
+            this.inputManager = inputManager;
         }
 
-        public void AddScreen(GameScreen screen, float alpha)
+        public void AddScreen(GameScreen screen, InputManager inputManager, float alpha)
         {
             transition = true;
             newScreen = screen;
@@ -103,6 +103,7 @@ namespace Dungeon_Crawler_2D.Menus
             else
                 fade.Alpha = alpha;
             fade.Increase = true;
+            this.inputManager = inputManager;
         }
 
 
@@ -110,6 +111,7 @@ namespace Dungeon_Crawler_2D.Menus
         {
             currentScreen = new SplashScreen();
             fade = new FadeAnimation();
+            inputManager = new InputManager();
         }
         public void LoadContent(ContentManager Content, GraphicsDevice graphicsDevice)
         {

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Animations/Attack_Animation.png</SourceFile>
-  <SourceTime>2017-05-22T10:28:27.8067348+02:00</SourceTime>
-  <DestFile>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Battle/Animations/Attack_Animation.xnb</DestFile>
-  <DestTime>2017-05-22T22:31:01.6215857+02:00</DestTime>
+  <SourceFile>C:/Users/Alfred Bengtsson/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Animations/Attack_Animation.png</SourceFile>
+  <SourceTime>2017-05-22T23:34:19.969615+02:00</SourceTime>
+  <DestFile>C:/Users/Alfred Bengtsson/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Battle/Animations/Attack_Animation.xnb</DestFile>
+  <DestTime>2017-05-22T23:39:25.0976702+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

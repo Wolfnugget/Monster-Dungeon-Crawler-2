@@ -4,8 +4,7 @@ Load=[Axis][Align][Font][Animation]
 [2][Center][MenuFont][Fade]
 
 Load=[Item][LinkType][LinkID]
-[New Game][Screen][GameplayScreen]
-[Options][Screen][SplashScreen]
-[Credits][Screen][SplashScreen]
+[Start Game][Screen][GameplayScreen]
+[Credits][Screen][CreditScreen]
 
 EndLoad=[Title]

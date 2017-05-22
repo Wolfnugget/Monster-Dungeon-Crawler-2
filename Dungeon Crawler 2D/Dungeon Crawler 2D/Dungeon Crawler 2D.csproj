@@ -55,6 +55,7 @@
     <Compile Include="Events.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Menus\Animation.cs" />
+    <Compile Include="Menus\CreditScreen.cs" />
     <Compile Include="Menus\FadeAnimation.cs" />
     <Compile Include="Menus\FileManager.cs" />
     <Compile Include="Menus\GameplayScreen.cs" />
@@ -331,7 +332,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />
-    <Content Include="Menus\Load\CreditSplash.txt">
+    <Content Include="Menus\Load\Splash.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Menus\Load\CreditText.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Menus\Load\MenuText.txt">

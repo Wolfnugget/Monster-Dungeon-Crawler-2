@@ -17,7 +17,6 @@ namespace Dungeon_Crawler_2D.Menus
         List<FadeAnimation> fade;
         List<Texture2D> images;
 
-
         FileManager fileManager;
         int imageNumber;
 
@@ -32,7 +31,7 @@ namespace Dungeon_Crawler_2D.Menus
             fade = new List<FadeAnimation>();
             images = new List<Texture2D>();
 
-            fileManager.LoadContent("Menus/Load/CreditSplash.txt", attributes, contents);
+            fileManager.LoadContent("Menus/Load/Splash.txt", attributes, contents);
 
             inputManager = new InputManager();
 
@@ -66,16 +65,19 @@ namespace Dungeon_Crawler_2D.Menus
 
         public override void Update(GameTime gameTime)
         {
-
+            inputManager.Update();
 
             fade[imageNumber].Update(gameTime);
 
             if (fade[imageNumber].Alpha == 0.0f)
                 imageNumber++;
 
-            if (imageNumber >= fade.Count - 1 || inputManager.KeyPressed(Keys.Z))
+            if (imageNumber >= fade.Count - 1 || inputManager.KeyPressed(Keys.Enter))
             {
-                ScreenManager.Instance.AddScreen(new TitleScreen(), fade[imageNumber].Alpha);
+                if (fade[imageNumber].Alpha != 1.0f)
+                    ScreenManager.Instance.AddScreen(new TitleScreen(), inputManager, fade[imageNumber].Alpha);
+                else
+                    ScreenManager.Instance.AddScreen(new TitleScreen(), inputManager);
             }
 
         }
