@@ -220,6 +220,9 @@
     <Content Include="Content\Textures\TileSet\Castle\Single_Corner_Top.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\TileSet\Castle\Tex_Between_Walls.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\TileSet\Castle\Wall_Corner_Bottom_Left.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
