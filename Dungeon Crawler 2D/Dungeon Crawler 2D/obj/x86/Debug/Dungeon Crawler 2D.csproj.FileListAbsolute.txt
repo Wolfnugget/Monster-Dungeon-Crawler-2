@@ -890,9 +890,14 @@ C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawl
 C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\SharpDX.RawInput.xml
 C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\Marcus\Desktop\Monster-Dungeon-Crawler REPOSITORY\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.csprojResolveAssemblyReference.cache
+<<<<<<< HEAD
 C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Tex_Between_Walls.png
 C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Tex_Between_Walls.xnb
 C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Animations\PlayerBattleSpriteSheet.png
 C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Animations\PlayerBattleSpriteSheet.xnb
 C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Animations\Shield_Animation (1).png
 C:\Users\anton\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Battle\Animations\Shield_Animation (1).xnb
+=======
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Cross_Wall.png
+C:\Users\Robin Hedenvang\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Cross_Wall.png
+>>>>>>> origin/master

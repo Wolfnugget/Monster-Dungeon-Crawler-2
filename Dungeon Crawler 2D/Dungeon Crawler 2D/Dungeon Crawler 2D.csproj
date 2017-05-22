@@ -199,6 +199,9 @@
     <Content Include="Content\Textures\TileSet\Castle\Boss_Tile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\TileSet\Castle\Cross_Wall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\TileSet\Castle\Enemy_Tile_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -245,6 +248,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\TileSet\Castle\Wall_Vertical.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSet\Dungeon\Cross_Wall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\TileSet\Dungeon\Door_East_1.png">
