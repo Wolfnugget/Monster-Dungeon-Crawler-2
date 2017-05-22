@@ -305,7 +305,7 @@ namespace Dungeon_Crawler_2D
                 Vector2 textSizeUpgradeNotification = textures.comicSans.MeasureString("Q: Statpoints ready for usage!");
                 Vector2 originUpgradeNotification = new Vector2(textSizeUpgradeNotification.X * 0.5f, 0);
 
-                spriteBatch.DrawString(textures.comicSans, "Q: Statoints ready for usage!",
+                spriteBatch.DrawString(textures.comicSans, "Q: Statpoints ready for usage!",
                         new Vector2(windowWidth / 2, windowHeight - (statBarWidth * 2)), Color.Yellow * flashAlpha,
                         0, originUpgradeNotification, 3, SpriteEffects.None, 0);
             }
