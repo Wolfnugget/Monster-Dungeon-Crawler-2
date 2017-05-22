@@ -194,6 +194,7 @@ namespace Dungeon_Crawler_2D.Menus
             else if (args.EventType == MapEventType.ChangeRoom)
             {
                 player.SetPosition(args.Position);
+                player.RestoreHpAndMana();
             }
             else if (args.EventType == MapEventType.StartCombat)
             {

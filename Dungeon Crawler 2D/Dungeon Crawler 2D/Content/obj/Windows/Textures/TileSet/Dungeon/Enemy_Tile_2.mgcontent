@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Marcus/Desktop/Monster-Dungeon-Crawler REPOSITORY/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Dungeon/Enemy_Tile_2.png</SourceFile>
-  <SourceTime>2017-05-22T10:07:44.8865745+02:00</SourceTime>
-  <DestFile>C:/Users/Marcus/Desktop/Monster-Dungeon-Crawler REPOSITORY/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Textures/TileSet/Dungeon/Enemy_Tile_2.xnb</DestFile>
-  <DestTime>2017-05-22T16:07:53.8693905+02:00</DestTime>
+  <SourceFile>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Textures/TileSet/Dungeon/Enemy_Tile_2.png</SourceFile>
+  <SourceTime>2017-05-19T11:22:30.8968412+02:00</SourceTime>
+  <DestFile>E:/Skola/Spelutveckling/V2017/Systemutveckling och project/Projekt/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Textures/TileSet/Dungeon/Enemy_Tile_2.xnb</DestFile>
+  <DestTime>2017-05-22T20:20:53.0558199+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

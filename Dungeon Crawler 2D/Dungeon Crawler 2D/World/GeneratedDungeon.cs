@@ -150,7 +150,7 @@ namespace Dungeon_Crawler_2D.World
                 for (int x = 1; x < tiles.GetLength(1) - 1; x += 2)
                 {
                     if (dungeonBP[y, x] == 0 &&
-                        !SampleAdjacentNumericalTiles(new Point(x, y)))
+                        !SampleAdjacentNumericalTiles(x, y, 0))
                     {;
                         if (GenerateMaze(new Point(x, y), (byte)mazeRegion))
                         {
@@ -290,12 +290,12 @@ namespace Dungeon_Crawler_2D.World
             return true;
         }
 
-        private bool SampleAdjacentNumericalTiles(Point tile)
+        private bool SampleAdjacentNumericalTiles(int X, int Y, byte sampleFor)
         {
             for (int x = -1; x < 2; x++)
                 for (int y = -1; y < 2; y++)
                 {
-                    if (dungeonBP[tile.Y + y, tile.X + x] != 0)
+                    if (dungeonBP[Y + y, X + x] != sampleFor)
                     {
                         return true;
                     }
@@ -772,7 +772,7 @@ namespace Dungeon_Crawler_2D.World
             for (int y = 0; y < dungeonBP.GetLength(0); y++)
                 for (int x = 0; x < dungeonBP.GetLength(1); x++)
                 {
-                    if (dungeonBP[y, x] == 1)
+                    if (dungeonBP[y, x] == 1 && !SampleAdjacentNumericalTiles(x, y, 1))
                         possibleStartTiles.Add(new Point(x, y));
                 }
 

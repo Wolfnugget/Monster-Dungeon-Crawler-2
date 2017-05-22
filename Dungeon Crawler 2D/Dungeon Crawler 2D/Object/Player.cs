@@ -160,5 +160,10 @@ namespace Dungeon_Crawler_2D.Object
                     break;
             }
         }
+
+        public void RestoreHpAndMana()
+        {
+            stats.RestoreHealthAndMana();
+        }
     }
 }

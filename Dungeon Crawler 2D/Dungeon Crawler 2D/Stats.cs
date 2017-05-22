@@ -263,5 +263,11 @@ namespace Dungeon_Crawler_2D
             }
         }
 
+        public void RestoreHealthAndMana()
+        {
+            health = maxHealth;
+            mana = maxMana;
+        }
+
     }
 }
