@@ -13,17 +13,13 @@ namespace Dungeon_Crawler_2D
 {
     class HUDManager
     {
-        private GameState gameState;
-
         public Texture2D pixelTex;
 
         private TextureManager textures;
 
         public StatScreen statScreen;
-        public bool showStats;
-        public bool showSummary;
         public bool battleWon;
-        private int gainedXp;
+        public int gainedXp;
 
         private Rectangle leftBarRect;
         private Rectangle rightBarRect;
@@ -44,15 +40,13 @@ namespace Dungeon_Crawler_2D
 
         private float textScale;
         private float textScaleTimer;
-
-        private KeyboardState currentState, previousState;
+        
         public string turnEvents;
 
         public Object.Player player;
 
-        public HUDManager(GameState gameState, TextureManager textures, GraphicsDevice graphicsDevice, ContentManager content, Object.Player player, int windowWidth, int windowHeight)
+        public HUDManager(TextureManager textures, GraphicsDevice graphicsDevice, ContentManager content, Object.Player player, int windowWidth, int windowHeight)
         {
-            this.gameState = gameState;
             this.textures = textures;
             this.player = player;
             this.windowWidth = windowWidth;
@@ -79,14 +73,10 @@ namespace Dungeon_Crawler_2D
             bottomMiddleBarRect = new Rectangle(leftBarRect.Width * 2, windowHeight - bottomBarRect.Height, windowWidth - (leftBarRect.Width * 4), bottomBarRect.Height);
 
             statScreen = new StatScreen(this, textures);
-            showStats = false;
-            showSummary = false;
         }
 
-        public void Update(GameState gameState)
+        public void Update()
         {
-            this.gameState = gameState;
-
             #region Test statIncrese / Decrease
             if (Keyboard.GetState().IsKeyDown(Keys.V))
             {
@@ -147,29 +137,7 @@ namespace Dungeon_Crawler_2D
             textScale = textScaleTimer * 0.1f;
 
             #endregion
-
-            if (gameState == GameState.Explore)
-            {
-                #region open inventory
-
-                previousState = currentState;
-                currentState = Keyboard.GetState();
-                if (currentState.IsKeyDown(Keys.E) && previousState.IsKeyUp(Keys.E))
-                {
-                    showStats = !showStats;
-                }
-                if (showStats == true)
-                {
-                    statScreen.Update();
-                }
-
-                #endregion
-            }
-
-            if (showSummary == true && Keyboard.GetState().IsKeyDown(Keys.Enter))
-            {
-                showSummary = false;
-            }
+            
         }
 
         public void DrawExplore(SpriteBatch spriteBatch)
@@ -329,12 +297,11 @@ namespace Dungeon_Crawler_2D
                 statBarWidth), Color.GhostWhite, 0, originXpLevel, 3, SpriteEffects.None, 0);
 
             #endregion
+        }
 
-            //ritar ut statStcreen
-            if (showStats == true)
-            {
-                statScreen.Draw(spriteBatch);
-            }
+        public void DrawInventory(SpriteBatch spriteBatch)
+        {
+            statScreen.Draw(spriteBatch);
         }
 
         public void DrawBattle(SpriteBatch spriteBatch, Combat combat)
@@ -792,48 +759,6 @@ namespace Dungeon_Crawler_2D
         {
             this.battleWon = result;
             this.gainedXp = xp;
-        }
-
-        public void DrawCombatSummary(SpriteBatch spriteBatch)
-        {
-            Rectangle whiteBox = new Rectangle((windowWidth / 2) - ((sideBarWidth * 3) / 2), (windowHeight / 2) - (sideBarWidth * 2), sideBarWidth * 3, sideBarWidth * 2);
-            Rectangle blackBox = new Rectangle(whiteBox.X + (statBarWidth / 20), whiteBox.Y + (statBarWidth / 20), whiteBox.Width - (statBarWidth / 10), whiteBox.Height - (statBarWidth / 10));
-
-            Vector2 textSizeSummary;
-            Vector2 originSummaryText;
-
-            spriteBatch.Draw(textures.whiteSquare, whiteBox, Color.White);
-            spriteBatch.Draw(textures.whiteSquare, blackBox, Color.Black);
-
-            if (battleWon == true)
-            {
-                textSizeSummary = textures.comicSans.MeasureString("BATTLE WON!!");
-                originSummaryText = textSizeSummary * 0.5f;
-                spriteBatch.DrawString(textures.comicSans, "BATTLE WON!!", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + (whiteBox.Height / 3)), Color.Yellow, 0, originSummaryText, 3, SpriteEffects.None, 0);
-
-                textSizeSummary = textures.comicSans.MeasureString("Experience gained: " + gainedXp);
-                originSummaryText = textSizeSummary * 0.5f;
-                spriteBatch.DrawString(textures.comicSans, "Experience gained: " + gainedXp, new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 3) * 2)), Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
-
-                textSizeSummary = textures.comicSans.MeasureString("Press Enter");
-                originSummaryText = textSizeSummary * 0.5f;
-                spriteBatch.DrawString(textures.comicSans, "Press Enter", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 5) * 4)), Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
-            }
-
-            else
-            {
-                textSizeSummary = textures.comicSans.MeasureString("BATTLE LOST...");
-                originSummaryText = textSizeSummary * 0.5f;
-                spriteBatch.DrawString(textures.comicSans, "BATTLE LOST...", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + (whiteBox.Height / 3)), Color.Yellow, 0, originSummaryText, 3, SpriteEffects.None, 0);
-
-                textSizeSummary = textures.comicSans.MeasureString("Play New Game?");
-                originSummaryText = textSizeSummary * 0.5f;
-                spriteBatch.DrawString(textures.comicSans, "Play New Game?", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 3) * 2)), Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
-
-                textSizeSummary = textures.comicSans.MeasureString("Press Enter");
-                originSummaryText = textSizeSummary * 0.5f;
-                spriteBatch.DrawString(textures.comicSans, "Press Enter", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 5) * 4)), Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
-            }
         }
     }
 }

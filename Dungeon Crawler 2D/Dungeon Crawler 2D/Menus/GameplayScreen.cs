@@ -10,11 +10,6 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Dungeon_Crawler_2D.Menus
 {
-    public enum GameState
-    {
-        Explore,
-        Battle
-    }
     public class GameplayScreen : GameScreen
     {
         GraphicsDeviceManager graphics;
@@ -28,13 +23,6 @@ namespace Dungeon_Crawler_2D.Menus
         private TextureManager textures;
         private HUDManager hud;
         private Combat combat;
-
-        GameState gameState;
-
-
-
-
-
 
         public override void LoadContent(ContentManager Content, InputManager inputManager, GraphicsDevice graphicsDevice)
         {
@@ -53,9 +41,9 @@ namespace Dungeon_Crawler_2D.Menus
             player.Action += HandleEvents;
 
             Viewport view = graphicsDevice.Viewport;
-            float zoom = 6f;
+            float zoom = 5f;
 
-            hud = new HUDManager(gameState, textures, graphicsDevice, Content, player, GameSettings.windowWidth, GameSettings.windowHeight);
+            hud = new HUDManager(textures, graphicsDevice, Content, player, GameSettings.windowWidth, GameSettings.windowHeight);
             cam = new Camera2D(hud, view, GameSettings.windowWidth, GameSettings.windowHeight, world, zoom);
 
             combat = new Combat(player, textures, hud);
@@ -73,24 +61,30 @@ namespace Dungeon_Crawler_2D.Menus
         {
             base.Update(gameTime);
 
-            if (gameState == GameState.Explore)
+            if (GameSettings.gameState == GameSettings.GameState.Explore)
             {
                 player.Update(gameTime);
                 world.Update(gameTime, player.position);
-                hud.Update(gameState);
+                hud.Update();
+                hud.statScreen.Update();
                 cam.SetPosition(player.position);
             }
-            else if (gameState == GameState.Battle)
+            else if (GameSettings.gameState == GameSettings.GameState.Battle)
             {
-                hud.Update(gameState);
+                hud.Update();
                 combat.Update(gameTime);
+            }
+            else if (GameSettings.gameState == GameSettings.GameState.Inventory)
+            {
+                hud.Update();
+                hud.statScreen.Update();
             }
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
 
-            if (gameState == GameState.Explore)
+            if (GameSettings.gameState == GameSettings.GameState.Explore)
             {
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.GetTransform());
 
@@ -104,18 +98,11 @@ namespace Dungeon_Crawler_2D.Menus
 
                 //OBS!! Skriv bara här om ni vill att det som ritas ut ska vara oberoende av kameran (tex healthbars eller poäng)
                 hud.DrawExplore(spriteBatch);
-                if (hud.showStats == true)
-                {
-                    hud.statScreen.Draw(spriteBatch);
-                }
-                if (hud.showSummary == true)
-                {
-                    hud.DrawCombatSummary(spriteBatch);
-                }
+                
                 spriteBatch.End();
             }
 
-            else if (gameState == GameState.Battle)
+            else if (GameSettings.gameState == GameSettings.GameState.Battle)
             {
 
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.GetTransform());
@@ -128,6 +115,29 @@ namespace Dungeon_Crawler_2D.Menus
 
                 //OBS!! Skriv bara här om ni vill att det som ritas ut ska vara oberoende av kameran (tex healthbars eller poäng)
                 combat.Draw(spriteBatch, gameTime);
+
+                spriteBatch.End();
+            }
+
+            else if (GameSettings.gameState == GameSettings.GameState.Inventory)
+            {
+                spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, cam.GetTransform());
+
+                //OBS!! Skriv bara här om ni vill att det som ritas ut ska vara beroende av kameran (allt utom tex healthbars eller poäng)
+                world.Draw(spriteBatch);
+                player.Draw(spriteBatch);
+
+                spriteBatch.End();
+
+                spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null);
+
+                hud.DrawExplore(spriteBatch);
+                hud.statScreen.Draw(spriteBatch);
+
+                if (hud.statScreen.showSummary == true)
+                {
+                    hud.statScreen.DrawCombatSummary(spriteBatch);
+                }
 
                 spriteBatch.End();
             }
@@ -187,7 +197,7 @@ namespace Dungeon_Crawler_2D.Menus
             }
             else if (args.EventType == MapEventType.StartCombat)
             {
-                gameState = GameState.Battle;
+                GameSettings.gameState = GameSettings.GameState.Battle;
                 combat.StartCombat(args.enemy);
             }
             else if (args.EventType == MapEventType.PotionPickup)
@@ -198,12 +208,11 @@ namespace Dungeon_Crawler_2D.Menus
 
         private void HandleCombat(BattleEvensArgs args)
         {
-            hud.showSummary = true;
+            hud.statScreen.showSummary = true;
             if (hud.battleWon == true)
             {
-                gameState = GameState.Explore;
+                GameSettings.gameState = GameSettings.GameState.Inventory;
             }
-
 
             if (args.enemyType == EnemyType.boss)
             {

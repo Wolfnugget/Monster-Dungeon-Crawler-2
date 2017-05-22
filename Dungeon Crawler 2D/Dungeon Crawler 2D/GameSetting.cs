@@ -11,11 +11,19 @@ namespace Dungeon_Crawler_2D
         public static int windowHeight;
         public static int windowWidth;
 
+        public enum GameState
+        {
+            Explore,
+            Battle,
+            Inventory
+        }
+
+        public static GameState gameState;
+
         public static void SetDefault()
         {
             windowHeight = 800;
             windowWidth = 1200;
-
         }
 
     }
