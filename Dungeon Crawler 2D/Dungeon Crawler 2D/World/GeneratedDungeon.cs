@@ -600,12 +600,82 @@ namespace Dungeon_Crawler_2D.World
                             {
                                 if (wallRegions.Contains(dungeonBP[y, x - 1]))
                                 {
-                                    if (wallRegions.Contains(dungeonBP[y - 1, x - 1])
-                                        && wallRegions.Contains(dungeonBP[y + 1, x - 1])
-                                        && wallRegions.Contains(dungeonBP[y + 1, x + 1])
-                                        && wallRegions.Contains(dungeonBP[y - 1, x + 1]))
+                                    if (wallRegions.Contains(dungeonBP[y - 1, x - 1]))
                                     {
-                                        return TileTexture.Tex_Between_Walls;
+                                        if (wallRegions.Contains(dungeonBP[y - 1, x + 1]))
+                                        {
+                                            if (wallRegions.Contains(dungeonBP[y + 1, x + 1]))
+                                            {
+                                                if (wallRegions.Contains(dungeonBP[y + 1, x - 1]))
+                                                {
+                                                    return TileTexture.Tex_Between_Walls;
+                                                }
+                                                else
+                                                {
+                                                    return TileTexture.Wall_Corner_Top_Right;
+                                                }
+                                            }
+                                            else if (wallRegions.Contains(dungeonBP[y + 1, x - 1]))
+                                            {
+                                                return TileTexture.Wall_Corner_Top_Left;
+                                            }
+                                            else
+                                            {
+                                                return TileTexture.Wall_Horizontal;
+                                            }
+                                        }
+                                        else if (wallRegions.Contains(dungeonBP[y + 1, x + 1]))
+                                        {
+                                            if (wallRegions.Contains(dungeonBP[y + 1, x - 1]))
+                                            {
+                                                return TileTexture.Wall_Corner_Bottom_Left;
+                                            }
+                                            else
+                                            {
+                                                return TileTexture.Cross_Wall;
+                                            }
+                                        }
+                                        else if (wallRegions.Contains(dungeonBP[y + 1, x - 1]))
+                                        {
+                                            return TileTexture.Wall_Vertical;
+                                        }
+                                        else
+                                        {
+                                            return TileTexture.Wall_Corner_Bottom_Right;
+                                        }
+                                    }
+                                    else if (wallRegions.Contains(dungeonBP[y - 1, x + 1]))
+                                    {
+                                        if (wallRegions.Contains(dungeonBP[y + 1, x + 1]))
+                                        {
+                                            if (wallRegions.Contains(dungeonBP[y + 1, x - 1]))
+                                            {
+                                                return TileTexture.Wall_Corner_Bottom_Right;
+                                            }
+                                            else
+                                            {
+                                                return TileTexture.Wall_Vertical;
+                                            }
+                                        }
+                                        else if (wallRegions.Contains(dungeonBP[y + 1, x - 1]))
+                                        {
+                                            return TileTexture.Cross_Wall;
+                                        }
+                                        else
+                                        {
+                                            return TileTexture.Cross_Wall;
+                                        }
+                                    }
+                                    else if (wallRegions.Contains(dungeonBP[y + 1, x + 1]))
+                                    {
+                                        if (wallRegions.Contains(dungeonBP[y + 1, x - 1]))
+                                        {
+                                            return TileTexture.Wall_Horizontal;
+                                        }
+                                        else
+                                        {
+                                            return TileTexture.Cross_Wall;
+                                        }
                                     }
                                     else
                                     {
@@ -865,7 +935,7 @@ namespace Dungeon_Crawler_2D.World
                             if (rand.Next(0, 100) < potionPercentageInMonsterRooms)
                             {
                                 gameObjects.Add(new Point(x, y), new Object.Potion(textures.potion, GetTileCenter(x, y),
-                                    GetPotionType(tieredRoomDictionary[dungeonBP[y, x]])));
+                                    GetPotionType(tieredRoomDictionary[dungeonBP[y, x]], true)));
                             }
                         }
                         else
@@ -877,7 +947,7 @@ namespace Dungeon_Crawler_2D.World
                             if (rand.Next(0, 100) < potionPercentageInNormalRooms)
                             {
                                 gameObjects.Add(new Point(x, y), new Object.Potion(textures.potion, GetTileCenter(x, y),
-                                    GetPotionType(tieredRoomDictionary[dungeonBP[y, x]])));
+                                    GetPotionType(tieredRoomDictionary[dungeonBP[y, x]], false)));
                             }
                         }
                     }
@@ -946,7 +1016,7 @@ namespace Dungeon_Crawler_2D.World
             }
         }
 
-        private TypeOfPotion GetPotionType(int roomTier)
+        private TypeOfPotion GetPotionType(int roomTier, bool monsterRoom)
         {
             List<WeightedPotion> potionTypeList = new List<WeightedPotion>();
             int totalWeight = 0;
@@ -954,34 +1024,60 @@ namespace Dungeon_Crawler_2D.World
             switch (roomTier)
             {
                 case 1:
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.health, 10));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.mana, 10));
+                    if (monsterRoom)
+                    {
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.xp, 5));
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.accuracy, 1));
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.intelligence, 1));
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.luck, 1));
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.speed, 1));
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.strength, 1));
+                    }
+                    else
+                    {
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.health, 10));
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.mana, 10));
+                    }
                     break;
                 case 2:
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.health, 10));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.mana, 10));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.xp, 5));
+                    if (monsterRoom)
+                    {
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.xp, 5));
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.accuracy, 1));
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.intelligence, 1));
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.luck, 1));
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.speed, 1));
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.strength, 1));
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxHealth, 1));
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxMana, 1));
+
+                    }
+                    else
+                    {
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.health, 10));
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.mana, 10));
+                    }
+                    break;
+                case 3:
                     potionTypeList.Add(new WeightedPotion(TypeOfPotion.accuracy, 1));
                     potionTypeList.Add(new WeightedPotion(TypeOfPotion.intelligence, 1));
                     potionTypeList.Add(new WeightedPotion(TypeOfPotion.luck, 1));
                     potionTypeList.Add(new WeightedPotion(TypeOfPotion.speed, 1));
                     potionTypeList.Add(new WeightedPotion(TypeOfPotion.strength, 1));
-                    break;
-                case 3:
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.health, 10));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.mana, 10));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.xp, 10));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.accuracy, 2));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.intelligence, 2));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.luck, 2));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.speed, 2));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.strength, 2));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxHealth, 2));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxMana, 2));
+                    if (monsterRoom)
+                    {
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.xp, 10));
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxHealth, 5));
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxMana, 4));
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.level, 1));
+                    }
+                    else
+                    {
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.health, 10));
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.mana, 10));
+                    }
                     break;
                 case 4:
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.health, 10));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.mana, 10));
                     potionTypeList.Add(new WeightedPotion(TypeOfPotion.accuracy, 5));
                     potionTypeList.Add(new WeightedPotion(TypeOfPotion.intelligence, 5));
                     potionTypeList.Add(new WeightedPotion(TypeOfPotion.luck, 5));
@@ -989,11 +1085,17 @@ namespace Dungeon_Crawler_2D.World
                     potionTypeList.Add(new WeightedPotion(TypeOfPotion.strength, 5));
                     potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxHealth, 5));
                     potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxMana, 5));
+                    if (monsterRoom)
+                    {
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.level, 5));
+                    }
+                    else
+                    {
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.health, 10));
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.mana, 10));
+                    }
                     break;
                 case 5:
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.health, 10));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.mana, 10));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.level, 5));
                     potionTypeList.Add(new WeightedPotion(TypeOfPotion.accuracy, 5));
                     potionTypeList.Add(new WeightedPotion(TypeOfPotion.intelligence, 5));
                     potionTypeList.Add(new WeightedPotion(TypeOfPotion.luck, 5));
@@ -1001,6 +1103,16 @@ namespace Dungeon_Crawler_2D.World
                     potionTypeList.Add(new WeightedPotion(TypeOfPotion.strength, 5));
                     potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxHealth, 5));
                     potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxMana, 5));
+                    if (monsterRoom)
+                    {
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.level, 20));
+                    }
+                    else
+                    {
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.health, 10));
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.mana, 10));
+                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.level, 5));
+                    }
                     break;
             }
 
