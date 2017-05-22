@@ -180,12 +180,12 @@ namespace Dungeon_Crawler_2D
                 new Vector2(), 16, SpriteEffects.None, 1);
         }
 
-        public void BattleAnimation(GameTime gameTime)
+        public void BattleAnimation()
         {
             frame++;
             srcRec.X = (frame % 4) * 16;
 
-            ability.BattleAnimation(gameTime);
+            ability.BattleAnimation();
         }
 
         public void GiveStats()

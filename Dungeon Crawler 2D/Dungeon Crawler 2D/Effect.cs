@@ -16,10 +16,7 @@ namespace Dungeon_Crawler_2D
         Stats stats;
         public Effects effect;
         public int timer, power;
-        protected int frame;
-        protected Rectangle srcRec = new Rectangle(0, 0, 16, 16);
-        
-        
+
         public Effect(TextureManager textures, Effects effect, int timer, Stats stats, int power)
         {
             this.textures = textures;
@@ -67,13 +64,13 @@ namespace Dungeon_Crawler_2D
             switch (effect)
             {
                 case Effects.poison:
-                    texture = textures.poison;
+                    texture = textures.poisonIcon;
                     break;
                 case Effects.bleed:
-                    texture = textures.bleed;
+                    texture = textures.bleedIcon;
                     break;
                 case Effects.confusion:
-                    texture = textures.confusion;
+                    texture = textures.confusionIcon;
                     break;
                 case Effects.none:
                     texture = null;
@@ -82,16 +79,10 @@ namespace Dungeon_Crawler_2D
 
             try
             {
-                spriteBatch.Draw(texture, position, srcRec, Color.White, 0,
+                spriteBatch.Draw(texture, position, new Rectangle(0,0,16,16), Color.White, 0,
                 new Vector2(), 8, SpriteEffects.None, 1);
             }
             catch   {  }
-        }
-
-        public void Animation()
-        {
-            frame++;
-            srcRec.X = (frame % 4) * 16;
         }
     }
 }

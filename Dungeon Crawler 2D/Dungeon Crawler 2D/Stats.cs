@@ -241,17 +241,6 @@ namespace Dungeon_Crawler_2D
             return 0;
         }
 
-        public void AnimateEffect(Effects effect)
-        {
-            foreach (Effect e in activeEffects)
-            {
-                if (e.effect == effect)
-                {
-                    e.Animation();
-                }
-            }
-        }
-
         public void DrawEffect(SpriteBatch spriteBatch, Effects effect, UsedBy on)
         {
             foreach (Effect e in activeEffects)

@@ -16,7 +16,7 @@ namespace Dungeon_Crawler_2D
 
     public enum UsedAbility
     {
-        Hit, Defence, Magic, Dodge, Miss, PoisonHit//osv
+        Hit, Defence, Magic, Dodge, Miss, PoisonHit, confusion//osv
     }
 
     class Abilities
@@ -248,7 +248,7 @@ namespace Dungeon_Crawler_2D
             }
         }
 
-        public void BattleAnimation(GameTime gameTime)
+        public void BattleAnimation()
         {
             srcRec.X = (frame % 4) * 16;
             frame++;
@@ -283,6 +283,10 @@ namespace Dungeon_Crawler_2D
                     break;
                 case UsedAbility.Miss:
                     texture = textures.missAnimation;
+                    break;
+                case UsedAbility.confusion:
+                    texture = textures.confusion;
+                    spriteFx = SpriteEffects.None;
                     break;
             }
 

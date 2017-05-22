@@ -44,6 +44,8 @@ namespace Dungeon_Crawler_2D
             hud.turnEvents = "Plan your move...";
             enemy = new Enemy(textures, type, player);
             currentTurn = TurnOrder.player;
+            effectPlayer = Effects.none;
+            effectEnemy = Effects.none;
             confusedPlayer = false;
             confusedEnemy = false;
         }
@@ -206,10 +208,10 @@ namespace Dungeon_Crawler_2D
             {
                 if (animationTimer == 10)
                 {
-                    enemy.stats.AnimateEffect(effectEnemy);
-                    player.stats.AnimateEffect(effectPlayer);
-                    enemy.BattleAnimation(gameTime);
-                    PlayerAnimation(gameTime);
+                    enemy.BattleAnimation();
+                    PlayerAnimation();
+                    if (confusedEnemy == true) { enemy.ability.usedAbility = UsedAbility.confusion; }
+                    if (confusedPlayer == true) { player.abilities.usedAbility = UsedAbility.confusion; }
                     if (animationTimer2 == 4)
                     {
                         currentTurn = TurnOrder.conclusion;
@@ -254,6 +256,10 @@ namespace Dungeon_Crawler_2D
         public void NextTurn()
         {
             currentTurn = TurnOrder.player;
+            effectEnemy = Effects.none;
+            effectPlayer = Effects.none;
+            confusedEnemy = false;
+            confusedPlayer = false;
         }
 
         public void BattleResult()
@@ -282,11 +288,11 @@ namespace Dungeon_Crawler_2D
             Event.Invoke(this, e);
         }
 
-        public void PlayerAnimation(GameTime gameTime)
+        public void PlayerAnimation()
         {
             frame++;
             srcRec.X = (frame % 4) * 16;
-            player.abilities.BattleAnimation(gameTime);
+            player.abilities.BattleAnimation();
         }
 
         public void AddEffect(Effects effect, UsedBy user)
