@@ -600,9 +600,17 @@ namespace Dungeon_Crawler_2D.World
                             {
                                 if (wallRegions.Contains(dungeonBP[y, x - 1]))
                                 {
-                                    return TileTexture.Tex_Between_Walls;
-
-                                    //Mer If Satser Här behövs.
+                                    if (wallRegions.Contains(dungeonBP[y - 1, x - 1])
+                                        && wallRegions.Contains(dungeonBP[y + 1, x - 1])
+                                        && wallRegions.Contains(dungeonBP[y + 1, x + 1])
+                                        && wallRegions.Contains(dungeonBP[y - 1, x + 1]))
+                                    {
+                                        return TileTexture.Tex_Between_Walls;
+                                    }
+                                    else
+                                    {
+                                        return TileTexture.Cross_Wall;
+                                    }
                                 }
                                 else
                                 {

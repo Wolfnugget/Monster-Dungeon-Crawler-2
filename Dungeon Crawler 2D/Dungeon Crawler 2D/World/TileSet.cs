@@ -31,7 +31,8 @@ namespace Dungeon_Crawler_2D.World
         Single_Corner_Bottom,
         Grass_Tile,
         Tex_Between_Walls,
-        Boss_Tile
+        Boss_Tile,
+        Cross_Wall
     }
 
     public enum TileSets
