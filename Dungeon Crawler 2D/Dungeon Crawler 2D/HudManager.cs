@@ -302,10 +302,10 @@ namespace Dungeon_Crawler_2D
             if (player.stats.upgrade > 0 && GameSettings.gameState == GameSettings.GameState.Explore)
             { 
                 
-                Vector2 textSizeUpgradeNotification = textures.comicSans.MeasureString("Q: StatPoints ready for upgrading!");
+                Vector2 textSizeUpgradeNotification = textures.comicSans.MeasureString("Q: StatPoints ready for usage!");
                 Vector2 originUpgradeNotification = new Vector2(textSizeUpgradeNotification.X * 0.5f, 0);
 
-                spriteBatch.DrawString(textures.comicSans, "Q: StatPoints ready for upgrading!",
+                spriteBatch.DrawString(textures.comicSans, "Q: StatPoints ready for usage!",
                         new Vector2(windowWidth / 2, windowHeight - (statBarWidth * 2)), Color.Yellow * flashAlpha,
                         0, originUpgradeNotification, 3, SpriteEffects.None, 0);
             }
