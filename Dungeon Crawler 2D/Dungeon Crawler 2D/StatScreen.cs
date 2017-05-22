@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Dungeon_Crawler_2D.Menus;
 
 namespace Dungeon_Crawler_2D
 {
@@ -17,6 +18,7 @@ namespace Dungeon_Crawler_2D
         private TextureManager textures;
         private Rectangle statScreenRect;
         private Vector2 selectionCoords;
+        private InputManager inputManager;
 
         private int coordinateXMultiplier;
         private int coordinateYMultiplier;
@@ -27,6 +29,8 @@ namespace Dungeon_Crawler_2D
         {
             this.hud = hud; ;
             this.textures = textures;
+
+            inputManager = new InputManager();
 
             statScreenRect = new Rectangle((hud.windowWidth / 2) - ((hud.sideBarWidth * 3) / 2),
                 (hud.windowHeight / 2) - (hud.sideBarWidth * 2), hud.sideBarWidth * 3, hud.sideBarWidth * 2);
@@ -45,8 +49,17 @@ namespace Dungeon_Crawler_2D
             //Stänga Battle-summerings-pop-upen
             if (showSummary == true && Keyboard.GetState().IsKeyDown(Keys.Space))
             {
-                showSummary = false;
-                GameSettings.gameState = GameState.Explore;
+                if (hud.battleWon)
+                {
+                    showSummary = false;
+                    GameSettings.gameState = GameState.Explore;
+                }
+                else
+                {
+                    showSummary = false;
+                    ScreenManager.Instance.AddScreen(new TitleScreen(), inputManager);
+                    // HÄR SKA DU SKRIVA! :D
+                }
             }
 
             //Inventory-knappen

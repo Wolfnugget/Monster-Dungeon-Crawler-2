@@ -216,7 +216,9 @@ namespace Dungeon_Crawler_2D.Menus
             }
             else if (args.result == EndCombat.Lost)
             {
-
+                hud.statScreen.showSummary = true;
+                GameSettings.gameState = GameState.Inventory;
+                ScreenManager.Instance.AddScreen(new TitleScreen(), inputManager);
             }
 
             if (args.enemyType == EnemyType.boss)
