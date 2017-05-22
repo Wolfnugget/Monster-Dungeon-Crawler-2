@@ -7,7 +7,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{83ABCFBD-74D2-4B1A-9BCA-99D097E56119}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Dungeon_Crawler_2D</RootNamespace>
     <AssemblyName>Dungeon Crawler 2D</AssemblyName>
@@ -204,16 +204,16 @@
     <Content Include="Content\Textures\TileSet\Castle\Cross_Wall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\TileSet\Castle\Enemy_Tile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\TileSet\Castle\Enemy_Tile_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TileSet\Castle\Enemy_Tile_2.png">
+    <Content Include="Content\Textures\TileSet\Castle\Floor_Tile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\TileSet\Castle\Floor_Tile_1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Textures\TileSet\Castle\Floor_Tile_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\TileSet\Castle\Single_Corner.png">

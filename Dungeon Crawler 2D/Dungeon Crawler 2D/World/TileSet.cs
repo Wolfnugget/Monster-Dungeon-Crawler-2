@@ -70,19 +70,21 @@ namespace Dungeon_Crawler_2D.World
             }
 
             files.Sort();
+            List<string> filesSorted = files.Distinct().ToList();
 
             foreach (TileTexture tt in Enum.GetValues(typeof(TileTexture)))
             {
                 enumList.Add(tt);
             }
 
-            for (int i = 0; i < files.Count; i++)
+            for (int i = 0; i < filesSorted.Count; i++)
             {
+                Console.WriteLine(filesSorted[i]);
                 for (int j = 0; j < enumList.Count; j++)
                 {
-                    if (files[i].Contains(enumList[j].ToString()))
+                    if (filesSorted[i].Contains(enumList[j].ToString()))
                     {
-                        texture = content.Load<Texture2D>(path + "/" + files[i]);
+                        texture = content.Load<Texture2D>(path + "/" + filesSorted[i]);
                         if (textureSet.ContainsKey(enumList[j]))
                         {
                             textureSet[enumList[j]].Add(texture);

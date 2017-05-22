@@ -892,7 +892,7 @@ namespace Dungeon_Crawler_2D.World
         private void AddEnemiesAndObjects()
         {
             int enemyPercentageInMaze = 1;
-            int monsterTilePercentageInMaze = 2;
+            int monsterTilePercentageInMaze = 3;
             int enemyPercentageNormalRooms = 2;
             int enemyPercentageInMonsterRooms = 5;
             int potionPercentageInNormalRooms = 1;
