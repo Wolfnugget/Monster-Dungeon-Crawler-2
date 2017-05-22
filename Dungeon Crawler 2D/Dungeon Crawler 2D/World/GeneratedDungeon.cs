@@ -9,13 +9,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Dungeon_Crawler_2D.World
 {
-    public class GeneratedDungeon: Area
+    public class GeneratedDungeon : Area
     {
         byte[,] dungeonBP;
 
         List<byte> roomRegions, mazeRegions, monsterRegions, wallRegions;
 
-        Dictionary<byte, int> roomLengthFromStart; 
+        Dictionary<byte, int> roomLengthFromStart;
 
         int bossRoom;
 
@@ -79,7 +79,7 @@ namespace Dungeon_Crawler_2D.World
             ConnectRegions();
             RemoveDeadEnds();
             ConvertBPToTiles();
-            AddEnemies();
+            AddEnemiesAndObjects();
         }
 
         private void GenerateNumericalRooms(Point maxRoomDimensions, Point minRoomDimensions)
@@ -314,7 +314,7 @@ namespace Dungeon_Crawler_2D.World
             {
                 for (int x = 1; x < dungeonBP.GetLength(1) - 1; x++)
                 {
-                    if (dungeonBP[y, x] == 0 && ConnectionCheck(x, y,out r1,out r2))
+                    if (dungeonBP[y, x] == 0 && ConnectionCheck(x, y, out r1, out r2))
                     {
                         connections.Add(new Connector(x, y, r1, r2));
                     }
@@ -525,7 +525,7 @@ namespace Dungeon_Crawler_2D.World
             Point startTile = GetStartTile();
             playerStart = GetTileCenter(startTile.X, startTile.Y);
 
-            bossRoom = FindRoomFurthestFromStar(startTile.X, startTile.Y);
+            bossRoom = FindRoomFurthestFromStarAndMakeDictionaryWithRoomLengthsFromStart(startTile.X, startTile.Y);
 
             for (int y = 0; y < dungeonBP.GetLength(0); y++)
                 for (int x = 0; x < dungeonBP.GetLength(1); x++)
@@ -701,7 +701,7 @@ namespace Dungeon_Crawler_2D.World
             return possibleStartTiles[rand.Next(0, possibleStartTiles.Count - 1)];
         }
 
-        private int FindRoomFurthestFromStar(int startX, int startY)
+        private int FindRoomFurthestFromStarAndMakeDictionaryWithRoomLengthsFromStart(int startX, int startY)
         {
             int currentMatch = 0;
             int index, currentMatchLength = 0, processingLength;
@@ -709,7 +709,7 @@ namespace Dungeon_Crawler_2D.World
 
             roomLengthFromStart = new Dictionary<byte, int>();
 
-            for (int i = 1; i < roomRegions.Count; i++)
+            for (int i = 0; i < roomRegions.Count; i++)
             {
                 tilesInRegion.Clear();
                 for (int y = 0; y < dungeonBP.GetLength(0); y++)
@@ -748,7 +748,7 @@ namespace Dungeon_Crawler_2D.World
 
             PathNode processingNode;
 
-            visitedTiles.Add(new Point(startX, startY), new PathNode(new Point (startX, startY),new Point(startX, startY), 0));
+            visitedTiles.Add(new Point(startX, startY), new PathNode(new Point(startX, startY), new Point(startX, startY), 0));
             List<Point> possibleMoves = new List<Point>();
 
             while (processing.Count > 0)
@@ -811,27 +811,21 @@ namespace Dungeon_Crawler_2D.World
             }
         }
 
-        private void AddEnemies()
+        private void AddEnemiesAndObjects()
         {
             int enemyPercentageInMaze = 1;
             int monsterTilePercentageInMaze = 2;
             int enemyPercentageNormalRooms = 2;
             int enemyPercentageInMonsterRooms = 5;
             int potionPercentageInNormalRooms = 1;
-            int potionPercentageInMonsterRooms = 2;
+            int potionPercentageInMonsterRooms = 3;
             int tierCount = 5;
 
             int index;
 
-            Dictionary<int, List<byte>> tieredRoomDictionary = GetTieredRoomDictionaryBasedOnLengthFromStart(tierCount);
+            Dictionary<byte, int> tieredRoomDictionary = GetTieredRoomDictionaryBasedOnLengthFromStart(tierCount);
 
             List<Point> potentialBossTiles = new List<Point>();
-            List<TypeOfPotion> potionTypeList = new List<TypeOfPotion>();
-
-            foreach (TypeOfPotion tP in Enum.GetValues(typeof(TypeOfPotion)))
-            {
-                potionTypeList.Add(tP);
-            }
 
             for (int y = 1; y < tiles.GetLength(0); y++)
                 for (int x = 1; x < tiles.GetLength(1); x++)
@@ -862,8 +856,8 @@ namespace Dungeon_Crawler_2D.World
                             }
                             if (rand.Next(0, 100) < potionPercentageInMonsterRooms)
                             {
-                                index = rand.Next(0, potionTypeList.Count);
-                                gameObjects.Add(new Point(x, y), new Object.Potion(textures.potion, GetTileCenter(x, y), potionTypeList[index]));
+                                gameObjects.Add(new Point(x, y), new Object.Potion(textures.potion, GetTileCenter(x, y),
+                                    GetPotionType(tieredRoomDictionary[dungeonBP[y, x]])));
                             }
                         }
                         else
@@ -874,8 +868,8 @@ namespace Dungeon_Crawler_2D.World
                             }
                             if (rand.Next(0, 100) < potionPercentageInNormalRooms)
                             {
-                                index = rand.Next(0, potionTypeList.Count);
-                                gameObjects.Add(new Point(x, y), new Object.Potion(textures.potion, GetTileCenter(x, y), potionTypeList[index]));
+                                gameObjects.Add(new Point(x, y), new Object.Potion(textures.potion, GetTileCenter(x, y),
+                                    GetPotionType(tieredRoomDictionary[dungeonBP[y, x]])));
                             }
                         }
                     }
@@ -899,93 +893,129 @@ namespace Dungeon_Crawler_2D.World
 
         }
 
-        private Dictionary<int, List<byte>> GetTieredRoomDictionaryBasedOnLengthFromStart(int tierCount)
+        private Dictionary<byte, int> GetTieredRoomDictionaryBasedOnLengthFromStart(int tierCount)
         {
-            List<int> tileCountToSort = new List<int>();
+            List<RoomWithLengthFromStart> roomsUnsorted = new List<RoomWithLengthFromStart>();
 
-            for (int i = 1; i < roomRegions.Count; i++)
+            for (int i = 0; i < roomRegions.Count; i++)
             {
-                tileCountToSort.Add(roomLengthFromStart[roomRegions[i]]);
+                roomsUnsorted.Add(new RoomWithLengthFromStart(roomRegions[i], roomLengthFromStart[roomRegions[i]]));
             }
 
-            tileCountToSort.Sort();
+            List<RoomWithLengthFromStart> roomsSorted = roomsUnsorted.OrderBy(l => l.Length).ToList();
 
-            List<List<int>> tileCountSortedDividedIntoLists =
-                GeneratorUtility.DivideIntListIntoListOfIntList(tileCountToSort, tierCount);
+            Dictionary<byte, int> dictionaryToReturn = new Dictionary<byte, int>();
 
-            Dictionary<int, List<byte>> dictionaryToReturn = new Dictionary<int, List<byte>>();
+            int index = 0;
 
-            for (int i = 0; i < tileCountSortedDividedIntoLists.Count; i++)
+            for (int t = 1; t <= tierCount; t++)
             {
-                dictionaryToReturn[i + 1] = new List<byte>();
-                for (int y = 0; y < tileCountSortedDividedIntoLists[i].Count; y++)
+                while (index < t * (roomsSorted.Count / tierCount))
                 {
-                    dictionaryToReturn[i + 1].Add((byte)tileCountSortedDividedIntoLists[i][y]);
+                    dictionaryToReturn.Add(roomsSorted[index].Room, t);
+                    index++;
                 }
+            }
+
+            while (dictionaryToReturn.Count < roomsUnsorted.Count)
+            {
+                dictionaryToReturn.Add(roomsSorted[index].Room, tierCount);
+                index++;
             }
 
             return dictionaryToReturn;
         }
 
-        //private Object.Potion CreatePotion(int roomTier)
-        //{
-        //    Dictionary<TypeOfPotion, int> weightedPotionsDictionary = new Dictionary<TypeOfPotion, int>;
+        private struct RoomWithLengthFromStart
+        {
+            public byte Room { get; set; }
+            public int Length { get; set; }
 
-        //    int roomTierMulti = 3, maxWeight = 30, minWeight = 10;
+            public RoomWithLengthFromStart(byte room, int length)
+            {
+                Room = room;
+                Length = length;
+            }
+        }
 
-        //    //Health, Mana
-        //    int attributeWeight = 30;
-        //    weightedPotionsDictionary.Add(TypeOfPotion.health, attributeWeight);
-        //    weightedPotionsDictionary.Add(TypeOfPotion.mana, attributeWeight);
+        private TypeOfPotion GetPotionType(int roomTier)
+        {
+            List<WeightedPotion> potionTypeList = new List<WeightedPotion>();
+            int totalWeight = 0;
 
-        //    //MaxStat
-        //    int maxStatWeight = 2;
-        //    weightedPotionsDictionary.Add(TypeOfPotion.maxHealth, maxStatWeight);
-        //    weightedPotionsDictionary.Add(TypeOfPotion.maxMana, maxStatWeight);
+            switch (roomTier)
+            {
+                case 1:
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.health, 10));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.mana, 10));
+                    break;
+                case 2:
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.health, 10));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.mana, 10));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.xp, 5));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.accuracy, 1));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.intelligence, 1));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.luck, 1));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.speed, 1));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.strength, 1));
+                    break;
+                case 3:
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.health, 10));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.mana, 10));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.xp, 10));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.accuracy, 2));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.intelligence, 2));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.luck, 2));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.speed, 2));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.strength, 2));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxHealth, 2));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxMana, 2));
+                    break;
+                case 4:
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.health, 10));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.mana, 10));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.accuracy, 5));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.intelligence, 5));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.luck, 5));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.speed, 5));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.strength, 5));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxHealth, 5));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxMana, 5));
+                    break;
+                case 5:
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.health, 10));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.mana, 10));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.level, 5));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.accuracy, 5));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.intelligence, 5));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.luck, 5));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.speed, 5));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.strength, 5));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxHealth, 5));
+                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxMana, 5));
+                    break;
+            }
 
-        //    //Stats
-        //    int StatWeight = 3;
-        //    weightedPotionsDictionary.Add(TypeOfPotion.accuracy, StatWeight);
-        //    weightedPotionsDictionary.Add(TypeOfPotion.intelligence, StatWeight);
-        //    weightedPotionsDictionary.Add(TypeOfPotion.luck, StatWeight);
-        //    weightedPotionsDictionary.Add(TypeOfPotion.speed, StatWeight);
-        //    weightedPotionsDictionary.Add(TypeOfPotion.strength, StatWeight);
+            for (int i = 0; i < potionTypeList.Count; i++)
+            {
+                totalWeight += potionTypeList[i].Weight;
+            }
 
-        //    //Level, Xp
-        //    weightedPotionsDictionary.Add(TypeOfPotion.xp, 6);
-        //    weightedPotionsDictionary.Add(TypeOfPotion.level, 1);
+            int rNumb = rand.Next(0, totalWeight);
+            int selectedIndex = 0, weightRange = 0;
 
-        //    int currentTotalWeight = 0;
+            for (int i = 0; i < potionTypeList.Count; i++)
+            {
+                if (rNumb < potionTypeList[i].Weight + weightRange)
+                {
+                    selectedIndex = i;
+                    break;
+                }
+                weightRange += potionTypeList[i].Weight;
+            }
 
-        //    List<WeightedPotion> weightedPotions = new List<WeightedPotion>();
-
-        //    foreach (TypeOfPotion tp in Enum.GetValues(typeof(TypeOfPotion)))
-        //    {
-        //        if (weightedPotionsDictionary.ContainsKey(tp))
-        //        {
-        //            weightedPotionsDictionary[tp] += roomTier * roomTierMulti;
-
-        //            if (weightedPotionsDictionary[tp] > maxWeight)
-        //            {
-        //                weightedPotionsDictionary[tp] = maxWeight;
-        //            }
-
-        //            if (weightedPotionsDictionary[tp] >= minWeight)
-        //            {
-        //                currentTotalWeight += weightedPotionsDictionary[tp];
-        //                weightedPotions.Add(new WeightedPotion(tp, currentTotalWeight));
-        //            }
-        //        }
-        //    }
-
-        //    int rNum = rand.Next(0, currentTotalWeight);
-        //    for (int i = 0; i < weightedPotions.Count; i++)
-        //    {
-        //        if (rNum <= weightedPotions[i].Weight)
-        //            return weightedPotions[i].PotionType;
-        //    }
-            
-        //}
+            return potionTypeList[selectedIndex].PotionType;
+        }
 
         private struct WeightedPotion
         {
@@ -993,11 +1023,11 @@ namespace Dungeon_Crawler_2D.World
 
             public int Weight { get; set; }
 
-            //public WeightedPotion(TypeOfPotion potionType, int weight)
-            //{
-            //    PotionType = potionType;
-            //    Weight = weight;
-            //}
+            public WeightedPotion(TypeOfPotion potionType, int weight)
+            {
+                PotionType = potionType;
+                Weight = weight;
+            }
         }
 
         #region Debug
