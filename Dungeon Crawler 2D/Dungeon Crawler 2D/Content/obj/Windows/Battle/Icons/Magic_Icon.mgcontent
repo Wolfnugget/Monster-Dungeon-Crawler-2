@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Marcus/Desktop/Monster-Dungeon-Crawler REPOSITORY/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Magic_Icon.png</SourceFile>
-  <SourceTime>2017-05-22T10:07:44.771568+02:00</SourceTime>
-  <DestFile>C:/Users/Marcus/Desktop/Monster-Dungeon-Crawler REPOSITORY/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Battle/Icons/Magic_Icon.xnb</DestFile>
-  <DestTime>2017-05-22T10:29:49.4909267+02:00</DestTime>
+  <SourceFile>C:/Users/Robin Hedenvang/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/Battle/Icons/Magic_Icon.png</SourceFile>
+  <SourceTime>2017-05-22T10:44:10.1658666+02:00</SourceTime>
+  <DestFile>C:/Users/Robin Hedenvang/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/Battle/Icons/Magic_Icon.xnb</DestFile>
+  <DestTime>2017-05-22T10:47:16.367205+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
