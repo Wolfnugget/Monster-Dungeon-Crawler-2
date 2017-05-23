@@ -1090,3 +1090,7 @@ C:\Users\heden\OneDrive\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawl
 C:\Users\heden\OneDrive\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.pdb
 C:\Users\heden\OneDrive\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Castle\Cross_Wall.xnb
 C:\Users\heden\OneDrive\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Content\Textures\TileSet\Dungeon\Cross_Wall.xnb
+C:\Users\heden\OneDrive\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Dungeon Crawler 2D.exe.manifest
+C:\Users\heden\OneDrive\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\bin\Windows\x86\Debug\Dungeon Crawler 2D.application
+C:\Users\heden\OneDrive\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.exe.manifest
+C:\Users\heden\OneDrive\Documents\GitHub\Monster-Dungeon-Crawler-2\Dungeon Crawler 2D\Dungeon Crawler 2D\obj\x86\Debug\Dungeon Crawler 2D.application

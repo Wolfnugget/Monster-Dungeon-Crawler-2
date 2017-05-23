@@ -79,7 +79,6 @@ namespace Dungeon_Crawler_2D.World
 
             for (int i = 0; i < filesSorted.Count; i++)
             {
-                Console.WriteLine(filesSorted[i]);
                 for (int j = 0; j < enumList.Count; j++)
                 {
                     if (filesSorted[i].Contains(enumList[j].ToString()))
