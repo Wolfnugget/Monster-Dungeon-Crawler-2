@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/heden/OneDrive/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/StatIcons/Luck_Icon.png</SourceFile>
-  <SourceTime>2017-05-02T12:48:53.4123464+02:00</SourceTime>
-  <DestFile>C:/Users/heden/OneDrive/Documents/GitHub/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/StatIcons/Luck_Icon.xnb</DestFile>
-  <DestTime>2017-05-23T08:56:45.7376591+02:00</DestTime>
+  <SourceFile>C:/Users/anton/Documents/GitHub/Monster-Dungeon-Crawler-2-master/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/StatIcons/Luck_Icon.png</SourceFile>
+  <SourceTime>2017-05-22T15:59:32.6945955+02:00</SourceTime>
+  <DestFile>C:/Users/anton/Documents/GitHub/Monster-Dungeon-Crawler-2-master/Monster-Dungeon-Crawler-2/Dungeon Crawler 2D/Dungeon Crawler 2D/Content/bin/Windows/StatIcons/Luck_Icon.xnb</DestFile>
+  <DestTime>2017-05-23T09:52:49.9131556+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

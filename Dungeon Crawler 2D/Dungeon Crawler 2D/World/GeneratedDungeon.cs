@@ -560,35 +560,35 @@ namespace Dungeon_Crawler_2D.World
                 {
                     if (x == 0)
                     {
-                        return TileTexture.Wall_NorthWest_Corner;
+                        return TileTexture.Wall_Corner_Top_Left;
                     }
                     else if (x == dungeonBP.GetLength(1) - 1)
                     {
-                        return TileTexture.Wall_SouthWest_Corner;
+                        return TileTexture.Wall_Corner_Top_Right;
                     }
                     else
                     {
-                        return TileTexture.Wall_Vertical;
+                        return TileTexture.Wall_Horizontal;
                     }
                 }
                 else if (y == dungeonBP.GetLength(0) - 1)
                 {
                     if (x == 0)
                     {
-                        return TileTexture.Wall_NorthEast_Corner;
+                        return TileTexture.Wall_Corner_Bottom_Left;
                     }
                     else if (x == dungeonBP.GetLength(1) - 1)
                     {
-                        return TileTexture.Wall_SouthEast_Corner;
+                        return TileTexture.Wall_Corner_Bottom_Right;
                     }
                     else
                     {
-                        return TileTexture.Wall_Vertical;
+                        return TileTexture.Wall_Horizontal;
                     }
                 }
                 else if (x == 0 || x == dungeonBP.GetLength(1) - 1)
                 {
-                    return TileTexture.Wall_Horizontal;
+                    return TileTexture.Wall_Vertical;
                 }
                 else
                 {

@@ -31,14 +31,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Dungeon Crawler 2D.exe" size="250336">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Dungeon Crawler 2D.exe" size="251360">
       <assemblyIdentity name="Dungeon Crawler 2D" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>lb9T8OMBdnoZsAkC5KIQi+YV2ohlzfADo2FIkcVobP4=</dsig:DigestValue>
+        <dsig:DigestValue>JPhH+pd865Z2O82XC5YdGad8tDmA2PVKowkDh6LEM/Y=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -213,6 +213,24 @@
       <dsig:DigestValue>yIiwWE9bUkqc8ZZ6HWoIgAH/kY9rpYHBsFt5Ka9ukOc=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="Content\Battle\Animations\Magic_spritesheet.png" size="3255">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>ryAyRAXtEZiVrP6RJN9ip4ysZcTDbjMRtQCQhLw7Rn4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Battle\Animations\Magic_spritesheet.xnb" size="4181">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>/RNxbOKh/4t3qnMAEG1jJbd7LFAs8vTgMSKuPGf+h4I=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Content\Battle\Animations\PlayerBattleSpriteSheet.png" size="475">
     <hash>
       <dsig:Transforms>
@@ -229,6 +247,24 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>ndmQQ5wfuR1AAoJnihJEbLtLI99XTjkvY/J4hJML1Y0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Battle\Animations\PoisonHit_spritesheet.png" size="3460">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>2cauuoZ5P4tQ5XgvDhV7XLIJgrPe3VJcApDRonN7q7c=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Battle\Animations\PoisonHit_spritesheet.xnb" size="5205">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>MmyGwF0GGEXE85eUApyjASyHEv+QR+DuE/zA098GldQ=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Battle\Animations\Shield_Animation (1).png" size="368">

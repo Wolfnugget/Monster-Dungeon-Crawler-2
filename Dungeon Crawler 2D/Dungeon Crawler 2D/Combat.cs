@@ -43,7 +43,7 @@ namespace Dungeon_Crawler_2D
         {
             hud.turnEvents = "Plan your move...";
             enemy = new Enemy(textures, type, player);
-            currentTurn = TurnOrder.player;
+            currentTurn = TurnOrder.animation;
             effectPlayer = Effects.none;
             effectEnemy = Effects.none;
             confusedPlayer = false;

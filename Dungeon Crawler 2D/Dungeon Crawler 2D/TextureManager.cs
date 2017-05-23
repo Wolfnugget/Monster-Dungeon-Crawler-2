@@ -61,10 +61,10 @@ namespace Dungeon_Crawler_2D
 
             //Attack animations
             hitAnimation = content.Load<Texture2D>("Battle/Animations/Attack_Animation");
-            //magicAnimation = content.Load<Texture2D>("Battle/Animations/null");
+            magicAnimation = content.Load<Texture2D>("Battle/Animations/Magic_spritesheet");
             defenceAnimation = content.Load<Texture2D>("Battle/Animations/Shield_Animation (1)");
             //dodgeAnimation = content.Load<Texture2D>("Battle/Animations/NULL");
-            //poisonHitAnimation = content.Load<Texture2D>("Battle/Animations/null");
+            poisonHitAnimation = content.Load<Texture2D>("Battle/Animations/PoisonHit_spritesheet");
             //missAnimation = content.Load<Texture2D>("Battle/Animations/null");
 
             //Status Animation
