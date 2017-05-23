@@ -83,19 +83,23 @@ namespace Dungeon_Crawler_2D
                     statScreenRect.Y + (statScreenRect.Height / coordinateYMultiplier));
 
                 //styr selectionCoordinates
-                if (coordinateYMultiplier == 10 && currentState.IsKeyDown(Keys.S) && previousState.IsKeyUp(Keys.S))
+                if ((coordinateYMultiplier == 10 && currentState.IsKeyDown(Keys.S) && previousState.IsKeyUp(Keys.S))
+                    || (coordinateYMultiplier == 10 && currentState.IsKeyDown(Keys.Down) && previousState.IsKeyUp(Keys.Down)))
                 {
                     coordinateYMultiplier = 2;
                 }
-                if (coordinateYMultiplier == 2 && currentState.IsKeyDown(Keys.W) && previousState.IsKeyUp(Keys.W))
+                if ((coordinateYMultiplier == 2 && currentState.IsKeyDown(Keys.W) && previousState.IsKeyUp(Keys.W))
+                    || (coordinateYMultiplier == 2 && currentState.IsKeyDown(Keys.Up) && previousState.IsKeyUp(Keys.Up)))
                 {
                     coordinateYMultiplier = 10;
                 }
-                if (coordinateXMultiplier > 1 && currentState.IsKeyDown(Keys.A) && previousState.IsKeyUp(Keys.A))
+                if ((coordinateXMultiplier > 1 && currentState.IsKeyDown(Keys.A) && previousState.IsKeyUp(Keys.A))
+                    || (coordinateXMultiplier > 1 && currentState.IsKeyDown(Keys.Left) && previousState.IsKeyUp(Keys.Left)))
                 {
                     coordinateXMultiplier -= 2;
                 }
-                if (coordinateXMultiplier < 5 && currentState.IsKeyDown(Keys.D) && previousState.IsKeyUp(Keys.D))
+                if ((coordinateXMultiplier < 5 && currentState.IsKeyDown(Keys.D) && previousState.IsKeyUp(Keys.D))
+                    || (coordinateXMultiplier < 5 && currentState.IsKeyDown(Keys.Right) && previousState.IsKeyUp(Keys.Right)))
                 {
                     coordinateXMultiplier += 2;
                 }

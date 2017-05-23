@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -62,6 +63,12 @@ namespace Dungeon_Crawler_2D.Menus
         {
             base.Update(gameTime);
 
+            if (Keyboard.GetState().IsKeyDown(GameSettings.Restart))
+            {
+                ScreenManager.Instance.AddScreen(new TitleScreen(), inputManager);
+                Console.WriteLine("P funkar");
+            }
+
             if (GameSettings.gameState == GameState.Explore)
             {
                 player.Update(gameTime);
@@ -69,6 +76,8 @@ namespace Dungeon_Crawler_2D.Menus
                 hud.Update();
                 hud.statScreen.Update();
                 cam.SetPosition(player.position);
+
+                
             }
             else if (GameSettings.gameState == GameState.Battle)
             {
@@ -226,5 +235,8 @@ namespace Dungeon_Crawler_2D.Menus
                 world.WorldAction(World.WorldTrigger.BossDied, player.position);
             }
         }
+
+    //private void debug
+
     }
 }

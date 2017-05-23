@@ -42,22 +42,22 @@ namespace Dungeon_Crawler_2D.Object
             previousState = currentState;
             currentState = Keyboard.GetState();
 
-            if (currentState.IsKeyDown(GameSettings.Up))
+            if (currentState.IsKeyDown(GameSettings.Up) || currentState.IsKeyDown(GameSettings.Alt_Up))
             {
                 direction.Y = -1;
                 startingFrame = new Point(0, 3);
             }
-            else if (currentState.IsKeyDown(GameSettings.Down))
+            else if (currentState.IsKeyDown(GameSettings.Down) || currentState.IsKeyDown(GameSettings.Alt_Down))
             {
                 direction.Y = 1;
                 startingFrame = new Point(0, 0);
             }
-            if (currentState.IsKeyDown(GameSettings.Right)) //Detta är en "if" så man ska kunna gå diagonalt. Map klassen har stöd för det.
+            if (currentState.IsKeyDown(GameSettings.Right) || currentState.IsKeyDown(GameSettings.Alt_Right)) //Detta är en "if" så man ska kunna gå diagonalt. Map klassen har stöd för det.
             {
                 direction.X = 1;
                 startingFrame = new Point(0, 2);
             }
-            else if (currentState.IsKeyDown(GameSettings.Left))
+            else if (currentState.IsKeyDown(GameSettings.Left) || currentState.IsKeyDown(GameSettings.Alt_Left))
             {
                 direction.X = -1;
                 startingFrame = new Point(0, 1);

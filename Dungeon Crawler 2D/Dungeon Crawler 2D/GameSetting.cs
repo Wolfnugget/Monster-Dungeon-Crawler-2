@@ -28,14 +28,28 @@ namespace Dungeon_Crawler_2D
             windowWidth = 1200;
         }
 
-        private static Keys _up = Keys.W;
-        private static Keys _Right = Keys.D;
-        private static Keys _Down = Keys.S;
-        private static Keys _Left = Keys.A;
+        private static Keys _up = Keys.Up;
+        private static Keys _Right = Keys.Right;
+        private static Keys _Down = Keys.Down;
+        private static Keys _Left = Keys.Left;
+
+        private static Keys _aup = Keys.W;
+        private static Keys _aRight = Keys.D;
+        private static Keys _aDown = Keys.S;
+        private static Keys _aLeft = Keys.A;
+
+        private static Keys _restart = Keys.Escape;
 
         public static Keys Up { get { return _up; } }
         public static Keys Right { get { return _Right; } }
         public static Keys Down { get { return _Down; } }
         public static Keys Left { get { return _Left; } }
+
+        public static Keys Alt_Up { get { return _aup; } }
+        public static Keys Alt_Right { get { return _aRight; } }
+        public static Keys Alt_Down { get { return _aDown; } }
+        public static Keys Alt_Left { get { return _aLeft; } }
+
+        public static Keys Restart { get { return _restart; } }
     }
 }
