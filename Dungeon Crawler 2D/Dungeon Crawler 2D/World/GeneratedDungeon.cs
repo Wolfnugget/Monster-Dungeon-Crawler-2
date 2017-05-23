@@ -1009,7 +1009,7 @@ namespace Dungeon_Crawler_2D.World
             public byte Room { get; set; }
             public int Length { get; set; }
 
-            public RoomWithLengthFromStart(byte room, int length)
+            public RoomWithLengthFromStart(byte room, int length) :this()
             {
                 Room = room;
                 Length = length;
@@ -1143,7 +1143,7 @@ namespace Dungeon_Crawler_2D.World
 
             public int Weight { get; set; }
 
-            public WeightedPotion(TypeOfPotion potionType, int weight)
+            public WeightedPotion(TypeOfPotion potionType, int weight) :this()
             {
                 PotionType = potionType;
                 Weight = weight;

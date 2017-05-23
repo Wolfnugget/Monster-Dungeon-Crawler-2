@@ -99,7 +99,7 @@ namespace Dungeon_Crawler_2D
                     break;
                 case Stat.xp:
                     xp += addition;
-                    if (xp >= maxXp)
+                    while (xp >= maxXp)
                     {
                         xp -= maxXp;
                         LevelUpp();

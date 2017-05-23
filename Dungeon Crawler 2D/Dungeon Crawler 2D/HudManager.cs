@@ -79,26 +79,26 @@ namespace Dungeon_Crawler_2D
         public void Update()
         {
             #region Test statIncrese / Decrease
-            if (Keyboard.GetState().IsKeyDown(Keys.V))
-            {
-                player.stats.AddEffect(1, Effects.poison, 1);
-                player.stats.AddEffect(1, Effects.bleed, 1);
-                player.stats.AddEffect(1, Effects.confusion, 1);
+            //if (Keyboard.GetState().IsKeyDown(Keys.V))
+            //{
+            //    player.stats.AddEffect(1, Effects.poison, 1);
+            //    player.stats.AddEffect(1, Effects.bleed, 1);
+            //    player.stats.AddEffect(1, Effects.confusion, 1);
 
-                player.stats.ChangeStat(Stat.health, 1);
-                player.stats.ChangeStat(Stat.mana, 1);
-                player.stats.ChangeStat(Stat.xp, 1);
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.N))
-            {
-                player.stats.AddEffect(-1, Effects.poison, 1);
-                player.stats.AddEffect(-1, Effects.bleed, 1);
-                player.stats.AddEffect(-1, Effects.confusion, 1);
+            //    player.stats.ChangeStat(Stat.health, 1);
+            //    player.stats.ChangeStat(Stat.mana, 1);
+            //    player.stats.ChangeStat(Stat.xp, 1);
+            //}
+            //if (Keyboard.GetState().IsKeyDown(Keys.N))
+            //{
+            //    player.stats.AddEffect(-1, Effects.poison, 1);
+            //    player.stats.AddEffect(-1, Effects.bleed, 1);
+            //    player.stats.AddEffect(-1, Effects.confusion, 1);
 
-                player.stats.ChangeStat(Stat.health, -1);
-                player.stats.ChangeStat(Stat.mana, -1);
-                player.stats.ChangeStat(Stat.xp, -1);
-            }
+            //    player.stats.ChangeStat(Stat.health, -1);
+            //    player.stats.ChangeStat(Stat.mana, -1);
+            //    player.stats.ChangeStat(Stat.xp, -1);
+            //}
             #endregion
 
             #region Icon flash
