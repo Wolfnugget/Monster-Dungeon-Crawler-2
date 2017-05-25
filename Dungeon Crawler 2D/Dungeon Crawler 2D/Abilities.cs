@@ -132,12 +132,12 @@ namespace Dungeon_Crawler_2D
                             enemy.stats.CheckStat(Stat.luck),
                             enemy.stats.CheckStat(Stat.intelligence)))
                         {
-                            power = player.stats.CheckStat(Stat.intelligence) + player.stats.CheckStat(Stat.luck);
+                            power = player.stats.CheckStat(Stat.intelligence) + rand.Next(0, player.stats.CheckStat(Stat.luck));
                             effect = Effects.confusion;
                         }
                         else
                         {
-                            power = player.stats.CheckStat(Stat.intelligence) + player.stats.CheckStat(Stat.luck);
+                            power = player.stats.CheckStat(Stat.intelligence) + rand.Next(0, player.stats.CheckStat(Stat.luck));
                             effect = Effects.none;
                         }
                     }
@@ -157,12 +157,12 @@ namespace Dungeon_Crawler_2D
                             enemy.stats.CheckStat(Stat.luck),
                             enemy.stats.CheckStat(Stat.intelligence)))
                         {
-                            power = enemy.stats.CheckStat(Stat.intelligence) + enemy.stats.CheckStat(Stat.luck);
+                            power = enemy.stats.CheckStat(Stat.intelligence) + +rand.Next(0, enemy.stats.CheckStat(Stat.luck));
                             effect = Effects.confusion;
                         }
                         else
                         {
-                            power = enemy.stats.CheckStat(Stat.intelligence) + enemy.stats.CheckStat(Stat.luck);
+                            power = enemy.stats.CheckStat(Stat.intelligence) + +rand.Next(0, enemy.stats.CheckStat(Stat.luck));
                             effect = Effects.none;
                         }
                     }
