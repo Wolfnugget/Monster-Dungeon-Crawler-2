@@ -745,9 +745,13 @@ namespace Dungeon_Crawler_2D.World
                             return TileTexture.Single_Corner_Top;
                         }
                     }
-                    else
+                    else if (wallRegions.Contains(dungeonBP[y, x - 1]))
                     {
                         return TileTexture.Single_Corner_Right;
+                    }
+                    else
+                    {
+                        return TileTexture.Wall_Single;
                     }
                 }
             }

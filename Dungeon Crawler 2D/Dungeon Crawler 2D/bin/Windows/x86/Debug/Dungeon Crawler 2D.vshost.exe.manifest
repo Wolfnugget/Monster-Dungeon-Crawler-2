@@ -31,26 +31,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Dungeon Crawler 2D.exe" size="251360">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Dungeon Crawler 2D.exe" size="250848">
       <assemblyIdentity name="Dungeon Crawler 2D" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>WtoWp/0+lIXaJDy+SJPkgagC2t597Yr3bSwLgbVVTFE=</dsig:DigestValue>
+        <dsig:DigestValue>C+cQKeGShZ42cGWUszYmD243nD5lIGPyYAZonsqP8Mk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MonoGame.Framework.dll" size="803328">
-      <assemblyIdentity name="MonoGame.Framework" version="3.6.0.1625" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MonoGame.Framework.dll" size="769536">
+      <assemblyIdentity name="MonoGame.Framework" version="3.5.1.1679" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>iIVazahpU88kTruD7VB+RT0PTSJQMyoU651SBAbefjo=</dsig:DigestValue>
+        <dsig:DigestValue>+Q1mvKhyNiVjlj60pxuWNeQCL0+KnIbfQxIb+hiHPCQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -127,6 +127,18 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SharpDX.RawInput.dll" size="20992">
+      <assemblyIdentity name="SharpDX.RawInput" version="2.6.3.0" publicKeyToken="B4DCF0F35E5521F1" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>rM43+8zpQ/q24O0oTulEb/91MtQrIPpKtukmgu0j+so=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SharpDX.XAudio2.dll" size="88064">
       <assemblyIdentity name="SharpDX.XAudio2" version="2.6.3.0" publicKeyToken="B4DCF0F35E5521F1" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -156,7 +168,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>rLTjReV/3sG8KdF/ovsKbsxDcAUhacwDarHKoevyaVA=</dsig:DigestValue>
+      <dsig:DigestValue>mwrKa/Nt9zmbSzPsP/mDGHn29OBgo40t26LrbZORuSM=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Bars\BarsSheet.png" size="221">
@@ -525,7 +537,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>rLTjReV/3sG8KdF/ovsKbsxDcAUhacwDarHKoevyaVA=</dsig:DigestValue>
+      <dsig:DigestValue>mwrKa/Nt9zmbSzPsP/mDGHn29OBgo40t26LrbZORuSM=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\MenuFont.xnb" size="37908">
@@ -534,7 +546,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>+MAIXWVUhHGEHIvUS3WzNq8h0hDpy0h2ZoKblKGVxBc=</dsig:DigestValue>
+      <dsig:DigestValue>dbYcLuf1zyzJ9c0ognTI0wk0rzchnKSi4XyeWYbAU3w=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Player_Animation\Walking_Down.png" size="426">
@@ -633,7 +645,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>rLTjReV/3sG8KdF/ovsKbsxDcAUhacwDarHKoevyaVA=</dsig:DigestValue>
+      <dsig:DigestValue>mwrKa/Nt9zmbSzPsP/mDGHn29OBgo40t26LrbZORuSM=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\StatIcons\Accuracy_Icon.png" size="3401">
@@ -750,7 +762,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>rLTjReV/3sG8KdF/ovsKbsxDcAUhacwDarHKoevyaVA=</dsig:DigestValue>
+      <dsig:DigestValue>mwrKa/Nt9zmbSzPsP/mDGHn29OBgo40t26LrbZORuSM=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Textures\Dungeon\EastDoor.xnb" size="1109">
@@ -1119,7 +1131,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>zpFIOsE9NnOxhZR1Sh+YIFb1kUdnv7odTe/wx9D0Nj0=</dsig:DigestValue>
+      <dsig:DigestValue>3BnflWhwHpA35F9XJ4dU0Z1o7ypXp/iE4ZvDMjVZS/4=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Textures\TileSet\Castle\Floor_Tile_1.xnb" size="1109">
@@ -1128,7 +1140,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>nUB7JIcc91HJKwTTBenztwyf7V0AI4dOPwYVxMSAPHo=</dsig:DigestValue>
+      <dsig:DigestValue>XxIe48VuPsn+IwOvGkEehPv+QYkSNbxepNxomuevfAY=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Textures\TileSet\Castle\Single_Corner.png" size="174">
@@ -1354,6 +1366,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>b3VrEPTSZAARoUROjLqkGLTSPj6W3X6YvQviD4KGGgo=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Textures\TileSet\Castle\Wall_Single.xnb" size="1109">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>DWmz8FuC5gp24w9PA7saW+OAqMUh5qc/A368/92RHcY=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Textures\TileSet\Castle\Wall_SouthEast_Corner_1.xnb" size="1109">
@@ -1759,6 +1780,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>mg41Vfb5FdchwkO7w06ahic41MoSbE+XkIQOgeSBpQw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Textures\TileSet\Dungeon\Wall_Single.xnb" size="1109">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Ijajcamcq5PzrYm+DooFw9gaMHBoXQt+NS/MO3SHCGc=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Textures\TileSet\Dungeon\Wall_SouthEast_Corner_1.xnb" size="1109">

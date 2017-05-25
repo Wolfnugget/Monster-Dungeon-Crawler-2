@@ -25,6 +25,7 @@ namespace Dungeon_Crawler_2D.World
         Wall_Corner_Top_Right,
         Wall_Vertical,
         Wall_Horizontal,
+        Wall_Single,
         Single_Corner_Top,
         Single_Corner_Right,
         Single_Corner_Left,
