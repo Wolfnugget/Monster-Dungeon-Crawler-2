@@ -38,7 +38,7 @@ namespace Dungeon_Crawler_2D
         private static Keys _aDown = Keys.S;
         private static Keys _aLeft = Keys.A;
 
-        private static Keys _restart = Keys.Escape;
+        private static Keys _openMenu = Keys.Escape;
 
         public static Keys Up { get { return _up; } }
         public static Keys Right { get { return _Right; } }
@@ -50,6 +50,6 @@ namespace Dungeon_Crawler_2D
         public static Keys Alt_Down { get { return _aDown; } }
         public static Keys Alt_Left { get { return _aLeft; } }
 
-        public static Keys Restart { get { return _restart; } }
+        public static Keys OpenMenu { get { return _openMenu; } }
     }
 }

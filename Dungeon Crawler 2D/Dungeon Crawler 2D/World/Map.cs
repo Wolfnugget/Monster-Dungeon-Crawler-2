@@ -105,9 +105,9 @@ namespace Dungeon_Crawler_2D.World
 
             if (rooms[currentLocation].CheckIfTileContainsObject(x, y, out objOnPosition))
             {
-                if (objOnPosition is Object.Potion)
+                if (objOnPosition is Object.PickUp)
                 {
-                    Object.Potion potion = (Object.Potion)objOnPosition;
+                    Object.PickUp potion = (Object.PickUp)objOnPosition;
                     MapEventArgs args = new MapEventArgs(MapEventType.PotionPickup);
                     args.potionType = potion.potionType;
                     OnEvent(args);

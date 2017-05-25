@@ -57,7 +57,7 @@ namespace Dungeon_Crawler_2D
         public Vector2 Position { get; set; }
         public MapEventType EventType;
         public EnemyType enemy;
-        public TypeOfPotion potionType;
+        public PickUp potionType;
 
 
         public MapEventArgs(MapEventType EventType)

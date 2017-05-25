@@ -198,7 +198,7 @@ namespace Dungeon_Crawler_2D.World
         {
             if (gameObjects.TryGetValue(new Point(x, y), out obj))
             {
-                if (obj is Object.Potion)
+                if (obj is Object.PickUp)
                 {
                     gameObjects.Remove(new Point(x, y));
                 }

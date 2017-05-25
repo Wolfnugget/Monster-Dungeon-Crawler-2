@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Dungeon_Crawler_2D.Menus
 {
-    public class GameScreen
+    public abstract class GameScreen
     {
         protected ContentManager content;
         protected List<List<string>> attributes, contents;
@@ -34,15 +34,9 @@ namespace Dungeon_Crawler_2D.Menus
             attributes.Clear();
             contents.Clear();
         }
-        public virtual void Update(GameTime gameTime)
-        {
+        public abstract void Update(GameTime gameTime);
 
-        }
-
-        public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime)
-        {
-
-        }
+        public abstract void Draw(SpriteBatch spriteBatch, GameTime gameTime);
 
     }
 }

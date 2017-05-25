@@ -17,6 +17,10 @@ namespace Dungeon_Crawler_2D
     {
         maxHealth, health, maxMana, mana, strength, intelligence, accuracy, luck, speed, maxXp, xp, level
     }
+    public enum PickUp
+    {
+        maxHealth, health, maxMana, mana, strength, intelligence, accuracy, luck, speed, xp, level
+    }
 
     class Stats
     {

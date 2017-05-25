@@ -119,43 +119,43 @@ namespace Dungeon_Crawler_2D.Object
             playerAbilities.Add(UsedAbility.PoisonHit);
         }
 
-        public void UsePotion(TypeOfPotion potionType)
+        public void UsePotion(Dungeon_Crawler_2D.PickUp potionType)
         {
             switch (potionType)
             {
-                case TypeOfPotion.health:
+                case Dungeon_Crawler_2D.PickUp.health:
                     stats.ChangeStat(Stat.health, 50 + 15 * stats.CheckStat(Stat.level));
                     break;
-                case TypeOfPotion.mana:
+                case Dungeon_Crawler_2D.PickUp.mana:
                     stats.ChangeStat(Stat.mana, 30 + 15 * stats.CheckStat(Stat.level));
                     break;
-                case TypeOfPotion.maxHealth:
+                case Dungeon_Crawler_2D.PickUp.maxHealth:
                     stats.ChangeStat(Stat.maxHealth, 20);
                     stats.ChangeStat(Stat.health, 20);
                     break;
-                case TypeOfPotion.maxMana:
+                case Dungeon_Crawler_2D.PickUp.maxMana:
                     stats.ChangeStat(Stat.maxMana, 15);
                     stats.ChangeStat(Stat.mana, 15);
                     break;
-                case TypeOfPotion.strength:
+                case Dungeon_Crawler_2D.PickUp.strength:
                     stats.ChangeStat(Stat.strength, 1);
                     break;
-                case TypeOfPotion.intelligence:
+                case Dungeon_Crawler_2D.PickUp.intelligence:
                     stats.ChangeStat(Stat.intelligence, 1);
                     break;
-                case TypeOfPotion.accuracy:
+                case Dungeon_Crawler_2D.PickUp.accuracy:
                     stats.ChangeStat(Stat.accuracy, 1);
                     break;
-                case TypeOfPotion.luck:
+                case Dungeon_Crawler_2D.PickUp.luck:
                     stats.ChangeStat(Stat.luck, 1);
                     break;
-                case TypeOfPotion.speed:
+                case Dungeon_Crawler_2D.PickUp.speed:
                     stats.ChangeStat(Stat.speed, 1);
                     break;
-                case TypeOfPotion.xp:
+                case Dungeon_Crawler_2D.PickUp.xp:
                     stats.ChangeStat(Stat.xp, 20);
                     break;
-                case TypeOfPotion.level:
+                case Dungeon_Crawler_2D.PickUp.level:
                     stats.ChangeStat(Stat.level, 1);
                     break;
             }

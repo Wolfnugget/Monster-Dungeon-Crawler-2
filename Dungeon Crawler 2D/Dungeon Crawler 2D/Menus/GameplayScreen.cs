@@ -61,9 +61,7 @@ namespace Dungeon_Crawler_2D.Menus
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
-
-            if (Keyboard.GetState().IsKeyDown(GameSettings.Restart))
+            if (Keyboard.GetState().IsKeyDown(GameSettings.OpenMenu))
             {
                 ScreenManager.Instance.AddScreen(new TitleScreen(), inputManager);
                 Console.WriteLine("P funkar");

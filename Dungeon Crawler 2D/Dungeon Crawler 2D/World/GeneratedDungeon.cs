@@ -938,7 +938,7 @@ namespace Dungeon_Crawler_2D.World
                             }
                             if (rand.Next(0, 100) < potionPercentageInMonsterRooms)
                             {
-                                gameObjects.Add(new Point(x, y), new Object.Potion(textures.potion, GetTileCenter(x, y),
+                                gameObjects.Add(new Point(x, y), new Object.PickUp(textures.potion, GetTileCenter(x, y),
                                     GetPotionType(tieredRoomDictionary[dungeonBP[y, x]], true)));
                             }
                         }
@@ -950,7 +950,7 @@ namespace Dungeon_Crawler_2D.World
                             }
                             if (rand.Next(0, 100) < potionPercentageInNormalRooms)
                             {
-                                gameObjects.Add(new Point(x, y), new Object.Potion(textures.potion, GetTileCenter(x, y),
+                                gameObjects.Add(new Point(x, y), new Object.PickUp(textures.potion, GetTileCenter(x, y),
                                     GetPotionType(tieredRoomDictionary[dungeonBP[y, x]], false)));
                             }
                         }
@@ -1020,7 +1020,7 @@ namespace Dungeon_Crawler_2D.World
             }
         }
 
-        private TypeOfPotion GetPotionType(int roomTier, bool monsterRoom)
+        private PickUp GetPotionType(int roomTier, bool monsterRoom)
         {
             List<WeightedPotion> potionTypeList = new List<WeightedPotion>();
             int totalWeight = 0;
@@ -1030,92 +1030,92 @@ namespace Dungeon_Crawler_2D.World
                 case 1:
                     if (monsterRoom)
                     {
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.xp, 5));
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.accuracy, 1));
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.intelligence, 1));
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.luck, 1));
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.speed, 1));
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.strength, 1));
+                        potionTypeList.Add(new WeightedPotion(PickUp.xp, 5));
+                        potionTypeList.Add(new WeightedPotion(PickUp.accuracy, 1));
+                        potionTypeList.Add(new WeightedPotion(PickUp.intelligence, 1));
+                        potionTypeList.Add(new WeightedPotion(PickUp.luck, 1));
+                        potionTypeList.Add(new WeightedPotion(PickUp.speed, 1));
+                        potionTypeList.Add(new WeightedPotion(PickUp.strength, 1));
                     }
                     else
                     {
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.health, 10));
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.mana, 10));
+                        potionTypeList.Add(new WeightedPotion(PickUp.health, 10));
+                        potionTypeList.Add(new WeightedPotion(PickUp.mana, 10));
                     }
                     break;
                 case 2:
                     if (monsterRoom)
                     {
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.xp, 5));
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.accuracy, 1));
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.intelligence, 1));
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.luck, 1));
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.speed, 1));
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.strength, 1));
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxHealth, 1));
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxMana, 1));
+                        potionTypeList.Add(new WeightedPotion(PickUp.xp, 5));
+                        potionTypeList.Add(new WeightedPotion(PickUp.accuracy, 1));
+                        potionTypeList.Add(new WeightedPotion(PickUp.intelligence, 1));
+                        potionTypeList.Add(new WeightedPotion(PickUp.luck, 1));
+                        potionTypeList.Add(new WeightedPotion(PickUp.speed, 1));
+                        potionTypeList.Add(new WeightedPotion(PickUp.strength, 1));
+                        potionTypeList.Add(new WeightedPotion(PickUp.maxHealth, 1));
+                        potionTypeList.Add(new WeightedPotion(PickUp.maxMana, 1));
 
                     }
                     else
                     {
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.health, 10));
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.mana, 10));
+                        potionTypeList.Add(new WeightedPotion(PickUp.health, 10));
+                        potionTypeList.Add(new WeightedPotion(PickUp.mana, 10));
                     }
                     break;
                 case 3:
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.accuracy, 1));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.intelligence, 1));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.luck, 1));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.speed, 1));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.strength, 1));
+                    potionTypeList.Add(new WeightedPotion(PickUp.accuracy, 1));
+                    potionTypeList.Add(new WeightedPotion(PickUp.intelligence, 1));
+                    potionTypeList.Add(new WeightedPotion(PickUp.luck, 1));
+                    potionTypeList.Add(new WeightedPotion(PickUp.speed, 1));
+                    potionTypeList.Add(new WeightedPotion(PickUp.strength, 1));
                     if (monsterRoom)
                     {
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.xp, 10));
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxHealth, 5));
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxMana, 4));
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.level, 1));
+                        potionTypeList.Add(new WeightedPotion(PickUp.xp, 10));
+                        potionTypeList.Add(new WeightedPotion(PickUp.maxHealth, 5));
+                        potionTypeList.Add(new WeightedPotion(PickUp.maxMana, 4));
+                        potionTypeList.Add(new WeightedPotion(PickUp.level, 1));
                     }
                     else
                     {
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.health, 10));
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.mana, 10));
+                        potionTypeList.Add(new WeightedPotion(PickUp.health, 10));
+                        potionTypeList.Add(new WeightedPotion(PickUp.mana, 10));
                     }
                     break;
                 case 4:
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.accuracy, 5));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.intelligence, 5));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.luck, 5));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.speed, 5));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.strength, 5));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxHealth, 5));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxMana, 5));
+                    potionTypeList.Add(new WeightedPotion(PickUp.accuracy, 5));
+                    potionTypeList.Add(new WeightedPotion(PickUp.intelligence, 5));
+                    potionTypeList.Add(new WeightedPotion(PickUp.luck, 5));
+                    potionTypeList.Add(new WeightedPotion(PickUp.speed, 5));
+                    potionTypeList.Add(new WeightedPotion(PickUp.strength, 5));
+                    potionTypeList.Add(new WeightedPotion(PickUp.maxHealth, 5));
+                    potionTypeList.Add(new WeightedPotion(PickUp.maxMana, 5));
                     if (monsterRoom)
                     {
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.level, 5));
+                        potionTypeList.Add(new WeightedPotion(PickUp.level, 5));
                     }
                     else
                     {
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.health, 10));
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.mana, 10));
+                        potionTypeList.Add(new WeightedPotion(PickUp.health, 10));
+                        potionTypeList.Add(new WeightedPotion(PickUp.mana, 10));
                     }
                     break;
                 case 5:
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.accuracy, 5));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.intelligence, 5));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.luck, 5));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.speed, 5));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.strength, 5));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxHealth, 5));
-                    potionTypeList.Add(new WeightedPotion(TypeOfPotion.maxMana, 5));
+                    potionTypeList.Add(new WeightedPotion(PickUp.accuracy, 5));
+                    potionTypeList.Add(new WeightedPotion(PickUp.intelligence, 5));
+                    potionTypeList.Add(new WeightedPotion(PickUp.luck, 5));
+                    potionTypeList.Add(new WeightedPotion(PickUp.speed, 5));
+                    potionTypeList.Add(new WeightedPotion(PickUp.strength, 5));
+                    potionTypeList.Add(new WeightedPotion(PickUp.maxHealth, 5));
+                    potionTypeList.Add(new WeightedPotion(PickUp.maxMana, 5));
                     if (monsterRoom)
                     {
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.level, 20));
+                        potionTypeList.Add(new WeightedPotion(PickUp.level, 20));
                     }
                     else
                     {
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.health, 10));
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.mana, 10));
-                        potionTypeList.Add(new WeightedPotion(TypeOfPotion.level, 5));
+                        potionTypeList.Add(new WeightedPotion(PickUp.health, 10));
+                        potionTypeList.Add(new WeightedPotion(PickUp.mana, 10));
+                        potionTypeList.Add(new WeightedPotion(PickUp.level, 5));
                     }
                     break;
             }
@@ -1143,11 +1143,11 @@ namespace Dungeon_Crawler_2D.World
 
         private struct WeightedPotion
         {
-            public TypeOfPotion PotionType { get; set; }
+            public PickUp PotionType { get; set; }
 
             public int Weight { get; set; }
 
-            public WeightedPotion(TypeOfPotion potionType, int weight) :this()
+            public WeightedPotion(PickUp potionType, int weight) :this()
             {
                 PotionType = potionType;
                 Weight = weight;
