@@ -269,7 +269,7 @@ namespace Dungeon_Crawler_2D
         private bool CheckIfHit(int accuracy, int luck, int speed, int opponentLuck, int opponentSpeed)
         {
 
-            if (rand.Next(accuracy + (luck / 5) - opponentLuck, (Math.Max(accuracy, 1) * Math.Max(luck, 1)) - opponentLuck) >
+            if (rand.Next(accuracy + (luck / 5) - opponentLuck, 100 - opponentLuck + (luck + accuracy)) >
                 (50 + (opponentLuck + opponentSpeed) - (accuracy + speed)))
             {
                 return true;
