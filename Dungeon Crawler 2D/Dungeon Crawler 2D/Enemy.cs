@@ -128,7 +128,7 @@ namespace Dungeon_Crawler_2D
                             break;
                     }
                 }
-                else if (stats.CheckStat(Stat.mana) >= ability.CheckCost(UsedAbility.Magic)) 
+                else if (stats.CheckStat(Stat.mana) >= ability.CheckCost(UsedAbility.Magic))
                 {
                     switch (rand.Next(0, 4))
                     {
@@ -190,113 +190,53 @@ namespace Dungeon_Crawler_2D
 
         public void GiveStats()
         {
+            int health = 0, mana = 0, strenght = 0, inteligence = 0, dextarity = 0, luck = 0, speed = 0, xp = 0;
+
             #region Zombie
             if (theEnemy == EnemyType.zombie)
             {
-                if (player.stats.CheckStat(Stat.level) <= 5)
-                {
-                    int health = rand.Next(50, 70) + 5 * player.stats.CheckStat(Stat.level);
-                    int mana = rand.Next(10, 30) + 2 * player.stats.CheckStat(Stat.level);
+                health = 50 + 5 * rand.Next((int)(0.5f * player.stats.CheckStat(Stat.level)), player.stats.CheckStat(Stat.level));
+                mana = 20 + 2 * player.stats.CheckStat(Stat.level);
 
-                    int strenght = rand.Next(6, 12) + player.stats.CheckStat(Stat.level);
-                    int inteligence = 0;
-                    int dextarity = rand.Next(3, 8) + player.stats.CheckStat(Stat.level);
-                    int luck = 0;
-                    int speed = rand.Next(6, 15) + player.stats.CheckStat(Stat.level) / 2;
-                    int xp = rand.Next(20, 40) + 2 * player.stats.CheckStat(Stat.level);
-                    stats = new Stats(textures, health, health, mana, mana, strenght, inteligence, dextarity, luck, speed, 0, xp, 0);
-                }
-                else if (player.stats.CheckStat(Stat.level) <= 10)
-                {
-                    int health = rand.Next(75, 95) + 4 * player.stats.CheckStat(Stat.level);
-                    int mana = rand.Next(30, 50) + 3 * player.stats.CheckStat(Stat.level);
+                strenght = 8 + rand.Next((int)(0.5f * player.stats.CheckStat(Stat.level)), 2 * player.stats.CheckStat(Stat.level));
+                inteligence = 0;
+                dextarity = 2 + player.stats.CheckStat(Stat.level) / 2;
+                luck = 0;
+                speed = 8 + player.stats.CheckStat(Stat.level) / 2;
+                xp = rand.Next(20, 40) + 5 * rand.Next((int)(0.5f * player.stats.CheckStat(Stat.level)), (int)(1.5f * player.stats.CheckStat(Stat.level)));
 
-                    int strenght = 12 + rand.Next(1, 7) + player.stats.CheckStat(Stat.level);
-                    int inteligence = 0;
-                    int dextarity = 7 + rand.Next(1, 9) + player.stats.CheckStat(Stat.level);
-                    int luck = rand.Next(5, 10);
-                    int speed = 7 + rand.Next(1, 6) + player.stats.CheckStat(Stat.level) / 2;
-                    int xp = rand.Next(60, 100) + 2 * player.stats.CheckStat(Stat.level);
-                    stats = new Stats(textures, health, health, mana, mana, strenght, inteligence, dextarity, luck, speed, 0, xp, 0);
-                }
-                else
-                {
-                    int health = 150 + rand.Next(0, 50) + 2 * player.stats.CheckStat(Stat.level);  
-                    int mana = 100 + rand.Next(20, 70) + player.stats.CheckStat(Stat.level);
-
-                    int strenght = 20 + rand.Next(1, 7) + player.stats.CheckStat(Stat.level);
-                    int inteligence = 0;
-                    int dextarity = rand.Next(5, 10) + player.stats.CheckStat(Stat.level);
-                    int luck = rand.Next(5, 20);
-                    int speed = rand.Next(10, 20) + player.stats.CheckStat(Stat.level) / 2;
-                    int xp = rand.Next(120, 200) + 2 * player.stats.CheckStat(Stat.level);
-                    stats = new Stats(textures, health, health, mana, mana, strenght, inteligence, dextarity, luck, speed, 0, xp, 0);
-                }
             }
             #endregion
-
             #region Warlock
-
             if (theEnemy == EnemyType.warlock)
             {
-                if (player.stats.CheckStat(Stat.level) <= 5)
-                {
-                    int health = rand.Next(20, 40) + 3 * player.stats.CheckStat(Stat.level);
-                    int mana = rand.Next(30, 60) + 3 * player.stats.CheckStat(Stat.level);
+                health = 30 + 5 * rand.Next((int)(0.25f * player.stats.CheckStat(Stat.level)), (int)(0.5f * player.stats.CheckStat(Stat.level)));
+                mana = 40 + 5 * player.stats.CheckStat(Stat.level);
 
-                    int strenght = rand.Next(3, 9) + player.stats.CheckStat(Stat.level);
-                    int inteligence = rand.Next(5,16) + player.stats.CheckStat(Stat.level);
-                    int dextarity = rand.Next(5, 10) + player.stats.CheckStat(Stat.level);
-                    int luck = 0;
-                    int speed = rand.Next(6, 15) + player.stats.CheckStat(Stat.level) / 2;
-                    int xp = rand.Next(30, 60) + 2 * player.stats.CheckStat(Stat.level);
-                    stats = new Stats(textures, health, health, mana, mana, strenght, inteligence, dextarity, luck, speed, 0, xp, 0);
-                }
-                else if (player.stats.CheckStat(Stat.level) <= 10)
-                {
-                    int health = rand.Next(40, 70) + 2 * player.stats.CheckStat(Stat.level);
-                    int mana = rand.Next(60, 70) + 3 * player.stats.CheckStat(Stat.level);
+                strenght = 10;
+                inteligence = 10 + rand.Next(1 * player.stats.CheckStat(Stat.level), 2 * player.stats.CheckStat(Stat.level));
+                dextarity = rand.Next(5, 12);
+                luck = rand.Next(0, player.stats.CheckStat(Stat.level));
+                speed = rand.Next(6 + player.stats.CheckStat(Stat.level), 15 + player.stats.CheckStat(Stat.level));
+                xp = rand.Next(30, 60) + 5 * rand.Next(1 * player.stats.CheckStat(Stat.level), 2 * player.stats.CheckStat(Stat.level));
 
-                    int strenght = 8 + rand.Next(1, 3) + player.stats.CheckStat(Stat.level);
-                    int inteligence = 10 + rand.Next(5, 10) + player.stats.CheckStat(Stat.level);
-                    int dextarity = 5 + rand.Next(1, 15) + player.stats.CheckStat(Stat.level);
-                    int luck = rand.Next(1, 6);
-                    int speed = 7 + rand.Next(1, 6) + player.stats.CheckStat(Stat.level) / 2;
-                    int xp = rand.Next(70, 120) + 2 * player.stats.CheckStat(Stat.level);
-                    stats = new Stats(textures, health, health, mana, mana, strenght, inteligence, dextarity, luck, speed, 0, xp, 0);
-                }
-                else
-                {
-                    int health = 100 + rand.Next(0, 30) + 2 * player.stats.CheckStat(Stat.level);
-                    int mana = 100 + 4 * player.stats.CheckStat(Stat.level);
-
-                    int strenght = 12 + rand.Next(1, 4) + player.stats.CheckStat(Stat.level);
-                    int inteligence = 20 + rand.Next(1, 16) + player.stats.CheckStat(Stat.level);
-                    int dextarity = rand.Next(5, 10) + player.stats.CheckStat(Stat.level);
-                    int luck = rand.Next(3, 10);
-                    int speed = rand.Next(10, 20) + player.stats.CheckStat(Stat.level) / 2;
-                    int xp = rand.Next(150, 240) + 2 * player.stats.CheckStat(Stat.level);
-                    stats = new Stats(textures, health, health, mana, mana, strenght, inteligence, dextarity, luck, speed, 0, xp, 0);
-                }
             }
-
             #endregion
-
             #region Boss
             if (theEnemy == EnemyType.boss)
             {
-                int health = 250;
-                int mana = 200;
+                health = 250 + 10 * player.stats.CheckStat(Stat.level);
+                mana = 200;
 
-                int strenght = 33;
-                int inteligence = 36;
-                int dextarity = 30;
-                int luck = 18;
-                int speed = 20;
-                int xp = 300;
-                stats = new Stats(textures, health, health, mana, mana, strenght, inteligence, dextarity, luck, speed, 0, xp, 0);
+                strenght = 10 + rand.Next(2 * player.stats.CheckStat(Stat.level), 3 * player.stats.CheckStat(Stat.level));
+                inteligence = 10 + rand.Next(2 * player.stats.CheckStat(Stat.level), 3 * player.stats.CheckStat(Stat.level));
+                dextarity = 10 + rand.Next(2 * player.stats.CheckStat(Stat.level), 3 * player.stats.CheckStat(Stat.level));
+                luck = 10 + rand.Next(2 * player.stats.CheckStat(Stat.level), 3 * player.stats.CheckStat(Stat.level));
+                speed = 10 + rand.Next(2 * player.stats.CheckStat(Stat.level), 3 * player.stats.CheckStat(Stat.level));
+                xp = Math.Max(10 * player.stats.CheckStat(Stat.level) * player.stats.CheckStat(Stat.level), 250);
             }
             #endregion
+            stats = new Stats(textures, health, health, mana, mana, strenght, inteligence, dextarity, luck, speed, 0, xp, player.stats.CheckStat(Stat.level));
         }
     }
 }

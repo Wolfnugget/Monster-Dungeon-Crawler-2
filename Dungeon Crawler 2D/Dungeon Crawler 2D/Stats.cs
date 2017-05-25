@@ -151,43 +151,13 @@ namespace Dungeon_Crawler_2D
         public void LevelUpp()
         {
             level += 1;
-            if (level <= 5)
-            {
-                upgrade += 3;
-                ChangeStat(Stat.maxHealth, 10);
-                ChangeStat(Stat.health, 20);
-                ChangeStat(Stat.maxMana, 10);
-                ChangeStat(Stat.mana, 20);
-                ChangeStat(Stat.maxXp, 10);
-            }
-            else if (level <= 10)
-            {
-                upgrade += 5;
-                ChangeStat(Stat.maxHealth, 15);
-                ChangeStat(Stat.health, 25);
-                ChangeStat(Stat.maxMana, 15);
-                ChangeStat(Stat.mana, 25);
-                ChangeStat(Stat.maxXp, 20);
-            }
-            else if (level <= 15)
-            {
-                upgrade += 7;
-                ChangeStat(Stat.maxHealth, 20);
-                ChangeStat(Stat.health, 30);
-                ChangeStat(Stat.maxMana, 20);
-                ChangeStat(Stat.mana, 30);
-                ChangeStat(Stat.maxXp, 30);
-            }
-            else if (level > 15)
-            {
-                upgrade += 10;
-                ChangeStat(Stat.maxHealth, 20);
-                ChangeStat(Stat.health, 40);
-                ChangeStat(Stat.maxMana, 20);
-                ChangeStat(Stat.mana, 40);
-                ChangeStat(Stat.maxXp, 40);
-            }
-            
+
+            upgrade += 5;
+            ChangeStat(Stat.maxHealth, 10);
+            ChangeStat(Stat.health, 20);
+            ChangeStat(Stat.maxMana, 10);
+            ChangeStat(Stat.mana, 20);
+            ChangeStat(Stat.maxXp, level * 10);
         }
 
         public void AddEffect(int length, Effects effect, int power)
