@@ -88,7 +88,7 @@
     <Compile Include="Menus\FileManager.cs" />
     <Compile Include="Menus\GameplayScreen.cs" />
     <Compile Include="Menus\GameScreen.cs" />
-    <Compile Include="Menus\InputManager.cs" />
+    <Compile Include="InputManager.cs" />
     <Compile Include="Menus\MenuManager.cs" />
     <Compile Include="Menus\ScreenManager.cs" />
     <Compile Include="Menus\SplashScreen.cs" />

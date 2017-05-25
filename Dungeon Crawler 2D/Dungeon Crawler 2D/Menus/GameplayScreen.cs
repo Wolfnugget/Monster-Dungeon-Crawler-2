@@ -25,9 +25,9 @@ namespace Dungeon_Crawler_2D.Menus
         private HUDManager hud;
         private Combat combat;
 
-        public override void LoadContent(ContentManager Content, InputManager inputManager, GraphicsDevice graphicsDevice)
+        public override void LoadContent(ContentManager Content,  GraphicsDevice graphicsDevice)
         {
-            base.LoadContent(Content, inputManager, graphicsDevice);
+            base.LoadContent(Content, graphicsDevice);
 
             spriteBatch = new SpriteBatch(graphicsDevice);
 
@@ -61,10 +61,9 @@ namespace Dungeon_Crawler_2D.Menus
 
         public override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(GameSettings.OpenMenu))
+            if (InputManager.KeyPressed(GameSettings.OpenMenu))
             {
-                ScreenManager.Instance.AddScreen(new TitleScreen(), inputManager);
-                Console.WriteLine("P funkar");
+                ScreenManager.Instance.AddScreen(new TitleScreen());
             }
 
             if (GameSettings.gameState == GameState.Explore)

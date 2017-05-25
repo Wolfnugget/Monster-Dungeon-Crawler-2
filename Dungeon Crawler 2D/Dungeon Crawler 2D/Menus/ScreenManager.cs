@@ -45,8 +45,6 @@ namespace Dungeon_Crawler_2D.Menus
 
         Texture2D fadeTexture, nullTexture;
 
-        InputManager inputManager;
-
         public GraphicsDevice GraphicsDevice;
 
         public SpriteBatch SpriteBatch;
@@ -81,7 +79,7 @@ namespace Dungeon_Crawler_2D.Menus
 
         #region Main Methods
 
-        public void AddScreen(GameScreen screen, InputManager inputManager)
+        public void AddScreen(GameScreen screen)
         {
             transition = true;
             newScreen = screen;
@@ -89,10 +87,9 @@ namespace Dungeon_Crawler_2D.Menus
             fade.IsActive = true;
             fade.Alpha = 0.0f;
             fade.ActivateValue = 1.0f;
-            this.inputManager = inputManager;
         }
 
-        public void AddScreen(GameScreen screen, InputManager inputManager, float alpha)
+        public void AddScreen(GameScreen screen, float alpha)
         {
             transition = true;
             newScreen = screen;
@@ -103,7 +100,6 @@ namespace Dungeon_Crawler_2D.Menus
             else
                 fade.Alpha = alpha;
             fade.Increase = true;
-            this.inputManager = inputManager;
         }
 
 
@@ -111,13 +107,11 @@ namespace Dungeon_Crawler_2D.Menus
         {
             currentScreen = new SplashScreen();
             fade = new FadeAnimation();
-            inputManager = new InputManager();
         }
         public void LoadContent(ContentManager Content, GraphicsDevice graphicsDevice)
         {
             content = new ContentManager(Content.ServiceProvider, "Content");
-            currentScreen.LoadContent(Content, inputManager, graphicsDevice);
-            inputManager = new InputManager();
+            currentScreen.LoadContent(Content, graphicsDevice);
 
             nullTexture = content.Load<Texture2D>("Textures/Menu/nullTexture");
             fadeTexture = content.Load<Texture2D>("Textures/Menu/FadeTexture");
@@ -129,7 +123,7 @@ namespace Dungeon_Crawler_2D.Menus
             if (!transition)
                 currentScreen.Update(gameTime);
             else
-                Transition(gameTime, inputManager, graphicsDevice);
+                Transition(gameTime, graphicsDevice);
         }
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
         {
@@ -142,7 +136,7 @@ namespace Dungeon_Crawler_2D.Menus
 
         #region Private Methods
 
-        private void Transition(GameTime gameTime, InputManager inputManager, GraphicsDevice graphicsDevice)
+        private void Transition(GameTime gameTime, GraphicsDevice graphicsDevice)
         {
             fade.Update(gameTime);
             if (fade.Alpha == 1.0f && fade.Timer.TotalSeconds == 1.0f)
@@ -150,7 +144,7 @@ namespace Dungeon_Crawler_2D.Menus
                 screenStack.Push(newScreen);
                 currentScreen.UnloadContent();
                 currentScreen = newScreen;
-                currentScreen.LoadContent(content, inputManager, graphicsDevice);
+                currentScreen.LoadContent(content, graphicsDevice);
             }
             else if (fade.Alpha == 0.0f)
             {

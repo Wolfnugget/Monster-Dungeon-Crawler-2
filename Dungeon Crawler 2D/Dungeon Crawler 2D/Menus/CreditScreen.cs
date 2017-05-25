@@ -18,9 +18,9 @@ namespace Dungeon_Crawler_2D.Menus
         FileManager fileManager;
         int imageNumber;
 
-        public override void LoadContent(ContentManager Content, InputManager inputManager, GraphicsDevice graphicsDevice)
+        public override void LoadContent(ContentManager Content, GraphicsDevice graphicsDevice)
         {
-            base.LoadContent(Content, inputManager, graphicsDevice);
+            base.LoadContent(Content, graphicsDevice);
 
             imageNumber = 0;
             fileManager = new FileManager();
@@ -28,8 +28,6 @@ namespace Dungeon_Crawler_2D.Menus
             images = new List<Texture2D>();
 
             fileManager.LoadContent("Menus/Load/CreditText.txt", attributes, contents);
-
-            inputManager = new InputManager();
 
             for (int i = 0; i < attributes.Count; i++)
             {
@@ -61,14 +59,12 @@ namespace Dungeon_Crawler_2D.Menus
 
         public override void Update(GameTime gameTime)
         {
-            inputManager.Update();
-
             fade[imageNumber].Update(gameTime);
 
            
-            if (inputManager.KeyPressed(Keys.Enter))
+            if (InputManager.KeyPressed(Keys.Enter))
             {
-                ScreenManager.Instance.AddScreen(new TitleScreen(), inputManager, fade[imageNumber].Alpha);
+                ScreenManager.Instance.AddScreen(new TitleScreen(), fade[imageNumber].Alpha);
             }
 
 

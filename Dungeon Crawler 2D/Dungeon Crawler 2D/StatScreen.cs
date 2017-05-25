@@ -18,7 +18,6 @@ namespace Dungeon_Crawler_2D
         private TextureManager textures;
         private Rectangle statScreenRect;
         private Vector2 selectionCoords;
-        private InputManager inputManager;
 
         private int coordinateXMultiplier;
         private int coordinateYMultiplier;
@@ -29,8 +28,6 @@ namespace Dungeon_Crawler_2D
         {
             this.hud = hud; ;
             this.textures = textures;
-
-            inputManager = new InputManager();
 
             statScreenRect = new Rectangle((hud.windowWidth / 2) - ((hud.sideBarWidth * 3) / 2),
                 (hud.windowHeight / 2) - (hud.sideBarWidth * 2), hud.sideBarWidth * 3, hud.sideBarWidth * 2);
@@ -56,7 +53,7 @@ namespace Dungeon_Crawler_2D
                 }
                 else if (hud.battleWon == false)
                 {
-                    ScreenManager.Instance.AddScreen(new TitleScreen(), inputManager);
+                    ScreenManager.Instance.AddScreen(new TitleScreen());
                     // HÄR SKA DU SKRIVA! :D
                 }
             }

@@ -20,9 +20,9 @@ namespace Dungeon_Crawler_2D.Menus
         FileManager fileManager;
         int imageNumber;
 
-        public override void LoadContent(ContentManager Content, InputManager inputManager, GraphicsDevice graphicsDevice)
+        public override void LoadContent(ContentManager Content, GraphicsDevice graphicsDevice)
         {
-            base.LoadContent(Content, inputManager, graphicsDevice);
+            base.LoadContent(Content, graphicsDevice);
             if (font == null)
                 font = this.content.Load<SpriteFont>("SplashFont");
 
@@ -33,7 +33,6 @@ namespace Dungeon_Crawler_2D.Menus
 
             fileManager.LoadContent("Menus/Load/Splash.txt", attributes, contents);
 
-            inputManager = new InputManager();
 
             for (int i = 0; i < attributes.Count; i++)
             {
@@ -65,19 +64,17 @@ namespace Dungeon_Crawler_2D.Menus
 
         public override void Update(GameTime gameTime)
         {
-            inputManager.Update();
-
             fade[imageNumber].Update(gameTime);
 
             if (fade[imageNumber].Alpha == 0.0f)
                 imageNumber++;
 
-            if (imageNumber >= fade.Count - 1 || inputManager.KeyPressed(Keys.Enter))
+            if (imageNumber >= fade.Count - 1 || InputManager.KeyPressed(Keys.Enter))
             {
                 if (fade[imageNumber].Alpha != 1.0f)
-                    ScreenManager.Instance.AddScreen(new TitleScreen(), inputManager, fade[imageNumber].Alpha);
+                    ScreenManager.Instance.AddScreen(new TitleScreen(), fade[imageNumber].Alpha);
                 else
-                    ScreenManager.Instance.AddScreen(new TitleScreen(), inputManager);
+                    ScreenManager.Instance.AddScreen(new TitleScreen());
             }
 
         }

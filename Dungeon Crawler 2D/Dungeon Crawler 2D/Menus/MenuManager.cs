@@ -190,29 +190,29 @@ namespace Dungeon_Crawler_2D.Menus
 
         }
 
-        public void Update(GameTime gameTime, InputManager inputManager)
+        public void Update(GameTime gameTime)
         {
             if (axis == 1)
             {
-                if (inputManager.KeyPressed(Keys.Right, Keys.D))
+                if (InputManager.KeyPressed(Keys.Right, Keys.D))
                     itemNumber++;
-                else if (inputManager.KeyPressed(Keys.Left, Keys.A))
+                else if (InputManager.KeyPressed(Keys.Left, Keys.A))
                     itemNumber--;
             }
             else
             {
-                if (inputManager.KeyPressed(Keys.Down, Keys.S))
+                if (InputManager.KeyPressed(Keys.Down, Keys.S))
                     itemNumber++;
-                else if (inputManager.KeyPressed(Keys.Up, Keys.W))
+                else if (InputManager.KeyPressed(Keys.Up, Keys.W))
                     itemNumber--;
             }
 
-            if (inputManager.KeyPressed(Keys.Enter, Keys.Z))
+            if (InputManager.KeyPressed(Keys.Enter, Keys.Z))
             {
                 if (linkType[itemNumber] == "Screen")
                 {
                     Type newClass = Type.GetType("Dungeon_Crawler_2D.Menus." + linkID[itemNumber]);
-                    ScreenManager.Instance.AddScreen((GameScreen)Activator.CreateInstance(newClass), inputManager);
+                    ScreenManager.Instance.AddScreen((GameScreen)Activator.CreateInstance(newClass));
                 }
             }
 

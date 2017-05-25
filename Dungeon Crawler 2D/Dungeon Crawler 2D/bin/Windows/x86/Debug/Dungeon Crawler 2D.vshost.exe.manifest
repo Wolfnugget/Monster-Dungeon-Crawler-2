@@ -31,14 +31,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Dungeon Crawler 2D.exe" size="249824">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Dungeon Crawler 2D.exe" size="249312">
       <assemblyIdentity name="Dungeon Crawler 2D" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>I1Zlfh0OM+x7zWIrj9WpD/nSlD/Q/5jYNrrMrHXO3sU=</dsig:DigestValue>
+        <dsig:DigestValue>lu8jalsoaPWqtG+uC0ENupYbwYnScPFObH7Fn9AfTjE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

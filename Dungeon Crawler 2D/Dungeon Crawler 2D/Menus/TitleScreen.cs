@@ -16,9 +16,9 @@ namespace Dungeon_Crawler_2D.Menus
         SpriteFont font;
         MenuManager menu;
 
-        public override void LoadContent(ContentManager Content, InputManager inputManager, GraphicsDevice graphicsDevice)
+        public override void LoadContent(ContentManager Content, GraphicsDevice graphicsDevice)
         {
-            base.LoadContent(Content, inputManager, graphicsDevice);
+            base.LoadContent(Content, graphicsDevice);
             if (font == null)
                 font = this.content.Load<SpriteFont>("MenuFont");
             menu = new MenuManager();
@@ -33,8 +33,7 @@ namespace Dungeon_Crawler_2D.Menus
 
         public override void Update(GameTime gameTime)
         {
-            inputManager.Update();
-            menu.Update(gameTime, inputManager);
+            menu.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)

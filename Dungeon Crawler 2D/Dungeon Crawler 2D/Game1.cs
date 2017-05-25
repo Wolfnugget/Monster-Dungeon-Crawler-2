@@ -46,6 +46,8 @@ namespace Dungeon_Crawler_2D
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            InputManager.Update();
+
 
             ScreenManager.Instance.Update(gameTime, GraphicsDevice);
             base.Update(gameTime);
