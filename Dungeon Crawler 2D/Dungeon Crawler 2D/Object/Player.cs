@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Dungeon_Crawler_2D.Object
@@ -13,7 +12,6 @@ namespace Dungeon_Crawler_2D.Object
     {
         public Stats stats;
         private TextureManager textures;
-        private KeyboardState currentState, previousState;
         public Abilities abilities;
         public List<UsedAbility> playerAbilities;
 
@@ -39,25 +37,23 @@ namespace Dungeon_Crawler_2D.Object
         void CheckInput()
         {
             Point direction = new Point(0, 0);
-            previousState = currentState;
-            currentState = Keyboard.GetState();
 
-            if (currentState.IsKeyDown(GameSettings.Up) || currentState.IsKeyDown(GameSettings.Alt_Up))
+            if (InputManager.KeyDown(GameSettings.Up) || InputManager.KeyDown(GameSettings.Alt_Up))
             {
                 direction.Y = -1;
                 startingFrame = new Point(0, 3);
             }
-            else if (currentState.IsKeyDown(GameSettings.Down) || currentState.IsKeyDown(GameSettings.Alt_Down))
+            else if (InputManager.KeyDown(GameSettings.Down) || InputManager.KeyDown(GameSettings.Alt_Down))
             {
                 direction.Y = 1;
                 startingFrame = new Point(0, 0);
             }
-            if (currentState.IsKeyDown(GameSettings.Right) || currentState.IsKeyDown(GameSettings.Alt_Right)) //Detta är en "if" så man ska kunna gå diagonalt. Map klassen har stöd för det.
+            if (InputManager.KeyDown(GameSettings.Right) || InputManager.KeyDown(GameSettings.Alt_Right)) //Detta är en "if" så man ska kunna gå diagonalt. Map klassen har stöd för det.
             {
                 direction.X = 1;
                 startingFrame = new Point(0, 2);
             }
-            else if (currentState.IsKeyDown(GameSettings.Left) || currentState.IsKeyDown(GameSettings.Alt_Left))
+            else if (InputManager.KeyDown(GameSettings.Left) || InputManager.KeyDown(GameSettings.Alt_Left))
             {
                 direction.X = -1;
                 startingFrame = new Point(0, 1);
@@ -76,14 +72,12 @@ namespace Dungeon_Crawler_2D.Object
 
         public TurnOrder ChoseAbility(Enemy enemy)
         {
-            previousState = currentState;
-            currentState = Keyboard.GetState();
-            if (currentState.IsKeyDown(Keys.Q) && previousState.IsKeyUp(Keys.Q))
+            if (InputManager.KeyPressed(GameSettings.Ability_1))
             {
                 abilities.Ability(enemy, this, playerAbilities[0]);
                 return TurnOrder.enemy;
             }
-            else if (currentState.IsKeyDown(Keys.W) && previousState.IsKeyUp(Keys.W))
+            else if (InputManager.KeyPressed(GameSettings.Ability_2))
             {
                 if (abilities.CheckCost(UsedAbility.Magic) <= stats.CheckStat(Stat.mana))
                 {
@@ -93,12 +87,12 @@ namespace Dungeon_Crawler_2D.Object
                 }
                 return TurnOrder.player;
             }
-            else if (currentState.IsKeyDown(Keys.E) && previousState.IsKeyUp(Keys.E))
+            else if (InputManager.KeyPressed(GameSettings.Ability_3))
             {
                 abilities.Ability(enemy, this, playerAbilities[2]);
                 return TurnOrder.enemy;
             }
-            else if (currentState.IsKeyDown(Keys.R) && previousState.IsKeyUp(Keys.R))
+            else if (InputManager.KeyPressed(GameSettings.Ability_4))
             {
                 if (abilities.CheckCost(UsedAbility.PoisonHit) <= stats.CheckStat(Stat.mana))
                 {

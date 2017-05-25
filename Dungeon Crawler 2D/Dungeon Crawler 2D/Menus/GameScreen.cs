@@ -16,8 +16,6 @@ namespace Dungeon_Crawler_2D.Menus
         protected ContentManager content;
         protected List<List<string>> attributes, contents;
 
-
-
         public virtual void LoadContent(ContentManager Content, GraphicsDevice graphicsDevice)
         {
             content = new ContentManager(Content.ServiceProvider, "Content");

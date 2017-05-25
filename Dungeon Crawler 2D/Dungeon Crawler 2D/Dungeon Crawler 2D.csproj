@@ -379,6 +379,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="Content\MenuFont.spritefont" />
     <None Include="Dungeon Crawler 2D_TemporaryKey.pfx" />
   </ItemGroup>

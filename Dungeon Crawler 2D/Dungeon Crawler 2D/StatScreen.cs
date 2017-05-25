@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Dungeon_Crawler_2D.Menus;
 
 namespace Dungeon_Crawler_2D
 {
     class StatScreen
     {
-        private KeyboardState previousState, currentState;
         private HUDManager hud;
         private TextureManager textures;
         private Rectangle statScreenRect;
@@ -40,11 +38,9 @@ namespace Dungeon_Crawler_2D
 
         public void Update()
         {
-            previousState = currentState;
-            currentState = Keyboard.GetState();
 
             //Stänga Battle-summerings-pop-upen
-            if (showSummary == true && Keyboard.GetState().IsKeyDown(Keys.Space))
+            if (showSummary == true && InputManager.KeyPressed(GameSettings.Continue))
             {
                 if (hud.battleWon)
                 {
@@ -59,7 +55,7 @@ namespace Dungeon_Crawler_2D
             }
 
             //Inventory-knappen
-            if (currentState.IsKeyDown(Keys.Q) && previousState.IsKeyUp(Keys.Q) && showSummary == false)
+            if (InputManager.KeyPressed(GameSettings.OpenInventory) && showSummary == false)
             {
                 if (GameSettings.gameState == GameState.Explore)
                 {
@@ -80,23 +76,19 @@ namespace Dungeon_Crawler_2D
                     statScreenRect.Y + (statScreenRect.Height / coordinateYMultiplier));
 
                 //styr selectionCoordinates
-                if ((coordinateYMultiplier == 10 && currentState.IsKeyDown(Keys.S) && previousState.IsKeyUp(Keys.S))
-                    || (coordinateYMultiplier == 10 && currentState.IsKeyDown(Keys.Down) && previousState.IsKeyUp(Keys.Down)))
+                if (coordinateYMultiplier == 10 && (InputManager.KeyPressed(GameSettings.Down) || InputManager.KeyPressed(GameSettings.Alt_Down)))
                 {
                     coordinateYMultiplier = 2;
                 }
-                if ((coordinateYMultiplier == 2 && currentState.IsKeyDown(Keys.W) && previousState.IsKeyUp(Keys.W))
-                    || (coordinateYMultiplier == 2 && currentState.IsKeyDown(Keys.Up) && previousState.IsKeyUp(Keys.Up)))
+                if (coordinateYMultiplier == 2 && (InputManager.KeyPressed(GameSettings.Up) || InputManager.KeyPressed(GameSettings.Alt_Up)))
                 {
                     coordinateYMultiplier = 10;
                 }
-                if ((coordinateXMultiplier > 1 && currentState.IsKeyDown(Keys.A) && previousState.IsKeyUp(Keys.A))
-                    || (coordinateXMultiplier > 1 && currentState.IsKeyDown(Keys.Left) && previousState.IsKeyUp(Keys.Left)))
+                if (coordinateXMultiplier > 1 && (InputManager.KeyPressed(GameSettings.Left) || InputManager.KeyPressed(GameSettings.Alt_Left)))
                 {
                     coordinateXMultiplier -= 2;
                 }
-                if ((coordinateXMultiplier < 5 && currentState.IsKeyDown(Keys.D) && previousState.IsKeyUp(Keys.D))
-                    || (coordinateXMultiplier < 5 && currentState.IsKeyDown(Keys.Right) && previousState.IsKeyUp(Keys.Right)))
+                if (coordinateXMultiplier < 5 && (InputManager.KeyPressed(GameSettings.Right) || InputManager.KeyPressed(GameSettings.Alt_Right)))
                 {
                     coordinateXMultiplier += 2;
                 }
@@ -108,7 +100,7 @@ namespace Dungeon_Crawler_2D
                     if (new Rectangle(statScreenRect.X + ((statScreenRect.Width / 7) * 3),
                     statScreenRect.Y + (statScreenRect.Height / 10),
                     statScreenRect.Width / 7,
-                    statScreenRect.Width / 7).Contains(selectionCoords.X, selectionCoords.Y) && currentState.IsKeyDown(Keys.E) && previousState.IsKeyUp(Keys.E))
+                    statScreenRect.Width / 7).Contains(selectionCoords.X, selectionCoords.Y) && InputManager.KeyPressed(GameSettings.Use))
                     {
                         hud.player.stats.upgrade -= 1;
                         hud.player.stats.ChangeStat(Stat.strength, 1);
@@ -118,7 +110,7 @@ namespace Dungeon_Crawler_2D
                     if (new Rectangle(statScreenRect.X + ((statScreenRect.Width / 7) * 5),
                     statScreenRect.Y + (statScreenRect.Height / 10),
                     statScreenRect.Width / 7,
-                    statScreenRect.Width / 7).Contains(selectionCoords.X, selectionCoords.Y) && currentState.IsKeyDown(Keys.E) && previousState.IsKeyUp(Keys.E))
+                    statScreenRect.Width / 7).Contains(selectionCoords.X, selectionCoords.Y) && InputManager.KeyPressed(GameSettings.Use))
                     {
                         hud.player.stats.upgrade -= 1;
                         hud.player.stats.ChangeStat(Stat.accuracy, 1);
@@ -128,7 +120,7 @@ namespace Dungeon_Crawler_2D
                     if (new Rectangle(statScreenRect.X + (statScreenRect.Width / 7),
                     statScreenRect.Y + (statScreenRect.Height / 2),
                     statScreenRect.Width / 7,
-                    statScreenRect.Width / 7).Contains(selectionCoords.X, selectionCoords.Y) && currentState.IsKeyDown(Keys.E) && previousState.IsKeyUp(Keys.E))
+                    statScreenRect.Width / 7).Contains(selectionCoords.X, selectionCoords.Y) && InputManager.KeyPressed(GameSettings.Use))
                     {
                         hud.player.stats.upgrade -= 1;
                         hud.player.stats.ChangeStat(Stat.speed, 1);
@@ -138,7 +130,7 @@ namespace Dungeon_Crawler_2D
                     if (new Rectangle(statScreenRect.X + ((statScreenRect.Width / 7) * 3),
                     statScreenRect.Y + (statScreenRect.Height / 2),
                     statScreenRect.Width / 7,
-                    statScreenRect.Width / 7).Contains(selectionCoords.X, selectionCoords.Y) && currentState.IsKeyDown(Keys.E) && previousState.IsKeyUp(Keys.E))
+                    statScreenRect.Width / 7).Contains(selectionCoords.X, selectionCoords.Y) && InputManager.KeyPressed(GameSettings.Use))
                     {
                         hud.player.stats.upgrade -= 1;
                         hud.player.stats.ChangeStat(Stat.intelligence, 1);
@@ -148,7 +140,7 @@ namespace Dungeon_Crawler_2D
                     if (new Rectangle(statScreenRect.X + ((statScreenRect.Width / 7) * 5),
                     statScreenRect.Y + (statScreenRect.Height / 2),
                     statScreenRect.Width / 7,
-                    statScreenRect.Width / 7).Contains(selectionCoords.X, selectionCoords.Y) && currentState.IsKeyDown(Keys.E) && previousState.IsKeyUp(Keys.E))
+                    statScreenRect.Width / 7).Contains(selectionCoords.X, selectionCoords.Y) && InputManager.KeyPressed(GameSettings.Use))
                     {
                         hud.player.stats.upgrade -= 1;
                         hud.player.stats.ChangeStat(Stat.luck, 1);
@@ -164,9 +156,12 @@ namespace Dungeon_Crawler_2D
                 spriteBatch.Draw(hud.pixelTex, statScreenRect, Color.Black);
 
                 spriteBatch.Draw(hud.pixelTex, new Rectangle(statScreenRect.X, statScreenRect.Y, statScreenRect.Width, statScreenRect.Width / 100), Color.White);
-                spriteBatch.Draw(hud.pixelTex, new Rectangle(statScreenRect.X, statScreenRect.Y + statScreenRect.Height - (statScreenRect.Width / 100), statScreenRect.Width, statScreenRect.Width / 100), Color.White);
+                spriteBatch.Draw(hud.pixelTex, new Rectangle(statScreenRect.X, statScreenRect.Y + statScreenRect.Height - (statScreenRect.Width / 100),
+                    statScreenRect.Width, statScreenRect.Width / 100), Color.White);
+
                 spriteBatch.Draw(hud.pixelTex, new Rectangle(statScreenRect.X, statScreenRect.Y, statScreenRect.Width / 100, statScreenRect.Height), Color.White);
-                spriteBatch.Draw(hud.pixelTex, new Rectangle(statScreenRect.X + statScreenRect.Width - (statScreenRect.Width / 100), statScreenRect.Y, statScreenRect.Width / 100, statScreenRect.Height), Color.White);
+                spriteBatch.Draw(hud.pixelTex, new Rectangle(statScreenRect.X + statScreenRect.Width - (statScreenRect.Width / 100), statScreenRect.Y,
+                    statScreenRect.Width / 100, statScreenRect.Height), Color.White);
 
                 #region icons
 
@@ -296,11 +291,12 @@ namespace Dungeon_Crawler_2D
 
         public void DrawCombatSummary(SpriteBatch spriteBatch)
         {
-            Rectangle whiteBox = new Rectangle((hud.windowWidth / 2) - ((hud.sideBarWidth * 3) / 2), (hud.windowHeight / 2) - (hud.sideBarWidth * 2), hud.sideBarWidth * 3, hud.sideBarWidth * 2);
-            Rectangle blackBox = new Rectangle(whiteBox.X + (hud.statBarWidth / 20), whiteBox.Y + (hud.statBarWidth / 20), whiteBox.Width - (hud.statBarWidth / 10), whiteBox.Height - (hud.statBarWidth / 10));
+            Rectangle whiteBox = new Rectangle((hud.windowWidth / 2) - ((hud.sideBarWidth * 3) / 2),
+                (hud.windowHeight / 2) - (hud.sideBarWidth * 2), hud.sideBarWidth * 3, hud.sideBarWidth * 2),
+                blackBox = new Rectangle(whiteBox.X + (hud.statBarWidth / 20), whiteBox.Y + (hud.statBarWidth / 20),
+                whiteBox.Width - (hud.statBarWidth / 10), whiteBox.Height - (hud.statBarWidth / 10));
 
-            Vector2 textSizeSummary;
-            Vector2 originSummaryText;
+            Vector2 textSizeSummary, originSummaryText;
 
             spriteBatch.Draw(textures.whiteSquare, whiteBox, Color.White);
             spriteBatch.Draw(textures.whiteSquare, blackBox, Color.Black);
@@ -309,30 +305,36 @@ namespace Dungeon_Crawler_2D
             {
                 textSizeSummary = textures.comicSans.MeasureString("BATTLE WON!!");
                 originSummaryText = textSizeSummary * 0.5f;
-                spriteBatch.DrawString(textures.comicSans, "BATTLE WON!!", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + (whiteBox.Height / 3)), Color.Yellow, 0, originSummaryText, 3, SpriteEffects.None, 0);
+                spriteBatch.DrawString(textures.comicSans, "BATTLE WON!!", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + (whiteBox.Height / 3)),
+                    Color.Yellow, 0, originSummaryText, 3, SpriteEffects.None, 0);
 
                 textSizeSummary = textures.comicSans.MeasureString("Experience gained: " + hud.gainedXp);
                 originSummaryText = textSizeSummary * 0.5f;
-                spriteBatch.DrawString(textures.comicSans, "Experience gained: " + hud.gainedXp, new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 3) * 2)), Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
+                spriteBatch.DrawString(textures.comicSans, "Experience gained: " + hud.gainedXp, new Vector2(whiteBox.X + (whiteBox.Width / 2),
+                    whiteBox.Y + ((whiteBox.Height / 3) * 2)), Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
 
                 textSizeSummary = textures.comicSans.MeasureString("Press Space");
                 originSummaryText = textSizeSummary * 0.5f;
-                spriteBatch.DrawString(textures.comicSans, "Press Space", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 5) * 4)), Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
+                spriteBatch.DrawString(textures.comicSans, "Press Space", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 5) * 4)),
+                    Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
             }
 
             else
             {
                 textSizeSummary = textures.comicSans.MeasureString("BATTLE LOST...");
                 originSummaryText = textSizeSummary * 0.5f;
-                spriteBatch.DrawString(textures.comicSans, "BATTLE LOST...", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + (whiteBox.Height / 3)), Color.Yellow, 0, originSummaryText, 3, SpriteEffects.None, 0);
+                spriteBatch.DrawString(textures.comicSans, "BATTLE LOST...", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + (whiteBox.Height / 3)),
+                    Color.Yellow, 0, originSummaryText, 3, SpriteEffects.None, 0);
 
                 textSizeSummary = textures.comicSans.MeasureString("Reached Level " + (hud.player.stats.CheckStat(Stat.level)));
                 originSummaryText = textSizeSummary * 0.5f;
-                spriteBatch.DrawString(textures.comicSans, "Reached Level " + (hud.player.stats.CheckStat(Stat.level)), new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 3) * 2)), Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
+                spriteBatch.DrawString(textures.comicSans, "Reached Level " + (hud.player.stats.CheckStat(Stat.level)),
+                    new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 3) * 2)), Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
 
                 textSizeSummary = textures.comicSans.MeasureString("Press Space for New Game");
                 originSummaryText = textSizeSummary * 0.5f;
-                spriteBatch.DrawString(textures.comicSans, "Press Space for New Game", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 5) * 4)), Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
+                spriteBatch.DrawString(textures.comicSans, "Press Space for New Game", new Vector2(whiteBox.X + (whiteBox.Width / 2), whiteBox.Y + ((whiteBox.Height / 5) * 4)),
+                    Color.Yellow, 0, originSummaryText, 2, SpriteEffects.None, 0);
             }
         }
     }
