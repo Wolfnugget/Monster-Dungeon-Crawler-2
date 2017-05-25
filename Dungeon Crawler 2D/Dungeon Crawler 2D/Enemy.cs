@@ -199,9 +199,9 @@ namespace Dungeon_Crawler_2D
                 mana = 20 + 2 * player.stats.CheckStat(Stat.level);
 
                 strenght = 8 + rand.Next((int)(0.5f * player.stats.CheckStat(Stat.level)), 2 * player.stats.CheckStat(Stat.level));
-                inteligence = 0;
-                dextarity = 2 + player.stats.CheckStat(Stat.level) / 2;
-                luck = 0;
+                inteligence = player.stats.CheckStat(Stat.level);
+                dextarity = 8 + player.stats.CheckStat(Stat.level) / 2;
+                luck = rand.Next(1, Math.Max(player.stats.CheckStat(Stat.level) / 2, 2));
                 speed = 8 + player.stats.CheckStat(Stat.level) / 2;
                 xp = Math.Max(30, rand.Next(5 * player.stats.CheckStat(Stat.level), 15 * player.stats.CheckStat(Stat.level))) +
                     5 * rand.Next((int)(0.5f * player.stats.CheckStat(Stat.level)), (int)(1.5f * player.stats.CheckStat(Stat.level)));
@@ -216,8 +216,8 @@ namespace Dungeon_Crawler_2D
 
                 strenght = 10;
                 inteligence = 10 + rand.Next(1 * player.stats.CheckStat(Stat.level), 2 * player.stats.CheckStat(Stat.level));
-                dextarity = rand.Next(5, 12);
-                luck = rand.Next(0, player.stats.CheckStat(Stat.level));
+                dextarity = rand.Next(5 + player.stats.CheckStat(Stat.level) / 2, 10 + player.stats.CheckStat(Stat.level) * 2);
+                luck = rand.Next(1, player.stats.CheckStat(Stat.level) + 2);
                 speed = rand.Next(6 + player.stats.CheckStat(Stat.level), 15 + player.stats.CheckStat(Stat.level));
                 xp = Math.Max(40 ,rand.Next(10 * player.stats.CheckStat(Stat.level), 20 * player.stats.CheckStat(Stat.level))) +
                     5 * rand.Next(1 * player.stats.CheckStat(Stat.level), 2 * player.stats.CheckStat(Stat.level));
@@ -230,11 +230,11 @@ namespace Dungeon_Crawler_2D
                 health = 250 + 10 * player.stats.CheckStat(Stat.level);
                 mana = 200;
 
-                strenght = 10 + rand.Next(2 * player.stats.CheckStat(Stat.level), 3 * player.stats.CheckStat(Stat.level));
-                inteligence = 10 + rand.Next(2 * player.stats.CheckStat(Stat.level), 3 * player.stats.CheckStat(Stat.level));
-                dextarity = 10 + rand.Next(2 * player.stats.CheckStat(Stat.level), 3 * player.stats.CheckStat(Stat.level));
-                luck = 10 + rand.Next(2 * player.stats.CheckStat(Stat.level), 3 * player.stats.CheckStat(Stat.level));
-                speed = 10 + rand.Next(2 * player.stats.CheckStat(Stat.level), 3 * player.stats.CheckStat(Stat.level));
+                strenght = 10 + rand.Next(1 * player.stats.CheckStat(Stat.level), 3 * player.stats.CheckStat(Stat.level));
+                inteligence = 10 + rand.Next(1 * player.stats.CheckStat(Stat.level), 3 * player.stats.CheckStat(Stat.level));
+                dextarity = 10 + rand.Next(1 * player.stats.CheckStat(Stat.level), 3 * player.stats.CheckStat(Stat.level));
+                luck = 10 + rand.Next(1 * player.stats.CheckStat(Stat.level), 3 * player.stats.CheckStat(Stat.level));
+                speed = 10 + rand.Next(1 * player.stats.CheckStat(Stat.level), 3 * player.stats.CheckStat(Stat.level));
                 xp = Math.Max(10 * player.stats.CheckStat(Stat.level) * player.stats.CheckStat(Stat.level), 250);
             }
             #endregion

@@ -46,12 +46,17 @@ namespace Dungeon_Crawler_2D
             {
                 if (usedBy == UsedBy.player)
                 {
-                    int accuracy = player.stats.CheckStat(Stat.accuracy) + 
-                        (player.stats.CheckStat(Stat.luck) / 2) + rand.Next(0, 100);
-                    if (accuracy >= 50)
+                    if (CheckIfHit(player.stats.CheckStat(Stat.accuracy),
+                        player.stats.CheckStat(Stat.luck),
+                        player.stats.CheckStat(Stat.speed),
+                        enemy.stats.CheckStat(Stat.luck),
+                        enemy.stats.CheckStat(Stat.speed)))
                     {
                         usedAbility = UsedAbility.Hit;
-                        if (accuracy >= 100)
+                        if (CheckIfCritical(player.stats.CheckStat(Stat.luck),
+                            player.stats.CheckStat(Stat.strength),
+                            enemy.stats.CheckStat(Stat.luck),
+                            enemy.stats.CheckStat(Stat.strength)))
                         {
                             power = player.stats.CheckStat(Stat.strength);
                             effect = Effects.bleed;
@@ -66,12 +71,17 @@ namespace Dungeon_Crawler_2D
                 }
                 else
                 {
-                    int accuracy = enemy.stats.CheckStat(Stat.accuracy) + 
-                        (enemy.stats.CheckStat(Stat.luck) / 2) + rand.Next(0, 100);
-                    if (accuracy >= 50)
+                    if (CheckIfHit(enemy.stats.CheckStat(Stat.accuracy),
+                        enemy.stats.CheckStat(Stat.luck),
+                        enemy.stats.CheckStat(Stat.speed),
+                        player.stats.CheckStat(Stat.luck),
+                        player.stats.CheckStat(Stat.speed)))
                     {
                         usedAbility = UsedAbility.Hit;
-                        if (accuracy >= 100)
+                        if (CheckIfCritical(player.stats.CheckStat(Stat.luck),
+                            player.stats.CheckStat(Stat.strength),
+                            enemy.stats.CheckStat(Stat.luck),
+                            enemy.stats.CheckStat(Stat.strength)))
                         {
                             power = enemy.stats.CheckStat(Stat.strength) * 2;
                             effect = Effects.bleed;
@@ -110,12 +120,17 @@ namespace Dungeon_Crawler_2D
             {
                 if (usedBy == UsedBy.player)
                 {
-                    int accuracy = player.stats.CheckStat(Stat.accuracy) + 
-                        (player.stats.CheckStat(Stat.luck) / 2) + rand.Next(0, 80);
-                    if (accuracy >= 50)
+                    if (CheckIfHit(player.stats.CheckStat(Stat.accuracy),
+                        player.stats.CheckStat(Stat.luck),
+                        player.stats.CheckStat(Stat.speed),
+                        enemy.stats.CheckStat(Stat.luck),
+                        enemy.stats.CheckStat(Stat.speed)))
                     {
                         usedAbility = UsedAbility.Magic;
-                        if (accuracy >= 100)
+                        if (CheckIfCritical(player.stats.CheckStat(Stat.luck),
+                            player.stats.CheckStat(Stat.intelligence),
+                            enemy.stats.CheckStat(Stat.luck),
+                            enemy.stats.CheckStat(Stat.intelligence)))
                         {
                             power = player.stats.CheckStat(Stat.intelligence) + player.stats.CheckStat(Stat.luck);
                             effect = Effects.confusion;
@@ -130,12 +145,17 @@ namespace Dungeon_Crawler_2D
                 }
                 else
                 {
-                    int accuracy = enemy.stats.CheckStat(Stat.accuracy) + 
-                        (enemy.stats.CheckStat(Stat.luck) / 2) + rand.Next(0, 100);
-                    if (accuracy >= 50)
+                    if (CheckIfHit(enemy.stats.CheckStat(Stat.accuracy),
+                        enemy.stats.CheckStat(Stat.luck),
+                        enemy.stats.CheckStat(Stat.speed),
+                        player.stats.CheckStat(Stat.luck),
+                        player.stats.CheckStat(Stat.speed)))
                     {
                         this.usedAbility = UsedAbility.Magic;
-                        if (accuracy >= 100)
+                        if (CheckIfCritical(player.stats.CheckStat(Stat.luck),
+                            player.stats.CheckStat(Stat.intelligence),
+                            enemy.stats.CheckStat(Stat.luck),
+                            enemy.stats.CheckStat(Stat.intelligence)))
                         {
                             power = enemy.stats.CheckStat(Stat.intelligence) + enemy.stats.CheckStat(Stat.luck);
                             effect = Effects.confusion;
@@ -183,19 +203,24 @@ namespace Dungeon_Crawler_2D
             {
                 if (usedBy == UsedBy.player)
                 {
-                    int accuracy = player.stats.CheckStat(Stat.accuracy) + 
-                        (player.stats.CheckStat(Stat.luck) / 2) + rand.Next(0, 100);
-                    if (accuracy >= 50)
+                    if (CheckIfHit(player.stats.CheckStat(Stat.accuracy),
+                        player.stats.CheckStat(Stat.luck),
+                        player.stats.CheckStat(Stat.speed),
+                        enemy.stats.CheckStat(Stat.luck),
+                        enemy.stats.CheckStat(Stat.speed)))
                     {
                         usedAbility = UsedAbility.PoisonHit;
-                        if (accuracy >= 100)
+                        if (CheckIfCritical(player.stats.CheckStat(Stat.luck),
+                            player.stats.CheckStat(Stat.intelligence),
+                            enemy.stats.CheckStat(Stat.luck),
+                            enemy.stats.CheckStat(Stat.intelligence)))
                         {
-                            power = player.stats.CheckStat(Stat.strength);
+                            power = player.stats.CheckStat(Stat.intelligence);
                             effect = Effects.poison;
                         }
                         else
                         {
-                            power = player.stats.CheckStat(Stat.strength) / 2;
+                            power = player.stats.CheckStat(Stat.intelligence) / 2;
                             effect = Effects.poison;
                         }
                     }
@@ -203,12 +228,17 @@ namespace Dungeon_Crawler_2D
                 }
                 else
                 {
-                    int accuracy = enemy.stats.CheckStat(Stat.accuracy) + 
-                        (enemy.stats.CheckStat(Stat.luck) / 2) + rand.Next(0, 100);
-                    if (accuracy >= 50)
+                    if (CheckIfHit(enemy.stats.CheckStat(Stat.accuracy),
+                        enemy.stats.CheckStat(Stat.luck),
+                        enemy.stats.CheckStat(Stat.speed),
+                        player.stats.CheckStat(Stat.luck),
+                        player.stats.CheckStat(Stat.speed)))
                     {
                         usedAbility = UsedAbility.PoisonHit;
-                        if (accuracy >= 100)
+                        if (CheckIfCritical(enemy.stats.CheckStat(Stat.luck),
+                            enemy.stats.CheckStat(Stat.intelligence),
+                            player.stats.CheckStat(Stat.luck),
+                            player.stats.CheckStat(Stat.intelligence)))
                         {
                             power = enemy.stats.CheckStat(Stat.strength);
                             effect = Effects.poison;
@@ -239,7 +269,7 @@ namespace Dungeon_Crawler_2D
         private bool CheckIfHit(int accuracy, int luck, int speed, int opponentLuck, int opponentSpeed)
         {
 
-            if (rand.Next(accuracy + (luck / 5) - opponentLuck, (accuracy * luck) - opponentLuck) >
+            if (rand.Next(accuracy + (luck / 5) - opponentLuck, (Math.Max(accuracy, 1) * Math.Max(luck, 1)) - opponentLuck) >
                 (50 + (opponentLuck + opponentSpeed) - (accuracy + speed)))
             {
                 return true;
@@ -252,8 +282,8 @@ namespace Dungeon_Crawler_2D
 
         private bool CheckIfCritical(int luck, int governingStat, int opponentLuck, int opponentGoverningStat)
         {
-            if (rand.Next(Math.Min(luck, governingStat), luck * governingStat) >
-                rand.Next(Math.Max(opponentLuck, opponentGoverningStat), opponentLuck * opponentGoverningStat))
+            if (rand.Next(Math.Min(luck, governingStat), Math.Max(luck, 1) * Math.Max(governingStat, 1)) >
+                rand.Next(Math.Max(opponentLuck, opponentGoverningStat), Math.Max(opponentLuck, 1) * Math.Max(opponentGoverningStat, 1)))
             {
                 return true;
             }
