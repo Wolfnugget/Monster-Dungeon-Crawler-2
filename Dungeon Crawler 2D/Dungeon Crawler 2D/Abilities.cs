@@ -240,12 +240,12 @@ namespace Dungeon_Crawler_2D
                             player.stats.CheckStat(Stat.luck),
                             player.stats.CheckStat(Stat.intelligence)))
                         {
-                            power = enemy.stats.CheckStat(Stat.strength);
+                            power = enemy.stats.CheckStat(Stat.intelligence);
                             effect = Effects.poison;
                         }
                         else
                         {
-                            power = enemy.stats.CheckStat(Stat.strength) / 2;
+                            power = enemy.stats.CheckStat(Stat.intelligence) / 2;
                             effect = Effects.poison;
                         }
                     }
