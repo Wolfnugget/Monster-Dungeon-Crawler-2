@@ -250,8 +250,9 @@ namespace Dungeon_Crawler_2D
 
         public void BattleAnimation()
         {
-            srcRec.X = (frame % 4) * 16;
             frame++;
+            srcRec.X = (frame % 4) * 16;
+            
         }
 
         public void Draw(SpriteBatch spriteBatch, UsedBy by)

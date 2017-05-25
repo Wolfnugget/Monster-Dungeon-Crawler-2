@@ -48,6 +48,8 @@ namespace Dungeon_Crawler_2D
             effectEnemy = Effects.none;
             confusedPlayer = false;
             confusedEnemy = false;
+            player.abilities.usedAbility = UsedAbility.Miss;
+            enemy.ability.usedAbility = UsedAbility.Miss;
         }
 
         public void Update(GameTime gameTime)
@@ -212,13 +214,13 @@ namespace Dungeon_Crawler_2D
                     PlayerAnimation();
                     if (confusedEnemy == true) { enemy.ability.usedAbility = UsedAbility.confusion; }
                     if (confusedPlayer == true) { player.abilities.usedAbility = UsedAbility.confusion; }
+                    animationTimer2++;
                     if (animationTimer2 == 4)
                     {
                         currentTurn = TurnOrder.conclusion;
                         animationTimer2 = 0;
                     }
                     animationTimer = 0;
-                    animationTimer2++;
                 }
                 animationTimer++;
             }
