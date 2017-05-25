@@ -203,7 +203,8 @@ namespace Dungeon_Crawler_2D
                 dextarity = 2 + player.stats.CheckStat(Stat.level) / 2;
                 luck = 0;
                 speed = 8 + player.stats.CheckStat(Stat.level) / 2;
-                xp = rand.Next(20, 40) + 5 * rand.Next((int)(0.5f * player.stats.CheckStat(Stat.level)), (int)(1.5f * player.stats.CheckStat(Stat.level)));
+                xp = Math.Max(30, rand.Next(5 * player.stats.CheckStat(Stat.level), 15 * player.stats.CheckStat(Stat.level))) +
+                    5 * rand.Next((int)(0.5f * player.stats.CheckStat(Stat.level)), (int)(1.5f * player.stats.CheckStat(Stat.level)));
 
             }
             #endregion
@@ -218,7 +219,8 @@ namespace Dungeon_Crawler_2D
                 dextarity = rand.Next(5, 12);
                 luck = rand.Next(0, player.stats.CheckStat(Stat.level));
                 speed = rand.Next(6 + player.stats.CheckStat(Stat.level), 15 + player.stats.CheckStat(Stat.level));
-                xp = rand.Next(30, 60) + 5 * rand.Next(1 * player.stats.CheckStat(Stat.level), 2 * player.stats.CheckStat(Stat.level));
+                xp = Math.Max(40 ,rand.Next(10 * player.stats.CheckStat(Stat.level), 20 * player.stats.CheckStat(Stat.level))) +
+                    5 * rand.Next(1 * player.stats.CheckStat(Stat.level), 2 * player.stats.CheckStat(Stat.level));
 
             }
             #endregion

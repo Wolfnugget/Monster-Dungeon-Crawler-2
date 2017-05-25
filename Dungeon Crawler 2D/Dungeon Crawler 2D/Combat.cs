@@ -310,8 +310,8 @@ namespace Dungeon_Crawler_2D
                 }
                 else if (effect == Effects.poison)
                 {
-                    enemy.stats.AddEffect(rand.Next((player.stats.CheckStat(Stat.intelligence) / 5) + (player.stats.CheckStat(Stat.luck) / 10),
-                        (player.stats.CheckStat(Stat.intelligence))), 
+                    enemy.stats.AddEffect(rand.Next(Math.Min((player.stats.CheckStat(Stat.intelligence) / 5) + (player.stats.CheckStat(Stat.luck) / 10),
+                        (player.stats.CheckStat(Stat.intelligence) / 2) - 1), (player.stats.CheckStat(Stat.intelligence) / 2)), 
                         player.abilities.effect, player.stats.CheckStat(Stat.intelligence));
                 }
                 else if (effect == Effects.confusion)
@@ -331,8 +331,8 @@ namespace Dungeon_Crawler_2D
                 }
                 else if (effect == Effects.poison)
                 {
-                    player.stats.AddEffect(rand.Next((enemy.stats.CheckStat(Stat.intelligence) / 5) + (enemy.stats.CheckStat(Stat.luck) / 10),
-                        (enemy.stats.CheckStat(Stat.intelligence))),
+                    player.stats.AddEffect(rand.Next(Math.Min((enemy.stats.CheckStat(Stat.intelligence) / 5) + (enemy.stats.CheckStat(Stat.luck) / 10),
+                        (enemy.stats.CheckStat(Stat.intelligence)/ 2) - 1), (enemy.stats.CheckStat(Stat.intelligence) / 2)),
                         enemy.ability.effect, enemy.stats.CheckStat(Stat.intelligence));
 
                 }
