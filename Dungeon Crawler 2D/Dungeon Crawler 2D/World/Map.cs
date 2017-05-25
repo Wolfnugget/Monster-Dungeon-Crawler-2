@@ -15,14 +15,9 @@ namespace Dungeon_Crawler_2D.World
         None,
         Wall,
         basic,
-        Stairs,
         Portal,
         ExitPortal,
         MonsterTile,
-        NorthExit,
-        SouthExit,
-        WestExit,
-        EastExit,
         Boss
     }
 

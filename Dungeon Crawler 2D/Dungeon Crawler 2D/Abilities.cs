@@ -236,6 +236,33 @@ namespace Dungeon_Crawler_2D
             #endregion
         }
 
+        private bool CheckIfHit(int accuracy, int luck, int speed, int opponentLuck, int opponentSpeed)
+        {
+
+            if (rand.Next(accuracy + (luck / 5) - opponentLuck, (accuracy * luck) - opponentLuck) >
+                (50 + (opponentLuck + opponentSpeed) - (accuracy + speed)))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool CheckIfCritical(int luck, int governingStat, int opponentLuck, int opponentGoverningStat)
+        {
+            if (rand.Next(Math.Min(luck, governingStat), luck * governingStat) >
+                rand.Next(Math.Max(opponentLuck, opponentGoverningStat), opponentLuck * opponentGoverningStat))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public int CheckCost(UsedAbility ability)
         {
             switch (ability)
